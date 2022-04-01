@@ -1,8 +1,11 @@
-# 💻 Jak zacząć?
-``          d!help          ``
+## 💻 Jak zacząć?
+```
+d!help
+```
 
-# 📂 Język bota
-DragonX Music używa bibloteki nodejs oraz yarn
+## 📂 Język bota
+Blblioteka użyta w tworzeniu bota:
+`` NodeJS oraz Yarn ``
 
-# 🧾 Licencja
+## 🧾 Licencja
 Ten projekt jest licencjonowany na warunkach Licencji ISC
