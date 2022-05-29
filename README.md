@@ -5,7 +5,7 @@ d!help
 
 ## 📂 Język bota
 Blblioteka użyta w tworzeniu bota:
-`` NodeJS oraz Yarn ``
+`` JavaScript``
 
 ## ❌ Napotkałeś błąd?
 Jeżeli napotkałeś jakiś błąd z którym sobie nie możesz poradzieć wejdź na naszego [Discorda](https://discord.gg/hjSKGVSd8s)
