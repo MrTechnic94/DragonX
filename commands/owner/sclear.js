@@ -1,33 +1,35 @@
 'use strict';
 
-const { MessageEmbed } = require('discord.js');
-require('dotenv').config({ path: __dirname + '../../.env' })
+const { EmbedBuilder, ActivityType } = require('discord.js');
+require('dotenv').config({ path: __dirname + '../../.env' });
 
-exports.run = async (client, message, args) => {
+exports.run = async (client, message) => {
 
     if (message.author.id == process.env.OWNER) {
 
-    client.user.setPresence({ activities: [{ name: process.env.STATUSTWO, type: 'LISTENING' }], status: 'online' });
+        const prefix = process.env.PREFIX;
 
-    const embed = new MessageEmbed()
-    .setTitle("✅ Pomyślnie wyczyszczony status!")
-    .setDescription(`Status został zmieniony na: \`\`${process.env.STATUSTWO}\`\``)
-    .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
-    .setColor("GREEN")
+        client.user.setPresence({ activities: [{ name: `❓ ${prefix}help 🎵 ${prefix}play`, type: ActivityType.Listening }], status: 'online' });
 
-    return message.reply({embeds: [embed]})
+        const embed = new EmbedBuilder()
+            .setTitle("✅ Pomyślnie wyczyszczony status!")
+            .setDescription(`Status został zmieniony na: \`\`❓ ${prefix}help 🎵 ${prefix}play\`\``)
+            .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+            .setColor("Green")
+
+        return message.reply({ embeds: [embed] })
 
     } else {
 
-    const embed = new MessageEmbed()
-    .setTitle("❌ Błąd!")
-    .setDescription(`Status nie został wyczyszczony!`)
-    .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
-    .setColor("RED")
+        const _embed = new EmbedBuilder()
+            .setTitle("❌ Błąd!")
+            .setDescription(`Status nie został wyczyszczony!`)
+            .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+            .setColor("Red")
 
-    return message.reply({embeds: [embed]})
+        return message.reply({ embeds: [_embed] })
 
-    }
+    };
 };
 
 exports.info = {

@@ -2,7 +2,7 @@
 
 const { EmbedBuilder } = require('discord.js');
 
-exports.run = async (_client, queue, track) => {
+exports.run = async (_client, queue, tracks) => {
 
     function SendEmbed(desc) {
 
@@ -14,6 +14,6 @@ exports.run = async (_client, queue, track) => {
 
 };
 
-    SendEmbed(`✅ **${track.title}** dodano do playlisty!`, queue.metadata);
+    SendEmbed(`✅ W playliście **${tracks.length}** utworów!`, queue.metadata);
 
 };

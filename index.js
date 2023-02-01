@@ -1,27 +1,29 @@
 'use strict';
 
-const { Client, Collection, Intents } = require('discord.js');
+const { Client, Collection, GatewayIntentBits, Partials } = require('discord.js');
 const { Player } = require('discord-player');
-const clc = require('cli-color');
-require('discord-player/smoothVolume');
 require('dotenv').config();
 
 const client = new Client({
+	messageEditHistoryMaxSize: 0,
+	messageCacheMaxSize: 25,
+	messageSweepInterval: 43200,
+    messageCacheLifetime: 21600,
 intents: [
-	Intents.FLAGS.GUILDS,
-	Intents.FLAGS.GUILD_MESSAGES,
-	Intents.FLAGS.GUILD_VOICE_STATES,
+	GatewayIntentBits.Guilds,
+	GatewayIntentBits.GuildMessages,
+	GatewayIntentBits.GuildVoiceStates,
+	GatewayIntentBits.MessageContent
 ],
 partials: [
-	"CHANNEL",
-	"MESSAGE",
-	"GUILD_MEMBER"
-],
-	disableMentions: "everyone"
+	Partials.Channel,
+	Partials.Message,
+	Partials.GuildMember
+]
 });
 
 client.once('ready', () => {
-	console.log(('[') + clc.redBright('Bot') + (']') + clc.redBright(` ${client.user.tag} zalogowal sie!`))
+	console.log(('[') + "\x1b[31m" + ('Bot') + "\x1b[0m" + (']') + "\x1b[31m" + (` ${client.user.tag} zalogowal sie!`) + "\x1b[0m");
 });
 
 // -----> Zaladowanie discord-player <-----
@@ -29,19 +31,10 @@ const player = new Player(client);
 
 client.player = player;
 
-// -----> Zalodowanie Handlera <-----
+// -----> Zalodowanie handlera <-----
 ["commands", "aliases"].forEach(x => (client[x] = new Collection()));
 
 ["./handler/events.js",  "./handler/events-music.js", "./handler/commands.js"].forEach(x => require(x)(client));
 
-// -----> Errory <-----
-client.on('shardError', error => {
-	console.error((`[`) + clc.redBright(`Error`) + (`] `) + error);
-});
-
-client.on('unhandledRejection', error => {
-	console.error((`[`) + clc.redBright(`Error`) + (`] `) + error);
-});
-
-// -----> Zalogowanie Bota do Discorda <-----
+// -----> Zalogowanie bota do discorda <-----
 client.login(process.env.TOKEN);
