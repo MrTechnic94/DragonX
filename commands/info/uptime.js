@@ -15,7 +15,7 @@ exports.run = async (client, message) => {
     .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
     .setColor("Blue")
 
-    return message.reply({embeds: [embed]})
+    return message.reply({embeds: [embed]});
 
 };
 

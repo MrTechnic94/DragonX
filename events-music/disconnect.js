@@ -14,6 +14,6 @@ exports.run = async (_client, queue) => {
 
 };
 
-    Message('❌ **Wychodzę z kanału bo jest pusty!**', queue.metadata);
+    Message('❌ **Wychodzę z kanału!**', queue.metadata);
 
 };

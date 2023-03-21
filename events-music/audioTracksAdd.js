@@ -8,12 +8,12 @@ exports.run = async (_client, queue) => {
 
     const embed = new EmbedBuilder()
     .setDescription(desc)
-    .setColor("Red")
+    .setColor("Green")
 
     return queue.metadata.channel.send({embeds: [embed]});
 
 };
 
-    Message('❌ **Wychodzę z kanału bo jest pusty!**', queue.metadata);
+    Message(`✅ W playliście **${queue.getSize()}** utworów!`, queue.metadata);
 
 };

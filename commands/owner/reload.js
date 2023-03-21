@@ -21,7 +21,7 @@ exports.run = async (client, message, args) => {
             await client.commands.set(command, pull);
 
             return message.reply({embeds: [new EmbedBuilder().setDescription(`✅ **Przeładowano komendę** \`\`${command}\`\`!`).setColor("Red")]});
-        } catch(error) {
+        } catch {
             return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Błąd w przeładowaniu komendy** \`\`${command}\`\`!`).setColor("Red")]});
         }
     };

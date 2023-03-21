@@ -17,7 +17,7 @@ exports.run = async (client, message) => {
             .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
             .setColor("Green")
 
-        return message.reply({ embeds: [embed] })
+        return message.reply({embeds: [embed]})
 
     } else {
 
@@ -27,7 +27,7 @@ exports.run = async (client, message) => {
             .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
             .setColor("Red")
 
-        return message.reply({ embeds: [_embed] })
+        return message.reply({embeds: [_embed]})
 
     };
 };

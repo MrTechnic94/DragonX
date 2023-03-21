@@ -14,6 +14,6 @@ exports.run = async (_client, queue) => {
 
 };
 
-    Message('❌ **Wychodzę z kanału bo jest pusty!**', queue.metadata);
+    Message('❌ **Skończyła się muzyka w playliście!**', queue.metadata);
 
 };

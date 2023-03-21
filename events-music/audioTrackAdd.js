@@ -2,18 +2,18 @@
 
 const { EmbedBuilder } = require('discord.js');
 
-exports.run = async (_client, queue) => {
+exports.run = async (_client, queue, track) => {
 
     function Message(desc) {
 
     const embed = new EmbedBuilder()
     .setDescription(desc)
-    .setColor("Red")
+    .setColor("Green")
 
     return queue.metadata.channel.send({embeds: [embed]});
 
 };
 
-    Message('❌ **Wychodzę z kanału bo jest pusty!**', queue.metadata);
+    Message(`✅ **${track.title}** dodano do playlisty!`, queue.metadata);
 
 };

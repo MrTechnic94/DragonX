@@ -10,39 +10,41 @@ exports.run = async (client, message, args) => {
         searchEngine: QueryType.AUTO
     });
 
-    if (!res || !res.tracks.length) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie znaleziono takiej piosenki!**`).setColor("Red")]});
+    if (!res || !res.hasTracks()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie znaleziono takiej piosenki!**`).setColor("Red")]});
 
     if (!message.member?.voice.channelId) return await message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na kanale głosowym!**`).setColor("Red")]});
 
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return await message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
-    const queue = await client.player.createQueue(message.guild, {
+    const queue = await client.player.nodes.create(message.guild, {
         leaveOnStop: true,
-	    leaveOnEnd: true,
-	    leaveOnEmpty: true,
+        leaveOnEnd: true,
+        leaveOnEmpty: true,
+        skipOnNoStream: true,
+        selfDeaf: true,
         ytdlOptions: {
             quality: 'highestaudio',
             filter: 'audioonly',
-            highWaterMark: 1 << 30,
-            dlChunkSize: 0,
+            highWaterMark: 1 << 25,
+            dlChunkSize: 0
         },
-    metadata: {
-        channel: message.channel
-    }
-});
+        metadata: {
+            channel: message.channel
+        }
+    });
 
     try {
         if (!queue.connection) await queue.connect(message.member.voice.channel);
     } catch {
-        await client.player.deleteQueue(message.guild.id);
+        await queue.delete();
         return await message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Musisz być na tym samym kanale co bot!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Red")]});
     };
 
     await message.channel.send(`🔎 **Proszę czekać wyszukuję...**`).then(async m => {
 
-    await res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
+    await queue.addTrack(res.playlist ? res.tracks : res.tracks[0]);
 
-    if (!queue.playing) await queue.play();
+    if (!queue.node.isPlaying()) await queue.node.play();
     m.delete();
 });
 

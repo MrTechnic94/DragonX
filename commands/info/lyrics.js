@@ -6,7 +6,7 @@ const { Lyrics } = require('@discord-player/extractor');
 exports.run = async (client, message, args) => {
 
     const queue = client.player.getQueue(message.guild.id);
-    const lyricsClient = Lyrics.init();
+    const lyricsClient = Lyrics.init("5BMkVnGjzNLfqs8ZVUzxqG81hq5TL3fLjy6oyJpPdOpRysonO2Vh_tSl8yL5zaHR");
     const argument = args.join(" ");
 
     if (argument) return await lyricsClient.search(argument).then((x) => {
@@ -26,9 +26,7 @@ exports.run = async (client, message, args) => {
 
     if (!queue || !queue.playing) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
 
-    const track = queue.current.title;
-
-    if (!argument) return await lyricsClient.search(track).then((x) => {
+    if (!argument) return await lyricsClient.search(queue.current.title).then((x) => {
         
     const _embed = new EmbedBuilder()
         .setTitle(`🎵 ${x.title} - ${x.artist.name}`)

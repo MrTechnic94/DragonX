@@ -54,11 +54,11 @@ exports.run = async (client, message) => {
     cmd.run(client, message, args);
   } catch (error) {
     const embederr = new EmbedBuilder()
-      .setDescription(cmd.info.name + ' ERROR!:\n' + err)
+      .setDescription(cmd.info.name + ' ERROR!:\n' + error)
       .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
       .setColor("Red")
 
-    console.log("\x1b[0m" + (`[`) + "\x1b[31m" + (`Manager`) + "\x1b[0m" + (`]`) + "\x1b[31m" + `Podczas wykonywania komendy ${cmd.info.name} wystapil blad\n${err}`);
+    console.log("\x1b[0m" + (`[`) + "\x1b[31m" + (`Manager`) + "\x1b[0m" + (`]`) + "\x1b[31m" + `Podczas wykonywania komendy ${cmd.info.name} wystapil blad\n${error}`);
     return message.channel.send({embeds: [embederr]});
   };
 
