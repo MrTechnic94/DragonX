@@ -10,7 +10,7 @@ exports.run = async (client, message) => {
         let servers = '';
         
         servers = client.guilds.cache
-            .map(g => `Guild ID: ${g.id}\n Guild: ${g.name}\n Użytkownicy: ${g.memberCount}`)
+            .map(g => `Guild: ${g.name}\n Guild ID: ${g.id}`)
             .join('\n\n');
 
         return message.reply({embeds: [new EmbedBuilder().setTitle(`📰 Lista Serwerów (${client.guilds.cache.size})`).setDescription(`${servers}`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});

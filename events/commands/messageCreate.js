@@ -30,7 +30,7 @@ exports.run = async (client, message) => {
 
   // -----> Sprawdzenie permisji bota <-----
   if (!message.guild.members.me.permissions.has(PermissionsBitField.Flags.Administrator))
-    return await message.channel.send('❌ Nie posiadam permisji!\n**Wymagane:** ``ADMINISTRATOR``');
+    return message.channel.send('❌ Nie posiadam permisji!\n**Wymagane:** ``ADMINISTRATOR``');
 
   if (!cmd) return;
 
