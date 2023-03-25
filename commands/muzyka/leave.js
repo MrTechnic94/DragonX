@@ -23,5 +23,6 @@ exports.run = async (client, message) => {
 };
 
 exports.info = {
-    name: "leave"
-}
+    name: "leave",
+    aliases: ['le']
+};

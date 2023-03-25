@@ -12,18 +12,19 @@ exports.run = async (client, message) => {
 
     const tracks = queue.tracks.map((track, i) => `**${i + 1}.** ${track.title} - ${track.requestedBy}`);
     const songs = queue.tracks.size;
-    const nextSongs = songs > 5 ? `\n\n**${songs - 5}** piosenka(i)` : `\n\nW playliście **${songs}** piosenka(i)`;
+    const nextSongs = songs > 20 ? `\n\n**${songs - 20}** piosenka(i)` : `\n\nW playliście **${songs}** piosenka(i)`;
 
     const embed = new EmbedBuilder()
     .setTitle('📰 Piosenki w kolejce')
-    .setDescription(`🏆 ${queue.currentTrack.title} - ${queue.currentTrack.requestedBy}\n${tracks.slice(0, 5).join('\n')}${nextSongs}`)
+    .setDescription(`🏆 ${queue.currentTrack.title} - ${queue.currentTrack.requestedBy}\n${tracks.slice(0, 20).join('\n')}${nextSongs}`)
     .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
     .setColor("Red")
 
-    return message.reply({ embeds: [embed] });
+    return message.reply({embeds: [embed]});
 
 };
 
 exports.info = {
-    name: "queue"
-}
+    name: "queue",
+    aliases: ['q']
+};

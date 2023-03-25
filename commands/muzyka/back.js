@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
     try {
-        queue.history.back();
+        await queue.history.back();
         return message.reply({embeds: [new EmbedBuilder().setDescription(`◀ **Właśnie odtwarzam poprzeniu utwór**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
     } catch {
         return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma poprzedniego utwór!**`).setColor("Red")]});
@@ -22,5 +22,6 @@ exports.run = async (client, message) => {
 };
 
 exports.info = {
-    name: "back"
-}
+    name: "back",
+    aliases: ['b']
+};

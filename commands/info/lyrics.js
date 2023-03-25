@@ -44,5 +44,6 @@ exports.run = async (client, message, args) => {
 };
 
 exports.info = {
-    name: "lyrics"
-}
+    name: "lyrics",
+    aliases: ['ly']
+};

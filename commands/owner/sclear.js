@@ -34,4 +34,4 @@ exports.run = async (client, message) => {
 
 exports.info = {
     name: "sclear"
-}
+};

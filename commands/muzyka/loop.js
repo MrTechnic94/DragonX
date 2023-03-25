@@ -43,5 +43,6 @@ exports.run = async (client, message, args) => {
 };
 
 exports.info = {
-    name: "loop"
-}
+    name: "loop",
+    aliases: ['l']
+};

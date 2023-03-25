@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
     try {
-        queue.tracks.clear();
+        await queue.tracks.clear();
         return message.reply({embeds: [new EmbedBuilder().setDescription(`💨 **Kolejka zostala wyczyszczona!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Gold")]});
     } catch {
         return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Kolejka nie została wyczyszczona!**`).setColor("Red")]});
@@ -22,5 +22,6 @@ exports.run = async (client, message) => {
 };
 
 exports.info = {
-    name: "clear"
-}
+    name: "clear",
+    aliases: ['c']
+};

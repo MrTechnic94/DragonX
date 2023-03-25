@@ -33,5 +33,6 @@ exports.run = async (client, message, args) => {
 };
 
 exports.info = {
-    name: "autoplay"
-}
+    name: "autoplay",
+    aliases: ['ap']
+};

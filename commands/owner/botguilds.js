@@ -25,4 +25,4 @@ exports.run = async (client, message) => {
 exports.info = {
     name: "botguilds",
     aliases: ['bg']
-}
+};

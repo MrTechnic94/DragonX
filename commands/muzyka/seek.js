@@ -19,7 +19,7 @@ exports.run = async (client, message, args) => {
     const time = args[0] * 1000;
 
     try {
-        queue.node.seek(time);
+        await queue.node.seek(time);
         return message.reply({embeds: [new EmbedBuilder().setTitle(`🎵 Pomyślnie ustawiono czas odtwarzania!`).setDescription(`**Przeskoczyłeś odtwarzanie muzyki o: \`\`${args[0]} sekund\`\`**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Blue")]});
     } catch {
         return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Błąd podczas ustawiania czasu odtwarzania!**`).setColor("Red")]});
@@ -28,5 +28,6 @@ exports.run = async (client, message, args) => {
 };
 
 exports.info = {
-    name: "seek"
-}
+    name: "seek",
+    aliases: ['se']
+};

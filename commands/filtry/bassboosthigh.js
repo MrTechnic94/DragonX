@@ -36,4 +36,4 @@ exports.run = async (client, message, args) => {
 exports.info = {
     name: "bassboosthigh",
     aliases: ["bsh"]
-}
+};

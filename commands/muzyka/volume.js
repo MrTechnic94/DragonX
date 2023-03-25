@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
     try {
-        queue.node.setVolume(vol);
+        await queue.node.setVolume(vol);
         return message.reply({embeds: [new EmbedBuilder().setDescription(`🔊 **Ustawiono głośność na: ${vol}!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Blue")]});
     } catch {
         return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Błąd podczas zmieniana głośności!**`).setColor("Red")]});
@@ -27,5 +27,6 @@ exports.run = async (client, message, args) => {
 };
 
 exports.info = {
-    name: "volume"
-}
+    name: "volume",
+    aliases: ['v']
+};

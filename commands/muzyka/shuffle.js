@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
     try {
-        queue.tracks.shuffle();
+        await queue.tracks.shuffle();
         return message.reply({embeds: [new EmbedBuilder().setDescription("🔀 **Mieszanie kolejki zostało włączone!**").setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
     } catch {
         return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Mieszanie kolejki nie zostało włączone!**").setColor("Red")]});
@@ -22,5 +22,6 @@ exports.run = async (client, message) => {
 };
 
 exports.info = {
-    name: "shuffle"
-}
+    name: "shuffle",
+    aliases: ['sh']
+};

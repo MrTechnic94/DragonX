@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
     try {
-        queue.node.skip();
+        await queue.node.skip();
         return message.reply({embeds: [new EmbedBuilder().setTitle(`⏩ Pominąłeś aktualną piosenkę!`).setDescription(`**Pominąłeś:** \`\`${queue.currentTrack.title}\`\` `).setColor("6b3deb").setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})]});
     } catch {
         return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie powiodło się pominięcie utworu!**`).setColor("Red")]});
@@ -22,5 +22,6 @@ exports.run = async (client, message) => {
 };
 
 exports.info = {
-    name: "skip"
-}
+    name: "skip",
+    aliases: ['sk']
+};

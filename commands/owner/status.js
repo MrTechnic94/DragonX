@@ -35,4 +35,4 @@ exports.run = async (client, message, args) => {
 
 exports.info = {
     name: "status"
-}
+};
