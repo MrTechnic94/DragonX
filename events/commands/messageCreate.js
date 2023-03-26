@@ -36,7 +36,7 @@ exports.run = async (client, message) => {
 
   if (cmd.info.perm && message.guild && !cmd.info.DM) {
 
-    if (!message.guild.members.me.permissions.has(cmd.info.perm)) {
+    if (!message.member.permissions.has(cmd.info.perm)) {
       message.delete()
       const ydhp = new EmbedBuilder()
         .setDescription("❌ Nie posiadasz permisji by to zrobić!")
