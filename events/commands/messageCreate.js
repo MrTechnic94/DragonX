@@ -37,14 +37,13 @@ exports.run = async (client, message) => {
   if (cmd.info.perm && message.guild && !cmd.info.DM) {
 
     if (!message.member.permissions.has(PermissionsBitField.Flags.cmd.info.perm)) {
-      message.delete()
       const ydhp = new EmbedBuilder()
         .setDescription("❌ Nie posiadasz permisji by to zrobić!")
         .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
         .setColor("Red")
 
       console.log("\x1b[0m" + (`[`) + "\x1b[31m" + (`Manager`) + "\x1b[0m" + (`]`) + "\x1b[31m" + `Uzytkownik ${message.author.id} (${message.author.tag}) chcial wykonac komende ${cmd.info.name} (guild: ${message.guild.id})`);
-      return message.channel.send({embeds: [ydhp]}).then(m => m.delete({timeout: 5000}));
+      return message.channel.send({embeds: [ydhp]});
     }
   };
 
@@ -53,13 +52,7 @@ exports.run = async (client, message) => {
   try {
     cmd.run(client, message, args);
   } catch (error) {
-    const embederr = new EmbedBuilder()
-      .setDescription(cmd.info.name + ' ERROR!:\n' + error)
-      .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
-      .setColor("Red")
-
     console.log("\x1b[0m" + (`[`) + "\x1b[31m" + (`Manager`) + "\x1b[0m" + (`]`) + "\x1b[31m" + `Podczas wykonywania komendy ${cmd.info.name} wystapil blad\n${error}`);
-    return message.channel.send({embeds: [embederr]});
   };
 
 };
