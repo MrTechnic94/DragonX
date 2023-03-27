@@ -5,7 +5,7 @@ require('dotenv').config({ path: __dirname + '../../.env' });
 
 exports.run = async (client, message, args) => {
 
-    if (message.author.id == process.env.OWNER) {
+    if (message.author.id !== process.env.OWNER) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie posiadasz permisji by to zrobić!**`).setColor("Red")]});
 
     if (!args[0]) return message.reply({embeds: [new EmbedBuilder().setTitle("❌ Musisz podać nazwę statusu!").setColor("Red")]});
 
@@ -18,19 +18,8 @@ exports.run = async (client, message, args) => {
     .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
     .setColor("Green")
 
-    return message.reply({embeds: [embed]})
+    return message.reply({embeds: [embed]});
 
-    } else {
-
-    const _embed = new EmbedBuilder()
-    .setTitle("❌ Błąd!")
-    .setDescription(`Status nie został zmieniony!`)
-    .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
-    .setColor("Red")
-
-    return message.reply({embeds: [_embed]})
-
-    };
 };
 
 exports.info = {

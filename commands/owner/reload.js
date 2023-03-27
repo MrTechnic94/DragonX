@@ -5,7 +5,7 @@ require('dotenv').config({ path: __dirname + '../../.env' });
 
 exports.run = async (client, message, args) => {
 
-    if (message.author.id == process.env.OWNER) {
+    if (message.author.id !== process.env.OWNER) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie posiadasz permisji by to zrobić!**`).setColor("Red")]});
 
     if (!args[0]) return message.reply({embeds: [new EmbedBuilder().setTitle("❌ Musisz podać nazwę kategorii!").setColor("Red")]});
     if (!args[1]) return message.reply({embeds: [new EmbedBuilder().setTitle("❌ Musisz podać nazwę komendy!").setColor("Red")]});
@@ -24,7 +24,6 @@ exports.run = async (client, message, args) => {
         } catch {
             return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Błąd w przeładowaniu komendy** \`\`${command}\`\`!`).setColor("Red")]});
         }
-    };
 
 };
 
