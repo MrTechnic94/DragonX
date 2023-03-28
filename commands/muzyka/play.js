@@ -37,7 +37,7 @@ exports.run = async (client, message, args) => {
         if (!queue.connection) await queue.connect(message.member.voice.channel);
     } catch {
         await queue.delete();
-        return await message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Musisz być na tym samym kanale co bot!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Red")]});
+        return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Musisz być na tym samym kanale co bot!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Red")]});
     };
 
     await message.channel.send(`🔎 **Proszę czekać wyszukuję...**`).then(async m => {
