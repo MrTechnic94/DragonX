@@ -12,5 +12,7 @@ exports.run = async (client) => {
     setTimeout(function() { 
     client.user.setPresence({ activities: [{ name: `❓ ${p}help 🎵 ${p}play`, type: ActivityType.Listening }], status: 'online' });
     }, 3000);
-
+    
+    console.log(('[') + "\x1b[31m" + ('Bot') + "\x1b[0m" + (']') + "\x1b[31m" + (` ${client.user.tag} zalogowal sie!`) + "\x1b[0m");    
+    
 };
