@@ -23,9 +23,7 @@ partials: [
 });
 
 // -----> Zaladowanie discord-player <-----
-const player = new Player(client);
-
-client.player = player;
+client.player = Player.singleton(client);
 
 // -----> Zalodowanie handlera <-----
 ["commands", "aliases"].forEach(x => (client[x] = new Collection()));
