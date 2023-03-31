@@ -11,9 +11,7 @@ exports.run = async (client, message, args) => {
 
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
-    if (args[0] === undefined || args[0] < 1 || args[0] > queue.getSize()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nieprawidłowa liczba!**`).setColor("Red")]});
-
-    if (isNaN(args[0])) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ \`\`${args[0]}\`\` **nie jest liczbą!**`).setColor("Red")]});
+    if (!args[0] || args[0] < 1 || args[0] > queue.getSize()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nieprawidłowa liczba!**`).setColor("Red")]});
 
     const track = queue.tracks.at(index).title;
 
