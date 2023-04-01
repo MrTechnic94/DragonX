@@ -1,13 +1,11 @@
 'use strict';
 
 const { EmbedBuilder } = require('discord.js');
-const { QueryType } = require('discord-player');
 
 exports.run = async (client, message, args) => {
 
     const res = await client.player.search(args.join(' '), {
-        requestedBy: message.member,
-        searchEngine: QueryType.AUTO
+        requestedBy: message.member
     });
 
     if (!res || !res.hasTracks()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie znaleziono takiej piosenki!**`).setColor("Red")]});
@@ -21,13 +19,6 @@ exports.run = async (client, message, args) => {
         leaveOnEnd: true,
         leaveOnEmpty: true,
         skipOnNoStream: true,
-        selfDeaf: true,
-        ytdlOptions: {
-            quality: 'highestaudio',
-            filter: 'audioonly',
-            highWaterMark: 1 << 25,
-            dlChunkSize: 0
-        },
         metadata: {
             channel: message.channel
         }
