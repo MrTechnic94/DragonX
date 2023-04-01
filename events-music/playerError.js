@@ -14,6 +14,6 @@ exports.run = async (_client, queue) => {
 
 };
 
-    Message(`❌ Błąd podczas odtwarzania utworu!`, queue.metadata);
+    Message(`❌ **Błąd podczas odtwarzania utworu!**`, queue.metadata);
 
 };
