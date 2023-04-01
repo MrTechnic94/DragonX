@@ -6,7 +6,7 @@ exports.run = async (client, message, args) => {
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    const s = parseInt(args[0])
+    const s = parseInt(args[0]);
 
     if (!queue || !queue.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
 
