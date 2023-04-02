@@ -6,11 +6,9 @@ exports.run = async (_client, queue, track) => {
 
     if (queue.repeatMode == 1) return;
 
-    function Message(desc) {
-
     const embed = new EmbedBuilder()
     .setTitle("▶️ Aktualnie Odtwarzam")
-    .setDescription(desc)
+    .setDescription(`[${track.title}](${track.url})`)
     .addFields(
         {name: '**Na prośbę:**', value: `${track.requestedBy}`, inline: true},
         {name: '**Czas trwania:**', value: `\`\`${track.duration}\`\``, inline: true}
@@ -19,9 +17,5 @@ exports.run = async (_client, queue, track) => {
     .setColor("Blue")
     
     return queue.metadata.channel.send({embeds: [embed]});
-
-};
-
-    Message(`[${track.title}](${track.url})`, queue.metadata);
 
 };
