@@ -14,7 +14,7 @@ exports.run = async (client, message) => {
 
     try {
         await queue.tracks.clear();
-        return message.reply({embeds: [new EmbedBuilder().setDescription(`💨 **Kolejka zostala wyczyszczona!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Gold")]});
+        return message.reply({embeds: [new EmbedBuilder().setDescription(`💨 **Kolejka została wyczyszczona!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Gold")]});
     } catch {
         return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Kolejka nie została wyczyszczona!**`).setColor("Red")]});
     };
