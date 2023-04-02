@@ -27,7 +27,7 @@ module.exports = client => {
                 }
                 
                 if (pull.info.aliases && pull.info.aliases.forEach(als => {
-                    if (client.aliases.get(als)) return console.warn("\x1b[0m" + (`[`) + "\x1b[31m" + (`Error`) + "\x1b[0m" + (`]`) + "\x1b[31m" + ` Dwie lub wiecej komend posiadaja takie same aliasy: ${als}!`);
+                    if (client.aliases.get(als)) return console.error("\x1b[0m" + (`[`) + "\x1b[31m" + (`Error`) + "\x1b[0m" + (`]`) + "\x1b[31m" + ` Dwie lub wiecej komend posiadaja takie same aliasy: ${als}!`);
 
                     client.aliases.set(als, pull.info.name);
                 })
