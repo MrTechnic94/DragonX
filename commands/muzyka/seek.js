@@ -15,11 +15,9 @@ exports.run = async (client, message, args) => {
     if (s * 1000 >= queue.currentTrack.durationMS) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Podany czas jest większa od długości utworu, lub równa!**`).setColor("Red")]});
 
     if (!s || s <= 0) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nieprawidłowa liczba!**`).setColor("Red")]});
-
-    const time = args[0] * 1000;
-
+    
     try {
-        await queue.node.seek(time);
+        await queue.node.seek(args[0] * 1000);
         return message.reply({embeds: [new EmbedBuilder().setTitle(`🎵 Pomyślnie ustawiono czas odtwarzania!`).setDescription(`**Przeskoczyłeś odtwarzanie muzyki o: \`\`${args[0]} sekund\`\`**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Blue")]});
     } catch {
         return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Błąd podczas ustawiania czasu odtwarzania!**`).setColor("Red")]});
