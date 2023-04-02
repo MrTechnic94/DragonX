@@ -11,7 +11,8 @@ exports.run = async (client, message, args) => {
 
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
-    if (args[0] === 'on') {
+    switch(args[0]) {
+        case 'on':
         try {
             if (queue.repeatMode === 3) return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Automatyczne odtwarzanie jest włączone!**").setColor("Red")]});
             if (queue.repeatMode === 0) await queue.setRepeatMode(QueueRepeatMode.AUTOPLAY);
@@ -20,7 +21,7 @@ exports.run = async (client, message, args) => {
             return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Nie mogę włączyć automatycznego odtwarzania!**").setColor("Red")]});
     };
 
-    } else if (args[0] === 'off') {
+    case 'off':
         try {
             if (queue.repeatMode === 0) return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Automatyczne odtwarzanie jest wyłączone!**").setColor("Red")]});
             if (queue.repeatMode === 3) await queue.setRepeatMode(QueueRepeatMode.OFF);
