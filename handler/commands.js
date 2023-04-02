@@ -1,40 +1,41 @@
 'use strict';
 
-module.exports = client => {
-    
-    const { readdirSync } = require('fs');
-    const { sep } = require('path');
-        
-    const commandload = () => {
+const { readdirSync } = require('fs');
+const { sep } = require('path');
 
-        readdirSync('./commands/').forEach(drc => {
+module.exports = (client) => {
 
-            const commands = readdirSync(`./commands/${sep}${drc}${sep}`);
+  const commandDir = './commands/';
 
-            for (const file of commands) {
-                const pull = require(`../commands/${drc}/${file}`);
+  readdirSync(commandDir).forEach((directory) => {
+    const commandFiles = readdirSync(`${commandDir}${sep}${directory}${sep}`).filter((file) => file.endsWith('.js'));
 
-                if (pull.info && typeof pull.info.name === "string") {
+    for (const file of commandFiles) {
+      const command = require(`../commands/${directory}/${file}`);
 
-                    if (client.commands.get(pull.info.name)) return console.warn((`[`) + "\x1b[31m" + (`Error`) + "\x1b[0m" + (`]`) + "\x1b[31m" +` Zbyt duza ilosc komend ma taka sama nazwe: ${pull.info.name}!`);
+      if (command.run && typeof command.run === 'function') {
+        if (client.commands.get(command.info.name)) {
+          console.warn(`[${"\x1b[31m"}Error${"\x1b[0m"}] \x1b[31mZbyt duża ilość komend ma taką samą nazwę: ${command.info.name}!`);
+          continue;
+        }
 
-                    client.commands.set(pull.info.name, pull);
-                    console.log("\x1b[0m" + (`[`) + "\x1b[36m%s", (`Handler`) + "\x1b[0m" + (`]`) + ` Komenda ${pull.info.name} zostala pomyslnie zaladowana!`);
+        client.commands.set(command.info.name, command);
+        console.log(`[${"\x1b[36m"}Handler${"\x1b[0m"}] Komenda ${command.info.name} została pomyslnie załadowana!`);
+      } else {
+        console.warn(`[[${"\x1b[33m"}Warn${"\x1b[0m"}] \x1b[33mBłąd podczas ładowania komendy ${directory}/${file}!`);
+        continue;
+      }
 
-                } else {
-                    console.warn("\x1b[0m" + (`[`) + "\x1b[33m" + (`Warn`) + "\x1b[0m" + (`]`) + "\x1b[33m" + ` Wystapil blad podczas ladowania komendy (sciezka: ${drc}/${file})!`);
-                    continue;
-                }
-                
-                if (pull.info.aliases && pull.info.aliases.forEach(als => {
-                    if (client.aliases.get(als)) return console.error("\x1b[0m" + (`[`) + "\x1b[31m" + (`Error`) + "\x1b[0m" + (`]`) + "\x1b[31m" + ` Dwie lub wiecej komend posiadaja takie same aliasy: ${als}!`);
-
-                    client.aliases.set(als, pull.info.name);
-                })
-                );
-            };
+      if (command.info.aliases && Array.isArray(command.info.aliases)) {
+        command.info.aliases.forEach((alias) => {
+          if (client.aliases.get(alias)) {
+            console.error(`[${"\x1b[31m"}Error${"\x1b[0m"}] \x1b[31mDwie lub więcej komend posiada takie same aliasy: ${alias}!`);
+          } else {
+            client.aliases.set(alias, command.info.name);
+          }
         });
-    };
+      }
+    }
+  });
 
-    commandload();
 };
