@@ -10,7 +10,8 @@ exports.run = async (client, message, args) => {
 
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
-    if (args[0] === 'on') {
+    switch(args[0]) {
+        case 'on':
         try {
             if (queue.filters.ffmpeg.isEnabled('bassboost_low')) return message.reply({ embeds: [new EmbedBuilder().setDescription(`❌ **Ten lub inny filtr jest już aktywny!**`).setColor("Red")] });
             await queue.filters.ffmpeg.toggle(['bassboost_low', 'normalizer2']);
@@ -19,7 +20,7 @@ exports.run = async (client, message, args) => {
             return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Nie mogę włączyć tego filtru!**").setColor("Red")]});
         };
 
-    } else if (args[0] === 'off') {
+    case 'off':
         try {
             if (!queue.filters.ffmpeg.isEnabled('bassboost_low')) return message.reply({ embeds: [new EmbedBuilder().setDescription(`❌ **Ten lub inny filtr nie jest aktywowany!**`).setColor("Red")] });
             await queue.filters.ffmpeg.setFilters(false);
