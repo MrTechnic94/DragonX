@@ -8,9 +8,9 @@ exports.run = async (client, message) => {
 
     if (!queue || !queue.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
 
-    if (queue.history.previousTracks < 1) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma poprzedniego piosenek!**`).setColor("Red")]});
-
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
+
+    if (queue.history.previousTracks < 1) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma poprzedniego piosenek!**`).setColor("Red")]});
 
     try {
         await queue.history.back();
