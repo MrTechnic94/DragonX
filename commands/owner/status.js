@@ -9,12 +9,11 @@ exports.run = async (client, message, args) => {
 
     if (!args[0]) return message.reply({embeds: [new EmbedBuilder().setTitle("❌ Musisz podać nazwę statusu!").setColor("Red")]});
 
-    let argument1 = args.join(' ');
-    client.user.setPresence({ activities: [{ name: argument1, type: ActivityType.Listening }]});
+    client.user.setPresence({ activities: [{ name: args.join(' '), type: ActivityType.Listening }]});
 
     const embed = new EmbedBuilder()
     .setTitle("✅ Pomyślnie ustawiono status!")
-    .setDescription(`Status został zmieniony na \`\`${argument1}\`\``)
+    .setDescription(`Status został zmieniony na \`\`${args.join(' ')}\`\``)
     .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
     .setColor("Green")
 
