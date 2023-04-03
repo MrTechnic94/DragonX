@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
 
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
-    const m = await message.channel.send(`🔎 **Proszę czekać wyszukuję...**`)
+    const m = await message.channel.send(`🔎 **Proszę czekać wyszukuję...**`);
 
     await client.player.play(message.member.voice.channel?.id, res, {
     nodeOptions: {
