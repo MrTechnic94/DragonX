@@ -25,7 +25,7 @@ exports.run = async (client, message, args) => {
     });
 
     try {
-        if (!queue.connection) await queue.connect(message.member.voice.channel);
+        if (!queue.channel) await queue.connect(message.member.voice.channel);
     } catch {
         await queue.delete();
         return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Musisz być na tym samym kanale co bot!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Red")]});
