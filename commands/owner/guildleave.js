@@ -1,7 +1,7 @@
 'use strict';
 
 const { EmbedBuilder } = require('discord.js');
-require('dotenv').config({ path: __dirname + '../../.env' });
+require('dotenv').config({ path: `${__dirname}/../../.env` });
 
 exports.run = async (client, message, args) => {
     
