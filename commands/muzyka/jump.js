@@ -15,12 +15,8 @@ exports.run = async (client, message, args) => {
 
     const track = queue.tracks.at(index).title;
 
-    try {
-        await queue.node.skipTo(index);
-        return message.reply({embeds: [new EmbedBuilder().setTitle(`⏩ Przeskoczyłeś do utworu`).setDescription(`**Przeskoczyłeś:** \`\`${track}\`\``).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
-    } catch {
-        return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie mogę przeskoczyć do tego utworu!**`).setColor("Red")]});
-    };
+    await queue.node.skipTo(index);
+    return message.reply({embeds: [new EmbedBuilder().setTitle(`⏩ Przeskoczyłeś do utworu`).setDescription(`**Przeskoczyłeś:** \`\`${track}\`\``).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 
 };
 

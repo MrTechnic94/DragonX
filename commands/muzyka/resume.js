@@ -12,12 +12,8 @@ exports.run = async (client, message) => {
     
     if (!queue.node.isPaused()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Piosenka nie jest zatrzymana!**`).setColor("Red")]});
 
-    try {
-        await queue.node.resume();
-        return message.reply({embeds: [new EmbedBuilder().setTitle(`🔊 Wznowiłeś odtwarzanie piosenki`).setDescription(`**Wznowiłeś odtwarzanie piosenki** \`\`${queue.currentTrack.title}\`\` `).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
-    } catch {
-        return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie mogę wznowić piosenki!**`).setColor("Red")]});
-    };
+    await queue.node.resume();
+    return message.reply({embeds: [new EmbedBuilder().setTitle(`🔊 Wznowiłeś odtwarzanie piosenki`).setDescription(`**Wznowiłeś odtwarzanie piosenki** \`\`${queue.currentTrack.title}\`\` `).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 
 };
 

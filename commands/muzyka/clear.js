@@ -12,12 +12,8 @@ exports.run = async (client, message) => {
 
     if (!queue.tracks.at(0)) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma żadnych piosenek do wyczyszczenia!**`).setColor("Red")]});
 
-    try {
-        await queue.tracks.clear();
-        return message.reply({embeds: [new EmbedBuilder().setDescription(`💨 **Kolejka została wyczyszczona!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Gold")]});
-    } catch {
-        return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Kolejka nie została wyczyszczona!**`).setColor("Red")]});
-    };
+    await queue.tracks.clear();
+    return message.reply({embeds: [new EmbedBuilder().setDescription(`💨 **Kolejka została wyczyszczona!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Gold")]});
 
 };
 

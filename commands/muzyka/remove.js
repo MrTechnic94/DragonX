@@ -15,13 +15,8 @@ exports.run = async (client, message, args) => {
 
     const track = queue.tracks.at(index).title;
 
-    try {
-        await queue.node.remove(index);
-        return message.reply({embeds: [new EmbedBuilder().setTitle(`🎯 Usunąłeś piosenkę z kolejki!`).setDescription(`**Usunąłeś:** \`\`${track}\`\` `).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
-    } catch {
-        return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie mogę usunąć tego utworu!**`).setColor("Red")]});
-    };
-
+    await queue.node.remove(index);
+    return message.reply({embeds: [new EmbedBuilder().setTitle(`🎯 Usunąłeś piosenkę z kolejki!`).setDescription(`**Usunąłeś:** \`\`${track}\`\` `).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 };
 
 exports.info = {

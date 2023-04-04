@@ -12,13 +12,9 @@ exports.run = async (client, message) => {
 
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
-    try {
-        if (queue) await queue.delete();
-        await message.guild.members.me?.voice.disconnect();
-        return message.reply({embeds: [new EmbedBuilder().setDescription("🔮 **Wychodzę z kanału!**").setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Gold")]});
-    } catch {
-        return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Nie mogę wyjść z kanału!**").setColor("Red")]});
-    };
+    if (queue) await queue.delete();
+    await message.guild.members.me?.voice.disconnect();
+    return message.reply({embeds: [new EmbedBuilder().setDescription("🔮 **Wychodzę z kanału!**").setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Gold")]});
 
 };
 

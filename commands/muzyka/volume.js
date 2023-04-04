@@ -17,12 +17,8 @@ exports.run = async (client, message, args) => {
   
     if (queue.node.volume === vol) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Podana głośność jest obecnie używana!**`).setColor("Red")]});
 
-    try {
-        await queue.node.setVolume(vol);
-        return message.reply({embeds: [new EmbedBuilder().setDescription(`🔊 **Ustawiono głośność na: ${vol}!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Blue")]});
-    } catch {
-        return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Błąd podczas zmieniana głośności!**`).setColor("Red")]});
-    };
+    await queue.node.setVolume(vol);
+    return message.reply({embeds: [new EmbedBuilder().setDescription(`🔊 **Ustawiono głośność na: ${vol}!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Blue")]});
 
 };
 

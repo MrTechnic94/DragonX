@@ -12,22 +12,14 @@ exports.run = async (client, message, args) => {
 
     switch(args[0]) {
         case 'on':
-        try {
             if (queue.filters.ffmpeg.isEnabled('bassboost_low')) return message.reply({ embeds: [new EmbedBuilder().setDescription(`❌ **Ten lub inny filtr jest już aktywny!**`).setColor("Red")] });
             await queue.filters.ffmpeg.toggle(['bassboost_low', 'normalizer2']);
             return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Niski Bassboost został włączony!**`).setFooter({ text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setColor("Green")]});
-        } catch {
-            return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Nie mogę włączyć tego filtru!**").setColor("Red")]});
-        };
 
     case 'off':
-        try {
             if (!queue.filters.ffmpeg.isEnabled('bassboost_low')) return message.reply({ embeds: [new EmbedBuilder().setDescription(`❌ **Ten lub inny filtr nie jest aktywowany!**`).setColor("Red")] });
             await queue.filters.ffmpeg.setFilters(false);
             return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Niski Bassboost został wyłączony!**`).setFooter({ text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setColor("Red")]});
-        } catch {
-            return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Nie mogę wyłączyć tego filtru!**").setColor("Red")]});
-        }
     };
 
 };
