@@ -22,7 +22,7 @@ exports.run = async (client, message) => {
     .setColor("Red")
 
     return message.reply({embeds: [embed]});
-    }
+    };
 
     if (!queue.tracks.at(0)) {
         const _embed = new EmbedBuilder()
@@ -32,7 +32,7 @@ exports.run = async (client, message) => {
         .setColor("Red")
     
         return message.reply({embeds: [_embed]});
-    }
+    };
 
 };
 
