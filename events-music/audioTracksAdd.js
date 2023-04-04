@@ -5,7 +5,7 @@ const { EmbedBuilder } = require('discord.js');
 exports.run = async (_client, queue) => {
     
     const embed = new EmbedBuilder()
-    .setDescription(`✅ W playliście **${queue.getSize()}** utworów!`)
+    .setDescription(`✅ Dodano **${queue.getSize()}** do playlisty!`)
     .setColor("Green")
 
     return queue.metadata.channel.send({embeds: [embed]});
