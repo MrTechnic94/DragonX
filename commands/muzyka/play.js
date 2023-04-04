@@ -1,6 +1,7 @@
 'use strict';
 
 const { EmbedBuilder } = require('discord.js');
+const { QueryType } = require('discord-player');
 
 exports.run = async (client, message, args) => {
 
@@ -9,7 +10,8 @@ exports.run = async (client, message, args) => {
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
     const res = await client.player.search(args.join(' '), {
-        requestedBy: message.member
+        requestedBy: message.member,
+        searchEngine: QueryType.AUTO
     });
 
     if (!res?.hasTracks()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie znaleziono takiej piosenki!**`).setColor("Red")]});
