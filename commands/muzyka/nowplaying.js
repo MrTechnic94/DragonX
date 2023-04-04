@@ -15,7 +15,7 @@ exports.run = async (client, message) => {
 
     const embed = new EmbedBuilder()
     .setTitle(`⚡ Teraz Odtwarzam`)
-    .setDescription(`**Tytuł:** ${queue.currentTrack.title}\n**Poziom głośności:** ${queue.node.volume}%\n**Na prośbę:** ${queue.currentTrack.requestedBy}\n\n${emoji} | ${progresbar} ${queue.node.getTimestamp().current.label} / ${queue.currentTrack.duration}`)
+    .setDescription(`**Tytuł:** [${queue.currentTrack.title}](${queue.currentTrack.url})\n**Poziom głośności:** ${queue.node.volume}%\n**Na prośbę:** ${queue.currentTrack.requestedBy}\n\n${emoji} | ${progresbar} ${queue.node.getTimestamp().current.label} / ${queue.currentTrack.duration}`)
     .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
     .setThumbnail(queue.currentTrack.thumbnail)
     .setColor("6b3deb")
