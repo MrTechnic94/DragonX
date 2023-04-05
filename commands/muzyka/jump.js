@@ -13,10 +13,10 @@ exports.run = async (client, message, args) => {
 
     if (!args[0] || args[0] < 1 || args[0] > queue.getSize()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nieprawidłowa liczba!**`).setColor("Red")]});
 
-    const track = queue.tracks.at(index).title;
+    const track = queue.tracks.at(index);
 
     await queue.node.skipTo(index);
-    return message.reply({embeds: [new EmbedBuilder().setTitle(`⏩ Przeskoczyłeś do utworu`).setDescription(`**Przeskoczyłeś:** \`\`${track}\`\``).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+    return message.reply({embeds: [new EmbedBuilder().setTitle(`⏩ Przeskoczyłeś do utworu!`).setDescription(`[${track.title}](${track.url})`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 
 };
 

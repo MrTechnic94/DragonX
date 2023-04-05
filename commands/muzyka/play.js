@@ -20,13 +20,13 @@ exports.run = async (client, message, args) => {
 
     await client.player.play(message.member.voice.channel?.id, res, {
     nodeOptions: {
+        metadata: {
+            channel: message.channel
+        },
         leaveOnStop: true,
         leaveOnEnd: true,
         leaveOnEmpty: true,
-        skipOnNoStream: true,
-        metadata: {
-            channel: message.channel
-            }
+        skipOnNoStream: true
         }
     });
 

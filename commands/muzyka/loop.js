@@ -20,12 +20,12 @@ exports.run = async (client, message, args) => {
     case 'track':
         if (queue.repeatMode === QueueRepeatMode.TRACK) return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Powtarzanie piosenki jest już włączone!**").setColor("Red")]});
         if (queue.repeatMode === QueueRepeatMode.OFF) await queue.setRepeatMode(QueueRepeatMode.TRACK);
-        return message.reply({embeds: [new EmbedBuilder().setTitle("🔂 Powtarzanie piosenek").setDescription(`**Powtarzasz piosenkę:** \`\`${queue.currentTrack.title}\`\``).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+        return message.reply({embeds: [new EmbedBuilder().setDescription("🔂 **Powtarzanie piosenki zostało włączone!**").setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 
     case 'queue':
         if (queue.repeatMode === QueueRepeatMode.QUEUE) return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Powtarzanie kolejki jest już włączone!**").setColor("Red")]});
         if (queue.repeatMode === QueueRepeatMode.OFF) await queue.setRepeatMode(QueueRepeatMode.QUEUE);
-        return message.reply({embeds: [new EmbedBuilder().setTitle("🔁 Powtarzanie kolejki").setDescription(`**Powtarzanie kolejki zostało włączone!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+        return message.reply({embeds: [new EmbedBuilder().setDescription("🔁 **Powtarzanie kolejki zostało włączone!**").setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 };
 
 };

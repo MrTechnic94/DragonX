@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     if (!queue.tracks.at(0)) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma żadnych piosenek w kolejce!**`).setColor("Red")]});
 
     await queue.node.skip();
-    return message.reply({embeds: [new EmbedBuilder().setTitle(`⏩ Pominąłeś aktualną piosenkę!`).setDescription(`**Pominąłeś:** \`\`${queue.currentTrack.title}\`\` `).setColor("6b3deb").setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})]});
+    return message.reply({embeds: [new EmbedBuilder().setTitle(`⏩ Pominąłeś aktualną piosenkę!`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 
 };
 
