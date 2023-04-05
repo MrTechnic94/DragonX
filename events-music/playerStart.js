@@ -16,6 +16,8 @@ exports.run = async (_client, queue, track) => {
     .setThumbnail(track.thumbnail)
     .setColor("Blue")
     
-    return queue.metadata.channel.send({embeds: [embed]});
+    return queue.metadata.channel.send({embeds: [embed]}).then((msg) => {
+        queue.npmessage = msg;
+    });
 
 };
