@@ -13,7 +13,7 @@ exports.run = async (client, message, args) => {
     switch(args[0]) {
         case 'on':
             if (queue.filters.ffmpeg.isEnabled('lofi')) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Ten filtr jest już aktywowany!**`).setColor("Red")]});
-            await queue.filters.ffmpeg.toggle(['lofi', 'normalizer2']);
+            await queue.filters.ffmpeg.toggle(['lofi']);
             return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Lofi został włączony!**`).setFooter({ text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setColor("Green")]});
 
     case 'off':
