@@ -3,14 +3,14 @@
 const { EmbedBuilder } = require('discord.js');
 
 exports.run = async (_client, queue, track) => {
-
-    if (queue.repeatMode == 1) return;
+    
+    const request = track.requestedBy || `brak`;
 
     const embed = new EmbedBuilder()
     .setTitle("▶️ Aktualnie Odtwarzam")
     .setDescription(`[${track.title}](${track.url})`)
     .addFields(
-        {name: '**Na prośbę:**', value: `${track.requestedBy}`, inline: true},
+        {name: '**Na prośbę:**', value: `${request}`, inline: true},
         {name: '**Czas trwania:**', value: `\`\`${track.duration}\`\``, inline: true}
     )
     .setThumbnail(track.thumbnail)
