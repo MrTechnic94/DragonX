@@ -12,7 +12,7 @@ exports.run = async (client, message, args) => {
 
     switch(args[0]) {
         case 'on':
-            if (queue.filters.ffmpeg.isEnabled('karaoke')) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Ten filtr jest już aktywny!**`).setColor("Red")]});
+            if (queue.filters.ffmpeg.isEnabled('karaoke')) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Ten filtr jest już aktywowany!**`).setColor("Red")]});
             await queue.filters.ffmpeg.toggle(['karaoke']);
             return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Karaoke został włączony!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Green")]});
     
