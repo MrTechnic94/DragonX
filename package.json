@@ -16,7 +16,6 @@
     "fetch": "^1.1.0",
     "ffmpeg-static": "^5.1.0",
     "fs": "^0.0.1-security",
-    "jimp": "^0.22.7",
     "libsodium-wrappers": "^0.7.11",
     "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.41",
