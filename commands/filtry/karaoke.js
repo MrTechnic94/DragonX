@@ -12,12 +12,12 @@ exports.run = async (client, message, args) => {
 
     switch(args[0]) {
         case 'on':
-            if (queue.filters.ffmpeg.isEnabled('karaoke')) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Ten lub inny filtr jest już aktywny!**`).setColor("Red")]});
+            if (queue.filters.ffmpeg.isEnabled('karaoke')) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Ten filtr jest już aktywny!**`).setColor("Red")]});
             await queue.filters.ffmpeg.toggle(['karaoke']);
             return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Karaoke został włączony!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Green")]});
     
     case 'off':
-            if (!queue.filters.ffmpeg.isEnabled('karaoke')) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Ten lub inny filtr nie jest aktywowany!**`).setColor("Red")]});
+            if (!queue.filters.ffmpeg.isEnabled('karaoke')) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Ten filtr nie jest aktywowany!**`).setColor("Red")]});
             await queue.filters.ffmpeg.setFilters(false);
             return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Karaoke został wyłączony!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Red")]});
     };
