@@ -1,7 +1,8 @@
 'use strict';
 
 const { Client, Collection, GatewayIntentBits, Partials } = require('discord.js');
-const { Player } = require('discord-player');
+const { Player, useMasterPlayer } = require('discord-player');
+const DeezerExtractor = require('discord-player-deezer').default;
 require('dotenv').config();
 
 const client = new Client({
@@ -24,6 +25,10 @@ partials: [
 
 // -----> Zaladowanie discord-player <-----
 client.player = Player.singleton(client);
+
+const player = useMasterPlayer();
+
+player.extractors.register(DeezerExtractor);
 
 // -----> Zalodowanie handlera <-----
 ["commands", "aliases"].forEach(x => (client[x] = new Collection()));
