@@ -9,12 +9,12 @@ exports.run = async (client, message, args) => {
     const lyricsFinder = lyricsExtractor("5BMkVnGjzNLfqs8ZVUzxqG81hq5TL3fLjy6oyJpPdOpRysonO2Vh_tSl8yL5zaHR");
     const argument = args.join(" ");
 
-    if (argument) return await lyricsFinder.search(argument).then((x) => {
+    if (argument) return await lyricsFinder.search(argument).then(async x => {
 
     const embed = new EmbedBuilder()
         .setTitle(`🎵 ${x.title} - ${x.artist}`)
         .setDescription(`${x.lyricsFinder}`)
-        .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+        .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
         .setColor("6b3deb")
 
         return message.reply({embeds: [embed]});    
@@ -31,7 +31,7 @@ exports.run = async (client, message, args) => {
     const _embed = new EmbedBuilder()
         .setTitle(`🎵 ${x.title} - ${x.artist.name}`)
         .setDescription(`${x.lyrics}`)
-        .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+        .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
         .setColor("6b3deb")
     
         return message.reply({embeds: [_embed]});    

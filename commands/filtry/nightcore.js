@@ -14,12 +14,12 @@ exports.run = async (client, message, args) => {
         case 'on':
             if (queue.filters.ffmpeg.isEnabled('nightcore')) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Ten filtr jest już aktywowany!**`).setColor("Red")]});
             await queue.filters.ffmpeg.toggle(['nightcore']);
-            return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Nightcore został włączony!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Green")]});
+            return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Nightcore został włączony!**`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Green")]});
 
-    case 'off':
+        case 'off':
             if (!queue.filters.ffmpeg.isEnabled('nightcore')) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Ten filtr nie jest aktywowany!**`).setColor("Red")]});
-            await queue.filters.ffmpeg.setFilters(false);
-            return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Nightcore został wyłączony!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Red")]});
+            await queue.filters.ffmpeg.toggle(['nightcore']);
+            return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Nightcore został wyłączony!**`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Red")]});
     };
 
 };

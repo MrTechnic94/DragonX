@@ -19,7 +19,7 @@ exports.run = async (client, message) => {
     const embed = new EmbedBuilder()
     .setTitle('📰 Lista filtrów')
     .setDescription(`${bsl}\n${bs}\n${bsh}\n${kar}\n${nc}\n${vap}\n${lf}`)
-    .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+    .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
     .setColor('6b3deb')
 
     return message.reply({embeds: [embed]});

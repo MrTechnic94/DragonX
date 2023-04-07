@@ -14,12 +14,12 @@ exports.run = async (client, message, args) => {
         case 'on':
             if (queue.filters.ffmpeg.isEnabled('bassboost')) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Ten filtr jest już aktywowany!**`).setColor("Red")]});
             await queue.filters.ffmpeg.toggle(['bassboost', 'normalizer']);
-            return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Bassboost został włączony!**`).setFooter({ text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setColor("Green")]});
+            return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Bassboost został włączony!**`).setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setColor("Green")]});
 
-    case 'off':
+        case 'off':
             if (!queue.filters.ffmpeg.isEnabled('bassboost')) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Ten filtr nie jest aktywowany!**`).setColor("Red")]});
-            await queue.filters.ffmpeg.setFilters(false);
-            return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Bassboost został wyłączony!**`).setFooter({ text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setColor("Red")]});
+            await queue.filters.ffmpeg.toggle(['bassboost']);
+            return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Bassboost został wyłączony!**`).setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setColor("Red")]});
     };
 };
 

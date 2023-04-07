@@ -14,7 +14,7 @@ exports.run = async (client, message) => {
         const embed = new EmbedBuilder()
             .setTitle("✅ Pomyślnie wyczyszczony status!")
             .setDescription(`Status został zmieniony na: \`\`❓ ${p}help 🎵 ${p}play\`\``)
-            .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+            .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
             .setColor("Green")
 
         return message.reply({embeds: [embed]});

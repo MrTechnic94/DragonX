@@ -18,7 +18,7 @@ exports.run = async (client, message) => {
     const embed = new EmbedBuilder()
     .setTitle('📰 Piosenki w kolejce')
     .setDescription(`🏆 [${queue.currentTrack.title}](${queue.currentTrack.url}) - ${queue.currentTrack.requestedBy}\n${tracks.slice(0, 20).join('\n')}${nextSongs}`)
-    .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+    .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
     .setColor("Red")
 
     return message.reply({embeds: [embed]});
@@ -28,7 +28,7 @@ exports.run = async (client, message) => {
         const _embed = new EmbedBuilder()
         .setTitle('📰 Piosenki w kolejce')
         .setDescription(`🏆 [${queue.currentTrack.title}](${queue.currentTrack.url}) - ${queue.currentTrack.requestedBy}\n\nW playliście **0** piosenek`)
-        .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+        .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
         .setColor("Red")
     
         return message.reply({embeds: [_embed]});

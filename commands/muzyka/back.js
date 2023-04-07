@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     if (queue.history.previousTracks < 1) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma poprzedniego piosenek!**`).setColor("Red")]});
 
     await queue.history.back();
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`◀ **Odtwarzam poprzedni utwór!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+    return message.reply({embeds: [new EmbedBuilder().setDescription(`◀ **Odtwarzam poprzedni utwór!**`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 
 };
 

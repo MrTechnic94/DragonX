@@ -12,7 +12,7 @@ exports.run = async (client, message) => {
     const embed = new EmbedBuilder()
     .setTitle("⌚ Informacje bota")
     .setDescription(`**Uptime**\n\`\`🔮\`\` **Czas:** ${duration}\n\n**Informacje o systemie**\n\`\`💻\`\` **System:**  ${os.platform()}\n\`\`💾\`\` **Cpu:** ${await cpu.usage()}%\n\`\`🔩\`\` **Zużycie RAM:** ${(process.memoryUsage().rss / 1024 / 1024).toFixed(0)}mb`)
-    .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+    .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
     .setColor("Blue")
 
     return message.reply({embeds: [embed]});
