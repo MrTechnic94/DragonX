@@ -37,7 +37,6 @@ exports.run = async (client, message) => {
 
     const ydhp = new EmbedBuilder()
         .setDescription("❌ Nie posiadasz permisji by to zrobić!")
-        .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
         .setColor("Red")
 
         console.log(`\x1b[0m[ \x1b[31mManager\x1b[0m\x1b[31m ] Użytkownik ${message.author.id} (${message.author.tag}) chciał wykonać komendę ${cmd.info.name} (guild: ${message.guild.id})`);
