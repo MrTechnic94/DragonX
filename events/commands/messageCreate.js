@@ -39,7 +39,7 @@ exports.run = async (client, message) => {
         .setDescription("❌ Nie posiadasz permisji by to zrobić!")
         .setColor("Red")
 
-        console.log(`\x1b[0m[ \x1b[31mManager\x1b[0m\x1b[31m ] Użytkownik ${message.author.id} (${message.author.tag}) chciał wykonać komendę ${cmd.info.name} (guild: ${message.guild.id})`);
+        console.log(`\x1b[0m[ \x1b[31mManager\x1b[0m\x1b[31m ] Uzytkownik ${message.author.id} (${message.author.tag}) chcial wykonac komende ${cmd.info.name} (guild: ${message.guild.id})`);
         return message.channel.send({embeds: [ydhp]});
   };
 
@@ -48,7 +48,7 @@ exports.run = async (client, message) => {
   try {
     cmd.run(client, message, args);
   } catch (error) {
-    console.log(`\x1b[0m[${"\x1b[31m"}Manager\x1b[0m][\x1b[31m${cmd.info.name}\x1b[0m] Wystąpił błąd: ${error}`);
+    console.log(`\x1b[0m[${"\x1b[31m"}Manager\x1b[0m][\x1b[31m${cmd.info.name}\x1b[0m] Wystapil blad: ${error}`);
   };
 
 };
