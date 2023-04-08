@@ -5,10 +5,8 @@ const { sep } = require('path');
 
 module.exports = (client) => {
 
-  const commandDir = './commands/';
-
-  readdirSync(commandDir).forEach((directory) => {
-    const commandFiles = readdirSync(`${commandDir}${sep}${directory}${sep}`).filter((file) => file.endsWith('.js'));
+  readdirSync(`./commands/`).forEach((directory) => {
+    const commandFiles = readdirSync(`./commands/${sep}${directory}${sep}`).filter((file) => file.endsWith('.js'));
 
     for (const file of commandFiles) {
       const command = require(`../commands/${directory}/${file}`);
