@@ -12,7 +12,7 @@ exports.run = async (client, message) => {
 
     const progresbar = queue.node.createProgressBar({timecodes: false, length: 13});
     const emoji = queue.node.isPaused() ? `▶️` : `⏸️`;
-    const request = queue.currentTrack.requestedBy || `brak`;
+    const request = queue.currentTrack.requestedBy ?? `brak`;
 
     const embed = new EmbedBuilder()
     .setTitle(`⚡ Teraz Odtwarzam`)
