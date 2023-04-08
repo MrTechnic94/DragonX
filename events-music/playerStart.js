@@ -4,7 +4,7 @@ const { EmbedBuilder } = require('discord.js');
 
 exports.run = async (_client, queue, track) => {
     
-    const request = track.requestedBy || `brak`;
+    const request = track.requestedBy ?? `brak`;
 
     const embed = new EmbedBuilder()
     .setTitle("▶️ Aktualnie Odtwarzam")
