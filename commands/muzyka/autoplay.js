@@ -22,9 +22,21 @@ exports.run = async (client, message) => {
         mode = 'włączony';
         await queue.setRepeatMode(QueueRepeatMode.AUTOPLAY);
         break;
-    };
+  };
 
   return message.reply({embeds: [new EmbedBuilder().setDescription(`▶️ **Autoplay został ${mode}!**`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+
+  // switch(args[0]) {
+  //   case 'on':
+  //     if (queue.repeatMode === QueueRepeatMode.AUTOPLAY) return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Automatyczne odtwarzanie jest włączone!**").setColor("Red")]});
+  //     if (queue.repeatMode === QueueRepeatMode.OFF) await queue.setRepeatMode(QueueRepeatMode.AUTOPLAY);
+  //     return message.reply({embeds: [new EmbedBuilder().setDescription("▶️ **Automatyczne odtwarzanie zostało włączone!**").setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+
+  //   case 'off':
+  //     if (queue.repeatMode === QueueRepeatMode.OFF) return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Automatyczne odtwarzanie jest wyłączone!**").setColor("Red")]});
+  //     if (queue.repeatMode === QueueRepeatMode.AUTOPLAY) await queue.setRepeatMode(QueueRepeatMode.OFF);
+  //     return message.reply({embeds: [new EmbedBuilder().setDescription("▶️ **Automatyczne odtwarzanie zostało wyłączone!**").setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+  // };
 
 };
 
