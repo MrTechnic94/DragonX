@@ -2,7 +2,7 @@
 
 const { EmbedBuilder } = require('discord.js');
 
-exports.run = async (client, message, args) => {
+exports.run = async (client, message) => {
 
     const queue = client.player.nodes.get(message.guild.id);
 
