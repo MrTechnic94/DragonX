@@ -2,7 +2,7 @@
 
 const { EmbedBuilder } = require('discord.js');
 
-exports.run = async (client, message, args) => {
+exports.run = async (client, message) => {
 
     const queue = client.player.nodes.get(message.guild.id);
 
@@ -10,19 +10,10 @@ exports.run = async (client, message, args) => {
 
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
-    switch(args[0]) {
-        case 'on':
-            if (queue.filters.ffmpeg.isEnabled('bassboost_low')) return message.reply({ embeds: [new EmbedBuilder().setDescription(`❌ **Ten filtr jest już aktywowany!**`).setColor("Red")] });
-            await queue.filters.ffmpeg.toggle(['bassboost_low', 'normalizer']);
-            message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Niski Bassboost został włączony!**`).setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setColor("Green")]});
-            break;
+    const mode = queue.filters.ffmpeg.isEnabled('bassboost_low') ? `wyłączony` : `włączony`
+    await queue.filters.ffmpeg.toggle(['bassboost_low', 'normalizer']);
 
-        case 'off':
-            if (!queue.filters.ffmpeg.isEnabled('bassboost_low')) return message.reply({ embeds: [new EmbedBuilder().setDescription(`❌ **Ten inny filtr nie jest aktywowany!**`).setColor("Red")] });
-            await queue.filters.ffmpeg.toggle(['bassboost_low']);
-            message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Niski Bassboost został wyłączony!**`).setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setColor("Red")]});
-            break;
-    };
+    return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Niski Bassboost został ${mode}!**`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor(queue.filters.ffmpeg.isEnabled('bassboost_low') ? `Green` : `Red`)]});
 
 };
 

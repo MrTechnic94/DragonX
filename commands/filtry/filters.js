@@ -6,7 +6,7 @@ exports.run = async (client, message) => {
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setTitle('📰 Lista filtrów').setDescription(`🔴 **BassBoostLow**\n🔴 **BassBoost**\n🔴 **BassBoostHigh**\n🔴 **Karaoke**\n🔴 **Nightcore**\n🔴 **Lofi**`).setFooter({text: `Użycie: bassboost <on / off>`}).setColor("6b3deb")]});
+    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setTitle('📰 Lista filtrów').setDescription(`🔴 **BassBoostLow**\n🔴 **BassBoost**\n🔴 **BassBoostHigh**\n🔴 **Karaoke**\n🔴 **Nightcore**\n🔴 **Lofi**`).setFooter({text: `Użycie: ${process.env.PREFIX}bassboost`}).setColor("6b3deb")]});
     
     const bsl = queue.filters.ffmpeg.isEnabled('bassboost_low') ? `🟢 **BassBoostLow**` : `🔴 **BassBoostLow**`;
     const bs = queue.filters.ffmpeg.isEnabled('bassboost') ? `🟢 **BassBoost**` : `🔴 **BassBoost**`;
@@ -19,7 +19,7 @@ exports.run = async (client, message) => {
     const embed = new EmbedBuilder()
     .setTitle('📰 Lista filtrów')
     .setDescription(`${bsl}\n${bs}\n${bsh}\n${kar}\n${nc}\n${vap}\n${lf}`)
-    .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+    .setFooter({text: `Użycie: ${process.env.PREFIX}bassboost`})
     .setColor('6b3deb')
 
     return message.reply({embeds: [embed]});
