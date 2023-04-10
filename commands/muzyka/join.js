@@ -3,7 +3,7 @@
 const { MessageEmbed } = require('discord.js');
 const { joinVoiceChannel } = require('@discordjs/voice');
 
-exports.run = async (_client, message) => {
+exports.run = async (client, message) => {
 
     try {
         joinVoiceChannel({
@@ -12,7 +12,7 @@ exports.run = async (_client, message) => {
             adapterCreator: message.guild.voiceAdapterCreator
         })
         return message.reply({embeds: [new MessageEmbed().setDescription("🏆 **Dołączam na kanał!**").setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("GOLD")]});
-    } catch (error) {
+    } catch (err) {
         return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie mogę wejść na twój kanał głosowy!**`).setColor("RED")]});
     }
 

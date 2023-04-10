@@ -1,18 +1,18 @@
 'use strict';
 
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
-exports.run = async (_client, queue, _error) => {
+exports.run = async (_client, queue, error) => {
 
-    function SendEmbed(desc, _channel) {
+    function SendEmbed(desc) {
 
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
     .setDescription(desc)
-    .setColor("RED")
+    .setColor("Red")
         
-    return queue.metadata.channel.send({embeds: [embed]})
+    return queue.metadata.channel.send({embeds: [embed]});
 
-    }
+};
 
     SendEmbed('❌ **Error!**', queue.metadata);
 

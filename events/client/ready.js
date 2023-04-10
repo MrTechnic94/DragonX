@@ -1,13 +1,16 @@
 'use strict';
 
+const { ActivityType } = require('discord.js');
 require('dotenv').config({ path: __dirname + '../../.env' });
 
 exports.run = async (client) => {
+    
+    const prefix = process.env.PREFIX;
 
-    // -----> Status Bota <-----
-    client.user.setPresence({ activities: [{ name: process.env.STATUSONE, type: 'PLAYING' }], status: 'idle' });
+    // -----> Status bota <-----
+    client.user.setPresence({ activities: [{ name: "🌙 Connecting...", type: ActivityType.Playing }], status: 'idle' });
     setTimeout(function() { 
-    client.user.setPresence({ activities: [{ name: process.env.STATUSTWO, type: 'LISTENING' }], status: 'online' });
+    client.user.setPresence({ activities: [{ name: `❓ ${prefix}help 🎵 ${prefix}play`, type: ActivityType.Listening }], status: 'online' });
     }, 3000);
 
 };

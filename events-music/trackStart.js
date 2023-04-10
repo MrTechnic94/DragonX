@@ -1,26 +1,26 @@
 'use strict';
 
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 exports.run = async (_client, queue, track) => {
 
-    function SendEmbed(desc, _channel) {
+    if (queue.repeatMode == 1) return;
 
-    const embed = new MessageEmbed()
-    .setThumbnail(track.thumbnail)
+    function SendEmbed(desc) {
+
+    const embed = new EmbedBuilder()
     .setTitle("▶️ Aktualnie Odtwarzam")
     .setDescription(desc)
     .addFields(
         {name: '**Na prośbę:**', value: `${track.requestedBy}`, inline: true},
         {name: '**Czas trwania:**', value: `\`\`${track.duration}\`\``, inline: true}
     )
-    .setColor("BLUE")
+    .setThumbnail(track.thumbnail)
+    .setColor("Blue")
     
-    return queue.metadata.channel.send({embeds: [embed]})
+    return queue.metadata.channel.send({embeds: [embed]});
 
 };
-
-    if (queue.repeatMode == 2) return;
 
     SendEmbed(`[${track.title}](${track.url})`, queue.metadata);
 
