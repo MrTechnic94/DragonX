@@ -1,3 +1,5 @@
+'use strict';
+
 const Discord = require('discord.js');
 const fs = require('fs')
 const ms = require('ms')
@@ -8,12 +10,12 @@ const Timeout = new Discord.Collection();
 
 exports.run = async (client, message) => {
 
-    if(message.author.bot) return;
-    if(message.channel.type == "DM") return;
+    if (message.author.bot) return;
+    if (message.channel.type == "DM") return;
 
     const prefix = process.env.PREFIX;
 
-    if(message.content.indexOf(prefix) !== 0) return;
+    if (message.content.indexOf(prefix) !== 0) return;
     const args = message.content
       .slice(prefix.length)
       .trim() 
@@ -24,7 +26,7 @@ exports.run = async (client, message) => {
       client.commands.get(command) ||
       client.commands.get(client.aliases.get(command));
 
-      if(!cmd) return
+      if (!cmd) return
       function errorMessage(txt, member) {
         const embed_err = new Discord.MessageEmbed()
           .setTitle("ERROR!")
@@ -37,9 +39,9 @@ exports.run = async (client, message) => {
         return message.channel.send({embeds: [embed_err]});
       }
     
-      if(cmd.info.perm && message.guild && !cmd.info.DM){
+      if (cmd.info.perm && message.guild && !cmd.info.DM){
       
-        if(!message.member.permissions.has(cmd.info.perm)) {
+        if (!message.member.permissions.has(cmd.info.perm)) {
             message.delete()
             const ydhp = new Discord.MessageEmbed()
                 .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
@@ -52,7 +54,7 @@ exports.run = async (client, message) => {
         }
       }
 
-       if(cmd.info.stop === true) return
+       if (cmd.info.stop === true) return
 
     try {
         cmd.run(client, message, args);
@@ -63,7 +65,7 @@ exports.run = async (client, message) => {
             .setDescription('```' + cmd.info.name + ' ERROR!:\n' + err +'```')
             .setFooter(client.user.username + " System", client.user.avatarURL())
 
-        console.log(`[CommandsManager] Podczas wykonywania komendy ${cmd.info.name} wystąpił błąd \n${err}`);
+        console.log(`[CommandsManager] Podczas wykonywania komendy ${cmd.info.name} wystapil blad \n${err}`);
         return message.channel.send(embederr)
 
     }

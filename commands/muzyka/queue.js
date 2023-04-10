@@ -1,3 +1,5 @@
+'use strict';
+
 const { MessageEmbed } = require('discord.js');
 const { Player } = require('discord-player');
 

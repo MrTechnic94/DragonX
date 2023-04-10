@@ -1,6 +1,10 @@
+'use strict';
+
 const { Client } = require('discord.js');
 require('dotenv').config({ path: __dirname + '../../.env' });
 const clc = require('cli-color');
+const { mem, cpu } = require('node-os-utils');
+const os = require('os-utils');
 
 exports.run = async (client) => {
 

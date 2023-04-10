@@ -1,5 +1,6 @@
+'use strict';
+
 const { MessageEmbed } = require('discord.js');
-const { QueueRepeatMode } = require('discord-player');
 
 exports.run = async (client, message) => {
 

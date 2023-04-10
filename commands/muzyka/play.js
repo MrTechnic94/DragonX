@@ -1,5 +1,7 @@
+'use strict';
+
 const { MessageEmbed } = require('discord.js');
-const { Player, QueryType} = require('discord-player');
+const { Player, QueryType } = require('discord-player');
 
 exports.run = async (client, message, args) => {
 
@@ -10,7 +12,7 @@ exports.run = async (client, message, args) => {
         searchEngine: QueryType.AUTO
     });
 
-    if(!res || !res.tracks.length) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Nie znaleziono takiej piosenki!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
+    if (!res || !res.tracks.length) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Nie znaleziono takiej piosenki!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
 
     const queue = await client.player.createQueue(message.guild, {
         metadata: message.channel,
@@ -27,7 +29,7 @@ exports.run = async (client, message, args) => {
 });
 
     try {
-        if(!queue.connection) await queue.connect(message.member.voice.channel);
+        if (!queue.connection) await queue.connect(message.member.voice.channel);
     } catch {
         await client.player.deleteQueue(message.guild.id);
         return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Musisz być na tym samym kanale co bot!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});

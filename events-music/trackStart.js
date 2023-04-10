@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js');
-const emoji_arrow = '<a:arrow_right_gif:841604653266239498>';
 
 exports.run = async (client, queue, track) => {
 
