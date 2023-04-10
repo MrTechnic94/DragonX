@@ -1,7 +1,10 @@
+'use strict'
+
 module.exports = client => {
     
     const { readdirSync } = require('fs');
     const { sep } = require('path');
+    const clc = require('cli-color');
     
     const commandload = () => {
 
@@ -17,10 +20,10 @@ module.exports = client => {
                     if(client.commands.get(pull.info.name)) return console.warn(`❌ :: Zbyt duza ilosc komend ma taka sama nazwe! (${pull.info.name})`);
 
                     client.commands.set(pull.info.name, pull);
-                    console.log(`✅ :: Komenda ${pull.info.name} zostala pomyslnie zaladowana!`);
+                    console.log((`[`) + clc.cyan(`Komendy`) + (`]`) + ` Komenda ${pull.info.name} zostala pomyslnie zaladowana!`);
 
                 } else {
-                    console.warn(`❌ :: Wystapil blad podczas ladowania komendy (siezka: ${drc}/${file})!`);
+                    console.warn((`[`) + clc.cyan(`Komendy`) + (`]`) + ` Wystapil blad podczas ladowania komendy (siezka: ${drc}/${file})!`);
                     continue;
                 }
                 

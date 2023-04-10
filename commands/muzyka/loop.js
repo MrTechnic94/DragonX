@@ -1,3 +1,5 @@
+'use strict'
+
 const { MessageEmbed } = require('discord.js');
 const { QueueRepeatMode } = require('discord-player');
 const { getVoiceConnection } = require('@discordjs/voice');
@@ -13,6 +15,7 @@ exports.run = async (client, message) => {
 
     await queue.setRepeatMode(QueueRepeatMode.QUEUE);
     const track = queue.current
+    
     return message.reply({embeds:[new MessageEmbed().setTitle("🔄 Powtarzanie piosenek").setDescription(`**Powtarzasz piosenkę:** \`\`${track.title}\`\` `).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 
 };

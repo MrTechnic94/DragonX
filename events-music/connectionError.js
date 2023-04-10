@@ -1,18 +1,20 @@
+'use strict'
+
 const { MessageEmbed } = require('discord.js');
 
 exports.run = async (client, queue, track, error) => {
 
-    function SendEmbed(desc, channel){
+	function SendEmbed(desc, channel){
 
-        const embed = new MessageEmbed()
-        .setDescription(desc)
-        .setColor("RED")
-        .setFooter({text: `❗ Wiadomość została automatyczne wygenerowana`})
+    const embed = new MessageEmbed()
+	.setDescription(desc)
+	.setColor("RED")
+	.setFooter({text: `❗ Wiadomość została automatyczne wygenerowana`})
 
-        return channel.send({embeds: [embed]})
+	return channel.send({embeds: [embed]})
 
-    }
+	}
 
-    SendEmbed('❌ **Connection Error!**', queue.metadata);
+	SendEmbed('❌ **Connection Error!**', queue.metadata);
 
 };

@@ -1,3 +1,5 @@
+'use strict'
+
 const { MessageEmbed } = require('discord.js');
 const { Player } = require('discord-player');
 
@@ -14,7 +16,7 @@ exports.run = async (client, message) => {
         embed.setColor('RED');
         embed.setThumbnail(message.guild.iconURL({ size: 2048, dynamic: true }));
 
-        const tracks = queue.tracks.map((track, i) => `**${i + 1}**. ${track.title} | ${track.author} - ${track.requestedBy}`);
+        const tracks = queue.tracks.map((track, i) => `**${i + 1}.** ${track.title} | ${track.author} - ${track.requestedBy}`);
 
         const songs = queue.tracks.length;
         const nextSongs = songs > 5 ? `**${songs - 5}** innych piosenek` : `W playliście **${songs}** piosenek`;

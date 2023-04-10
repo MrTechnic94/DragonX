@@ -1,3 +1,5 @@
+'use strict'
+
 const { MessageEmbed } = require('discord.js');
 
 exports.run = async (client, queue, track, error) => {
@@ -7,8 +9,7 @@ exports.run = async (client, queue, track, error) => {
         const embed = new MessageEmbed()
         .setDescription(desc)
         .setColor("RED")
-        .setFooter({text: `❗ Wiadomość została automatyczne wygenerowana`})
-
+        
         return channel.send({embeds: [embed]})
 
     }

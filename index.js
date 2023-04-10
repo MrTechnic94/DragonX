@@ -1,10 +1,13 @@
-const { Client, Collection, Intents, MessageEmbed } = require('discord.js');
+'use strict'
+
+const { Client, Collection, Intents } = require('discord.js');
 const dotenv = require('dotenv');
 require('dotenv').config();
 const { Player } = require('discord-player');
 const clc = require('cli-color');
+const isValidUTF8 = require('utf-8-validate');
 
-const client = new Client({ 
+const client = new Client({
 intents: [
 	Intents.FLAGS.GUILDS,
 	Intents.FLAGS.GUILD_MESSAGES,
@@ -21,6 +24,11 @@ partials: [
 
 client.on('ready', () => {});
 
+// -----> Optymalizacja <-----
+const buf = Buffer.from([0xf0, 0x90, 0x80, 0x80]);
+
+console.log(isValidUTF8(buf));
+
 // -----> Zaladowanie discord-player <-----
 const player = new Player(client);
 
@@ -33,15 +41,11 @@ client.player = player;
 
 // -----> Errory <-----
 client.on('shardError', error => {
-	console.log(clc.redBright('======> Websocket error <======'));
-	console.error(clc.redBright(error));
-	console.log(clc.redBright('==================================='));
+	console.error((`[`) + clc.redBright(`Error`) + (`]`) + error);
 });
 
 client.on('unhandledRejection', error => {
-	console.log(clc.redBright('======> Nieobslugiwany error <======'));
-	console.error(clc.redBright(error));
-	console.log(clc.redBright('===================================='));
+	console.error((`[`) + clc.redBright(`Error`) + (`]`) + error);
 });
 
 client.login(process.env.TOKEN);

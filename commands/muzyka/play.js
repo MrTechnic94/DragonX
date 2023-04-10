@@ -1,3 +1,5 @@
+'use strict'
+
 const { MessageEmbed } = require('discord.js');
 const { Player, QueryType } = require('discord-player');
 
@@ -18,6 +20,7 @@ exports.run = async (client, message, args) => {
 	    leaveOnEnd: true,
 	    leaveOnEmpty: true,
         leaveOnEmptyCooldown: 100000,
+        spotifyBridge: false,
 	ytdlOptions: {
 		quality: 'highestaudio',
 		filter: 'audioonly',

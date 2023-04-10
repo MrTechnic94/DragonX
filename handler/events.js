@@ -1,7 +1,10 @@
+'use strict'
+
 module.exports = client => {
 
     const { readdirSync } = require('fs');
     const { sep } = require('path');
+    const clc = require('cli-color');
 
     const eventload = () => {
         
@@ -10,7 +13,7 @@ module.exports = client => {
 
             for(const file of events) {
                 const evn = require(`../events/${drc}/${file}`);
-                console.log(`✅ :: Zaladowano wydarzenie ${drc}/${events}`);
+                console.log((`[`) + clc.cyan(`Eventy`) + (`]`) + ` Zaladowano wydarzenie ${drc}/${events}`);
                 client.on(file.split(".")[0], (...args) => evn.run(client, ...args));
             
             }

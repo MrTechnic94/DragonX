@@ -1,6 +1,10 @@
+'use strict'
+
 const { MessageEmbed } = require('discord.js');
 
 exports.run = async (client, queue, track) => {
+
+    const player = client.player
 
     function SendEmbed(desc, channel){
 
@@ -9,13 +13,16 @@ exports.run = async (client, queue, track) => {
         .setTitle("▶️ Aktualnie Odtwarzam")
         .setDescription(desc)
         .setColor("BLUE")
-        .setFooter({text: `⚡ Powered by DragonX System`})
     
         return channel.send({embeds: [embed]})
 
     }
 
+    if (player.client.hasWebplayer)
+    player.client.io.to(queue.guild.id).emit("forceUpdate", {from: "music-trackStart"});
+    
     if (queue.repeatMode == 2) return;
-    SendEmbed(`**${track.title}**`, queue.metadata);
+
+    SendEmbed(`[${track.title}](${track.url}) [${track.requestedBy}]`, queue.metadata);
 
 };
