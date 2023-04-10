@@ -1,5 +1,3 @@
-'use strict';
-
 const { MessageEmbed } = require('discord.js');
 require('dotenv').config({ path: __dirname + '../../.env' })
 
@@ -22,5 +20,6 @@ exports.run = async (client, message, args) => {
 };
 
 exports.info = {
-    name: "gleave",
+    name: "guildleave",
+    aliases: ['gleave']
 }

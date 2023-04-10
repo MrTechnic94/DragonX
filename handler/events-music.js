@@ -9,7 +9,7 @@ module.exports = client => {
         
             for(const file of events) {
                 const evn = require(`../events-music/${file}`);
-                console.log(`[Events-Music] Zaladowano wydarzenie ${file}`);
+                console.log(`✅ :: Zaladowano wydarzenie ${file}`);
                 client.player.on(file.split(".")[0], (...args) => evn.run(client, ...args));
             
             }

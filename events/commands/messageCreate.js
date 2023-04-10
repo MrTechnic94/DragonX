@@ -1,9 +1,8 @@
-'use strict';
-
 const Discord = require('discord.js');
 const fs = require('fs')
 const ms = require('ms')
 const moment = require('moment-timezone')
+const premiumSchema = require('../../models/premium.js')
 require('dotenv').config({ path: __dirname + '../../.env' })
 
 const Timeout = new Discord.Collection();
@@ -25,6 +24,9 @@ exports.run = async (client, message) => {
     const cmd =
       client.commands.get(command) ||
       client.commands.get(client.aliases.get(command));
+      
+    // ----> Premium <-----
+    if (!cmd.premium && !(await premiumSchema.findOne({ User: message.author.id }))) return message.reply('Ta komenda jest wyłącznie dla użytkowników premium!');
 
       if (!cmd) return
       function errorMessage(txt, member) {
@@ -38,7 +40,7 @@ exports.run = async (client, message) => {
     
         return message.channel.send({embeds: [embed_err]});
       }
-    
+          
       if (cmd.info.perm && message.guild && !cmd.info.DM){
       
         if (!message.member.permissions.has(cmd.info.perm)) {
@@ -54,7 +56,7 @@ exports.run = async (client, message) => {
         }
       }
 
-       if (cmd.info.stop === true) return
+    if (cmd.info.stop === true) return
 
     try {
         cmd.run(client, message, args);

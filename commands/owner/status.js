@@ -1,5 +1,3 @@
-'use strict';
-
 const { MessageEmbed } = require('discord.js');
 require('dotenv').config({ path: __dirname + '../../.env' })
 

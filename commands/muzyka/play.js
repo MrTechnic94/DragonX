@@ -1,5 +1,3 @@
-'use strict';
-
 const { MessageEmbed } = require('discord.js');
 const { Player, QueryType } = require('discord-player');
 

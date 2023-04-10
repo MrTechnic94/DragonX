@@ -1,7 +1,9 @@
 #!/bin/sh
 while true
 do
-    node . || yarn node .
+    npm install
+    sleep 4
+    node index.js
     echo Wlanczanie Bota Prosze Czekac ...
-    sleep 2
+    sleep 1
 done

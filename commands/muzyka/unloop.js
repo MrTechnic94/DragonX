@@ -1,5 +1,3 @@
-'use strict';
-
 const { MessageEmbed } = require('discord.js');
 const { QueueRepeatMode } = require('discord-player');
 const { getVoiceConnection } = require('@discordjs/voice');

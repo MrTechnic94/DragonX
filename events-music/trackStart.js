@@ -15,7 +15,7 @@ exports.run = async (client, queue, track) => {
 
     }
 
-    if(queue.repeatMode == 2) return;
+    if (queue.repeatMode == 2) return;
     SendEmbed(`**${track.title}**`, queue.metadata);
 
 };
