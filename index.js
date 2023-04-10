@@ -5,7 +5,6 @@ const dotenv = require('dotenv');
 require('dotenv').config();
 const { Player } = require('discord-player');
 const clc = require('cli-color');
-const isValidUTF8 = require('utf-8-validate');
 
 const client = new Client({
 intents: [
@@ -23,11 +22,6 @@ partials: [
 });
 
 client.on('ready', () => {});
-
-// -----> Optymalizacja <-----
-const buf = Buffer.from([0xf0, 0x90, 0x80, 0x80]);
-
-console.log(isValidUTF8(buf));
 
 // -----> Zaladowanie discord-player <-----
 const player = new Player(client);

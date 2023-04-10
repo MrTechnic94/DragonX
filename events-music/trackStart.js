@@ -12,6 +12,10 @@ exports.run = async (client, queue, track) => {
         .setThumbnail(track.thumbnail)
         .setTitle("▶️ Aktualnie Odtwarzam")
         .setDescription(desc)
+        .addFields(
+            {name: '**Na prośbę:**', value: `${track.requestedBy}`, inline: true},
+            {name: '**Czas trwania:**', value: `\`\`${track.duration}\`\``, inline: true}
+        )
         .setColor("BLUE")
     
         return channel.send({embeds: [embed]})
@@ -23,6 +27,6 @@ exports.run = async (client, queue, track) => {
     
     if (queue.repeatMode == 2) return;
 
-    SendEmbed(`[${track.title}](${track.url}) [${track.requestedBy}]`, queue.metadata);
+    SendEmbed(`[${track.title}](${track.url})`, queue.metadata);
 
 };

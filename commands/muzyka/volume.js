@@ -13,7 +13,10 @@ exports.run = async (client, message, args) => {
 
     if (vol < 0 || vol > 100) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Zakres głośności musi wynosić 0-100!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
 
-    if (queue.volume === vol) return message.reply({embeds:[new MessageEmbed().setDescription(`🔊 **Ustawiono głośnośc na: ${vol}!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("BLUE")]});
+    if (!vol) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Nieprawidłowa liczba**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]})
+  
+    if (queue.volume === vol) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Podana głośność jest obecnie używana!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
+    
     const success = await queue.setVolume(vol);
 
     return message.reply({embeds:[new MessageEmbed().setDescription(`🔊 **Ustawiono głośnośc na: ${vol}!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("BLUE")]});

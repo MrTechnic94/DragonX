@@ -11,22 +11,17 @@ exports.run = async (client, message) => {
 
         if (!queue.tracks[0]) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Nie ma żadnych piosenek w kolejce! Właśnie gram ostatnią!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
 
-        const embed = new MessageEmbed();
-
-        embed.setColor('RED');
-        embed.setThumbnail(message.guild.iconURL({ size: 2048, dynamic: true }));
-
-        const tracks = queue.tracks.map((track, i) => `**${i + 1}.** ${track.title} | ${track.author} - ${track.requestedBy}`);
-
+        const tracks = queue.tracks.map((track, i) => `**${i + 1}.** ${track.title} - ${track.requestedBy}`);
         const songs = queue.tracks.length;
-        const nextSongs = songs > 5 ? `**${songs - 5}** innych piosenek` : `W playliście **${songs}** piosenek`;
+        const nextSongs = songs > 5 ? `\n\n**${songs - 5}** piosenka(i)` : `\n\nW playliście **${songs}** piosenka(i)`;
 
-        embed.setTitle('📰 Piosenki w kolejce')
-        embed.setDescription(`🏆 **Aktualnie:** ${queue.current.title}\n\n${tracks.slice(0, 5).join('\n')}\n\n${nextSongs}`);
+        const embed = new MessageEmbed()
+        .setTitle('📰 Piosenki w kolejce')
+        .setDescription(`🏆 ${queue.current.title} - ${queue.current.requestedBy}\n${tracks.slice(0, 5).join('\n')}${nextSongs}`)
+        .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+        .setColor("RED")
 
-        embed.setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
-
-        message.channel.send({ embeds: [embed] });
+        message.reply({ embeds: [embed] });
 
 }
 

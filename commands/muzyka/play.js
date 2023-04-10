@@ -19,7 +19,6 @@ exports.run = async (client, message, args) => {
         leaveOnStop: true,
 	    leaveOnEnd: true,
 	    leaveOnEmpty: true,
-        leaveOnEmptyCooldown: 100000,
         spotifyBridge: false,
 	ytdlOptions: {
 		quality: 'highestaudio',
