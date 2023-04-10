@@ -8,7 +8,7 @@ const client = new Client({
 	messageEditHistoryMaxSize: 0,
 	messageCacheMaxSize: 25,
 	messageSweepInterval: 43200,
-    messageCacheLifetime: 21600,
+    	messageCacheLifetime: 21600,
 intents: [
 	GatewayIntentBits.Guilds,
 	GatewayIntentBits.GuildMessages,
@@ -22,14 +22,8 @@ partials: [
 ]
 });
 
-client.once('ready', () => {
-	console.log(('[') + "\x1b[31m" + ('Bot') + "\x1b[0m" + (']') + "\x1b[31m" + (` ${client.user.tag} zalogowal sie!`) + "\x1b[0m");
-});
-
 // -----> Zaladowanie discord-player <-----
-const player = new Player(client);
-
-client.player = player;
+client.player = Player.singleton(client);
 
 // -----> Zalodowanie handlera <-----
 ["commands", "aliases"].forEach(x => (client[x] = new Collection()));

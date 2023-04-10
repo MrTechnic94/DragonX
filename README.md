@@ -4,7 +4,7 @@ d!help
 ```
 
 ## 📂 Język bota
-Blblioteka użyta w tworzeniu bota:
+Język użyty w tworzeniu bota:
 ``JavaScript``
 
 ## ❌ Napotkałeś błąd?
