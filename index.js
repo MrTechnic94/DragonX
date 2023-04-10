@@ -1,10 +1,9 @@
 'use strict'
 
 const { Client, Collection, Intents } = require('discord.js');
-const dotenv = require('dotenv');
-require('dotenv').config();
 const { Player } = require('discord-player');
 const clc = require('cli-color');
+require('dotenv').config();
 
 const client = new Client({
 intents: [

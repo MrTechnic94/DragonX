@@ -1,12 +1,15 @@
-const Cluster = require('discord-hybrid-sharding');
+const { ShardingManager } = require('discord.js');
+const clc = require('cli-color');
 require('dotenv').config();
 
-const manager = new Cluster.Manager('./index.js', {
+let manager = new ShardingManager('./index.js', {
     totalShards: 'auto',
-    shardsPerClusters: 2,
-    mode: 'process',
+    shardList: 'auto',
     token: process.env.TOKEN
 });
 
-manager.on('clusterCreate', cluster => console.log(`Zaladowano cluster ${cluster.id}`))
-manager.spawn({ timeout: -1 })
+manager.on('shardCreate', shard => {
+    console.log((`[`) + clc.cyan(`Shardy`) + (`]`) + ` Uruchomiono shard ${shard.id}`)
+});
+
+manager.spawn();

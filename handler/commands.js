@@ -17,7 +17,7 @@ module.exports = client => {
 
                 if (pull.info && typeof pull.info.name === "string") {
 
-                    if(client.commands.get(pull.info.name)) return console.warn(`❌ :: Zbyt duza ilosc komend ma taka sama nazwe! (${pull.info.name})`);
+                    if(client.commands.get(pull.info.name)) return console.warn((`[`) + clc.redBright(`Error`) + (`]`) + ` Zbyt duza ilosc komend ma taka sama nazwe! (${pull.info.name})`);
 
                     client.commands.set(pull.info.name, pull);
                     console.log((`[`) + clc.cyan(`Komendy`) + (`]`) + ` Komenda ${pull.info.name} zostala pomyslnie zaladowana!`);
@@ -28,7 +28,7 @@ module.exports = client => {
                 }
                 
                 if (pull.info.aliases && pull.info.aliases.forEach(als => {
-                    if(client.aliases.get(als)) return console.warn(`❌ :: Dwie bądź więcej komend posiadają takie same aliasy: ${als}!`);
+                    if(client.aliases.get(als)) return console.warn((`[`) + clc.redBright(`Error`) + (`]`) + ` Dwie bądź więcej komend posiadają takie same aliasy: ${als}!`);
 
                     client.aliases.set(als, pull.info.name);
                     

@@ -12,20 +12,19 @@ exports.run = async (client, message, args) => {
         searchEngine: QueryType.AUTO
     });
 
-    if (!res || !res.tracks.length) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Nie znaleziono takiej piosenki!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
+    if (!res || !res.tracks.length) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie znaleziono takiej piosenki!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
 
     const queue = await client.player.createQueue(message.guild, {
-        metadata: message.channel,
         leaveOnStop: true,
 	    leaveOnEnd: true,
 	    leaveOnEmpty: true,
         spotifyBridge: false,
 	ytdlOptions: {
 		quality: 'highestaudio',
-		filter: 'audioonly',
-		highWaterMark: 1 << 25,
+		highWaterMark: 1 << 30,
 		dlChunkSize: 0
-	}
+	},
+    metadata: message.channel
 });
 
     try {

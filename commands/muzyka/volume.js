@@ -7,19 +7,19 @@ exports.run = async (client, message, args) => {
 
     const queue = client.player.getQueue(message.guild.id);
 
-    if (!queue || !queue.playing) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Nie ma żadnej puszczonej piosenki, więc nie zmienie głośności!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
+    if (!queue || !queue.playing) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie gram żadnej piosenki!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
 
     const vol = parseInt(args[0]);
 
-    if (vol < 0 || vol > 100) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Zakres głośności musi wynosić 0-100!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
+    if (vol < 0 || vol > 100) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Zakres głośności musi wynosić 0-100!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
 
-    if (!vol) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Nieprawidłowa liczba**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]})
+    if (!vol) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nieprawidłowa liczba**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]})
   
-    if (queue.volume === vol) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Podana głośność jest obecnie używana!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
-    
-    const success = await queue.setVolume(vol);
+    if (queue.volume === vol) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Podana głośność jest obecnie używana!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
 
-    return message.reply({embeds:[new MessageEmbed().setDescription(`🔊 **Ustawiono głośnośc na: ${vol}!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("BLUE")]});
+    queue.setVolume(vol);
+
+    return message.reply({embeds: [new MessageEmbed().setDescription(`🔊 **Ustawiono głośność na: ${vol}!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("BLUE")]});
 
 };
 

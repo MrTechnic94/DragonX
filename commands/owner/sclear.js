@@ -7,12 +7,11 @@ exports.run = async (client, message, args) => {
 
     if (message.author.id == process.env.OWNER) {
 
-    let argument1 = args.join(' ');
-    client.user.setPresence({ activities: [{ name: argument1, type: 'LISTENING' }]});
+    client.user.setPresence({ activities: [{ name: process.env.STATUSTWO, type: 'LISTENING' }]});
 
     const embed = new MessageEmbed()
-    .setTitle("✅ Pomyślnie ustawiono status!")
-    .setDescription(`Status został zmieniony na \`\`${argument1}\`\``)
+    .setTitle("✅ Pomyślnie wyczyszczony status!")
+    .setDescription(`Status został zmieniony na \`\`${process.env.STATUSTWO}\`\``)
     .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
     .setColor("GREEN")
 
@@ -22,7 +21,7 @@ exports.run = async (client, message, args) => {
 
     const embed = new MessageEmbed()
     .setTitle("❌ Błąd!")
-    .setDescription(`Status nie został zmieniony!`)
+    .setDescription(`Status nie został wyczyszczony!`)
     .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
     .setColor("RED")
 
@@ -32,5 +31,5 @@ exports.run = async (client, message, args) => {
 }
 
 exports.info = {
-    name: "status"
+    name: "sclear"
 }
