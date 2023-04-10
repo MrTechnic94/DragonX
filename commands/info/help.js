@@ -1,11 +1,6 @@
 const { MessageEmbed } = require('discord.js');
-const { SlashCommandBuilder } = require('@discordjs/builders');
 
 exports.run = async (client, message) => {
-
-    const data = new SlashCommandBuilder()
-	.setName('echo')
-	.setDescription('Replies with your input!')
 
     const embed = new MessageEmbed()
     .setTitle("📰 Lista komend")
