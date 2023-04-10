@@ -15,8 +15,8 @@ exports.run = async (client, message) => {
   // -----> Bot odpowiada na oznaczenie <-----
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
     const embed = new EmbedBuilder()
-      .setDescription(`**Witaj** ${message.author.tag}!\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``)
-      .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+      .setDescription(`**Witaj** \`\`${message.author.tag}\`\`!\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``)
+      .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
       .setColor("Blue")
 
     return message.reply({embeds: [embed]});
@@ -30,17 +30,12 @@ exports.run = async (client, message) => {
 
   if (!cmd) return;
 
-  // -----> Sprawdzenie czy komenda jest tylko dla wlasciciela <-----
-  if (cmd.ownerOnly && process.env.OWNER !== message.author.id) {
-    return message.channel.send({embeds: [new EmbedBuilder().setDescription(`❌ **Nie posiadasz permisji by to zrobić!**`).setColor("Red")]});
-  };
-
-  if (cmd.info.perm && message.guild && !cmd.info.DM && !message.member.permissions.has(cmd.info.perm)) {
-    const ydhp = new EmbedBuilder()
+  if (cmd.info.perm && message.guild && !cmd.info.DM && !message.member.permissions.has(cmd.info.perm) || (cmd.ownerOnly && process.env.OWNER !== message.author.id)) {
+    const perm = new EmbedBuilder()
     .setDescription("❌ **Nie posiadasz permisji by to zrobić!**")
     .setColor("Red")
 
-    return message.channel.send({embeds: [ydhp]});
+    return message.channel.send({embeds: [perm]});
   };
 
   if (cmd.info.stop) return;
