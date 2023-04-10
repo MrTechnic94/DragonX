@@ -1,7 +1,7 @@
-const {MessageEmbed} = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const { QueueRepeatMode } = require('discord-player');
 
-exports.run = async (client, message, args) => {
+exports.run = async (client, message) => {
 
     const embed = new MessageEmbed()
     .setTitle("🏓 Pong")

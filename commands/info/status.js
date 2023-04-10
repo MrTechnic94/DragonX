@@ -1,8 +1,9 @@
 const { MessageEmbed } = require('discord.js');
+require('dotenv').config({ path: __dirname + '../../.env' })
 
 exports.run = async (client, message, args) => {
 
-    if(message.author.id == '586543379295240192') {
+    if(message.author.id == process.env.ONWER) {
 
     let argument1 = args.join(' ');
     client.user.setPresence({ activities: [{ name: argument1, type: 'LISTENING' }]});

@@ -6,10 +6,6 @@ const prettyMilliseconds = require('pretty-ms');
 exports.run = async (client, message) => {
     
     const ms = client.uptime
-    const sec = Math.floor((ms / 1000) % 60)
-    const min = Math.floor((ms / (1000 * 60)) % 60)
-    const hrs = Math.floor((ms / (1000 * 60 * 60)) % 24)
-    const days = Math.floor(ms / (1000 * 60 * 60 * 24))
     const { totalMemMb, usedMemMb } = await mem.info();
 
     const embed = new MessageEmbed()

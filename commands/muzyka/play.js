@@ -17,13 +17,14 @@ exports.run = async (client, message, args) => {
         leaveOnStop: true,
 	    leaveOnEnd: true,
 	    leaveOnEmpty: true,
+        leaveOnEmptyCooldown: 100000,
 	ytdlOptions: {
 		quality: 'highestaudio',
 		filter: 'audioonly',
 		highWaterMark: 1 << 25,
 		dlChunkSize: 0
 	}
-    });
+});
 
     try {
         if(!queue.connection) await queue.connect(message.member.voice.channel);
@@ -39,7 +40,7 @@ exports.run = async (client, message, args) => {
     if (!queue.playing) await queue.play();
     m.delete()
 
-})
+    })
 };
 
 exports.info = {
