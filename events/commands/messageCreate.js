@@ -1,12 +1,7 @@
 'use strict';
 
 const Discord = require('discord.js');
-const fs = require('fs')
-const ms = require('ms')
-const moment = require('moment-timezone')
 require('dotenv').config({ path: __dirname + '../../.env' })
-
-const Timeout = new Discord.Collection();
 
 exports.run = async (client, message) => {
 
@@ -18,28 +13,15 @@ exports.run = async (client, message) => {
     if (message.content.indexOf(prefix) !== 0) return;
     const args = message.content
       .slice(prefix.length)
-      .trim() 
+      .trim()
       .split(/ +/g);
   
     const command = args.shift().toLowerCase();
-    const cmd =
-      client.commands.get(command) ||
-      client.commands.get(client.aliases.get(command));
+    const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
       
-      if (!cmd) return
-      function errorMessage(txt, member) {
-        const embed_err = new Discord.MessageEmbed()
-          .setTitle("ERROR!")
-          .setAuthor(member.tag, member.displayAvatarURL({ dynamic: true }))
-          .setColor('RED')
-          .setDescription(txt)
-          .setFooter(`${config.embedy.nazwa} - System`, client.user.displayAvatarURL({ dynamic: true }))
-          .setTimestamp();
-    
-        return message.channel.send({embeds: [embed_err]});
-      }
+      if (!cmd) return;
       
-      if (cmd.info.perm && message.guild && !cmd.info.DM){
+      if (cmd.info.perm && message.guild && !cmd.info.DM) {
       
         if (!message.member.permissions.has(cmd.info.perm)) {
             message.delete()
@@ -54,7 +36,7 @@ exports.run = async (client, message) => {
         }
       }
 
-    if (cmd.info.stop === true) return
+    if (cmd.info.stop === true) return;
 
     try {
         cmd.run(client, message, args);

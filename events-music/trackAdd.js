@@ -2,15 +2,15 @@
 
 const { MessageEmbed } = require('discord.js');
 
-exports.run = async (client, queue, track) => {
+exports.run = async (_client, queue, track) => {
 
-    function SendEmbed(desc, channel){
+    function SendEmbed(desc, _channel) {
 
     const embed = new MessageEmbed()
     .setDescription(desc)
     .setColor("GREEN")
 
-    return channel.send({embeds: [embed]})
+    return queue.metadata.channel.send({embeds: [embed]})
 
     }
 

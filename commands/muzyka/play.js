@@ -1,30 +1,56 @@
 'use strict';
 
 const { MessageEmbed } = require('discord.js');
-const { Player, QueryType } = require('discord-player');
+const playdl = require('play-dl');
+playdl.getFreeClientID().then((clientID) => {
+    playdl.setToken({
+        soundcloud : { client_id : clientID }
+    });
+});
 
 exports.run = async (client, message, args) => {
 
-    const player = client.player
-
     const res = await client.player.search(args.join(' '), {
-        requestedBy: message.member,
-        searchEngine: QueryType.AUTO
+        requestedBy: message.member
     });
 
-    if (!res || !res.tracks.length) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie znaleziono takiej piosenki!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
+    if (!res || !res.tracks.length) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie znaleziono takiej piosenki!**`).setColor("RED")]});
+
+    if (!message.member.voice.channelId) return await message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie jesteś na kanale głosowym!**`).setColor("RED")]});
+
+    if (message.guild.me.voice.channelId && message.member.voice.channelId !== message.guild.me.voice.channelId) return await message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("RED")]});
 
     const queue = await client.player.createQueue(message.guild, {
+        disableVolume: false,
         leaveOnStop: true,
 	    leaveOnEnd: true,
 	    leaveOnEmpty: true,
-        spotifyBridge: false,
-	ytdlOptions: {
-		quality: 'highestaudio',
-		highWaterMark: 1 << 30,
-		dlChunkSize: 0
-	},
-    metadata: message.channel
+        volumeSmoothness: 0.08,
+        ytdlOptions: {
+            quality: 'highestaudio',
+            dlChunkSize: 0
+        },
+    metadata: {
+        channel: message.channel
+    },
+    async onBeforeCreateStream(track, source, _queue) {
+        if (source === 'youtube' || source === 'youtu.be') {    
+            return (await playdl.stream(track.url, { discordPlayerCompatibility : true })).stream;
+        } else if (source === 'soundcloud') {
+            return (await playdl.stream(track.url, { discordPlayerCompatibility : true })).stream;
+        // } else if (source === 'spotify' || source === 'open.spotify') {
+        //     let sp_data = await playdl.spotify(track.url);
+        //     let result = await playdl.search(sp_data.name);
+        //     return (await playdl.stream(result[0].url, { discordPlayerCompatibility: true })).stream;
+        // } else if (source === 'spotify' || source === 'open.spotify.com') {
+        //     const res = await client.player.search(args.join(' '), {
+        //         requestedBy: message.member,
+        //         searchEngine: QueryType.AUTO
+        //     });
+        } else if (!args === 'open.spotify.com') {
+            message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Spotify nie jest obsługiwany!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
+        }
+    }
 });
 
     try {
@@ -45,5 +71,6 @@ exports.run = async (client, message, args) => {
 };
 
 exports.info = {
-    name: "play"
+    name: "play",
+    aliases: ['sr', 'songrequest', 'p']
 }

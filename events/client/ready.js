@@ -1,6 +1,5 @@
 'use strict';
 
-const { Client } = require('discord.js');
 require('dotenv').config({ path: __dirname + '../../.env' });
 
 exports.run = async (client) => {

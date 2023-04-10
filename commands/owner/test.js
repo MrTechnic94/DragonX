@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
 
     return message.reply({embeds: [embed]})
 
-}
+};
 
 exports.info = {
     name: "test",

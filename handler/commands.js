@@ -20,7 +20,7 @@ module.exports = client => {
                     if(client.commands.get(pull.info.name)) return console.warn((`[`) + clc.redBright(`Error`) + (`]`) + ` Zbyt duza ilosc komend ma taka sama nazwe! (${pull.info.name})`);
 
                     client.commands.set(pull.info.name, pull);
-                    console.log((`[`) + clc.cyan(`Komendy`) + (`]`) + ` Komenda ${pull.info.name} zostala pomyslnie zaladowana!`);
+                    console.log((`[`) + clc.cyan(`Handler`) + (`]`) + ` Komenda ${pull.info.name} zostala pomyslnie zaladowana!`);
 
                 } else {
                     console.warn((`[`) + clc.cyan(`Komendy`) + (`]`) + ` Wystapil blad podczas ladowania komendy (siezka: ${drc}/${file})!`);

@@ -1,7 +1,6 @@
 'use strict';
 
 const { MessageEmbed } = require('discord.js');
-const { Player } = require('discord-player');
 
 exports.run = async (client, message, args) => {
 
@@ -17,11 +16,13 @@ exports.run = async (client, message, args) => {
   
     if (queue.volume === vol) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Podana głośność jest obecnie używana!**`).setColor("RED")]});
 
+    if (message.guild.me.voice.channelId && message.member.voice.channelId !== message.guild.me.voice.channelId) return await message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("RED")]});
+
     try {
         queue.setVolume(vol);
-        return message.reply({embeds: [new MessageEmbed().setTitle(`🔊 Ustawiono głośność na: ${vol}!`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("BLUE")]});
+        return message.reply({embeds: [new MessageEmbed().setDescription(`🔊 **Ustawiono głośność na: ${vol}!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("BLUE")]});
     } catch (error) {
-        return message.reply({embeds: [new MessageEmbed().setTitle(`❌ Błąd podczas zmieniana głośności!`).setColor("RED")]});
+        return message.reply({embeds: [new MessageEmbed().setDescription(`❌ Błąd podczas zmieniana głośności!`).setColor("RED")]});
 }
 
 };

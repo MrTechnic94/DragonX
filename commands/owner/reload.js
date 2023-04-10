@@ -20,9 +20,9 @@ exports.run = async (client, message, args) => {
             const pull = require(`../../commands/${category}/${command}`);
             await client.commands.set(command, pull);
 
-            return message.reply({embeds: [new MessageEmbed().setTitle(`✅ Przeładowano komendę \`\`${command}\`\`!`).setColor("RED")]});
+            return message.reply({embeds: [new MessageEmbed().setDescription(`✅ **Przeładowano komendę** \`\`${command}\`\`!`).setColor("RED")]});
         } catch(error) {
-            return message.reply({embeds: [new MessageEmbed().setTitle(`❌ Błąd w przeładowaniu komendy \`\`${command}\`\`!`).setColor("RED")]});
+            return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Błąd w przeładowaniu komendy** \`\`${command}\`\`!`).setColor("RED")]});
         }
     }   
 

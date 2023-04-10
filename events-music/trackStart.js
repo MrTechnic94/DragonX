@@ -2,11 +2,9 @@
 
 const { MessageEmbed } = require('discord.js');
 
-exports.run = async (client, queue, track) => {
+exports.run = async (_client, queue, track) => {
 
-    const player = client.player
-
-    function SendEmbed(desc, channel){
+    function SendEmbed(desc, _channel) {
 
     const embed = new MessageEmbed()
     .setThumbnail(track.thumbnail)
@@ -18,9 +16,9 @@ exports.run = async (client, queue, track) => {
     )
     .setColor("BLUE")
     
-    return channel.send({embeds: [embed]})
+    return queue.metadata.channel.send({embeds: [embed]})
 
-    }
+};
 
     if (queue.repeatMode == 2) return;
 

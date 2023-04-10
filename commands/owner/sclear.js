@@ -11,7 +11,7 @@ exports.run = async (client, message, args) => {
 
     const embed = new MessageEmbed()
     .setTitle("✅ Pomyślnie wyczyszczony status!")
-    .setDescription(`Status został zmieniony na \`\`${process.env.STATUSTWO}\`\``)
+    .setDescription(`Status został zmieniony na: \`\`${process.env.STATUSTWO}\`\``)
     .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
     .setColor("GREEN")
 
@@ -28,7 +28,7 @@ exports.run = async (client, message, args) => {
     return message.reply({embeds: [embed]})
 
     }
-}
+};
 
 exports.info = {
     name: "sclear"

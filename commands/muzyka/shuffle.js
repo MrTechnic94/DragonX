@@ -1,7 +1,6 @@
 'use strict';
 
 const { MessageEmbed } = require('discord.js');
-const { Player } = require('discord-player');
 
 exports.run = async (client, message) => {
 
@@ -11,11 +10,13 @@ exports.run = async (client, message) => {
 
     if (!queue.tracks[0]) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie ma żadnych piosenek do wymieszania!**`).setColor("RED")]});
 
+    if (message.guild.me.voice.channelId && message.member.voice.channelId !== message.guild.me.voice.channelId) return await message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("RED")]});
+
     try {
         queue.shuffle();
-        return message.reply({embeds: [new MessageEmbed().setTitle("🔂 Mieszanie kolejki zostało włączone!").setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setDescription("**Playlista została wymieszana**").setColor("6b3deb")]});
+        return message.reply({embeds: [new MessageEmbed().setDescription("🔂 **Mieszanie kolejki zostało włączone!**").setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setDescription("**Playlista została wymieszana**").setColor("6b3deb")]});
     } catch (error) {
-        return message.reply({embeds: [new MessageEmbed().setTitle("❌ Mieszanie kolejki nie zostało włączone!").setColor("RED")]});
+        return message.reply({embeds: [new MessageEmbed().setDescription("❌ Mieszanie kolejki nie zostało włączone!").setColor("RED")]});
 }
 
 };
