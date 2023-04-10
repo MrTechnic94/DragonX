@@ -1,28 +1,28 @@
-'use strict';
-
-const { MessageEmbed } = require('discord.js');
+const {MessageEmbed} = require('discord.js');
+const { Player } = require('discord-player');
 
 exports.run = async (client, message) => {
 
     const queue = client.player.getQueue(message.guild.id);
 
-    if (!queue || !queue.playing) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie ma żadnych piosenek w kolejce!**`).setColor("RED")]});
+    if(!queue || !queue.playing) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Nie ma żadnych piosenek w kolejce!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
 
-    if (!queue.tracks[0]) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie ma żadnych piosenek w kolejce! Właśnie gram ostatnią!**`).setColor("RED")]});
+    let st = "";
+    let i = 0
 
-    const tracks = queue.tracks.map((track, i) => `**${i + 1}.** ${track.title} - ${track.requestedBy}`);
-    const songs = queue.tracks.length;
-    const nextSongs = songs > 5 ? `\n\n**${songs - 5}** piosenka(i)` : `\n\nW playliście **${songs}** piosenka(i)`;
+    queue.tracks.forEach(track => {
+        i++;
+        st += `• **${i}** - ${track.title}\n`
+        
+    })
 
-    const embed = new MessageEmbed()
-    .setTitle('📰 Piosenki w kolejce')
-    .setDescription(`🏆 ${queue.current.title} - ${queue.current.requestedBy}\n${tracks.slice(0, 5).join('\n')}${nextSongs}`)
-    .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
-    .setColor("RED")
+    String.prototype.trimEllip = function (length) {
+        return this.length > length ? this.substring(0, length) + "..." : this;
+      }
 
-    message.reply({ embeds: [embed] });
+    return message.reply({embeds: [new MessageEmbed().setTitle("📰 Piosenki w kolejce").setDescription(`${st.trimEllip(4090).toString()}`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]})
 
-}
+};
 
 exports.info = {
     name: "queue"

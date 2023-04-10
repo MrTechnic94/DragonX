@@ -1,9 +1,8 @@
-'use strict';
+const {MessageEmbed} = require('discord.js');
+const { QueueRepeatMode } = require('discord-player');
 
-const { MessageEmbed } = require('discord.js');
+exports.run = async (client, message, args) => {
 
-exports.run = async (client, message) => {
-    
     const embed = new MessageEmbed()
     .setTitle("🏓 Pong")
     .setDescription(`**Ping:** ${Date.now() - message.createdTimestamp}ms\n**API Ping:** ${Math.round(client.ws.ping)}ms`)

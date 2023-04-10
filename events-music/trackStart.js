@@ -1,29 +1,22 @@
-'use strict';
-
-const { MessageEmbed } = require('discord.js');
+const {MessageEmbed} = require('discord.js');
+const emoji_arrow = '<a:arrow_right_gif:841604653266239498>';
 
 exports.run = async (client, queue, track) => {
 
-    const player = client.player
+    function SendEmbed(desc, channel){
 
-    function SendEmbed(desc, _channel){
-
-    const embed = new MessageEmbed()
-    .setThumbnail(track.thumbnail)
-    .setTitle("▶️ Aktualnie Odtwarzam")
-    .setDescription(desc)
-    .addFields(
-        {name: '**Na prośbę:**', value: `${track.requestedBy}`, inline: true},
-        {name: '**Czas trwania:**', value: `\`\`${track.duration}\`\``, inline: true}
-    )
-    .setColor("BLUE")
+        const embed = new MessageEmbed()
+        .setThumbnail(track.thumbnail)
+        .setTitle("▶️ Aktualnie Odtwarzam")
+        .setDescription(desc)
+        .setColor("BLUE")
+        .setFooter({text: `⚡ Powered by DragonX System`})
     
-    return queue.metadata.channel.send({embeds: [embed]})
+        return channel.send({embeds: [embed]})
 
     }
 
-    if (queue.repeatMode == 2) return;
-
-    SendEmbed(`[${track.title}](${track.url})`, queue.metadata);
+    if(queue.repeatMode == 2) return;
+    SendEmbed(`${emoji_arrow} **${track.title}**`, queue.metadata);
 
 };

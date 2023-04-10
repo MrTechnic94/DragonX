@@ -1,15 +1,15 @@
-'use strict';
-
-const { MessageEmbed } = require('discord.js');
+const {MessageEmbed} = require('discord.js');
 const { Player } = require('discord-player');
 
 exports.run = async (client, message) => {
 
     const queue = client.player.getQueue(message.guild.id);
 
-    if (!queue || !queue.playing) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("RED")]});
+    if(!queue || !queue.playing) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Nie ma żadnej puszczonej piosenki!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
 
     const track = queue.current;
+    const timestamp = queue.getPlayerTimestamp();
+    const trackDuration = timestamp.progress == 'Forever' ? 'Endless (Live)' : track.duration;
     const progress = queue.createProgressBar({ timecode: false });
     const embed = new MessageEmbed()
     .setThumbnail(track.thumbnail)

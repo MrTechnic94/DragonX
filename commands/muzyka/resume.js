@@ -1,19 +1,19 @@
-'use strict';
-
-const { MessageEmbed } = require('discord.js');
+const {MessageEmbed} = require('discord.js');
+const { Player } = require('discord-player');
+const {getVoiceConnection} = require('@discordjs/voice');
 
 exports.run = async (client, message) => {
 
+    const connection = getVoiceConnection(message.guild.id)
     const queue = client.player.getQueue(message.guild.id);
 
-    if (!queue || !queue.playing) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("RED")]});
+    // if(!connection) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Nie ma mnie na żadnym kanale głosowym!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
 
-    try {
-        queue.setPaused(false);
-        return message.reply({embeds: [new MessageEmbed().setTitle(`🔊 Wznowiłeś odtwarzanie piosenki`).setDescription(`**Wznowiłeś odtwarzanie piosenki** \`\`${queue.current.title}\`\` `).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
-    } catch (error) {
-        return message.reply({embeds: [new MessageEmbed().setTitle(`❌ Nie mogę wznowić piosenki!`).setColor("RED")]});
-}
+    if(!queue || !queue.playing) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Nie ma żadnej puszczonej piosenki!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
+
+    const success = queue.setPaused(false);
+
+    return message.reply({embeds:[new MessageEmbed().setTitle(`🔊 Wznowiłeś odtwarzanie piosenki`).setDescription(`**Wznowiłeś odtwarzanie piosenki** \`\`${queue.current.title}\`\` `).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 
 };
 
