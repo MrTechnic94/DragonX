@@ -1,6 +1,6 @@
-const {MessageEmbed} = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
-exports.run = async (client, queue, track) => {
+exports.run = async (client, queue, track, error) => {
 
     function SendEmbed(desc, channel){
 

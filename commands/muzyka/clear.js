@@ -1,6 +1,5 @@
-const {MessageEmbed} = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const { Player } = require('discord-player');
-const {getVoiceConnection} = require('@discordjs/voice');
 
 exports.run = async (client, message) => {
 

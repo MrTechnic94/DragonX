@@ -1,7 +1,14 @@
 #!/bin/sh
 while true
 do
-    yarn node index.js
-    echo Restart Bota Trwa!
-    sleep 4
+    # if [ -d ./node_modules ]
+    # then
+    #     npm install && echo Aktualizuje Pakiety ...
+    # else
+    #     yarn add . && echo Aktualizuje Pakiety ...
+    # fi
+    # sleep 4
+    node . || yarn node .
+    echo Wlanczanie Bota Prosze Czekac ...
+    sleep 2
 done
