@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const { MessageEmbed } = require('discord.js');
 require('dotenv').config({ path: __dirname + '../../.env' })
@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
 
     if (message.author.id == process.env.OWNER) {
 
-    client.user.setPresence({ activities: [{ name: process.env.STATUSTWO, type: 'LISTENING' }]});
+    client.user.setPresence({ activities: [{ name: process.env.STATUSTWO, type: 'LISTENING' }], status: 'online' });
 
     const embed = new MessageEmbed()
     .setTitle("✅ Pomyślnie wyczyszczony status!")

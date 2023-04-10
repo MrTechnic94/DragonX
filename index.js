@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const { Client, Collection, Intents } = require('discord.js');
 const { Player } = require('discord-player');
@@ -10,7 +10,8 @@ intents: [
 	Intents.FLAGS.GUILDS,
 	Intents.FLAGS.GUILD_MESSAGES,
 	Intents.FLAGS.GUILD_MEMBERS,
-	Intents.FLAGS.GUILD_VOICE_STATES
+	Intents.FLAGS.GUILD_VOICE_STATES,
+	Intents.FLAGS.GUILD_PRESENCES
 ],
 partials: [
 	"CHANNEL",
@@ -20,7 +21,9 @@ partials: [
 	disableMentions: 'everyone'
 });
 
-client.on('ready', () => {});
+client.on('ready', () => {
+	console.log(clc.cyanBright(`${client.user.tag} zostal zalogowany!`));
+});
 
 // -----> Zaladowanie discord-player <-----
 const player = new Player(client);
@@ -41,4 +44,5 @@ client.on('unhandledRejection', error => {
 	console.error((`[`) + clc.redBright(`Error`) + (`]`) + error);
 });
 
+// -----> Zalogowanie Bota do Discorda <-----
 client.login(process.env.TOKEN);

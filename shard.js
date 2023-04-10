@@ -12,4 +12,4 @@ manager.on('shardCreate', shard => {
     console.log((`[`) + clc.cyan(`Shardy`) + (`]`) + ` Uruchomiono shard ${shard.id}`)
 });
 
-manager.spawn();
+await manager.spawn();

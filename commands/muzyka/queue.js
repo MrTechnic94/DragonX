@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const { MessageEmbed } = require('discord.js');
 const { Player } = require('discord-player');
@@ -7,9 +7,9 @@ exports.run = async (client, message) => {
 
     const queue = client.player.getQueue(message.guild.id);
 
-    if (!queue || !queue.playing) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie ma żadnych piosenek w kolejce!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
+    if (!queue || !queue.playing) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie ma żadnych piosenek w kolejce!**`).setColor("RED")]});
 
-    if (!queue.tracks[0]) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie ma żadnych piosenek w kolejce! Właśnie gram ostatnią!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
+    if (!queue.tracks[0]) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie ma żadnych piosenek w kolejce! Właśnie gram ostatnią!**`).setColor("RED")]});
 
     const tracks = queue.tracks.map((track, i) => `**${i + 1}.** ${track.title} - ${track.requestedBy}`);
     const songs = queue.tracks.length;

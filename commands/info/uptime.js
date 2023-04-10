@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-const { MessageEmbed, Client } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const { mem, cpu } = require('node-os-utils');
 const os = require('os-utils');
 const prettyMilliseconds = require('pretty-ms');
