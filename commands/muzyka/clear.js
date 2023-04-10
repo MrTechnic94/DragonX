@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     if (!queue.tracks.at(0)) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma żadnych piosenek do wyczyszczenia!**`).setColor("Red")]});
 
     await queue.tracks.clear();
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`💨 **Kolejka została wyczyszczona!**`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Gold")]});
+    return message.reply({embeds: [new EmbedBuilder().setDescription(`💨 **Kolejka została wyczyszczona!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Gold")]});
 
 };
 

@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
     const embed = new EmbedBuilder()
         .setTitle(`🎵 ${x.title} - ${x.artist}`)
         .setDescription(`${x.lyricsFinder}`)
-        .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+        .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
         .setColor("6b3deb")
 
         return message.reply({embeds: [embed]});    
@@ -31,7 +31,7 @@ exports.run = async (client, message, args) => {
     const _embed = new EmbedBuilder()
         .setTitle(`🎵 ${x.title} - ${x.artist.name}`)
         .setDescription(`${x.lyrics}`)
-        .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+        .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
         .setColor("6b3deb")
     
         return message.reply({embeds: [_embed]});    

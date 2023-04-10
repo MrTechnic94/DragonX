@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     const mode = queue.filters.ffmpeg.isEnabled('bassboost_high') ? `wyłączony` : `włączony`
     await queue.filters.ffmpeg.toggle(['bassboost_high', 'normalizer']);
 
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Wysoki Bassboost został ${mode}!**`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor(queue.filters.ffmpeg.isEnabled('bassboost_high') ? `Green` : `Red`)]});
+    return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Wysoki Bassboost został ${mode}!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor(queue.filters.ffmpeg.isEnabled('bassboost_high') ? `Green` : `Red`)]});
 
 };
 

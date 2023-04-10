@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     const mode = queue.filters.ffmpeg.isEnabled('vaporwave') ? `wyłączony` : `włączony`
     await queue.filters.ffmpeg.toggle(['vaporwave', 'normalizer']);
 
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Vaporwave został ${mode}!**`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor(queue.filters.ffmpeg.isEnabled('vaporwave') ? `Green` : `Red`)]});
+    return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Vaporwave został ${mode}!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor(queue.filters.ffmpeg.isEnabled('vaporwave') ? `Green` : `Red`)]});
 
 };
 

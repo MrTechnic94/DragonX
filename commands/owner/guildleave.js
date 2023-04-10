@@ -9,7 +9,7 @@ exports.run = async (client, message, args) => {
 
     await guild.leave();
 
-    return message.reply({embeds: [new EmbedBuilder().setTitle(`✅ Pomyślnie bot wyszedł z gildi!`).setDescription(`**Guild name:**\n \`\`\`${guild.name}\`\`\`\n **Guild id:**\n \`\`\`${guild.id}\`\`\` `).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Red")]});
+    return message.reply({embeds: [new EmbedBuilder().setTitle(`✅ Pomyślnie bot wyszedł z gildi!`).setDescription(`**Guild name:**\n \`\`\`${guild.name}\`\`\`\n **Guild id:**\n \`\`\`${guild.id}\`\`\` `).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Red")]});
 
 };
 

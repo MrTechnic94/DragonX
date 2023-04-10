@@ -11,7 +11,7 @@ exports.run = async (client, message, args) => {
     const embed = new EmbedBuilder()
     .setTitle("✅ Pomyślnie ustawiono status!")
     .setDescription(`Status został zmieniony na \`\`${args.join(' ')}\`\``)
-    .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+    .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
     .setColor("Green")
 
     return message.reply({embeds: [embed]});

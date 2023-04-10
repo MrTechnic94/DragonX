@@ -10,9 +10,11 @@ exports.run = async (client, message) => {
 
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
+    const requester = queue.currentTrack.author === `cdn.discordapp.com` ? `nieznany` : queue.currentTrack.author;
+
     const embed = new EmbedBuilder()
     .setTitle('📨 Zapisano Piosenkę!')
-    .setDescription(`**Tytuł:** [${queue.currentTrack.title}](${queue.currentTrack.url})\n**Czas:** ${queue.currentTrack.duration}\n**Autor:** ${queue.currentTrack.author}`)
+    .setDescription(`**Tytuł:** [${queue.currentTrack.title}](${queue.currentTrack.url})\n**Czas:** ${queue.currentTrack.duration}\n**Autor:** ${requester}`)
     .setThumbnail(queue.currentTrack.thumbnail)
     .setColor('Red')
 

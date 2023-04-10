@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     const mode = queue.filters.ffmpeg.isEnabled('nightcore') ? `wyłączony` : `włączony`
     await queue.filters.ffmpeg.toggle(['nightcore', 'normalizer']);
 
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Nightcore został ${mode}!**`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor(queue.filters.ffmpeg.isEnabled('nightcore') ? `Green` : `Red`)]});
+    return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Nightcore został ${mode}!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor(queue.filters.ffmpeg.isEnabled('nightcore') ? `Green` : `Red`)]});
 
 };
 
