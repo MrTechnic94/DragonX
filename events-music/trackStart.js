@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const {MessageEmbed} = require('discord.js');
 const emoji_arrow = '<a:arrow_right_gif:841604653266239498>';
 
 exports.run = async (client, queue, track) => {
@@ -17,6 +17,6 @@ exports.run = async (client, queue, track) => {
     }
 
     if(queue.repeatMode == 2) return;
-    SendEmbed(`**${track.title}**`, queue.metadata);
+    SendEmbed(`${emoji_arrow} **${track.title}**`, queue.metadata);
 
 };

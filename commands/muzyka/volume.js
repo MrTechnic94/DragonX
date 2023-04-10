@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const {MessageEmbed} = require('discord.js');
 const { Player } = require('discord-player');
 
 exports.run = async (client, message, args) => {
@@ -9,10 +9,10 @@ exports.run = async (client, message, args) => {
 
     const vol = parseInt(args[0]);
 
-    if(vol < 0 || vol > 100) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Zakres głośności musi wynosić 0-100!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
+    if (vol < 0 || vol > 100) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Zakres głośności musi wynosić 0-100!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
 
     if(queue.volume === vol) return message.reply({embeds:[new MessageEmbed().setDescription(`🔊 **Ustawiono głośnośc na: ${vol}!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("BLUE")]});
-    const success = await queue.setVolume(vol);
+    const success = queue.setVolume(vol);
 
     return message.reply({embeds:[new MessageEmbed().setDescription(`🔊 **Ustawiono głośnośc na: ${vol}!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("BLUE")]});
 

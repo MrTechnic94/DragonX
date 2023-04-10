@@ -16,7 +16,7 @@ exports.run = async (client, message) => {
     if(message.content.indexOf(prefix) !== 0) return;
     const args = message.content
       .slice(prefix.length)
-      .trim() 
+      .trim()
       .split(/ +/g);
   
     const command = args.shift().toLowerCase();
@@ -47,7 +47,7 @@ exports.run = async (client, message) => {
                 .setDescription("❌ Nie posiadasz permisji by to zrobić!")
                 .setFooter(client.user.username + " System", client.user.avatarURL())
 
-            console.log(`[CommandsManager] Użytkownik ${message.author.id} (${message.author.tag}) chciał wykonać komende ${cmd.info.name} (guild: ${message.guild.id})`);
+            console.log(`[CommandsManager] Uzytkownik ${message.author.id} (${message.author.tag}) chcial wykonac komende ${cmd.info.name} (guild: ${message.guild.id})`);
             return message.channel.send({embeds: [ydhp]}).then(m => m.delete({timeout: 5000}));
         }
       }

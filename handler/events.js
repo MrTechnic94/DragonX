@@ -4,7 +4,6 @@ module.exports = client => {
     const { sep } = require('path');
 
     const eventload = () => {
-        
         readdirSync('./events/').forEach(drc => {
             const events = readdirSync(`./events/${sep}${drc}${sep}`).filter(files => files.endsWith(".js"));
 
