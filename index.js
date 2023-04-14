@@ -1,45 +1,55 @@
 'use strict';
 
-const { Client, Collection, GatewayIntentBits, Partials } = require('discord.js');
-const { Player, useMasterPlayer } = require('discord-player');
-// const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
-const DeezerExtractor = require('discord-player-deezer').default;
+const { Client, Collection, Intents, MessageEmbed } = require('discord.js');
+const dotenv = require('dotenv');
 require('dotenv').config();
+const { Player } = require('discord-player');
+const clc = require('cli-color');
+const bufferUtil = require('bufferutil');
+const crypto = require('crypto');
 
-const client = new Client({
-	messageEditHistoryMaxSize: 0,
-	messageCacheMaxSize: 25,
-	messageSweepInterval: 43200,
-	messageCacheLifetime: 21600,
-	// shards: getInfo().SHARD_LIST,
-    // shardCount: getInfo().TOTAL_SHARDS,
-	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.GuildVoiceStates,
-		GatewayIntentBits.MessageContent
-	],
-	partials: [
-		Partials.Channel,
-		Partials.Message,
-		Partials.GuildMember
-	]
+const client = new Client({ 
+intents: [
+	Intents.FLAGS.GUILDS,
+	Intents.FLAGS.GUILD_MESSAGES,
+	Intents.FLAGS.GUILD_MEMBERS,
+	Intents.FLAGS.GUILD_VOICE_STATES
+], 
+partials:[
+	"CHANNEL",
+	"MESSAGE",
+	"GUILD_MEMBER"
+], 
+	disableMentions: 'everyone',
 });
 
-// -----> Zaladowanie discord-player <-----
-client.player = Player.singleton(client);
+client.on('ready', () => {});
 
-const player = useMasterPlayer();
+client.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
+  
+	if (interaction.commandName === 'ping') {
+	  await interaction.reply('Pong!');
+	}
+  });
 
-player.extractors.register(DeezerExtractor);
+// Zaladowanie discord-player
+const player = new Player(client);
 
-// -----> Zaladowanie discord-hybrid-sharding <-----
-// client.cluster = new ClusterClient(client);
+client.player = player;
 
-// -----> Zalodowanie handlera <-----
+// Zalodowanie Handlera
 ["commands", "aliases"].forEach(x => (client[x] = new Collection()));
 
-["./handler/events.js", "./handler/events-music.js", "./handler/commands.js"].forEach(x => require(x)(client));
+["./handler/events.js",  "./handler/events-music.js", "./handler/commands.js"].forEach(x => require(x)(client));
 
-// -----> Zalogowanie bota do discorda <-----
+// Errory
+client.on('shardError', error => {
+	console.error(clc.redBright('❗ Polaczenie websocket napotkalo blad', error));
+});
+
+client.on('unhandledRejection', error => {
+	console.error(clc.redBright('❗ Nieobslugiwany blad', error));
+});
+
 client.login(process.env.TOKEN);
