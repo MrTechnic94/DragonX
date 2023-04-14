@@ -1,23 +1,26 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 exports.run = async (client, message) => {
 
-    const queue = client.player.nodes.get(message.guild.id);
+    const queue = client.player.getQueue(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
+    if (!queue || !queue.playing) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("RED")]});
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
+    if (!queue.tracks[0]) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie ma żadnych piosenek do wymieszania!**`).setColor("RED")]});
 
-    if (!queue.tracks.at(0)) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma żadnych piosenek do przetasowania!**`).setColor("Red")]});
+    if (message.guild.me.voice.channelId && message.member.voice.channelId !== message.guild.me.voice.channelId) return await message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("RED")]});
 
-    await queue.tracks.shuffle();
-    return message.reply({embeds: [new EmbedBuilder().setDescription("🔀 **Playlista została przetasowana!**").setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+    try {
+        queue.shuffle();
+        return message.reply({embeds: [new MessageEmbed().setDescription("🔂 **Mieszanie kolejki zostało włączone!**").setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setDescription("**Playlista została wymieszana**").setColor("6b3deb")]});
+    } catch (error) {
+        return message.reply({embeds: [new MessageEmbed().setDescription("❌ Mieszanie kolejki nie zostało włączone!").setColor("RED")]});
+}
 
 };
 
 exports.info = {
-    name: "shuffle",
-    aliases: ['sh']
-};
+    name: "shuffle"
+}

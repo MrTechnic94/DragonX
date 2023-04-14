@@ -1,24 +1,25 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 exports.run = async (client, message) => {
 
-    const queue = client.player.nodes.get(message.guild.id);
+    const queue = client.player.getQueue(message.guild.id);
 
-    if (!message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie mam mnie na kanale głosowym!**`).setColor("Red")]});
+    if (!message.guild.me.voice.channel) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie ma mnie na żadnym kanale!**`).setColor("RED")]});
 
-    if (!message.member?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na kanale głosowym!**`).setColor("Red")]});
+    if (message.guild.me.voice.channelId && message.member.voice.channelId !== message.guild.me.voice.channelId) return await message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("RED")]});
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
-
-    if (queue) await queue.delete();
-    await message.guild.members.me?.voice.disconnect();
-    return message.reply({embeds: [new EmbedBuilder().setDescription("🔮 **Wychodzę z kanału!**").setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Gold")]});
+    try {
+        if (queue) await queue.destroy();
+        await message.guild.me.voice.disconnect();
+        return message.reply({embeds: [new MessageEmbed().setDescription("🔮 **Wychodzę z kanału!**").setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("GOLD")]});
+    } catch (error) {
+        return message.reply({embeds: [new MessageEmbed().setDescription("❌ Nie mogę wyjść z kanału!").setColor("RED")]});
+    }
 
 };
 
 exports.info = {
-    name: "leave",
-    aliases: ['le']
-};
+    name: "leave"
+}
