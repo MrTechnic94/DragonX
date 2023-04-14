@@ -15,20 +15,20 @@ exports.run = async (client, message) => {
     const nextSongs = songs > 20 ? `\n\n**${songs - 20}** piosenki` : `\n\nW playliście **${songs}** piosenka(i)`;
 
     if (queue.tracks.at(0)) {
-        const embed = new EmbedBuilder()
-        .setTitle('📰 Piosenki w kolejce')
-        .setDescription(`🏆 [${queue.currentTrack.title}](${queue.currentTrack.url}) - ${queue.currentTrack.requestedBy}\n${tracks.slice(0, 20).join('\n')}${nextSongs}`)
-        .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
-        .setColor("Red")
+    const embed = new EmbedBuilder()
+    .setTitle('📰 Piosenki w kolejce')
+    .setDescription(`🏆 [${queue.currentTrack.title}](${queue.currentTrack.url}) - ${queue.currentTrack.requestedBy}\n${tracks.slice(0, 20).join('\n')}${nextSongs}`)
+    .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+    .setColor("Red")
 
-        return message.reply({embeds: [embed]});
+    return message.reply({embeds: [embed]});
     };
 
     if (!queue.tracks.at(0)) {
         const _embed = new EmbedBuilder()
         .setTitle('📰 Piosenki w kolejce')
         .setDescription(`🏆 [${queue.currentTrack.title}](${queue.currentTrack.url}) - ${queue.currentTrack.requestedBy}\n\nW playliście **0** piosenek`)
-        .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
+        .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
         .setColor("Red")
     
         return message.reply({embeds: [_embed]});

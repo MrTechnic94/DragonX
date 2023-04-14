@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     if (!queue.node.isPaused()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Piosenka nie jest zatrzymana!**`).setColor("Red")]});
 
     await queue.node.resume();
-    return message.reply({embeds: [new EmbedBuilder().setTitle(`🔊 Wznowiłeś odtwarzanie piosenki!`).setDescription(`[${queue.currentTrack.title}](${queue.currentTrack.url})`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+    return message.reply({embeds: [new EmbedBuilder().setTitle(`🔊 Wznowiłeś odtwarzanie piosenki!`).setDescription(`[${queue.currentTrack.title}](${queue.currentTrack.url})`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 
 };
 

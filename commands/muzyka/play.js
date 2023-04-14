@@ -28,11 +28,10 @@ exports.run = async (_client, message, args) => {
             leaveOnEnd: true,
             leaveOnEmpty: true,
             skipOnNoStream: true
-        }
-    });
-
-    m.delete();
-
+            }
+        });
+        
+        m.delete();
 };
 
 exports.info = {

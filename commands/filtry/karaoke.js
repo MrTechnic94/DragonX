@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     const mode = queue.filters.ffmpeg.isEnabled('karaoke') ? `wyłączony` : `włączony`
     await queue.filters.ffmpeg.toggle(['karaoke', 'normalizer']);
 
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Karaoke został ${mode}!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor(queue.filters.ffmpeg.isEnabled('karaoke') ? `Green` : `Red`)]});
+    return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Karaoke został ${mode}!**`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor(queue.filters.ffmpeg.isEnabled('karaoke') ? `Green` : `Red`)]});
 
 };
 

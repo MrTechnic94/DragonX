@@ -12,17 +12,19 @@ exports.run = async (client, message) => {
   const command = args.shift().toLowerCase();
   const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
 
+  if (message.author.bot || message.channel.type === "DM") return;
+
   // -----> Bot odpowiada na oznaczenie <-----
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
     const embed = new EmbedBuilder()
-      .setDescription(`**Witaj** \`\`${message.author.tag}\`\`!\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``)
-      .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
+      .setDescription(`**Witaj** ${message.author.tag}!\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``)
+      .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
       .setColor("Blue")
 
     return message.reply({embeds: [embed]});
   };
 
-  if (message.author.bot || !message.guild || !message.content.startsWith(prefix)) return;
+  if (!message.content.startsWith(prefix)) return;
 
   // -----> Sprawdzenie permisji bota <-----
   if (!message.guild.members.me.permissions.has(PermissionsBitField.Flags.Administrator))
@@ -30,12 +32,14 @@ exports.run = async (client, message) => {
 
   if (!cmd) return;
 
-  if (cmd.info.perm && message.guild && !cmd.info.DM && !message.member.permissions.has(cmd.info.perm) || (cmd.ownerOnly && process.env.OWNER !== message.author.id)) {
-    const perm = new EmbedBuilder()
-    .setDescription("❌ **Nie posiadasz permisji by to zrobić!**")
-    .setColor("Red")
+  if (cmd.info.perm && message.guild && !cmd.info.DM && !message.member.permissions.has(cmd.info.perm)) {
 
-    return message.channel.send({embeds: [perm]});
+    const ydhp = new EmbedBuilder()
+        .setDescription("❌ Nie posiadasz permisji by to zrobić!")
+        .setColor("Red")
+
+        console.log(`\x1b[0m[ \x1b[31mManager\x1b[0m\x1b[31m ] Uzytkownik ${message.author.id}${message.author.tag} chcial wykonac komende ${cmd.info.name} (guild: ${message.guild.id})`);
+        return message.channel.send({embeds: [ydhp]});
   };
 
   if (cmd.info.stop) return;
