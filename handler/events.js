@@ -1,17 +1,24 @@
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
+module.exports = client => {
 
-module.exports = (client) => {
+    const { readdirSync } = require('fs');
+    const { sep } = require('path');
 
-    fs.readdirSync(`./events/`).forEach((directory) => {
-      const eventFiles = fs.readdirSync(path.join(`./events/`, directory)).filter((file) => file.endsWith('.js'));
-  
-      for (const file of eventFiles) {
-        const event = require(path.join(__dirname, '..', `./events/`, directory, file));
-        console.log(`[${"\x1b[36m"}Handler${"\x1b[0m"}] Zaladowano wydarzenie ${file}`);
-        client.on(file.split('.')[0], (...args) => event.run(client, ...args));
-      }
-    });
-  };
+    const eventload = () => {
+        
+        readdirSync('./events/').forEach(drc => {
+            const events = readdirSync(`./events/${sep}${drc}${sep}`).filter(files => files.endsWith(".js"));
+
+            for(const file of events) {
+                const evn = require(`../events/${drc}/${file}`);
+                console.log((`[`) + "\x1b[36m" + (`Handler`) + "\x1b[0m" + (`]`) + ` Zaladowano wydarzenie ${events}`);
+                client.on(file.split(".")[0], (...args) => evn.run(client, ...args));
+            
+            }
+        });
+    };
+
+    eventload();
+
+};

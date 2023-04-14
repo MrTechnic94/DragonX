@@ -1,6 +1,7 @@
 'use strict';
 
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
+require('dotenv').config({ path: __dirname + '../../.env' });
 
 exports.run = async (client, message) => {
 
@@ -12,38 +13,53 @@ exports.run = async (client, message) => {
   const command = args.shift().toLowerCase();
   const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
 
+  if (message.author.bot) return;
+  if (message.channel.type == "DM") return;
+
   // -----> Bot odpowiada na oznaczenie <-----
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
     const embed = new EmbedBuilder()
-      .setDescription(`**Witaj** \`\`${message.author.tag}\`\`!\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``)
-      .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
+      .setDescription(`**Witaj** ${message.author.tag}!\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``)
+      .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
       .setColor("Blue")
 
     return message.reply({embeds: [embed]});
   };
 
-  if (message.author.bot || !message.guild || !message.content.startsWith(prefix)) return;
+  if (message.content.indexOf(prefix) !== 0) return;
 
   // -----> Sprawdzenie permisji bota <-----
   if (!message.guild.members.me.permissions.has(PermissionsBitField.Flags.Administrator))
-    return message.channel.send('❌ Nie posiadam permisji!\n**Wymagane:** ``ADMINISTRATOR``');
+    return await message.channel.send('❌ Nie posiadam permisji!\n**Wymagane:** ``ADMINISTRATOR``');
 
   if (!cmd) return;
 
-  if (cmd.info.perm && message.guild && !cmd.info.DM && !message.member.permissions.has(cmd.info.perm) || (cmd.ownerOnly && process.env.OWNER !== message.author.id)) {
-    const perm = new EmbedBuilder()
-    .setDescription("❌ **Nie posiadasz permisji by to zrobić!**")
-    .setColor("Red")
+  if (cmd.info.perm && message.guild && !cmd.info.DM) {
 
-    return message.channel.send({embeds: [perm]});
+    if (!message.member.permissions.has(cmd.info.perm)) {
+      message.delete()
+      const ydhp = new EmbedBuilder()
+        .setDescription("❌ Nie posiadasz permisji by to zrobić!")
+        .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+        .setColor("Red")
+
+      console.log("\x1b[0m" + (`[`) + "\x1b[31m" + (`Manager`) + "\x1b[0m" + (`]`) + "\x1b[31m" + `Uzytkownik ${message.author.id} (${message.author.tag}) chcial wykonac komende ${cmd.info.name} (guild: ${message.guild.id})`);
+      return message.channel.send({embeds: [ydhp]}).then(m => m.delete({timeout: 5000}));
+    }
   };
 
-  if (cmd.info.stop) return;
+  if (cmd.info.stop === true) return;
 
   try {
     cmd.run(client, message, args);
   } catch (error) {
-    console.log(`\x1b[0m[${"\x1b[31m"}Manager\x1b[0m][\x1b[31m${cmd.info.name}\x1b[0m] Wystapil blad: ${error}`);
+    const embederr = new EmbedBuilder()
+      .setDescription(cmd.info.name + ' ERROR!:\n' + err)
+      .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+      .setColor("Red")
+
+    console.log("\x1b[0m" + (`[`) + "\x1b[31m" + (`Manager`) + "\x1b[0m" + (`]`) + "\x1b[31m" + `Podczas wykonywania komendy ${cmd.info.name} wystapil blad\n${err}`);
+    return message.channel.send({embeds: [embederr]});
   };
 
 };

@@ -2,22 +2,35 @@
 
 const { EmbedBuilder } = require('discord.js');
 
-exports.run = async (client, message) => {
+exports.run = async (client, message, args) => {
 
-    const queue = client.player.nodes.get(message.guild.id);
-    
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
+    const queue = client.player.getQueue(message.guild.id);
+    let enabledFilter = await queue.getFiltersEnabled();
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
+    if (!queue || !queue.playing) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
 
-    const mode = queue.filters.ffmpeg.isEnabled('vaporwave') ? `wyłączony` : `włączony`
-    await queue.filters.ffmpeg.toggle(['vaporwave', 'normalizer']);
+    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return await message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Vaporwave został ${mode}!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor(queue.filters.ffmpeg.isEnabled('vaporwave') ? `Green` : `Red`)]});
+    if (args[0] === 'on') {
+        if (enabledFilter.length > 0) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Ten filtr jest już aktywny!**`).setColor("Red")]});
+        await queue.setFilters({
+            vaporwave: true
+        });
+
+        return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Vaporwave został włączony!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Green")]});
+    };
+
+    if (args[0] === 'off') {
+        if (enabledFilter.length == 0) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Żaden filtr nie jest aktywowany!**`).setColor("Red")]});
+        await queue.setFilters({
+            vaporwave: false
+        });
+        return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Vaporwave został wyłączony!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Red")]});
+    };
 
 };
 
 exports.info = {
     name: "vaporwave",
     aliases: ["vap"]
-};
+}

@@ -1,45 +1,40 @@
 'use strict';
 
 const { Client, Collection, GatewayIntentBits, Partials } = require('discord.js');
-const { Player, useMasterPlayer } = require('discord-player');
-// const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
-const DeezerExtractor = require('discord-player-deezer').default;
+const { Player } = require('discord-player');
 require('dotenv').config();
 
 const client = new Client({
 	messageEditHistoryMaxSize: 0,
 	messageCacheMaxSize: 25,
 	messageSweepInterval: 43200,
-	messageCacheLifetime: 21600,
-	// shards: getInfo().SHARD_LIST,
-    // shardCount: getInfo().TOTAL_SHARDS,
-	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.GuildVoiceStates,
-		GatewayIntentBits.MessageContent
-	],
-	partials: [
-		Partials.Channel,
-		Partials.Message,
-		Partials.GuildMember
-	]
+    messageCacheLifetime: 21600,
+intents: [
+	GatewayIntentBits.Guilds,
+	GatewayIntentBits.GuildMessages,
+	GatewayIntentBits.GuildVoiceStates,
+	GatewayIntentBits.MessageContent
+],
+partials: [
+	Partials.Channel,
+	Partials.Message,
+	Partials.GuildMember
+]
+});
+
+client.once('ready', () => {
+	console.log(('[') + "\x1b[31m" + ('Bot') + "\x1b[0m" + (']') + "\x1b[31m" + (` ${client.user.tag} zalogowal sie!`) + "\x1b[0m");
 });
 
 // -----> Zaladowanie discord-player <-----
-client.player = Player.singleton(client);
+const player = new Player(client);
 
-const player = useMasterPlayer();
-
-player.extractors.register(DeezerExtractor);
-
-// -----> Zaladowanie discord-hybrid-sharding <-----
-// client.cluster = new ClusterClient(client);
+client.player = player;
 
 // -----> Zalodowanie handlera <-----
 ["commands", "aliases"].forEach(x => (client[x] = new Collection()));
 
-["./handler/events.js", "./handler/events-music.js", "./handler/commands.js"].forEach(x => require(x)(client));
+["./handler/events.js",  "./handler/events-music.js", "./handler/commands.js"].forEach(x => require(x)(client));
 
 // -----> Zalogowanie bota do discorda <-----
 client.login(process.env.TOKEN);
