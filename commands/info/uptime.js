@@ -1,21 +1,22 @@
-'use strict';
+'use strict'
 
-const { EmbedBuilder } = require('discord.js');
-const { cpu, os } = require('node-os-utils');
-const pretty = require('pretty-ms');
+const { MessageEmbed, Client } = require('discord.js');
+const { mem, cpu } = require('node-os-utils');
+const os = require('os-utils');
+const prettyMilliseconds = require('pretty-ms');
 
 exports.run = async (client, message) => {
+    
+    const embed = new MessageEmbed()
+    .setTitle("⌚ Informacje Bota:")
+    .setDescription(`**Uptime**\n\`\`🔮\`\` **Czas:** ${prettyMilliseconds(client.uptime)}\n\n**Informacje o Systemie**\n\`\`💻\`\` **System:** ${os.platform()}\n\`\`💾\`\` **Cpu:** ${await cpu.usage()}%\n\`\`🔩\`\` **Zużycie RAM:** ${(process.memoryUsage().rss / 1024 / 1024).toFixed(0)}mb`)
+    .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+    .setColor("BLUE")
 
-    const embed = new EmbedBuilder()
-    .setTitle("⌚ Informacje bota")
-    .setDescription(`**Uptime**\n\`\`🔮\`\` **Czas:** ${pretty(client.uptime)}\n\n**Informacje o systemie**\n\`\`💻\`\` **System:**  ${os.platform()}\n\`\`💾\`\` **Cpu:** ${await cpu.usage()}%\n\`\`🔩\`\` **Zużycie RAM:** ${(process.memoryUsage().rss / 1024 / 1024).toFixed(0)}mb`)
-    .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
-    .setColor("Blue")
-
-    return message.reply({embeds: [embed]});
+    return message.reply({embeds: [embed]})
 
 };
 
 exports.info = {
     name: "uptime"
-};
+}

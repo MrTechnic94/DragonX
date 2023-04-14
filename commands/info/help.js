@@ -1,20 +1,19 @@
-'use strict';
+'use strict'
 
-const { EmbedBuilder } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
-exports.run = async (_client, message) => {
+exports.run = async (client, message) => {
 
-    const embed = new EmbedBuilder()
+    const embed = new MessageEmbed()
     .setTitle("📰 Lista komend")
-    .setDescription("``Leave`` - **Bot wychodzi z kanału**\n``Volume <liczba>`` - **Zmienia głośność**\n``Clear`` - **Usuwa aktualną playlistę**\n``Play`` - **Odtwarza wybrany utwór**\n``Loop <off | track | queue>`` - **Powtarza akutalny utwór, kolejkę lub wyłącza**\n``Skip`` - **Pomija piosenkę**\n``Nowplaying`` - **Informacje o obecnym utworze**\n``Ping`` - **Wyświetla aktualny ping bota**\n``Pause`` - **Zatrzymuje odtwarzanie piosenki**\n``Resume`` - **Wznawia zatrzymany utwór**\n``Shuffle`` - **Przetasowuje bieżącą playlistę**\n``Queue`` - **Wyświetla listę utworów w playliście**\n``Uptime`` - **Pokazuje informacje o bocie**\n``Seek <liczba>`` -  **Zmienia pozycję odtwarzania**\n``Back`` - **Odtwarza poprzedni utwór**\n``Filters`` - **Wyświetla listę dostępnych filtrów**\n``Autoplay`` - **Przełącza automatyczne odtwarzanie**\n``Save`` - **Zapisuje obecny utwór i wysyła w prywatnej wiadomości**\n``Remove <liczba>`` - **Pozwala usunąć z playlisty wybrany utwór**\n``Jump <liczba>`` - **Pozwala przeskoczyć odtwarzanie na wybrany utwór**")
-    .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
-    .setColor("Gold")
+    .setDescription("``Join`` - **Bot Do\u0142\u0105cza na Kana\u0142**\r\n``Leave`` - **Bot Wychodzi z Kana\u0142u**\r\n``Volume`` - **Zmiana g\u0142o\u015Bno\u015Bci**\r\n``Clear`` - **Usuwa aktualn\u0105 kolejk\u0119**\r\n``Play`` - **Odtwarzanie Piosenki Przez Bota**\r\n``Loop`` - **Powtarza Aktualn\u0105 Piosenk\u0119**\r\n``Skip`` - **Pomija Piosenk\u0119**\r\n``Nowplaying`` - **Informacje o Obecnym Utworze**\r\n``Unloop`` - **Usuwa Powtarzan\u0105 Piosenk\u0119**\r\n``Ping`` - **Wy\u015Bwietla Aktualny Ping Bota**\r\n``Pause`` - **Zatrzymuje Odtwarzanie Piosenki**\r\n``Resume`` - **Wznowienie Odtwarzania Piosenki**\r\n``Shuffle`` - **Przemieszanie Playlisty**\r\n``Queue`` - **Wy\u015Bwietla List\u0119 Utworz\u00F3w w Kolejce\n**\`\`Uptime\`\` - **Podstawowe Informacje o Bocie**\n\`\`Seek\`\` - **Zmienia Pozycję Odtwarzania**\n \`\`Back\`\` - **Odtwarzanie Poprzedniej Piosenki**")
+    .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+    .setColor("GOLD")
 
-    return message.reply({embeds: [embed]});
+    return message.reply({embeds: [embed]})
 
 };
 
 exports.info = {
-    name: "help",
-    aliases: ['h']
-};
+    name: "help"
+}
