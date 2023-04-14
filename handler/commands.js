@@ -1,43 +1,57 @@
-'use strict';
+module.exports = client => {
+    
+    const { readdirSync } = require('fs');
+    const { sep } = require('path');
 
-const { readdirSync } = require('fs');
-const { sep } = require('path');
+    const commandload = () => {
 
-module.exports = (client) => {
+        readdirSync('./commands/').forEach(drc => {
 
-  readdirSync(`./commands/`).forEach((directory) => {
-    const commandFiles = readdirSync(`./commands/${sep}${directory}`).filter((file) => file.endsWith('.js'));
+            const commands = readdirSync(`./commands/${sep}${drc}${sep}`);
 
-    for (const file of commandFiles) {
-      const command = require(`../commands/${directory}/${file}`);
+            for(const file of commands) {
+                const pull = require(`../commands/${drc}/${file}`);
 
-      if (command.run && typeof command.run === 'function') {
-        if (client.commands.has(command.info.name)) {
-          console.warn(`[${"\x1b[31m"}Error${"\x1b[0m"}] \x1b[31mZbyt duza ilosc komend ma taką samą nazwe: ${command.info.name}!`);
-          continue;
-        }
+                if(pull.info && typeof pull.info.name === "string") {
 
-        client.commands.set(command.info.name, command);
-        console.log(`[${"\x1b[36m"}Handler${"\x1b[0m"}] Komenda ${command.info.name} zostala pomyslnie zaladowana!`);
-      } else {
-        console.warn(`[[${"\x1b[33m"}Warn${"\x1b[0m"}] \x1b[33mBlad podczas ladowania komendy ${directory}/${file}!`);
-        continue;
-      }
+                    if(client.commands.get(pull.info.name)) return console.warn(`[Handlers] Zbyt duza ilosc komend ma taka sama nazwe! (${pull.info.name})`);
 
-      if (command.info.aliases && Array.isArray(command.info.aliases)) {
-        command.info.aliases.forEach((alias) => {
-          if (client.aliases.has(alias)) {
-            console.error(`[${"\x1b[31m"}Error${"\x1b[0m"}] \x1b[31mDwie lub wiecej komend posiada takie same aliasy: ${alias}!`);
-          } else {
-            client.aliases.set(alias, command.info.name);
-          }
+                    client.commands.set(pull.info.name, pull);
+                    console.log(`[Commands] Komenda ${pull.info.name} zostala pomyslnie zaladowana!`);
+
+                } else {
+                    console.warn(`[Handler] Wystąpił błąd podczas ładowania komendy (sieżka: ${drc}/${file})!`);
+                    continue;
+                }
+                
+                if(pull.info.aliases && pull.info.aliases.forEach(als => {
+                    if(client.aliases.get(als)) return console.warn(`[Handler] Dwie bądź więcej komend posiadają takie same aliasy: ${als}!`);
+
+                    client.aliases.set(als, pull.info.name);
+                    
+                })
+                );
+            };
         });
-      }
+    };
 
-      if (command.info.owner && typeof command.info.owner === 'boolean' && command.info.owner === true) {
-        command.ownerOnly = true;
-      }
-    }
-  });
-
+    commandload();
 };
+
+const clientId = `586543379295240192`;
+
+(async () => {
+	try {
+		console.log('Started refreshing application (/) commands.');
+
+		await rest.put(
+			Routes.applicationGuildCommands(clientId),
+			{ body: commands },
+		);
+
+		console.log('Successfully reloaded application (/) commands.');
+	} catch (error) {
+		console.error(error);
+	}
+})();
+
