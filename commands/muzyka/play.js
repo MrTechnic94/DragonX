@@ -1,41 +1,48 @@
-'use strict';
+const { MessageEmbed } = require('discord.js');
+const { Player, QueryType} = require('discord-player');
 
-const { EmbedBuilder } = require('discord.js');
-const { useMasterPlayer } = require('discord-player');
+exports.run = async (client, message, args) => {
 
-exports.run = async (_client, message, args) => {
+    const player = client.player
 
-    if (!message.member?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na kanale głosowym!**`).setColor("Red")]});
-
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
-
-    const player = useMasterPlayer();
-
-    const res = await player.search(args.join(' '), {
-        requestedBy: message.member
+    const res = await client.player.search(args.join(' '), {
+        requestedBy: message.member,
+        searchEngine: QueryType.AUTO
     });
 
-    if (!res?.hasTracks()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie znaleziono takiej piosenki!**`).setColor("Red")]});
+    if(!res || !res.tracks.length) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Nie znaleziono takiej piosenki!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
 
-    const m = await message.channel.send(`🔎 **Proszę czekać wyszukuję...**`);
+    const queue = await client.player.createQueue(message.guild, {
+        metadata: message.channel,
+        leaveOnStop: true,
+	    leaveOnEnd: true,
+	    leaveOnEmpty: true,
+        leaveOnEmptyCooldown: 100000,
+	ytdlOptions: {
+		quality: 'highestaudio',
+		filter: 'audioonly',
+		highWaterMark: 1 << 25,
+		dlChunkSize: 0
+	}
+});
 
-    await player.play(message.member.voice.channel?.id, res, {
-        nodeOptions: {
-            metadata: {
-                channel: message.channel
-            },
-            leaveOnStop: true,
-            leaveOnEnd: true,
-            leaveOnEmpty: true,
-            skipOnNoStream: true
-        }
-    });
+    try {
+        if(!queue.connection) await queue.connect(message.member.voice.channel);
+    } catch {
+        await client.player.deleteQueue(message.guild.id);
+        return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Musisz być na tym samym kanale co bot!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
+    }
+    
+    await message.channel.send(`🔎 **Proszę czekać wyszukuję...**`).then(async m => {
 
-    m.delete();
+    await res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
 
+    if (!queue.playing) await queue.play();
+    m.delete()
+
+    })
 };
 
 exports.info = {
-    name: "play",
-    aliases: ['sr', 'songrequest', 'p']
-};
+    name: "play"
+}
