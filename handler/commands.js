@@ -1,43 +1,39 @@
-'use strict';
+module.exports = client => {
+    
+    const { readdirSync } = require('fs');
+    const { sep } = require('path');
+    
+    const commandload = () => {
 
-const { readdirSync } = require('fs');
-const { sep } = require('path');
+        readdirSync('./commands/').forEach(drc => {
 
-module.exports = (client) => {
+            const commands = readdirSync(`./commands/${sep}${drc}${sep}`);
 
-  readdirSync(`./commands/`).forEach((directory) => {
-    const commandFiles = readdirSync(`./commands/${sep}${directory}`).filter((file) => file.endsWith('.js'));
+            for(const file of commands) {
+                const pull = require(`../commands/${drc}/${file}`);
 
-    for (const file of commandFiles) {
-      const command = require(`../commands/${directory}/${file}`);
+                if (pull.info && typeof pull.info.name === "string") {
 
-      if (command.run && typeof command.run === 'function') {
-        if (client.commands.has(command.info.name)) {
-          console.warn(`[${"\x1b[31m"}Error${"\x1b[0m"}] \x1b[31mZbyt duza ilosc komend ma taką samą nazwe: ${command.info.name}!`);
-          continue;
-        }
+                    if(client.commands.get(pull.info.name)) return console.warn(`❌ :: Zbyt duza ilosc komend ma taka sama nazwe! (${pull.info.name})`);
 
-        client.commands.set(command.info.name, command);
-        console.log(`[${"\x1b[36m"}Handler${"\x1b[0m"}] Komenda ${command.info.name} zostala pomyslnie zaladowana!`);
-      } else {
-        console.warn(`[[${"\x1b[33m"}Warn${"\x1b[0m"}] \x1b[33mBlad podczas ladowania komendy ${directory}/${file}!`);
-        continue;
-      }
+                    client.commands.set(pull.info.name, pull);
+                    console.log(`✅ :: Komenda ${pull.info.name} zostala pomyslnie zaladowana!`);
 
-      if (command.info.aliases && Array.isArray(command.info.aliases)) {
-        command.info.aliases.forEach((alias) => {
-          if (client.aliases.has(alias)) {
-            console.error(`[${"\x1b[31m"}Error${"\x1b[0m"}] \x1b[31mDwie lub wiecej komend posiada takie same aliasy: ${alias}!`);
-          } else {
-            client.aliases.set(alias, command.info.name);
-          }
+                } else {
+                    console.warn(`❌ :: Wystapil blad podczas ladowania komendy (siezka: ${drc}/${file})!`);
+                    continue;
+                }
+                
+                if (pull.info.aliases && pull.info.aliases.forEach(als => {
+                    if(client.aliases.get(als)) return console.warn(`❌ :: Dwie bądź więcej komend posiadają takie same aliasy: ${als}!`);
+
+                    client.aliases.set(als, pull.info.name);
+                    
+                })
+                );
+            };
         });
-      }
+    };
 
-      if (command.info.owner && typeof command.info.owner === 'boolean' && command.info.owner === true) {
-        command.ownerOnly = true;
-      }
-    }
-  });
-
+    commandload();
 };

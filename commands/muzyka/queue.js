@@ -1,42 +1,33 @@
-'use strict';
-
-const { EmbedBuilder } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
+const { Player } = require('discord-player');
 
 exports.run = async (client, message) => {
 
-    const queue = client.player.nodes.get(message.guild.id);
+    const queue = client.player.getQueue(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma żadnych piosenek w kolejce!**`).setColor("Red")]});
+        if (!queue || !queue.playing) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Nie ma żadnych piosenek w kolejce!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
+        if (!queue.tracks[0]) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Nie ma żadnych piosenek w kolejce! Właśnie gram ostatnią!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
 
-    const tracks = queue.tracks.map((track, i) => `**${i + 1}.** [${track.title}](${track.url}) - ${track.requestedBy}`);
-    const songs = queue.tracks.size;
-    const nextSongs = songs > 20 ? `\n\n**${songs - 20}** piosenki` : `\n\nW playliście **${songs}** piosenka(i)`;
+        const embed = new MessageEmbed();
 
-    if (queue.tracks.at(0)) {
-        const embed = new EmbedBuilder()
-        .setTitle('📰 Piosenki w kolejce')
-        .setDescription(`🏆 [${queue.currentTrack.title}](${queue.currentTrack.url}) - ${queue.currentTrack.requestedBy}\n${tracks.slice(0, 20).join('\n')}${nextSongs}`)
-        .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
-        .setColor("Red")
+        embed.setColor('RED');
+        embed.setThumbnail(message.guild.iconURL({ size: 2048, dynamic: true }));
 
-        return message.reply({embeds: [embed]});
-    };
+        const tracks = queue.tracks.map((track, i) => `**${i + 1}**. ${track.title} | ${track.author} - ${track.requestedBy}`);
 
-    if (!queue.tracks.at(0)) {
-        const _embed = new EmbedBuilder()
-        .setTitle('📰 Piosenki w kolejce')
-        .setDescription(`🏆 [${queue.currentTrack.title}](${queue.currentTrack.url}) - ${queue.currentTrack.requestedBy}\n\nW playliście **0** piosenek`)
-        .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
-        .setColor("Red")
-    
-        return message.reply({embeds: [_embed]});
-    };
+        const songs = queue.tracks.length;
+        const nextSongs = songs > 5 ? `**${songs - 5}** innych piosenek` : `W playliście **${songs}** piosenek`;
 
-};
+        embed.setTitle('📰 Piosenki w kolejce')
+        embed.setDescription(`🏆 **Aktualnie:** ${queue.current.title}\n\n${tracks.slice(0, 5).join('\n')}\n\n${nextSongs}`);
+
+        embed.setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+
+        message.channel.send({ embeds: [embed] });
+
+}
 
 exports.info = {
-    name: "queue",
-    aliases: ['q']
-};
+    name: "queue"
+}

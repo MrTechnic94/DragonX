@@ -1,6 +1,7 @@
 const { MessageEmbed } = require('discord.js');
+require('dotenv').config({ path: __dirname + '../../.env' })
 
-exports.run = async (client, message) => {
+exports.run = async (client, message, args) => {
 
     const embed = new MessageEmbed()
     .setTitle("🏓 Pong")
@@ -10,8 +11,9 @@ exports.run = async (client, message) => {
 
     return message.reply({embeds: [embed]})
 
-};
+}
 
 exports.info = {
-    name: "ping"
+    name: "test",
+    premium: true
 }

@@ -4,11 +4,11 @@ d!help
 ```
 
 ## 📂 Język bota
-Język użyty w tworzeniu bota:
-``JavaScript``
+Blblioteka użyta w tworzeniu bota:
+`` JavaScript``
 
 ## ❌ Napotkałeś błąd?
-Jeżeli napotkałeś jakiś błąd z którym sobie nie możesz poradzieć wejdź na naszego [Discorda](https://discord.gg/JMbNYsYqxV)
+Jeżeli napotkałeś jakiś błąd z którym sobie nie możesz poradzieć wejdź na naszego [Discorda](https://discord.gg/hjSKGVSd8s)
 
 ## 🧾 Licencja
 Ten projekt jest licencjonowany na warunkach Licencji ISC

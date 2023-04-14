@@ -1,23 +1,18 @@
-'use strict';
-
-const { EmbedBuilder } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
+const { Player } = require('discord-player');
 
 exports.run = async (client, message) => {
 
-    const queue = client.player.nodes.get(message.guild.id);
+    const queue = client.player.getQueue(message.guild.id);
     
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
+    if (!queue || !queue.playing) return message.reply({embeds:[new MessageEmbed().setDescription(`❌ **Nie gra żadna piosenka!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
+    await queue.skip();
 
-    if (!queue.tracks.at(0)) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma żadnych piosenek w kolejce!**`).setColor("Red")]});
-
-    await queue.node.skip();
-    return message.reply({embeds: [new EmbedBuilder().setTitle(`⏩ Pominąłeś aktualną piosenkę!`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+    return message.reply({embeds:[new MessageEmbed().setTitle(`⏩ **Pominąłeś Aktualną Piosenkę!**`).setDescription(`**Pominąłeś:** \`\`${queue.current.title}\`\` `).setColor("6b3deb").setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})]});
 
 };
 
 exports.info = {
-    name: "skip",
-    aliases: ['sk']
-};
+    name: "skip"
+}
