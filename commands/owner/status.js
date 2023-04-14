@@ -1,24 +1,36 @@
-'use strict';
+'use strict'
 
-const { EmbedBuilder, ActivityType } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
+require('dotenv').config({ path: __dirname + '../../.env' })
 
 exports.run = async (client, message, args) => {
 
-    if (!args[0]) return message.reply({embeds: [new EmbedBuilder().setTitle("❌ Musisz podać nazwę statusu!").setColor("Red")]});
+    if (message.author.id == process.env.OWNER) {
 
-    client.user.setPresence({activities: [{name: args.join(' '), type: ActivityType.Listening}]});
+    let argument1 = args.join(' ');
+    client.user.setPresence({ activities: [{ name: argument1, type: 'LISTENING' }]});
 
-    const embed = new EmbedBuilder()
+    const embed = new MessageEmbed()
     .setTitle("✅ Pomyślnie ustawiono status!")
-    .setDescription(`Status został zmieniony na \`\`${args.join(' ')}\`\``)
-    .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
-    .setColor("Green")
+    .setDescription(`Status został zmieniony na \`\`${argument1}\`\``)
+    .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+    .setColor("GREEN")
 
-    return message.reply({embeds: [embed]});
+    return message.reply({embeds: [embed]})
 
-};
+    } else {
+
+    const embed = new MessageEmbed()
+    .setTitle("❌ Błąd!")
+    .setDescription(`Status nie został zmieniony!`)
+    .setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+    .setColor("RED")
+
+    return message.reply({embeds: [embed]})
+
+    }
+}
 
 exports.info = {
-    name: "status",
-    owner: true
-};
+    name: "status"
+}

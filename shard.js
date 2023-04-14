@@ -1,13 +1,15 @@
-'use strict';
+const { ShardingManager } = require('discord.js');
+const clc = require('cli-color');
+require('dotenv').config();
 
-const { ClusterManager } = require('discord-hybrid-sharding');
-
-const manager = new ClusterManager('./index.js', {
+let manager = new ShardingManager('./index.js', {
     totalShards: 'auto',
-    mode: 'process',
-    shardsPerClusters: 8,
+    shardList: 'auto',
     token: process.env.TOKEN
 });
 
-manager.on('clusterCreate', cluster => console.log(`[\x1b[36mShard\x1b[0m] Uruchomiono shard ${cluster.id}`));
-manager.spawn({timeout: -1});
+manager.on('shardCreate', shard => {
+    console.log((`[`) + clc.cyan(`Shardy`) + (`]`) + ` Uruchomiono shard ${shard.id}`)
+});
+
+manager.spawn();

@@ -1,23 +1,25 @@
-'use strict';
+'use strict'
 
-const { EmbedBuilder } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
+const { Player } = require('discord-player');
 
-exports.run = async (client, message) => {
+exports.run = async (client, message, args) => {
 
-    const queue = client.player.nodes.get(message.guild.id);
+    const queue = client.player.getQueue(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
+    if (!queue || !queue.playing) return message.reply({embeds: [new MessageEmbed().setDescription(`❌ **Nie gram żadnej piosenki!**`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("RED")]});
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
+    try {
+    await queue.back();
 
-    if (queue.history.previousTracks < 1) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma poprzedniego utwóru!**`).setColor("Red")]});
+    return message.reply({embeds: [new MessageEmbed().setTitle(`◀ Właśnie odtwarzam poprzeniu utwór`).setFooter({text: `Użył/a: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 
-    await queue.history.back();
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`◀ **Odtwarzam poprzedni utwór!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+    } catch (error) {
+        message.reply({embeds: [new MessageEmbed().setTitle(`❌ Nie ma poprzedniego utwór!`).setColor("RED")]});
+    }
 
 };
 
 exports.info = {
-    name: "back",
-    aliases: ['b']
-};
+    name: "back"
+}
