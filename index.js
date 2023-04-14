@@ -1,45 +1,39 @@
-'use strict';
-
-const { Client, Collection, GatewayIntentBits, Partials } = require('discord.js');
-const { Player, useMasterPlayer } = require('discord-player');
-// const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
-const DeezerExtractor = require('discord-player-deezer').default;
+const { Client, Collection, Intents, MessageEmbed } = require('discord.js');
+const dotenv = require('dotenv');
 require('dotenv').config();
+const { Player } = require('discord-player');
 
-const client = new Client({
-	messageEditHistoryMaxSize: 0,
-	messageCacheMaxSize: 25,
-	messageSweepInterval: 43200,
-	messageCacheLifetime: 21600,
-	// shards: getInfo().SHARD_LIST,
-    // shardCount: getInfo().TOTAL_SHARDS,
-	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.GuildVoiceStates,
-		GatewayIntentBits.MessageContent
-	],
-	partials: [
-		Partials.Channel,
-		Partials.Message,
-		Partials.GuildMember
-	]
+const client = new Client({ 
+intents: [
+	Intents.FLAGS.GUILDS,
+	Intents.FLAGS.GUILD_MESSAGES,
+	Intents.FLAGS.GUILD_MEMBERS,
+	Intents.FLAGS.GUILD_VOICE_STATES
+], 
+	partials:[
+	"CHANNEL",
+	"MESSAGE",
+	"GUILD_MEMBER"
+], 
+	disableMentions: 'everyone'
 });
 
-// -----> Zaladowanie discord-player <-----
-client.player = Player.singleton(client);
+client.on('ready', () => {});
 
-const player = useMasterPlayer();
+const player = new Player(client);
 
-player.extractors.register(DeezerExtractor);
+client.player = player;
 
-// -----> Zaladowanie discord-hybrid-sharding <-----
-// client.cluster = new ClusterClient(client);
-
-// -----> Zalodowanie handlera <-----
 ["commands", "aliases"].forEach(x => (client[x] = new Collection()));
 
-["./handler/events.js", "./handler/events-music.js", "./handler/commands.js"].forEach(x => require(x)(client));
+["./handler/events.js",  "./handler/events-music.js", "./handler/commands.js",].forEach(x => require(x)(client));
 
-// -----> Zalogowanie bota do discorda <-----
+client.on('shardError', error => {
+	console.error('❗ Polaczenie websocket napotkalo blad', error);
+});
+
+client.on('unhandledRejection', error => {
+	console.error('❗ Nieobslugiwany blad', error);
+});
+
 client.login(process.env.TOKEN);
