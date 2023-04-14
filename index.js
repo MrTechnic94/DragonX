@@ -1,45 +1,48 @@
 'use strict';
 
-const { Client, Collection, GatewayIntentBits, Partials } = require('discord.js');
-const { Player, useMasterPlayer } = require('discord-player');
-// const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
-const DeezerExtractor = require('discord-player-deezer').default;
+const { Client, Collection, Intents } = require('discord.js');
+const { Player } = require('discord-player');
+const clc = require('cli-color');
 require('dotenv').config();
 
 const client = new Client({
-	messageEditHistoryMaxSize: 0,
-	messageCacheMaxSize: 25,
-	messageSweepInterval: 43200,
-	messageCacheLifetime: 21600,
-	// shards: getInfo().SHARD_LIST,
-    // shardCount: getInfo().TOTAL_SHARDS,
-	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.GuildVoiceStates,
-		GatewayIntentBits.MessageContent
-	],
-	partials: [
-		Partials.Channel,
-		Partials.Message,
-		Partials.GuildMember
-	]
+intents: [
+	Intents.FLAGS.GUILDS,
+	Intents.FLAGS.GUILD_MESSAGES,
+	Intents.FLAGS.GUILD_MEMBERS,
+	Intents.FLAGS.GUILD_VOICE_STATES,
+	Intents.FLAGS.GUILD_PRESENCES
+],
+partials: [
+	"CHANNEL",
+	"MESSAGE",
+	"GUILD_MEMBER"
+],
+	disableMentions: 'everyone'
+});
+
+client.on('ready', () => {
+	console.log(clc.cyanBright(`${client.user.tag} zostal zalogowany!`));
 });
 
 // -----> Zaladowanie discord-player <-----
-client.player = Player.singleton(client);
+const player = new Player(client);
 
-const player = useMasterPlayer();
+client.player = player;
 
-player.extractors.register(DeezerExtractor);
-
-// -----> Zaladowanie discord-hybrid-sharding <-----
-// client.cluster = new ClusterClient(client);
-
-// -----> Zalodowanie handlera <-----
+// -----> Zalodowanie Handlera <-----
 ["commands", "aliases"].forEach(x => (client[x] = new Collection()));
 
-["./handler/events.js", "./handler/events-music.js", "./handler/commands.js"].forEach(x => require(x)(client));
+["./handler/events.js",  "./handler/events-music.js", "./handler/commands.js"].forEach(x => require(x)(client));
 
-// -----> Zalogowanie bota do discorda <-----
+// -----> Errory <-----
+client.on('shardError', error => {
+	console.error((`[`) + clc.redBright(`Error`) + (`]`) + error);
+});
+
+client.on('unhandledRejection', error => {
+	console.error((`[`) + clc.redBright(`Error`) + (`]`) + error);
+});
+
+// -----> Zalogowanie Bota do Discorda <-----
 client.login(process.env.TOKEN);

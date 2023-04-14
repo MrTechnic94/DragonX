@@ -1,11 +1,14 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
+require('dotenv').config({ path: __dirname + '../../.env' })
 
 exports.run = async (client, message, args) => {
 
-    if (!args[0]) return message.reply({embeds: [new EmbedBuilder().setTitle("❌ Musisz podać nazwę kategorii!").setColor("Red")]});
-    if (!args[1]) return message.reply({embeds: [new EmbedBuilder().setTitle("❌ Musisz podać nazwę komendy!").setColor("Red")]});
+    if (message.author.id == process.env.OWNER) {
+
+    if (!args[0]) return message.reply({embeds: [new MessageEmbed().setTitle("❌ Musisz podać nazwę kategori!").setColor("RED")]});
+    if (!args[1]) return message.reply({embeds: [new MessageEmbed().setTitle("❌ Musisz podać nazwę komendy!").setColor("RED")]});
 
         let category = args[0].toLowerCase();
         let command = args[1].toLowerCase();
@@ -17,14 +20,14 @@ exports.run = async (client, message, args) => {
             const pull = require(`../../commands/${category}/${command}`);
             await client.commands.set(command, pull);
 
-            return message.reply({embeds: [new EmbedBuilder().setDescription(`✅ **Przeładowano komendę** \`\`${command}\`\`!`).setColor("Red")]});
-        } catch {
-            return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Błąd w przeładowaniu komendy** \`\`${command}\`\`!`).setColor("Red")]});
+            return message.reply({embeds: [new MessageEmbed().setTitle(`✅ Przeładowano komendę \`\`${command}\`\`!`).setColor("RED")]});
+        } catch(error) {
+            return message.reply({embeds: [new MessageEmbed().setTitle(`❌ Błąd w przeładowaniu komendy \`\`${command}\`\`!`).setColor("RED")]});
         }
+    }   
 
-};
+}
 
 exports.info = {
-    name: "reload",
-    owner: true
-};
+    name: "reload"
+}
