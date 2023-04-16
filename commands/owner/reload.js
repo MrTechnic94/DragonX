@@ -4,10 +4,8 @@ const { EmbedBuilder } = require('discord.js');
 
 exports.run = async (client, message, args) => {
 
-    if (message.author.id !== process.env.OWNER) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie posiadasz permisji by to zrobić!**`).setColor("Red")]});
-
-    if (!args[0]) return message.reply({embeds: [new EmbedBuilder().setTitle("❌ Musisz podać nazwę kategorii!").setColor("Red")]});
-    if (!args[1]) return message.reply({embeds: [new EmbedBuilder().setTitle("❌ Musisz podać nazwę komendy!").setColor("Red")]});
+    if (!args[0]) return message.reply({embeds: [new EmbedBuilder().setDescription("❌ Musisz podać nazwę kategorii!").setColor("Red")]});
+    if (!args[1]) return message.reply({embeds: [new EmbedBuilder().setDescription("❌ Musisz podać nazwę komendy!").setColor("Red")]});
 
         let category = args[0].toLowerCase();
         let command = args[1].toLowerCase();
@@ -27,5 +25,6 @@ exports.run = async (client, message, args) => {
 };
 
 exports.info = {
-    name: "reload"
+    name: "reload",
+    owner: true
 };

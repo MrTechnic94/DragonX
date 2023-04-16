@@ -24,17 +24,19 @@ exports.run = async (_client, message, args) => {
             metadata: {
                 channel: message.channel
             },
+            leaveOnEndCooldown: 120000,
             leaveOnStop: true,
-            leaveOnEnd: true,
             leaveOnEmpty: true,
             skipOnNoStream: true
-            }
-        });
-        
-        m.delete();
+        }
+    });
+
+    m.delete();
+
 };
 
 exports.info = {
     name: "play",
-    aliases: ['sr', 'songrequest', 'p']
+    aliases: ['p', 'songrequest', 'sr'],
+    dj: true
 };
