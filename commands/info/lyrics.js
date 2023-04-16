@@ -4,7 +4,6 @@ const { EmbedBuilder } = require('discord.js');
 const { lyricsExtractor } = require('@discord-player/extractor');
 
 exports.run = async (client, message, args) => {
-
     const queue = client.player.nodes.get(message.guild.id);
     const lyricsFinder = lyricsExtractor(process.env.LYRICSAPI);
     const query = args.join(' ');
@@ -38,7 +37,6 @@ exports.run = async (client, message, args) => {
     }).catch(() => {
         return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie udało mi się znaleźć tekstu do tego utworu!**`).setColor("Red")]});
     });
-
 };
 
 exports.info = {

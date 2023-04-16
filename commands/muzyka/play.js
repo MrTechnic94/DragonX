@@ -4,7 +4,6 @@ const { EmbedBuilder } = require('discord.js');
 const { useMasterPlayer } = require('discord-player');
 
 exports.run = async (_client, message, args) => {
-
     if (!message.member?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na kanale głosowym!**`).setColor("Red")]});
 
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
@@ -30,9 +29,7 @@ exports.run = async (_client, message, args) => {
             skipOnNoStream: true
         }
     });
-
     m.delete();
-
 };
 
 exports.info = {

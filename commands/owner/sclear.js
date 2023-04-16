@@ -3,7 +3,6 @@
 const { EmbedBuilder, ActivityType } = require('discord.js');
 
 exports.run = async (client, message) => {
-
     client.user.setPresence({activities: [{name: process.env.STATUSTWO, type: ActivityType.Listening}], status: 'online'});
 
     const embed = new EmbedBuilder()
@@ -13,7 +12,6 @@ exports.run = async (client, message) => {
     .setColor("Green")
 
     return message.reply({embeds: [embed]});
-
 };
 
 exports.info = {

@@ -3,7 +3,6 @@
 const { EmbedBuilder } = require('discord.js');
 
 exports.run = async (_client, queue, track) => {
-
     const requester = track.requestedBy ?? `brak`;
 
     const embed = new EmbedBuilder()
@@ -17,5 +16,4 @@ exports.run = async (_client, queue, track) => {
         .setColor("Blue");
 
     queue.npmessage = await queue.metadata.channel.send({embeds: [embed]});
-
 };

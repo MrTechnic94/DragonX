@@ -3,7 +3,6 @@
 const { EmbedBuilder } = require('discord.js');
 
 exports.run = async (client, message) => {
-
     const queue = client.player.nodes.get(message.guild.id);
 
     if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
@@ -23,7 +22,6 @@ exports.run = async (client, message) => {
     }).catch(() => {
         return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie mogę wysłać do ciebie wiadomości prywatnej!**`).setColor("Red")]});
     });
-
 };
 
 exports.info = {

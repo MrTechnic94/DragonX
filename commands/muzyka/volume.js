@@ -3,7 +3,6 @@
 const { EmbedBuilder } = require('discord.js');
 
 exports.run = async (client, message, args) => {
-
     const queue = client.player.nodes.get(message.guild.id);
     const vol = parseInt(args[0]);
 
@@ -19,7 +18,6 @@ exports.run = async (client, message, args) => {
 
     await queue.node.setVolume(vol);
     return message.reply({embeds: [new EmbedBuilder().setDescription(`🔊 **Ustawiono głośność na: ${vol}%**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Blue")]});
-
 };
 
 exports.info = {

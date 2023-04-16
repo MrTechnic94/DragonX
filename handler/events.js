@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = (client) => {
-
   fs.readdirSync(`./events/`).forEach((directory) => {
     const eventFiles = fs.readdirSync(path.join(`./events/`, directory)).filter((file) => file.endsWith('.js'));
 

@@ -10,7 +10,7 @@ exports.run = async (client, message) => {
 
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
-    const mode = queue.filters.ffmpeg.isEnabled('reverse') ? `wyłączony` : `włączony`
+    const mode = queue.filters.ffmpeg.isEnabled('reverse') ? `wyłączony` : `włączony`;
     await queue.filters.ffmpeg.toggle(['reverse', 'normalizer']);
 
     return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Reverse został ${mode}!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor(queue.filters.ffmpeg.isEnabled('reverse') ? `Green` : `Red`)]});

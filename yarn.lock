@@ -887,7 +887,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discord-player/extractor@npm:^4.1.1, @discord-player/extractor@npm:^4.1.2":
+"@discord-player/extractor@npm:^4.1.2":
   version: 4.1.2
   resolution: "@discord-player/extractor@npm:4.1.2"
   dependencies:
@@ -2265,25 +2265,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-hybrid-sharding@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "discord-hybrid-sharding@npm:2.1.1"
+"discord-hybrid-sharding@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "discord-hybrid-sharding@npm:2.1.2"
   dependencies:
     node-fetch: ^2.6.7
-  checksum: 1d66b27524f52bd41f7aaedc29126f684a547ed4ec8e9e7d28d9b4d8333b636be0437685b72a3a8a1a44a4eee8c0eba64e9dfd28b6ee9702eb656df8abdd9baf
+  checksum: 29a4d9accd20276e6249fd042c423c40c4feff4dc3d2c265a4d44f06efe43f9e8b3444360858e97fbba67f2d4c0bf9d9dc7ecbb42865c6c1b973fc37458f398a
   languageName: node
   linkType: hard
 
-"discord-player-deezer@npm:^0.0.7":
-  version: 0.0.7
-  resolution: "discord-player-deezer@npm:0.0.7"
+"discord-player-deezer@npm:^0.0.8":
+  version: 0.0.8
+  resolution: "discord-player-deezer@npm:0.0.8"
   dependencies:
-    "@discord-player/extractor": ^4.1.1
     "@mithron/deezer-music-metadata": ^1.0.3
     discord-player: ^6.0.0
     tslint-config-prettier: ^1.18.0
     youtube-sr: ^4.3.4
-  checksum: 7132c9b8bc973d5e0835ba53e9fc6a0750b1b650ddb37ae40e164bb6e6373f304abd59427c9199e25d56c5e52126c0ab3538b4f0f4aa842319f073bec32aca8d
+    yt-stream: ^1.4.4
+  checksum: cf3256689098e99b3a3e7649dfe586abe5fd482e630b558e665946f431e1ce5d0a1cb8ea6c9f3f6ef1e86a34a00c55ee291d902986a38deef205730b8f842e99
   languageName: node
   linkType: hard
 
@@ -2387,9 +2387,9 @@ __metadata:
     "@discordjs/voice": ^0.16.0
     "@distube/ytdl-core": ^4.11.8
     bufferutil: ^4.0.7
-    discord-hybrid-sharding: ^2.1.1
+    discord-hybrid-sharding: ^2.1.2
     discord-player: ^6.1.1
-    discord-player-deezer: ^0.0.7
+    discord-player-deezer: ^0.0.8
     discord.js: ^14.9.0
     dotenv: ^16.0.3
     erlpack: ^0.1.4
@@ -5586,6 +5586,13 @@ __metadata:
   version: 4.3.4
   resolution: "youtube-sr@npm:4.3.4"
   checksum: e097f2a82ddc51a580e7b8556aba83968ee580ad29a8d035cbfdc497c4a6f227b3e3ef0bf4648c6edaf25aed18b872a0fad8fda0554d270129f7c5e60e4a01ef
+  languageName: node
+  linkType: hard
+
+"yt-stream@npm:^1.4.4":
+  version: 1.4.4
+  resolution: "yt-stream@npm:1.4.4"
+  checksum: 1e0a631c9a457d5339a3931e20b383e02b39f34450a57575ebb3ad55dcdf095fb22d0849ee78194aa273bcbb894da8d0a62bcc151a484801486a2a1bc4739081
   languageName: node
   linkType: hard
 

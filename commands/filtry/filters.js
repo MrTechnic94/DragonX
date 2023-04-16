@@ -3,7 +3,6 @@
 const { EmbedBuilder } = require('discord.js');
 
 exports.run = async (client, message, args) => {
-
     const queue = client.player.nodes.get(message.guild.id);
 
     if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setTitle('📰 Lista filtrów').setDescription(`🔴 **BassBoostLow**\n🔴 **BassBoost**\n🔴 **BassBoostHigh**\n🔴 **Karaoke**\n🔴 **Nightcore**\n🔴 **Lofi**\n🔴 **Compressor**\n🔴 **Reverse**`).setFooter({text: `Użycie: ${process.env.PREFIX}bassboost`}).setColor("6b3deb")]});
@@ -32,7 +31,7 @@ exports.run = async (client, message, args) => {
         const isEnabled = queue.filters.ffmpeg.isEnabled(filter.name);
         const status = isEnabled ? '🟢' : '🔴';
         embedFields.push(`${status} **${filter.label}**`);
-    }
+    };
 
     const embed = new EmbedBuilder()
     .setTitle('📰 Lista filtrów')
@@ -41,7 +40,6 @@ exports.run = async (client, message, args) => {
     .setColor('6b3deb')
 
     return message.reply({embeds: [embed]});
-
 };
 
 exports.info = {

@@ -3,7 +3,6 @@
 const { EmbedBuilder } = require('discord.js');
 
 exports.run = async (client, message, args) => {
-
     if (!args[0]) return message.reply({embeds: [new EmbedBuilder().setDescription("❌ Musisz podać nazwę kategorii!").setColor("Red")]});
     if (!args[1]) return message.reply({embeds: [new EmbedBuilder().setDescription("❌ Musisz podać nazwę komendy!").setColor("Red")]});
 
@@ -20,8 +19,7 @@ exports.run = async (client, message, args) => {
             return message.reply({embeds: [new EmbedBuilder().setDescription(`✅ **Przeładowano komendę** \`\`${command}\`\`!`).setColor("Red")]});
         } catch {
             return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Błąd w przeładowaniu komendy** \`\`${command}\`\`!`).setColor("Red")]});
-        }
-
+        };
 };
 
 exports.info = {

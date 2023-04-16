@@ -4,7 +4,6 @@ const { EmbedBuilder } = require('discord.js');
 const GuildSettings = require('../../models/GuildSettings.js');
 
 exports.run = async (_client, message, args) => {
-
     const prefix = args[0];
     let guildData = await GuildSettings.findOne({guildId: message.guild.id});
     const oldPrefix = guildData ? guildData.prefix : process.env.PREFIX;
@@ -21,7 +20,6 @@ exports.run = async (_client, message, args) => {
     } catch {
         return message.reply({embeds: [new EmbedBuilder().setDescription('❌ **Wystąpił błąd poczas zmiany prefixu!**').setColor('Red')]});
     };
-
 };
 
 exports.info = {

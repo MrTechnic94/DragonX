@@ -3,7 +3,6 @@
 const { EmbedBuilder } = require('discord.js');
 
 exports.run = async (client, message) => {
-
     const queue = client.player.nodes.get(message.guild.id);
     
     if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
@@ -14,7 +13,6 @@ exports.run = async (client, message) => {
     await queue.filters.ffmpeg.toggle(['vaporwave', 'normalizer']);
 
     return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Vaporwave został ${mode}!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor(queue.filters.ffmpeg.isEnabled('vaporwave') ? `Green` : `Red`)]});
-
 };
 
 exports.info = {

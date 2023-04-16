@@ -3,7 +3,6 @@
 const { EmbedBuilder, ActivityType } = require('discord.js');
 
 exports.run = async (client, message, args) => {
-
     if (!args[0]) return message.reply({embeds: [new EmbedBuilder().setDescription("❌ Musisz podać nazwę statusu!").setColor("Red")]});
 
     client.user.setPresence({activities: [{name: args.join(' '), type: ActivityType.Listening}]});
@@ -15,7 +14,6 @@ exports.run = async (client, message, args) => {
     .setColor("Green")
 
     return message.reply({embeds: [embed]});
-
 };
 
 exports.info = {

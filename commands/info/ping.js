@@ -3,7 +3,6 @@
 const { EmbedBuilder } = require('discord.js');
 
 exports.run = async (client, message) => {
-
     const embed = new EmbedBuilder()
     .setTitle("🏓 Pong")
     .setDescription(`**Ping:** ${Date.now() - message.createdTimestamp}ms\n**API Ping:** ${Math.round(client.ws.ping)}ms`)
@@ -11,7 +10,6 @@ exports.run = async (client, message) => {
     .setColor("Gold")
 
     return message.reply({embeds: [embed]});
-
 };
 
 exports.info = {

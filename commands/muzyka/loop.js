@@ -4,7 +4,6 @@ const { EmbedBuilder } = require('discord.js');
 const { QueueRepeatMode } = require('discord-player');
 
 exports.run = async (client, message, args) => {
-
     const queue = client.player.nodes.get(message.guild.id);
 
     if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
@@ -30,7 +29,6 @@ exports.run = async (client, message, args) => {
         message.reply({embeds: [new EmbedBuilder().setDescription("🔁 **Powtarzanie playlisty zostało włączone!**").setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
         break;
     };
-
 };
 
 exports.info = {

@@ -3,7 +3,6 @@
 const { EmbedBuilder } = require('discord.js');
 
 exports.run = async (client, message) => {
-
     const queue = client.player.nodes.get(message.guild.id);
 
     if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma żadnych piosenek w playliście!**`).setColor("Red")]});
@@ -32,7 +31,6 @@ exports.run = async (client, message) => {
     
         return message.reply({embeds: [_embed]});
     };
-
 };
 
 exports.info = {

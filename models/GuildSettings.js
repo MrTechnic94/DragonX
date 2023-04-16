@@ -1,3 +1,5 @@
+'use strict';
+
 const { Schema, model } = require('mongoose');
 
 const guildSettingsSchema = new Schema({
@@ -5,11 +7,11 @@ const guildSettingsSchema = new Schema({
     type: String,
     unique: true,
     required: true,
-    index: true,
+    index: true
   },
   prefix: {
     type: String,
-    default: process.env.PREFIX,
+    default: process.env.PREFIX
   },
   djRoleId: { 
     type: String, 

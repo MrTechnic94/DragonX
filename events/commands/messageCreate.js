@@ -1,10 +1,9 @@
 'use strict';
 
-const { EmbedBuilder, PermissionsBitField, ContextMenuCommandBuilder } = require('discord.js');
+const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const GuildSettings = require('../../models/GuildSettings.js');
 
 exports.run = async (client, message) => {
-
   let guildData = await GuildSettings.findOne({guildId: message.guild.id});
   let prefix = guildData ? guildData.prefix : process.env.PREFIX;
   const args = message.content
@@ -50,10 +49,7 @@ exports.run = async (client, message) => {
     return message.channel.send({embeds: [djerror]});
   };
 
-  try {
-    cmd.run(client, message, args);
-  } catch (error) {
-    console.log(`[${"\x1b[31m"}Error${"\x1b[0m"}] \x1b[31mKomenda ${cmd.info.name} napotkala blad:\x1b[0m ${error}`); 
-  };
-
+  cmd.run(client, message, args).catch(error => {
+    console.error(`[${"\x1b[31m"}Error${"\x1b[0m"}] \x1b[31mKomenda ${cmd.info.name} napotkala blad:\x1b[0m\n${error}`);
+  });
 };

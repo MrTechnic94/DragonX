@@ -3,7 +3,6 @@
 const { EmbedBuilder } = require('discord.js');
 
 exports.run = async (client, message) => {
-
     const queue = client.player.nodes.get(message.guild.id);
     
     if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
@@ -22,7 +21,6 @@ exports.run = async (client, message) => {
     .setColor("6b3deb")
 
     return message.reply({embeds: [embed]});
-
 };
 
 exports.info = {

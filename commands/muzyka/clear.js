@@ -3,7 +3,6 @@
 const { EmbedBuilder } = require('discord.js');
 
 exports.run = async (client, message) => {
-
     const queue = client.player.nodes.get(message.guild.id);
 
     if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
@@ -14,7 +13,6 @@ exports.run = async (client, message) => {
 
     await queue.tracks.clear();
     return message.reply({embeds: [new EmbedBuilder().setDescription(`💨 **Kolejka została wyczyszczona!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Gold")]});
-
 };
 
 exports.info = {
