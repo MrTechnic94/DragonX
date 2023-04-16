@@ -5,12 +5,13 @@ const mongoose = require('mongoose');
 
 exports.run = async (client) => {
 
-    // -----> Status bota <-----
+    // -----> Zaladowanie statusu bota <-----
     client.user.setPresence({activities: [{name: process.env.STATUS, type: ActivityType.Playing}], status: 'idle'});
     setTimeout(() => { 
     client.user.setPresence({activities: [{name: process.env.STATUSTWO, type: ActivityType.Listening}], status: 'online'});
     }, 3000);
 
+    // -----> Zalogowanie do bazy danych <-----
     mongoose.set('strictQuery', true);
 
     await mongoose.connect(process.env.MONGODB, {
