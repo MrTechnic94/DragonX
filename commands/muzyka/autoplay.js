@@ -24,7 +24,7 @@ exports.run = async (client, message) => {
         break;
   };
 
-  return message.reply({embeds: [new EmbedBuilder().setDescription(`▶️ **Autoplay został ${mode}!**`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+  return message.reply({embeds: [new EmbedBuilder().setDescription(`▶️ **Autoplay został ${mode}!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 
   // switch(args[0]) {
   //   case 'on':
@@ -41,6 +41,7 @@ exports.run = async (client, message) => {
 };
 
 exports.info = {
-    name: "autoplay",
-    aliases: ['ap']
+  name: "autoplay",
+  aliases: ['ap'],
+  dj: true
 };

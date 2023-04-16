@@ -16,10 +16,12 @@ exports.run = async (client, message, args) => {
     const track = queue.tracks.at(index);
 
     await queue.node.remove(index);
-    return message.reply({embeds: [new EmbedBuilder().setTitle(`🎯 Usunąłeś piosenkę z kolejki!`).setDescription(`[${track.title}](${track.url})`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+    return message.reply({embeds: [new EmbedBuilder().setDescription(`🎯 **Usunięto: ${track.title}**!`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+
 };
 
 exports.info = {
     name: "remove",
-    aliases: ['r']
+    aliases: ['re'],
+    dj: true
 };
