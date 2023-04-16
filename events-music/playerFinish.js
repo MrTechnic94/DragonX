@@ -2,6 +2,8 @@
 
 exports.run = async (_client, queue) => {
 
-    // if (queue.npmessage?.editable) queue.npmessage.delete().catch(() => {});
-    if (queue.npmessage?.editable) queue.npmessage.delete();
+    if(queue.npmessage && queue.npmessage.editable) {
+        queue.npmessage.delete().catch(() => {});
+    };
+
 };

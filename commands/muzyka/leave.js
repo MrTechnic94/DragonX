@@ -14,12 +14,11 @@ exports.run = async (client, message) => {
 
     if (queue) await queue.delete();
     await message.guild.members.me?.voice.disconnect();
-    return message.reply({embeds: [new EmbedBuilder().setDescription("🔮 **Wychodzę z kanału!**").setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Gold")]});
+    return message.reply({embeds: [new EmbedBuilder().setDescription("🔮 **Wychodzę z kanału!**").setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Gold")]});
 
 };
 
 exports.info = {
     name: "leave",
-    aliases: ['le'],
-    dj: true
+    aliases: ['le']
 };

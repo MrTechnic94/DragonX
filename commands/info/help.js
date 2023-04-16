@@ -6,8 +6,8 @@ exports.run = async (_client, message) => {
 
     const embed = new EmbedBuilder()
     .setTitle("📰 Lista komend")
-    .setDescription("``Leave`` - **Bot wychodzi z kanału**\n``Volume <liczba>`` - **Zmienia głośność**\n``Clear`` - **Usuwa aktualną playlistę**\n``Play <tytuł lub link>`` - **Odtwarza wybrany utwór**\n``Loop <off | track | queue>`` - **Włącza lub wyłącza powtarzanie**\n``Skip`` - **Rozpoczyna głosowanie na pominięcie piosenki**\n``Forceskip`` - **Pomija piosenkę**\n``Nowplaying`` - **Informacje o obecnym utworze**\n``Ping`` - **Wyświetla aktualny ping bota**\n``Pause`` - **Zatrzymuje odtwarzanie piosenki**\n``Resume`` - **Wznawia zatrzymany utwór**\n``Shuffle`` - **Przetasowuje bieżącą playlistę**\n``Queue`` - **Wyświetla listę utworów w playliście**\n``Uptime`` - **Pokazuje informacje o bocie**\n``Seek <liczba>`` -  **Zmienia pozycję odtwarzania**\n``Back`` - **Odtwarza poprzedni utwór**\n``Filters`` - **Wyświetla listę dostępnych filtrów**\n``Filters reset`` - **Resetuje wszystkie aktywne filtry**\n``Autoplay`` - **Przełącza automatyczne odtwarzanie**\n``Save`` - **Zapisuje obecny utwór i wysyła w prywatnej wiadomości**\n``Remove <liczba>`` - **Pozwala usunąć z playlisty wybrany utwór**\n``Jump <liczba>`` - **Pozwala przeskoczyć odtwarzanie na wybrany utwór**\n``Prefix <prefix>`` - **Pozwala zmienić prefix na serwerze**\n``Djset <@rola>`` - **Ustawia rolę dj na serwerze**\n``Djremove`` - **Usuwa ustawioną rolę dj**\n``Settings`` - **Sprawdza ustawienia dla serwera**")
-    .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
+    .setDescription("``Leave`` - **Bot wychodzi z kana\u0142u**\r\n``Volume`` - **Zmiana g\u0142o\u015Bno\u015Bci**\r\n``Clear`` - **Usuwa aktualn\u0105 kolejk\u0119**\r\n``Play`` - **Odtwarzanie piosenki przez bota**\r\n``Loop <off | track | queue>`` - **Powtarza aktualn\u0105 piosenk\u0119 lub kolejk\u0119**\n``Skip`` - **Pomija piosenk\u0119**\r\n``Nowplaying`` - **Informacje o obecnym utworze**\r\n``Ping`` - **Wy\u015Bwietla aktualny ping bota**\r\n``Pause`` - **Zatrzymuje odtwarzanie piosenki**\r\n``Resume`` - **Wznowienie odtwarzania piosenki**\r\n``Shuffle`` - **Przemieszanie playlisty**\r\n``Queue`` - **Wy\u015Bwietla list\u0119 utwor\u00F3w w kolejce\n**``Uptime`` - **Podstawowe informacje o bocie**\n``Seek`` - **Zmienia pozycj\u0119 odtwarzania**\n``Back`` - **Odtwarzanie poprzedniej piosenki**\n``Filters`` - **Wy\u015Bwietla list\u0119 wszystkich filtr\u00F3w**\n``Autoplay <on | off>`` - **Automatycznie odtwarza nast\u0119pny utw\u00F3r**\n``Save`` - **Zapisuje obecny utw\u00F3r i wysy\u0142a w prywatnej wiadomości**\n``Remove <liczba>`` - **Pozwala usun\u0105\u0107 z playlisty wybrany utw\u00F3r**\n``Jump <liczba>`` - **Pozwala przeskoczy\u0107 odtwarzanie na wybrany utw\u00F3r**")
+    .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
     .setColor("Gold")
 
     return message.reply({embeds: [embed]});
@@ -15,6 +15,5 @@ exports.run = async (_client, message) => {
 };
 
 exports.info = {
-    name: "help",
-    aliases: ['h']
+    name: "help"
 };

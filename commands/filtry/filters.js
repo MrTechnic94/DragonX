@@ -2,41 +2,23 @@
 
 const { EmbedBuilder } = require('discord.js');
 
-exports.run = async (client, message, args) => {
+exports.run = async (client, message) => {
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setTitle('📰 Lista filtrów').setDescription(`🔴 **BassBoostLow**\n🔴 **BassBoost**\n🔴 **BassBoostHigh**\n🔴 **Karaoke**\n🔴 **Nightcore**\n🔴 **Lofi**\n🔴 **Compressor**\n🔴 **Reverse**`).setFooter({text: `Użycie: ${process.env.PREFIX}bassboost`}).setColor("6b3deb")]});
+    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setTitle('📰 Lista filtrów').setDescription(`🔴 **BassBoostLow**\n🔴 **BassBoost**\n🔴 **BassBoostHigh**\n🔴 **Karaoke**\n🔴 **Nightcore**\n🔴 **Lofi**`).setFooter({text: `Użycie: ${process.env.PREFIX}bassboost`}).setColor("6b3deb")]});
     
-    switch(args[0]) {
-        case 'reset':
-            await queue.filters.ffmpeg.setFilters(false);
-            return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Wszystkie filtry zostały wyłączone!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor('Green')]});
-    };
-
-    const filters = [
-        { name: 'bassboost_low', label: 'BassBoostLow' },
-        { name: 'bassboost', label: 'BassBoost' },
-        { name: 'bassboost_high', label: 'BassBoostHigh' },
-        { name: 'karaoke', label: 'Karaoke' },
-        { name: 'nightcore', label: 'Nightcore' },
-        { name: 'vaporwave', label: 'Vaporwave' },
-        { name: 'lofi', label: 'Lofi' },
-        { name: 'compressor', label: 'Compressor' },
-        { name: 'reverse', label: 'Reverse' }
-    ];
-
-    const embedFields = [];
-
-    for (const filter of filters) {
-        const isEnabled = queue.filters.ffmpeg.isEnabled(filter.name);
-        const status = isEnabled ? '🟢' : '🔴';
-        embedFields.push(`${status} **${filter.label}**`);
-    }
+    const bsl = queue.filters.ffmpeg.isEnabled('bassboost_low') ? `🟢 **BassBoostLow**` : `🔴 **BassBoostLow**`;
+    const bs = queue.filters.ffmpeg.isEnabled('bassboost') ? `🟢 **BassBoost**` : `🔴 **BassBoost**`;
+    const bsh = queue.filters.ffmpeg.isEnabled('bassboost_high') ? `🟢 **BassBoostHigh**` : `🔴 **BassBoostHigh**`;
+    const kar = queue.filters.ffmpeg.isEnabled('karaoke') ? `🟢 **Karaoke**` : `🔴 **Karaoke**`;
+    const nc = queue.filters.ffmpeg.isEnabled('nightcore') ? `🟢 **Nightcore**` : `🔴 **Nightcore**`;
+    const vap = queue.filters.ffmpeg.isEnabled('vaporwave') ? `🟢 **Vaporwave**` : `🔴 **Vaporwave**`;
+    const lf = queue.filters.ffmpeg.isEnabled('lofi') ? `🟢 **Lofi**` : `🔴 **Lofi**`;
 
     const embed = new EmbedBuilder()
     .setTitle('📰 Lista filtrów')
-    .setDescription(embedFields.join('\n'))
+    .setDescription(`${bsl}\n${bs}\n${bsh}\n${kar}\n${nc}\n${vap}\n${lf}`)
     .setFooter({text: `Użycie: ${process.env.PREFIX}bassboost`})
     .setColor('6b3deb')
 
@@ -46,6 +28,5 @@ exports.run = async (client, message, args) => {
 
 exports.info = {
     name: "filters",
-    aliases: ["f"],
-    dj: true
+    aliases: ["f"]
 };

@@ -10,15 +10,14 @@ exports.run = async (client, message) => {
 
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
-    if (queue.history.previousTracks < 1) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma poprzedniego utwóru!**`).setColor("Red")]});
+    if (queue.history.previousTracks < 1) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma poprzedniego piosenek!**`).setColor("Red")]});
 
     await queue.history.back();
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`◀ **Odtwarzam poprzedni utwór!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+    return message.reply({embeds: [new EmbedBuilder().setDescription(`◀ **Odtwarzam poprzedni utwór!**`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 
 };
 
 exports.info = {
     name: "back",
-    aliases: ['b'],
-    dj: true
+    aliases: ['b']
 };

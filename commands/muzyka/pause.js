@@ -13,12 +13,11 @@ exports.run = async (client, message) => {
     if (queue.node.isPaused()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Piosenka jest już zatrzymana!**`).setColor("Red")]});
 
     await queue.node.pause();
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`🔇 **Zatrzymano odtwarzanie piosenki!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+    return message.reply({embeds: [new EmbedBuilder().setTitle(`🔇 Zatrzymałeś odtwarzanie piosenki!`).setDescription(`[${queue.currentTrack.title}](${queue.currentTrack.url})`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 
 };
 
 exports.info = {
     name: "pause",
-    aliases: ['pa'],
-    dj: true
+    aliases: ['pa']
 };

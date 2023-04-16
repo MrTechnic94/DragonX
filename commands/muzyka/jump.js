@@ -16,12 +16,11 @@ exports.run = async (client, message, args) => {
     const track = queue.tracks.at(index);
 
     await queue.node.skipTo(index);
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`⏩ **Przeskoczono: ${track.title}!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+    return message.reply({embeds: [new EmbedBuilder().setTitle(`⏩ Przeskoczyłeś do utworu!`).setDescription(`[${track.title}](${track.url})`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 
 };
 
 exports.info = {
     name: "jump",
-    aliases: ['j'],
-    dj: true
+    aliases: ['j']
 };

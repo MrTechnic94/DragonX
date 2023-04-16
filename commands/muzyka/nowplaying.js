@@ -10,14 +10,14 @@ exports.run = async (client, message) => {
 
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
-    const progresbar = queue.node.createProgressBar({timecodes: false, length: 13, filledLine: '[▬](https://top.gg/bot/841358613997682689)'});
+    const progresbar = queue.node.createProgressBar({timecodes: false, length: 13});
     const emoji = queue.node.isPaused() ? `▶️` : `⏸️`;
-    const requester = queue.currentTrack.requestedBy ?? `brak`;
+    const request = queue.currentTrack.requestedBy ?? `brak`;
 
     const embed = new EmbedBuilder()
     .setTitle(`⚡ Teraz Odtwarzam`)
-    .setDescription(`**Tytuł:** [${queue.currentTrack.title}](${queue.currentTrack.url})\n**Poziom głośności:** ${queue.node.volume}%\n**Na prośbę:** ${requester}\n\n${emoji} | ${progresbar} ${queue.node.getTimestamp().current.label} / ${queue.currentTrack.duration}`)
-    .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
+    .setDescription(`**Tytuł:** [${queue.currentTrack.title}](${queue.currentTrack.url})\n**Poziom głośności:** ${queue.node.volume}%\n**Na prośbę:** ${request}\n\n${emoji} | ${progresbar} ${queue.node.getTimestamp().current.label} / ${queue.currentTrack.duration}`)
+    .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
     .setThumbnail(queue.currentTrack.thumbnail)
     .setColor("6b3deb")
 

@@ -8,28 +8,16 @@ exports.run = async (client, message) => {
     
     if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
 
-    if (queue.repeatMode === 0 && !queue.tracks.at(0)) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma żadnych piosenek w kolejce!**`).setColor("Red")]});
+    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
-    queue.votes = queue.votes || [];
-    
-    const alreadyVoted = queue.votes.includes(message.author.id);
-    if (alreadyVoted) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Już zagłosowałeś!**`).setColor("Red")]});
-    
-    queue.votes.push(message.author.id);
-    const required = Math.ceil((message.channel.members.size - 1) / 2);
-    const currentVotes = queue.votes.length;
-    
-    if (currentVotes >= required) {
-        await queue.node.stop();
-        queue.votes = [];
-        return message.channel.send({embeds: [new EmbedBuilder().setDescription(`⏩ **Pominięto aktualną piosenkę!**`).setColor("6b3deb")]});
-    };
-    
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`**Zagłosowałeś na pominięcie piosenki (${currentVotes} / ${required})**`).setColor("Blue")]});
+    if (!queue.tracks.at(0)) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma żadnych piosenek w kolejce!**`).setColor("Red")]});
+
+    await queue.node.skip();
+    return message.reply({embeds: [new EmbedBuilder().setTitle(`⏩ Pominąłeś aktualną piosenkę!`).setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 
 };
 
 exports.info = {
     name: "skip",
-    aliases: ['s']
+    aliases: ['sk']
 };

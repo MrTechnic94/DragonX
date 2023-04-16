@@ -4,19 +4,22 @@ const { EmbedBuilder, ActivityType } = require('discord.js');
 
 exports.run = async (client, message) => {
 
-    client.user.setPresence({activities: [{name: process.env.STATUSTWO, type: ActivityType.Listening}], status: 'online'});
+    if (message.author.id !== process.env.OWNER) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie posiadasz permisji by to zrobić!**`).setColor("Red")]});
+
+    const p = process.env.PREFIX;
+
+    client.user.setPresence({ activities: [{ name: `❓ ${p}help 🎵 ${p}play`, type: ActivityType.Listening }], status: 'online' });
 
     const embed = new EmbedBuilder()
-    .setTitle("✅ Pomyślnie wyczyszczono status!")
-    .setDescription(`Status został zmieniony na: \`\`${process.env.STATUSTWO}\`\``)
-    .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true })})
-    .setColor("Green")
+        .setTitle("✅ Pomyślnie wyczyszczony status!")
+        .setDescription(`Status został zmieniony na: \`\`❓ ${p}help 🎵 ${p}play\`\``)
+        .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
+        .setColor("Green")
 
     return message.reply({embeds: [embed]});
 
 };
 
 exports.info = {
-    name: "sclear",
-    owner: true
+    name: "sclear"
 };
