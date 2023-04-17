@@ -1,16 +1,13 @@
 'use strict';
 
 const { EmbedBuilder } = require('discord.js');
-const { useMasterPlayer } = require('discord-player');
 
-exports.run = async (_client, message, args) => {
+exports.run = async (client, message, args) => {
     if (!message.member?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na kanale głosowym!**`).setColor("Red")]});
 
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
-    const player = useMasterPlayer();
-
-    const res = await player.search(args.join(' '), {
+    const res = await client.player.search(args.join(' '), {
         requestedBy: message.member
     });
 
@@ -18,7 +15,7 @@ exports.run = async (_client, message, args) => {
 
     const m = await message.channel.send(`🔎 **Proszę czekać wyszukuję...**`);
 
-    await player.play(message.member.voice.channel?.id, res, {
+    await client.player.play(message.member.voice.channel?.id, res, {
         nodeOptions: {
             metadata: {
                 channel: message.channel
@@ -26,7 +23,11 @@ exports.run = async (_client, message, args) => {
             leaveOnEndCooldown: 120000,
             leaveOnStop: true,
             leaveOnEmpty: true,
-            skipOnNoStream: true
+            skipOnNoStream: true,
+            ytdlOptions: {
+                filters: 'audioonly',
+                quality: 'highestaudio'
+            }
         }
     });
     m.delete();
