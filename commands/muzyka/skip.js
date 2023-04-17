@@ -19,7 +19,7 @@ exports.run = async (client, message) => {
     const currentVotes = queue.votes.length;
     
     if (currentVotes >= required) {
-        await queue.node.stop();
+        await queue.node.skip();
         queue.votes = [];
         return message.channel.send({embeds: [new EmbedBuilder().setDescription(`⏩ **Pominięto aktualną piosenkę!**`).setColor("6b3deb")]});
     };
