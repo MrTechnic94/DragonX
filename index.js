@@ -1,7 +1,7 @@
 'use strict';
 
 const { Client, Collection, GatewayIntentBits, Partials } = require('discord.js');
-const { Player, useMasterPlayer } = require('discord-player');
+const { Player } = require('discord-player');
 // const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
 const DeezerExtractor = require('discord-player-deezer').default;
 require('dotenv').config();
@@ -27,11 +27,9 @@ const client = new Client({
 });
 
 // -----> Zaladowanie discord-player <-----
-client.player = Player.singleton(client);
+client.player = new Player(client);
 
-const player = useMasterPlayer();
-
-player.extractors.register(DeezerExtractor);
+client.player.extractors.register(DeezerExtractor);
 
 // -----> Zaladowanie discord-hybrid-sharding <-----
 // client.cluster = new ClusterClient(client);
