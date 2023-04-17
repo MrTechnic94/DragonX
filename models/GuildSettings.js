@@ -11,7 +11,8 @@ const guildSettingsSchema = new Schema({
   },
   prefix: {
     type: String,
-    default: process.env.PREFIX
+    default: process.env.PREFIX,
+    index: true
   },
   djRoleId: { 
     type: String, 
