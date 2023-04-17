@@ -13,24 +13,17 @@ exports.run = async (client, message) => {
     const songs = queue.tracks.size;
     const nextSongs = songs > 20 ? `${songs - 20} piosenki` : `w playliście ${songs} piosenka(i)`;
 
+    const embed = new EmbedBuilder()
+    .setTitle('📰 Piosenki w playliście')
+    .setDescription(`**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\nBrak piosenek`)
+    .setColor("Red")
+
     if (queue.tracks.at(0)) {
-        const embed = new EmbedBuilder()
-        .setTitle('📰 Piosenki w playliście')
-        .setDescription(`**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${tracks.slice(0, 20).join('\n')}`)
-        .setFooter({text: nextSongs})
-        .setColor("Red")
-
-        return message.reply({embeds: [embed]});
+        embed.setDescription(`**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${tracks.slice(0, 20).join('\n')}`)
+        embed.setFooter({text: nextSongs})
     };
 
-    if (!queue.tracks.at(0)) {
-        const _embed = new EmbedBuilder()
-        .setTitle('📰 Piosenki w playliście')
-        .setDescription(`**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\nBrak piosenek`)
-        .setColor("Red")
-    
-        return message.reply({embeds: [_embed]});
-    };
+    return message.reply({embeds: [embed]});
 };
 
 exports.info = {
