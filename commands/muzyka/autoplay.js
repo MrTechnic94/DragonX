@@ -10,19 +10,9 @@ exports.run = async (client, message) => {
 
   if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
 
-  let mode;
-
-  switch (queue.repeatMode) {
-      case QueueRepeatMode.AUTOPLAY:
-        mode = 'wyłączony';
-        await queue.setRepeatMode(QueueRepeatMode.OFF);
-        break;
-      default:
-        mode = 'włączony';
-        await queue.setRepeatMode(QueueRepeatMode.AUTOPLAY);
-        break;
-  };
-
+  await queue.setRepeatMode(queue.repeatMode === QueueRepeatMode.AUTOPLAY ? QueueRepeatMode.OFF : QueueRepeatMode.AUTOPLAY);
+  const mode = queue.repeatMode === QueueRepeatMode.AUTOPLAY ? 'włączony' : 'wyłączony';
+  
   return message.reply({embeds: [new EmbedBuilder().setDescription(`▶️ **Autoplay został ${mode}!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
 
   // switch(args[0]) {
