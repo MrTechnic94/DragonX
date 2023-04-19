@@ -2,6 +2,7 @@
 
 const { EmbedBuilder } = require('discord.js');
 const { lyricsExtractor } = require('@discord-player/extractor');
+const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
     const queue = client.player.nodes.get(message.guild.id);
@@ -14,15 +15,15 @@ exports.run = async (client, message, args) => {
         .setTitle(`🎵 ${x.artist.name} - ${x.title}`)
         .setDescription(`${x.lyrics}`)
         .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
-        .setColor("6b3deb")
+        .setColor('Red')
 
         return message.reply({embeds: [embed]});    
 
     }).catch(() => {
-        return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie udało mi się znaleźć tekstu do tego utworu!**`).setColor("Red")]});
+        return message.reply({embeds: [embeds.lyrics_error]});
     });
 
-    if (!queue || !queue.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
+    if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
 
     if (!query) return await lyricsFinder.search(queue.currentTrack.title).then((x) => {
 
@@ -30,12 +31,12 @@ exports.run = async (client, message, args) => {
         .setTitle(`🎵 ${x.artist.name} - ${x.title}`)
         .setDescription(`${x.lyrics}`)
         .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
-        .setColor("6b3deb")
+        .setColor('Red')
     
         return message.reply({embeds: [_embed]});    
 
     }).catch(() => {
-        return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie udało mi się znaleźć tekstu do tego utworu!**`).setColor("Red")]});
+        return message.reply({embeds: [embeds.lyrics_error]});
     });
 };
 
