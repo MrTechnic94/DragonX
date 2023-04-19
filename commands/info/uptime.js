@@ -8,8 +8,7 @@ exports.run = async (client, message) => {
     const embed = new EmbedBuilder()
     .setTitle("⌚ Informacje bota")
     .setDescription(`**Uptime**\n\`\`🔮\`\` **Czas:** ${pretty(client.uptime)}\n\n**Informacje o systemie**\n\`\`💻\`\` **System:**  ${os.platform()}\n\`\`💾\`\` **Cpu:** ${await cpu.usage()}%\n\`\`🔩\`\` **Zużycie RAM:** ${(process.memoryUsage().rss / 1024 / 1024).toFixed(0)}mb`)
-    .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
-    .setColor("Blue")
+    .setColor('Red')
 
     return message.reply({embeds: [embed]});
 };

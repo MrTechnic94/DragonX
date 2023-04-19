@@ -1,7 +1,7 @@
 'use strict';
 
 const { EmbedBuilder } = require('discord.js');
-const GuildSettings = require('../../models/GuildSettings.js');
+const GuildSettings = require('../../utils/guildSettings.js');
 
 exports.run = async (_client, message) => {
     const guildData = await GuildSettings.findOne({guildId: message.guild.id});
@@ -11,12 +11,12 @@ exports.run = async (_client, message) => {
     const embed = new EmbedBuilder()
     .setTitle(`🔧 Ustawienia serwera`)
     .setDescription(`**Prefix:** \`\`${prefix}\`\`\n**DJ Rola:** ${dj}`)
-    .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
     .setColor('Red');
 
     return message.reply({embeds: [embed]});
 };
 
 exports.info = {
-    name: "settings"
+    name: "settings",
+    perm: `Administrator`
 };
