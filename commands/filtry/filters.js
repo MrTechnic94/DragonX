@@ -1,16 +1,17 @@
 'use strict';
 
 const { EmbedBuilder } = require('discord.js');
+const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setTitle('📰 Lista filtrów').setDescription(`🔴 **BassBoostLow**\n🔴 **BassBoost**\n🔴 **BassBoostHigh**\n🔴 **Karaoke**\n🔴 **Nightcore**\n🔴 **Lofi**\n🔴 **Compressor**\n🔴 **Reverse**`).setFooter({text: `Użycie: ${process.env.PREFIX}bassboost`}).setColor("6b3deb")]});
+    if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
     
     switch(args[0]) {
         case 'reset':
             await queue.filters.ffmpeg.setFilters(false);
-            return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Wszystkie filtry zostały wyłączone!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor('Green')]});
+            return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Wszystkie filtry zostały wyłączone!**`).setColor('Red')]});
     };
 
     const filters = [
@@ -36,8 +37,8 @@ exports.run = async (client, message, args) => {
     const embed = new EmbedBuilder()
     .setTitle('📰 Lista filtrów')
     .setDescription(embedFields.join('\n'))
-    .setFooter({text: `Użycie: ${process.env.PREFIX}bassboost`})
-    .setColor('6b3deb')
+    .setFooter({text: `Użycie: "${process.env.PREFIX}<nazwa filtru>"`})
+    .setColor('Red')
 
     return message.reply({embeds: [embed]});
 };

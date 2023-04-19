@@ -1,21 +1,22 @@
 'use strict';
 
 const { EmbedBuilder } = require('discord.js');
+const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
     const queue = client.player.nodes.get(message.guild.id);
     const s = parseInt(args[0]);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
+    if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
+    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
 
-    if (s * 1000 >= queue.currentTrack.durationMS) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Podany czas jest większa od długości utworu, lub równy!**`).setColor("Red")]});
+    if (s * 1000 >= queue.currentTrack.durationMS) return message.reply({embeds: [embeds.time_seek_error]});
 
-    if (!s || s <= 0) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nieprawidłowa liczba!**`).setColor("Red")]});
+    if (!s || s <= 0) return message.reply({embeds: [embeds.number_error]});
 
     await queue.node.seek(s * 1000);
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Ustawiono odtwarzanie na: ${queue.node.getTimestamp().current.label}!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Blue")]});
+    return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Ustawiono odtwarzanie na: ${queue.node.getTimestamp().current.label}!**`).setColor('Red')]});
 };
 
 exports.info = {

@@ -1,18 +1,19 @@
 'use strict';
 
 const { EmbedBuilder } = require('discord.js');
+const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
+    if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
+    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
 
-    if (queue.node.isPaused()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Piosenka jest już zatrzymana!**`).setColor("Red")]});
+    if (queue.node.isPaused()) return message.reply({embeds: [embeds.paused_error]});
 
     await queue.node.pause();
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`🔇 **Zatrzymano odtwarzanie piosenki!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+    return message.reply({embeds: [new EmbedBuilder().setDescription(`🔇 **Zatrzymano odtwarzanie piosenki!**`).setColor('Red')]});
 };
 
 exports.info = {

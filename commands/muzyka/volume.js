@@ -1,23 +1,24 @@
 'use strict';
 
 const { EmbedBuilder } = require('discord.js');
+const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
     const queue = client.player.nodes.get(message.guild.id);
     const vol = parseInt(args[0]);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
+    if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
+    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
 
-    if (vol < 0 || vol > 200) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Zakres głośności musi wynosić 1-200!**`).setColor("Red")]});
+    if (vol < 0 || vol > 200) return message.reply({embeds: [embeds.max_volume_error]});
 
-    if (!vol) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nieprawidłowa liczba**`).setColor("Red")]})
+    if (!vol) return message.reply({embeds: [embeds.number_error]})
   
-    if (queue.node.volume === vol) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Podana głośność jest obecnie używana!**`).setColor("Red")]});
+    if (queue.node.volume === vol) return message.reply({embeds: [embeds.already_volume_error]});
 
     await queue.node.setVolume(vol);
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`🔊 **Ustawiono głośność na: ${vol}%**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Blue")]});
+    return message.reply({embeds: [new EmbedBuilder().setDescription(`🔊 **Ustawiono głośność na: ${vol}%**`).setColor('Red')]});
 };
 
 exports.info = {

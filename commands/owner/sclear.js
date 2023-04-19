@@ -8,8 +8,7 @@ exports.run = async (client, message) => {
     const embed = new EmbedBuilder()
     .setTitle("✅ Pomyślnie wyczyszczono status!")
     .setDescription(`Status został zmieniony na: \`\`${process.env.STATUSTWO}\`\``)
-    .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true })})
-    .setColor("Green")
+    .setColor('Red')
 
     return message.reply({embeds: [embed]});
 };

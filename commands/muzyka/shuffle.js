@@ -1,18 +1,19 @@
 'use strict';
 
 const { EmbedBuilder } = require('discord.js');
+const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
+    if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
+    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
 
-    if (!queue.tracks.at(0)) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma żadnych piosenek do przetasowania!**`).setColor("Red")]});
+    if (!queue.tracks.at(0)) return message.reply({embeds: [embeds.track_shuffle_error]});
 
     await queue.tracks.shuffle();
-    return message.reply({embeds: [new EmbedBuilder().setDescription("🔀 **Playlista została przetasowana!**").setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+    return message.reply({embeds: [new EmbedBuilder().setDescription("🔀 **Playlista została przetasowana!**").setColor('Red')]});
 };
 
 exports.info = {
