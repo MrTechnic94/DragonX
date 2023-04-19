@@ -887,9 +887,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discord-player/extractor@npm:^4.1.2":
-  version: 4.1.2
-  resolution: "@discord-player/extractor@npm:4.1.2"
+"@discord-player/extractor@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "@discord-player/extractor@npm:4.2.0"
   dependencies:
     file-type: ^16.5.4
     genius-lyrics: ^4.4.2
@@ -898,10 +898,7 @@ __metadata:
     soundcloud-scraper: ^5.0.3
     spotify-url-info: ^3.2.3
     youtube-sr: ^4.3.4
-  peerDependencies:
-    play-dl: 1.x
-    ytdl-core: 4.x
-  checksum: eb8c33c67a1f500683bb2e4716344b00932ab75a04a5a8c6e8bf2043bc4f97b211ff924fd7fd8331c20fcaaccb6db4c867d1d71c17934853be9a7b9ddeaff629
+  checksum: 3dd307dfb7a00447fafb4ff40671118fa41d7523f6d15dd807974af918c0f1f61499c6e3d346ef8b170868665d47ea445951cdbfeb7b28d85060e4e4f1929d2e
   languageName: node
   linkType: hard
 
@@ -2287,7 +2284,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-player@npm:^6.0.0, discord-player@npm:^6.1.1":
+"discord-player@npm:^6.0.0":
   version: 6.1.1
   resolution: "discord-player@npm:6.1.1"
   dependencies:
@@ -2300,6 +2297,22 @@ __metadata:
     discord.js: 14.x
     youtube-sr: 4.x
   checksum: ed8209f37c65d018959effcad70e5cd2a38c41e5b7fa67333dacd0734dbace7aa89c50d0ba55d429d603c585a1883785db6e7771febce76f26c504b4b742df77
+  languageName: node
+  linkType: hard
+
+"discord-player@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "discord-player@npm:6.2.0"
+  dependencies:
+    "@discord-player/equalizer": "*"
+    "@discord-player/utils": "*"
+    "@discordjs/voice": latest
+    libsodium-wrappers: ^0.7.10
+  peerDependencies:
+    "@discord-player/extractor": "*"
+    discord.js: 14.x
+    youtube-sr: 4.x
+  checksum: ac91d60ed01ec1fa12a0e9ea73fc0171e8ea7c755e56b3ce59057562659ea90b6c3bd88fb3711c263efb99990d6be309673ac04c00c2058abe2baa295e8cad87
   languageName: node
   linkType: hard
 
@@ -2382,13 +2395,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "dragonxmusic@workspace:."
   dependencies:
-    "@discord-player/extractor": ^4.1.2
+    "@discord-player/extractor": ^4.2.0
     "@discordjs/opus": ^0.9.0
     "@discordjs/voice": ^0.16.0
     "@distube/ytdl-core": ^4.11.8
     bufferutil: ^4.0.7
     discord-hybrid-sharding: ^2.1.2
-    discord-player: ^6.1.1
+    discord-player: ^6.2.0
     discord-player-deezer: ^0.0.8
     discord.js: ^14.9.0
     dotenv: ^16.0.3

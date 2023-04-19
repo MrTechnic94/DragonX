@@ -13,7 +13,7 @@ exports.run = async (_client, queue, track) => {
             { name: '**Czas trwania:**', value: `\`\`${track.duration}\`\``, inline: true }
         )
         .setThumbnail(track.thumbnail)
-        .setColor("Blue");
+        .setColor('Red')
 
     queue.npmessage = await queue.metadata.channel.send({embeds: [embed]});
 };

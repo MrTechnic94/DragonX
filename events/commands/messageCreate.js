@@ -1,7 +1,8 @@
 'use strict';
 
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
-const GuildSettings = require('../../models/GuildSettings.js');
+const GuildSettings = require('../../utils/guildSettings.js');
+const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
   let guildData = await GuildSettings.findOne({guildId: message.guild.id});
@@ -32,22 +33,12 @@ exports.run = async (client, message) => {
   if (!message.content.startsWith(prefix) || !cmd || cmd.info.stop) return;
 
   // ----> Sprawdzenie czy uzytkownik ma permisje <----
-  if (cmd.info.perm && !message.member.permissions.has(cmd.info.perm) || (cmd.ownerOnly && process.env.OWNER !== message.author.id)) {
-    const perm = new EmbedBuilder()
-    .setDescription("❌ **Nie posiadasz permisji by to zrobić!**")
-    .setColor("Red")
-
-    return message.channel.send({embeds: [perm]});
-  };
+  if (cmd.info.perm && !message.member.permissions.has(cmd.info.perm) || (cmd.ownerOnly && process.env.OWNER !== message.author.id))
+    return message.channel.send({embeds: [embeds.permission_error]});
 
   // -----> Sprawdzenie czy uzytkownik ma dj role <-----
-  if (cmd.info.dj && guildData && guildData.djRoleId && !message.member.roles.cache.has(guildData.djRoleId)) {
-    const djerror = new EmbedBuilder()
-    .setDescription("❌ **Nie posiadasz roli DJ!**")
-    .setColor("Red")
-    
-    return message.channel.send({embeds: [djerror]});
-  };
+  if (cmd.info.dj && guildData && guildData.djRoleId && !message.member.roles.cache.has(guildData.djRoleId))
+    return message.channel.send({embeds: [embeds.dj_permission_error]});
 
   cmd.run(client, message, args).catch(error => {
     console.error(`[${"\x1b[31m"}Error${"\x1b[0m"}] \x1b[31mKomenda ${cmd.info.name} napotkala blad:\x1b[0m\n${error}`);

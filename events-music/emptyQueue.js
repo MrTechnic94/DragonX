@@ -1,11 +1,7 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const embeds = require('../utils/embeds.js');
 
 exports.run = async (_client, queue) => {
-    const embed = new EmbedBuilder()
-    .setDescription(`❌ **Skończyła się muzyka w playliście!**`)
-    .setColor("Red")
-
-    return queue.metadata.channel.send({embeds: [embed]});
+    return queue.metadata.channel.send({embeds: [embeds.empty_queue_error]});
 };
