@@ -3,6 +3,8 @@
 const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
+    if (!args[0]) return message.reply({embeds: [embeds.track_args_error]});
+
     if (!message.member?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
 
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
@@ -11,7 +13,7 @@ exports.run = async (client, message, args) => {
         requestedBy: message.member
     });
 
-    if (!res?.hasTracks()) return message.reply({embeds: [embeds.track_error]});
+    if (!res.hasTracks()) return message.reply({embeds: [embeds.track_error]});
 
     const m = await message.channel.send(`🔎 **Proszę czekać wyszukuję...**`);
 
@@ -20,6 +22,7 @@ exports.run = async (client, message, args) => {
             metadata: {
                 channel: message.channel
             },
+            leaveOnEnd: true,
             leaveOnEndCooldown: 120000,
             leaveOnStop: true,
             leaveOnEmpty: true,
