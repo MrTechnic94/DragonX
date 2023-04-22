@@ -23,7 +23,7 @@ exports.run = async (client, message, args) => {
                 channel: message.channel
             },
             leaveOnEnd: true,
-            leaveOnEndCooldown: 120000,
+            // leaveOnEndCooldown: 120000,
             leaveOnStop: true,
             leaveOnEmpty: true,
             skipOnNoStream: true,
