@@ -1,7 +1,6 @@
 'use strict';
 
 const { EmbedBuilder } = require('discord.js');
-const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
     if (!args[0]) return message.reply({embeds: [embeds.args_category_error]});
@@ -12,14 +11,14 @@ exports.run = async (client, message, args) => {
 
         try {
             delete require.cache[require.resolve(`../../commands/${category}/${command}`)];
-            await client.commands.delete(command);
+            client.commands.delete(command);
 
             const pull = require(`../../commands/${category}/${command}`);
-            await client.commands.set(command, pull);
+            client.commands.set(command, pull);
 
-            return message.reply({embeds: [new EmbedBuilder().setDescription(`✅ **Przeładowano komendę** \`\`${command}\`\`!`).setColor('Red')]});
+            return message.reply({embeds: [new EmbedBuilder().setDescription(`✅ **Przeładowano komendę** \`\`${command}\`\`**!**`).setColor('Red')]});
         } catch {
-            return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Błąd w przeładowaniu komendy** \`\`${command}\`\`!`).setColor('Red')]});
+            return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Błąd w przeładowaniu komendy** \`\`${command}\`\`**!**`).setColor('Red')]});
         };
 };
 

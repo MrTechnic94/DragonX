@@ -8,7 +8,7 @@ exports.run = async (client, message) => {
 
     if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
 
     const requester = queue.currentTrack.author === `cdn.discordapp.com` ? `nieznany` : queue.currentTrack.author;
 

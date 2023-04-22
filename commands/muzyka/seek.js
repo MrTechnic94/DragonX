@@ -9,7 +9,7 @@ exports.run = async (client, message, args) => {
 
     if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
 
     if (s * 1000 >= queue.currentTrack.durationMS) return message.reply({embeds: [embeds.time_seek_error]});
 

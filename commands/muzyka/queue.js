@@ -8,8 +8,6 @@ exports.run = async (client, message) => {
 
     if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
-
     const tracks = queue.tracks.map((track, i) => `**${i + 1}.** [${track.title}](${track.url}) [${track.duration}]`);
     const songs = queue.tracks.size;
     const nextSongs = songs > 20 ? `${songs - 20} piosenki` : `w playliście ${songs} piosenka(i)`;

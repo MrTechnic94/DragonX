@@ -8,8 +8,6 @@ exports.run = async (client, message) => {
     
     if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
-
     const progresbar = queue.node.createProgressBar({timecodes: false, length: 13});
     const emoji = queue.node.isPaused() ? `▶️` : `⏸️`;
     const requester = queue.currentTrack.requestedBy ?? `brak`;

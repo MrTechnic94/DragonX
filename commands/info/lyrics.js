@@ -14,7 +14,6 @@ exports.run = async (client, message, args) => {
     const embed = new EmbedBuilder()
         .setTitle(`🎵 ${x.artist.name} - ${x.title}`)
         .setDescription(`${x.lyrics}`)
-        .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
         .setColor('Red')
 
         return message.reply({embeds: [embed]});    
@@ -30,7 +29,6 @@ exports.run = async (client, message, args) => {
     const _embed = new EmbedBuilder()
         .setTitle(`🎵 ${x.artist.name} - ${x.title}`)
         .setDescription(`${x.lyrics}`)
-        .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
         .setColor('Red')
     
         return message.reply({embeds: [_embed]});    

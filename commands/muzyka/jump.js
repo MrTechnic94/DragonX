@@ -9,7 +9,7 @@ exports.run = async (client, message, args) => {
     
     if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
 
     if (!args[0] || args[0] < 1 || args[0] > queue.getSize()) return message.reply({embeds: [embeds.number_error]});
 
