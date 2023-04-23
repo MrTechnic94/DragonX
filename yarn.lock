@@ -887,9 +887,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discord-player/extractor@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "@discord-player/extractor@npm:4.2.0"
+"@discord-player/extractor@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "@discord-player/extractor@npm:4.2.1"
   dependencies:
     file-type: ^16.5.4
     genius-lyrics: ^4.4.2
@@ -898,7 +898,7 @@ __metadata:
     soundcloud-scraper: ^5.0.3
     spotify-url-info: ^3.2.3
     youtube-sr: ^4.3.4
-  checksum: 3dd307dfb7a00447fafb4ff40671118fa41d7523f6d15dd807974af918c0f1f61499c6e3d346ef8b170868665d47ea445951cdbfeb7b28d85060e4e4f1929d2e
+  checksum: aba5f151949dd00a17d93d73e165df78e2975dcdf9b771f21871f8808c1d33300505e944356ca8fa5e8f36f7419f3c58b18833d2c658e01118d054dcefe03fa7
   languageName: node
   linkType: hard
 
@@ -1007,14 +1007,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@distube/ytdl-core@npm:^4.11.8":
-  version: 4.11.8
-  resolution: "@distube/ytdl-core@npm:4.11.8"
+"@distube/ytdl-core@npm:latest":
+  version: 4.11.9
+  resolution: "@distube/ytdl-core@npm:4.11.9"
   dependencies:
     m3u8stream: ^0.8.6
     miniget: ^4.2.2
     sax: ^1.2.4
-  checksum: 76bed53b30c0a6ca964f718195fad15266eb08efda267873ea0255e1bac4dca4dbe9cf0c83dafb3402eaf9850027ab7871f842e33eba31925e4612cc5a5c2cd6
+    undici: ^5.22.0
+  checksum: ff6b8841a2541c7d5907d76c3958771fc252223d6213084c6f1b1d99aa938d18568628afe47c2da6fc058833f95076d178e7e7af61050156590f9cc4e8e03adc
   languageName: node
   linkType: hard
 
@@ -2300,9 +2301,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-player@npm:^6.2.0":
-  version: 6.2.0
-  resolution: "discord-player@npm:6.2.0"
+"discord-player@npm:^6.2.1":
+  version: 6.2.1
+  resolution: "discord-player@npm:6.2.1"
   dependencies:
     "@discord-player/equalizer": "*"
     "@discord-player/utils": "*"
@@ -2312,7 +2313,7 @@ __metadata:
     "@discord-player/extractor": "*"
     discord.js: 14.x
     youtube-sr: 4.x
-  checksum: ac91d60ed01ec1fa12a0e9ea73fc0171e8ea7c755e56b3ce59057562659ea90b6c3bd88fb3711c263efb99990d6be309673ac04c00c2058abe2baa295e8cad87
+  checksum: 8fa858de5757528fbd8bc0ad1ece3b3609014b5eff763a32ad337b2adbe644c0b7e995fd73b44e55c6cc1d4e122a51e6254dd8a367cef8bb779a89278e648864
   languageName: node
   linkType: hard
 
@@ -2395,13 +2396,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "dragonxmusic@workspace:."
   dependencies:
-    "@discord-player/extractor": ^4.2.0
+    "@discord-player/extractor": ^4.2.1
     "@discordjs/opus": ^0.9.0
     "@discordjs/voice": ^0.16.0
-    "@distube/ytdl-core": ^4.11.8
+    "@distube/ytdl-core": latest
     bufferutil: ^4.0.7
     discord-hybrid-sharding: ^2.1.2
-    discord-player: ^6.2.0
+    discord-player: ^6.2.1
     discord-player-deezer: ^0.0.8
     discord.js: ^14.9.0
     dotenv: ^16.0.3
@@ -5263,6 +5264,15 @@ __metadata:
   dependencies:
     busboy: ^1.6.0
   checksum: baceaa9e610966631e86ad2869b657556dd465438eed55e8079cec2a306ecbeecfde2d6e37e43baf96a4c59588ebef50476131e96e018dcc0a7f5db7e6a06c85
+  languageName: node
+  linkType: hard
+
+"undici@npm:^5.22.0":
+  version: 5.22.0
+  resolution: "undici@npm:5.22.0"
+  dependencies:
+    busboy: ^1.6.0
+  checksum: 8dc55240a60ae7680798df344e8f46ad0f872ed0fa434fb94cc4fd2b5b2f8053bdf11994d15902999d3880f9bf7cd875a2e90883d2702bf0f366dacd9cbf3fc6
   languageName: node
   linkType: hard
 
