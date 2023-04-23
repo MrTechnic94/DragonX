@@ -27,7 +27,11 @@ const client = new Client({
 });
 
 // -----> Zaladowanie discord-player <-----
-client.player = new Player(client);
+client.player = new Player(client, {
+	autoRegisterExtractor: false
+});
+
+client.player.extractors.loadDefault();
 
 client.player.extractors.register(DeezerExtractor);
 
