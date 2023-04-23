@@ -34,7 +34,7 @@ exports.run = async (client, message, args) => {
         }
     });
     m.delete();
-    return message.channel.send({embeds: [new EmbedBuilder().setDescription(res.playlist ? `✅ Dodano **${res.tracks.length}** utwory do playlisty!` : `✅ **${res.tracks[0]}** dodano do playlisty!`).setColor('Red')]});
+    return message.channel.send({embeds: [new EmbedBuilder().setDescription(res.playlist ? `✅ Dodano **${res.tracks.length}** utwory do playlisty!` : `✅ **${res.tracks[0].title}** dodano do playlisty!`).setColor('Red')]});
 };
 
 exports.info = {
