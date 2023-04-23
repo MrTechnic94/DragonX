@@ -136,7 +136,7 @@ const embeds = {
 
     player_error: new EmbedBuilder()
         .setDescription('❌ **Błąd podczas odtwarzania utworu!**')
-        .setColor('Red'),
+        .setColor('Red')
 };
 
 module.exports = embeds;
