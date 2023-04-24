@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
     switch(args[0].toLowerCase()) {
         case 'off':
         if (queue.repeatMode === QueueRepeatMode.OFF) return message.reply({embeds: [embeds.loop_off_error]});
-        if (queue.repeatMode === QueueRepeatMode.TRACK || queue.repeatMode === QueueRepeatMode.QUEUE) await queue.setRepeatMode(QueueRepeatMode.OFF);
+        if (queue.repeatMode !== QueueRepeatMode.OFF) await queue.setRepeatMode(QueueRepeatMode.OFF);
         message.reply({embeds: [new EmbedBuilder().setDescription(`🔒 **Pętla została zakończona!**`).setColor('Red')]});
         break;
         
