@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     if (!queue.tracks.at(0)) return message.reply({embeds: [embeds.track_shuffle_error]});
 
     await queue.tracks.shuffle();
-    return message.reply({embeds: [new EmbedBuilder().setDescription("🔀 **Playlista została przetasowana!**").setColor('Red')]});
+    return message.reply({embeds: [new EmbedBuilder().setDescription('🔀 **Playlista została przetasowana!**').setColor('Red')]});
 };
 
 exports.info = {
