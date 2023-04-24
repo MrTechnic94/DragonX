@@ -16,7 +16,7 @@ exports.run = async (client, message) => {
         await queue.delete();
     };
     await message.guild.members.me?.voice.disconnect();
-    return message.reply({embeds: [new EmbedBuilder().setDescription('🔮 **Wychodzę z kanału!**').setColor('Red')]});
+    return message.reply({embeds: [new EmbedBuilder().setDescription(`🔮 **Wychodzę z kanału!**`).setColor('Red')]});
 };
 
 exports.info = {
