@@ -18,13 +18,13 @@ exports.run = async (client, message, args) => {
         message.reply({embeds: [new EmbedBuilder().setDescription(`🔒 **Pętla została zakończona!**`).setColor('Red')]});
         break;
         
-    case 'track':
+        case 'track':
         if (queue.repeatMode === QueueRepeatMode.TRACK) return message.reply({embeds: [embeds.loop_track_error]});
         if (queue.repeatMode === QueueRepeatMode.OFF) await queue.setRepeatMode(QueueRepeatMode.TRACK);
         message.reply({embeds: [new EmbedBuilder().setDescription(`🔂 **Powtarzanie piosenki zostało włączone!**`).setColor('Red')]});
         break;
 
-    case 'queue':
+        case 'queue':
         if (queue.repeatMode === QueueRepeatMode.QUEUE) return message.reply({embeds: [embeds.loop_queue_error]});
         if (queue.repeatMode === QueueRepeatMode.OFF) await queue.setRepeatMode(QueueRepeatMode.QUEUE);
         message.reply({embeds: [new EmbedBuilder().setDescription(`🔁 **Powtarzanie playlisty zostało włączone!**`).setColor('Red')]});
