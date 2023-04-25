@@ -11,7 +11,7 @@ exports.run = async (client, message, args) => {
 
     if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
 
-    switch(args[0].toLowerCase()) {
+    switch(args[0]?.toLowerCase()) {
         case 'off':
         if (queue.repeatMode === QueueRepeatMode.OFF) return message.reply({embeds: [embeds.loop_off_error]});
         if (queue.repeatMode !== QueueRepeatMode.OFF) await queue.setRepeatMode(QueueRepeatMode.OFF);
