@@ -6,7 +6,7 @@ const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
   let guildData = await GuildSettings.findOne({guildId: message.guild.id});
-  let prefix = guildData ? guildData.prefix : process.env.PREFIX;
+  let prefix = guildData?.prefix || process.env.PREFIX;
   const args = message.content
     .slice(prefix.length)
     .trim()
