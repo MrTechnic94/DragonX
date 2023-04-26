@@ -12,12 +12,6 @@ exports.run = async (client, message, args) => {
     if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
 
     switch(args[0]?.toLowerCase()) {
-        default:
-            await queue.setRepeatMode(queue.repeatMode === QueueRepeatMode.TRACK ? QueueRepeatMode.OFF : QueueRepeatMode.QUEUE);
-            const mode = queue.repeatMode === QueueRepeatMode.TRACK ? '🔂 **Powtarzanie piosenki zostało włączone!**' : queue.repeatMode === QueueRepeatMode.QUEUE ? '🔁 **Powtarzanie playlisty zostało włączone!**' : '🔒 **Pętla została zakończona!**';
-            message.reply({embeds: [new EmbedBuilder().setDescription(mode).setColor('Red')]});
-            break;
-
         case 'off':
         if (queue.repeatMode === QueueRepeatMode.OFF) return message.reply({embeds: [embeds.loop_off_error]});
         if (queue.repeatMode !== QueueRepeatMode.OFF) await queue.setRepeatMode(QueueRepeatMode.OFF);
