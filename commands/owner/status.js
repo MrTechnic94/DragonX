@@ -8,12 +8,13 @@ exports.run = async (client, message, args) => {
 
     client.user.setPresence({activities: [{name: args.join(' '), type: ActivityType.Listening}]});
 
-    const embed = new EmbedBuilder()
-    .setTitle("✅ Pomyślnie ustawiono status!")
-    .setDescription(`Status został zmieniony na \`\`${args.join(' ')}\`\``)
-    .setColor('Red')
-
-    return message.reply({embeds: [embed]});
+    return message.reply({
+        embeds: [
+            new EmbedBuilder()
+                .setTitle(`✅ Pomyślnie ustawiono status`)
+                .setDescription(`Status został zmieniony na \`\`${args.join(' ')}\`\``)
+                .setColor('Red')]
+    });
 };
 
 exports.info = {
