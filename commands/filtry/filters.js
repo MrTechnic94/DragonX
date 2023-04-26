@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
 
     if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
     
-    switch(args[0]) {
+    switch(args[0]?.toLowerCase()) {
         case 'reset':
             await queue.filters.ffmpeg.setFilters(false);
             return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Wszystkie filtry zostały wyłączone!**`).setColor('Red')]});
