@@ -37,7 +37,7 @@ exports.run = async (client, message) => {
     return message.channel.send({embeds: [embeds.permission_error]});
 
   // -----> Sprawdzenie czy uzytkownik ma dj role <-----
-  if (cmd.info.dj && guildData && guildData.djRoleId && !message.member.roles.cache.has(guildData.djRoleId))
+  if (cmd.info.dj && guildData?.djRoleId && !message.member.roles.cache.has(guildData.djRoleId))
     return message.channel.send({embeds: [embeds.dj_permission_error]});
 
   cmd.run(client, message, args).catch(error => {
