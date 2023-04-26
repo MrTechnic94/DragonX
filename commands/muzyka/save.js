@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     const requester = queue.currentTrack.author === `cdn.discordapp.com` ? `nieznany` : queue.currentTrack.author;
 
     const embed = new EmbedBuilder()
-    .setTitle('📨 Zapisano Piosenkę!')
+    .setTitle('📨 Zapisano piosenkę!')
     .setDescription(`**Tytuł:** [${queue.currentTrack.title}](${queue.currentTrack.url})\n**Czas:** ${queue.currentTrack.duration}\n**Autor:** ${requester}`)
     .setThumbnail(queue.currentTrack.thumbnail)
     .setColor('Red')
