@@ -8,12 +8,13 @@ exports.run = async (_client, message) => {
     const prefix = guildData ? guildData.prefix : process.env.PREFIX;
     const dj = guildData?.djRoleId ? `<@&${guildData.djRoleId}>` : '`nie ustawiono`';
 
-    const embed = new EmbedBuilder()
-    .setTitle(`🔧 Ustawienia serwera`)
-    .setDescription(`**Prefix:** \`\`${prefix}\`\`\n**DJ Rola:** ${dj}`)
-    .setColor('Red');
-
-    return message.reply({embeds: [embed]});
+    return message.reply({
+        embeds: [
+            new EmbedBuilder()
+                .setTitle(`🔧 Ustawienia serwera`)
+                .setDescription(`**Prefix:** \`\`${prefix}\`\`\n**DJ Rola:** ${dj}`)
+                .setColor('Red')]
+    });
 };
 
 exports.info = {
