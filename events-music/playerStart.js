@@ -6,7 +6,7 @@ exports.run = async (_client, queue, track) => {
     const requester = track.requestedBy ?? `brak`;
 
     const embed = new EmbedBuilder()
-        .setTitle("▶️ Aktualnie Odtwarzam")
+        .setTitle('▶️ Aktualnie odtwarzam')
         .setDescription(`[${track.title}](${track.url})`)
         .addFields(
             { name: '**Na prośbę:**', value: `${requester}`, inline: true },
