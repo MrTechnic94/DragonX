@@ -22,11 +22,12 @@ exports.run = async (client, message) => {
 
   // -----> Bot odpowiada na oznaczenie <-----
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
-    const embed = new EmbedBuilder()
-      .setDescription(`**Witaj** \`\`${message.author.tag}\`\`**!**\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``)
-      .setColor('Red')
-
-    return message.reply({embeds: [embed]});
+    return message.reply({
+      embeds: [
+        new EmbedBuilder()
+          .setDescription(`**Witaj** \`\`${message.author.tag}\`\`**!**\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``)
+          .setColor('Red')]
+    });
   };
   
   if (!message.content.startsWith(prefix) || !cmd || cmd.info.stop) return;
