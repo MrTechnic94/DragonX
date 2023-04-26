@@ -37,7 +37,7 @@ exports.run = async (client, message, args) => {
     const embed = new EmbedBuilder()
     .setTitle('📰 Lista filtrów')
     .setDescription(embedFields.join('\n'))
-    .setFooter({text: `Użycie: "${process.env.PREFIX}bassboost"`})
+    .setFooter({text: `Użycie: '${process.env.PREFIX}bassboost'`})
     .setColor('Red')
 
     return message.reply({embeds: [embed]});
