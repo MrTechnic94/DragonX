@@ -24,8 +24,7 @@ exports.run = async (client, message) => {
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
     const embed = new EmbedBuilder()
       .setDescription(`**Witaj** \`\`${message.author.tag}\`\`**!**\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``)
-      .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
-      .setColor("Blue")
+      .setColor('Red')
 
     return message.reply({embeds: [embed]});
   };
