@@ -13,7 +13,7 @@ exports.run = async (client, message, args) => {
 
     if (vol < 0 || vol > 200) return message.reply({embeds: [embeds.max_volume_error]});
 
-    if (!vol) return message.reply({embeds: [embeds.number_error]})
+    if (!vol) return message.reply({embeds: [new EmbedBuilder().setDescription(`🔊 **Aktualna głośność: ${queue.node.volume}%**`).setColor('Red')]});
   
     if (queue.node.volume === vol) return message.reply({embeds: [embeds.already_volume_error]});
 
