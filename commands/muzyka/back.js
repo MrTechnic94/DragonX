@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     if (queue.history.previousTracks < 1) return message.reply({embeds: [embeds.track_back_error]});
 
     await queue.history.back();
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`◀ **Odtwarzam poprzedni utwór!**`).setColor('Red')]});
+    return message.reply({embeds: [new EmbedBuilder().setDescription(`◀️ **Odtwarzam poprzedni utwór!**`).setColor('Red')]});
 };
 
 exports.info = {
