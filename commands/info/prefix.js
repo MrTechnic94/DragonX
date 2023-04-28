@@ -16,7 +16,7 @@ exports.run = async (_client, message, args) => {
 
     try {
         const guildId = message.guildId;
-        await GuildSettings.updateOne({ guildId }, { guildId, prefix }, { upsert: true });
+        await GuildSettings.updateOne({guildId}, {guildId, prefix}, {upsert: true});
       
         return message.reply({embeds: [new EmbedBuilder().setDescription(`✅ **Ustawiono nowy prefix:** \`${prefix}\``).setColor('Red')]});
     } catch {
