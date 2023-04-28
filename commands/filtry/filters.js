@@ -4,6 +4,8 @@ const { EmbedBuilder } = require('discord.js');
 const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
+
     const queue = client.player.nodes.get(message.guild.id);
 
     if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
@@ -37,7 +39,7 @@ exports.run = async (client, message, args) => {
     const embed = new EmbedBuilder()
     .setTitle('📰 Lista filtrów')
     .setDescription(embedFields.join('\n'))
-    .setFooter({text: `Użycie: '${process.env.PREFIX}bassboost'`})
+    .setFooter({text: `Przykładowe użycie: ${process.env.PREFIX}bassboost`})
     .setColor('Red')
 
     return message.reply({embeds: [embed]});
