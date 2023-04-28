@@ -6,7 +6,7 @@ const embeds = require('../../utils/embeds.js');
 exports.run = async (client, message, args) => {
     if (!args[0]) return message.reply({embeds: [embeds.track_error]});
 
-    if (!message.member?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
+    if (!message.member?.voice.channelId) return message.reply({embeds: [embeds.member_voice_error]});
 
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
 
