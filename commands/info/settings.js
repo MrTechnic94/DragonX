@@ -19,5 +19,5 @@ exports.run = async (_client, message) => {
 
 exports.info = {
     name: "settings",
-    perm: `Administrator`
+    perm: "Administrator"
 };
