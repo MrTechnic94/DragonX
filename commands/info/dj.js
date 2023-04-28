@@ -10,7 +10,7 @@ exports.run = async (_client, message, args) => {
   switch(args[0]?.toLowerCase()) {
     default:
       const roleName = args.join(' ');
-      const role = message.mentions.roles?.first() || message.guild.roles.cache.find((r) => r.name.toLowerCase() === roleName.toLowerCase());
+      const role = message.mentions.roles?.first() || message.guild.roles.cache.find((r) => r.name.toLowerCase() === roleName.toLowerCase()) || message.guild.roles.cache.get(roleName);
         
       if (!role) return message.reply({embeds: [embeds.role_error]});
     
