@@ -6,10 +6,11 @@ const embeds = require('../../utils/embeds.js');
 
 exports.run = async (_client, message, args) => {
     const prefix = args[0];
-    let guildData = await GuildSettings.findOne({guildId: message.guild.id});
-    const oldPrefix = guildData ? guildData.prefix : process.env.PREFIX;
 
     if (!prefix) return message.reply({embeds: [embeds.prefix_change_error]});
+
+    let guildData = await GuildSettings.findOne({guildId: message.guild.id});
+    const oldPrefix = guildData ? guildData.prefix : process.env.PREFIX;
     
     if (oldPrefix === prefix) return message.reply({embeds: [embeds.already_prefix_error]});
 
