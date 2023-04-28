@@ -18,6 +18,6 @@ exports.run = async (client, message) => {
 
 exports.info = {
     name: "vaporwave",
-    aliases: ["vap"],
+    aliases: ["vp"],
     dj: true
 };

@@ -10,24 +10,27 @@ exports.run = async (client, message, args) => {
         default:
             client.user.setPresence({activities: [{name: args.join(' '), type: ActivityType.Listening}]});
 
-            return message.reply({
+            message.reply({
                 embeds: [
                     new EmbedBuilder()
                         .setTitle(`✅ Pomyślnie ustawiono status`)
                         .setDescription(`Status został zmieniony na \`\`${args.join(' ')}\`\``)
                         .setColor('Red')]
             });
+            break;
         
         case 'clear':
             client.user.setPresence({activities: [{name: process.env.STATUSTWO, type: ActivityType.Listening}], status: 'online'});
 
-            return message.reply({
+            message.reply({
                 embeds: [
                     new EmbedBuilder()
                         .setTitle(`✅ Pomyślnie wyczyszczono status`)
                         .setDescription(`Status został zmieniony na: \`\`${process.env.STATUSTWO}\`\``)
                         .setColor('Red')]
+
             });
+            break;
     };
 };
 

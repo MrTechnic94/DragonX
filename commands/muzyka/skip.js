@@ -31,5 +31,5 @@ exports.run = async (client, message) => {
 
 exports.info = {
     name: "skip",
-    aliases: ['s', 'vote']
+    aliases: ["s", "vote"]
 };

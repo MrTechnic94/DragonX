@@ -18,6 +18,6 @@ exports.run = async (client, message) => {
 
 exports.info = {
     name: "bassboostlow",
-    aliases: ["bsl"],
+    aliases: ["bbl"],
     dj: true
 };

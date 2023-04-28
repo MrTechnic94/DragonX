@@ -18,6 +18,6 @@ exports.run = async (client, message) => {
 
 exports.info = {
     name: "shuffle",
-    aliases: ['sh'],
+    aliases: ["sh"],
     dj: true
 };

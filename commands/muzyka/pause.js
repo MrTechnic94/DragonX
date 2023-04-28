@@ -18,6 +18,6 @@ exports.run = async (client, message) => {
 
 exports.info = {
     name: "pause",
-    aliases: ['pa'],
+    aliases: ["pa"],
     dj: true
 };

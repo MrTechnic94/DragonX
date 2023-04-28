@@ -18,6 +18,6 @@ exports.run = async (client, message) => {
 
 exports.info = {
     name: "forceskip",
-    aliases: ['fs'],
+    aliases: ["fs"],
     dj: true
 };

@@ -18,6 +18,6 @@ exports.run = async (client, message) => {
 
 exports.info = {
     name: "reverse",
-    aliases: ["rev"],
+    aliases: ["rv"],
     dj: true
 };

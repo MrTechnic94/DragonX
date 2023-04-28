@@ -39,6 +39,6 @@ exports.run = async (client, message, args) => {
 
 exports.info = {
     name: "play",
-    aliases: ['p', 'songrequest', 'sr'],
+    aliases: ["p", "songrequest", "sr"],
     dj: true
 };
