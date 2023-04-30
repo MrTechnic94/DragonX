@@ -8,6 +8,6 @@ exports.run = async (client, message) => {
 
 exports.info = {
     name: "guildscount",
-    aliases: ['gc'],
+    aliases: ["gc"],
     owner: true
 };
