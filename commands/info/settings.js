@@ -1,7 +1,7 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
 const GuildSettings = require('../../utils/guildSettings.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (_client, message) => {
     const guildData = await GuildSettings.findOne({guildId: message.guild.id});
@@ -9,11 +9,11 @@ exports.run = async (_client, message) => {
     const dj = guildData?.djRoleId ? `<@&${guildData.djRoleId}>` : '`nie ustawiono`';
 
     return message.reply({
-        embeds: [
-            new EmbedBuilder()
-                .setTitle(`🔧 Ustawienia serwera`)
-                .setDescription(`**Prefix:** \`\`${prefix}\`\`\n**DJ Rola:** ${dj}`)
-                .setColor('Red')]
+        embeds:
+            [createEmbed({
+                title: `🔧 Ustawienia serwera`,
+                description: `**Prefix:** \`\`${prefix}\`\`\n**DJ Rola:** ${dj}`
+            })]
     });
 };
 

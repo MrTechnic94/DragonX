@@ -1,12 +1,12 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { createEmbed } = require('../../utils/embedCreator');
 
 exports.run = async (client, message, args) => {
     let guild = client.guilds.cache.get(args[0]);
-    if (!guild) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie znaleziono guildi z id** \`\`${guild}\`\`**!**`).setColor('Red')]});
+    if (!guild) return message.reply({embeds: [createEmbed({description: `❌ **Nie znaleziono guildi z id** \`\`${guild}\`\`**!**`})]});
 
-    message.reply({embeds: [new EmbedBuilder().setTitle(`✅ Pomyślnie bot wyszedł z gildi!`).setDescription(`**Guild name:**\n \`\`\`${guild.name}\`\`\`\n **Guild id:**\n \`\`\`${guild.id}\`\`\` `).setColor('Red')]});
+    message.reply({embeds: [createEmbed({title: `✅ Pomyślnie bot wyszedł z gildi!`, description: `**Guild name:**\n \`\`\`${guild.name}\`\`\`\n **Guild id:**\n \`\`\`${guild.id}\`\`\``})]});
     
     await guild.leave();
 };

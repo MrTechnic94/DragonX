@@ -1,8 +1,8 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
-const { QueueRepeatMode } = require('discord-player');
 const embeds = require('../../utils/embeds.js');
+const { QueueRepeatMode } = require('discord-player');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message) => {
   if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
@@ -14,7 +14,7 @@ exports.run = async (client, message) => {
   await queue.setRepeatMode(queue.repeatMode === QueueRepeatMode.AUTOPLAY ? QueueRepeatMode.OFF : QueueRepeatMode.AUTOPLAY);
   const mode = queue.repeatMode === QueueRepeatMode.AUTOPLAY ? 'włączony' : 'wyłączony';
   
-  return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Autoplay został ${mode}!**`).setColor('Red')]});
+  return message.reply({embeds: [createEmbed({description: `🎵 **Autoplay został ${mode}!**`})]});
 };
 
 exports.info = {

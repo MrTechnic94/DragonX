@@ -1,142 +1,145 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { createEmbed } = require('./embedCreator.js');
 
-const embeds = {
-    queue_error: new EmbedBuilder()
-        .setDescription('❌ **Nie gram żadnej piosenki!**')
-        .setColor('Red'),
+module.exports = {
+    queue_error: createEmbed({
+        description: '❌ **Nie gram żadnej piosenki!**'
+    }),
 
-    voice_error: new EmbedBuilder()
-        .setDescription('❌ **Nie jesteś na moim kanale głosowym!**')
-        .setColor('Red'),
+    voice_error: createEmbed({
+        description: '❌ **Nie jesteś na moim kanale głosowym!**'
+    }),
 
-    member_voice_error: new EmbedBuilder()
-        .setDescription('❌ **Nie jesteś na kanale głosowym!**')
-        .setColor('Red'),
+    member_voice_error: createEmbed({
+        description: '❌ **Nie jesteś na kanale głosowym!**'
+    }),
 
-    bot_voice_error: new EmbedBuilder()
-        .setDescription('❌ **Nie mam mnie na kanale głosowym!**')
-        .setColor('Red'),
+    bot_voice_error: createEmbed({
+        description: '❌ **Nie mam mnie na kanale głosowym!**'
+    }),
 
-    track_error: new EmbedBuilder()
-        .setDescription('❌ **Nie znaleziono takiej piosenki!**')
-        .setColor('Red'),
+    track_error: createEmbed({
+        description: '❌ **Nie znaleziono takiej piosenki!**'
+    }),
 
-    number_error: new EmbedBuilder()
-        .setDescription('❌ **Nieprawidłowa liczba!**')
-        .setColor('Red'),
+    number_error: createEmbed({
+        description: '❌ **Nieprawidłowa liczba!**'
+    }),
 
-    max_volume_error: new EmbedBuilder()
-        .setDescription('❌ **Zakres głośności musi wynosić 1-200!**')
-        .setColor('Red'),
+    max_volume_error: createEmbed({
+        description: '❌ **Zakres głośności musi wynosić 1-200!**'
+    }),
 
-    already_volume_error: new EmbedBuilder()
-        .setDescription('❌ **Podana głośność jest obecnie używana!**')
-        .setColor('Red'),
+    already_volume_error: createEmbed({
+        description: '❌ **Podana głośność jest obecnie używana!**'
+    }),
 
-    track_queue_error: new EmbedBuilder()
-        .setDescription('❌ **Nie ma żadnych piosenek w playliście!**')
-        .setColor('Red'),
+    track_queue_error: createEmbed({
+        description: '❌ **Nie ma żadnych piosenek w playliście!**'
+    }),
 
-    already_voted_error: new EmbedBuilder()
-        .setDescription('❌ **Już zagłosowałeś!**')
-        .setColor('Red'),
+    already_voted_error: createEmbed({
+        description: '❌ **Już zagłosowałeś!**'
+    }),
 
-    track_shuffle_error: new EmbedBuilder()
-        .setDescription('❌ **Nie ma żadnych piosenek do przetasowania!**')
-        .setColor('Red'),
+    track_shuffle_error: createEmbed({
+        description: '❌ **Nie ma żadnych piosenek do przetasowania!**'
+    }),
 
-    time_seek_error: new EmbedBuilder()
-        .setDescription('❌ **Podany czas jest większa od długości utworu, lub równy!**')
-        .setColor('Red'),
+    time_seek_error: createEmbed({
+        description: '❌ **Podany czas jest większa od długości utworu, lub równy!**'
+    }),
 
-    send_dm_error: new EmbedBuilder()
-        .setDescription('❌ **Nie mogę wysłać do ciebie wiadomości prywatnej!**')
-        .setColor('Red'),
+    send_dm_error: createEmbed({
+        description: '❌ **Nie mogę wysłać do ciebie wiadomości prywatnej!**'
+    }),
 
-    resumed_error: new EmbedBuilder()
-        .setDescription('❌ **Piosenka nie jest zatrzymana!**')
-        .setColor('Red'),
+    resumed_error: createEmbed({
+        description: '❌ **Piosenka nie jest zatrzymana!**'
+    }),
 
-    paused_error: new EmbedBuilder()
-        .setDescription('❌ **Piosenka jest już zatrzymana!**')
-        .setColor('Red'),
+    paused_error: createEmbed({
+        description: '❌ **Piosenka jest już zatrzymana!**'
+    }),
 
-    loop_off_error: new EmbedBuilder()
-        .setDescription('❌ **Powtarzanie jest wyłączone!**')
-        .setColor('Red'),
+    loop_off_error: createEmbed({
+        description: '❌ **Powtarzanie jest wyłączone!**'
+    }),
 
-    loop_track_error: new EmbedBuilder()
-        .setDescription('❌ **Powtarzanie piosenki jest już włączone!**')
-        .setColor('Red'),
+    loop_track_error: createEmbed({
+        description: '❌ **Powtarzanie piosenki jest już włączone!**'
+    }),
 
-    loop_queue_error: new EmbedBuilder()
-        .setDescription('❌ **Powtarzanie playlisty jest już włączone!**')
-        .setColor('Red'),
+    loop_queue_error: createEmbed({
+        description: '❌ **Powtarzanie playlisty jest już włączone!**'
+    }),
 
-    track_clear_error: new EmbedBuilder()
-        .setDescription('❌ **Nie ma żadnych piosenek do wyczyszczenia!**')
-        .setColor('Red'),
-    track_back_error: new EmbedBuilder()
-        .setDescription('❌ **Nie ma poprzedniego utworu!**')
-        .setColor('Red'),
+    track_clear_error: createEmbed({
+        description: '❌ **Nie ma żadnych piosenek do wyczyszczenia!**'
+    }),
 
-    same_prefix_error: new EmbedBuilder()
-        .setDescription('❌ **Musisz podać nowy prefix!**')
-        .setColor('Red'),
+    track_back_error: createEmbed({
+        description: '❌ **Nie ma poprzedniego utworu!**'
+    }),
 
-    already_prefix_error: new EmbedBuilder()
-        .setDescription('❌ **Ten prefix jest już używany!**')
-        .setColor('Red'),
+    same_prefix_error: createEmbed({
+        description: '❌ **Musisz podać nowy prefix!**'
+    }),
 
-    prefix_change_error: new EmbedBuilder()
-        .setDescription('❌ **Wystąpił błąd poczas zmiany prefixu!**')
-        .setColor('Red'),
+    already_prefix_error: createEmbed({
+        description: '❌ **Ten prefix jest już używany!**'
+    }),
 
-    lyrics_error: new EmbedBuilder()
-        .setDescription('❌ **Nie udało mi się znaleźć tekstu do tego utworu!**')
-        .setColor('Red'),
+    prefix_change_error: createEmbed({
+        description: '❌ **Wystąpił błąd poczas zmiany prefixu!**'
+    }),
 
-    role_error: new EmbedBuilder()
-        .setDescription('❌ **Nie znaleziono takiej roli!**')
-        .setColor('Red'),
+    lyrics_error: createEmbed({
+        description: '❌ **Nie udało mi się znaleźć tekstu do tego utworu!**'
+    }),
 
-    already_role_error: new EmbedBuilder()
-        .setDescription('❌ **Ta rola jest już ustawiona!**')
-        .setColor('Red'),
+    role_error: createEmbed({
+        description: '❌ **Nie znaleziono takiej roli!**'
+    }),
 
-    dj_set_error: new EmbedBuilder()
-        .setDescription('❌ **Nie ustawiono DJ roli!**')
-        .setColor('Red'),
+    already_role_error: createEmbed({
+        description: '❌ **Ta rola jest już ustawiona!**'
+    }),
 
-    args_category_error: new EmbedBuilder()
-        .setDescription('❌ **Musisz podać nazwę kategorii!**')
-        .setColor('Red'),
+    dj_set_error: createEmbed({
+        description: '❌ **Nie ustawiono DJ roli!**'
+    }),
 
-    args_command_error: new EmbedBuilder()
-        .setDescription('❌ **Musisz podać nazwę komendy!**')
-        .setColor('Red'),
+    args_category_error: createEmbed({
+        description: '❌ **Musisz podać nazwę kategorii!**'
+    }),
 
-    args_status_error: new EmbedBuilder()
-        .setDescription('❌ **Musisz podać nazwę statusu!**')
-        .setColor('Red'),
+    args_command_error: createEmbed({
+        description: '❌ **Musisz podać nazwę komendy!**'
+    }),
 
-    permission_error: new EmbedBuilder()
-        .setDescription('❌ **Nie posiadasz permisji by to zrobić!**')
-        .setColor('Red'),
+    args_status_error: createEmbed({
+        description: '❌ **Musisz podać nazwę statusu!**'
+    }),
 
-    dj_permission_error: new EmbedBuilder()
-        .setDescription('❌ **Nie posiadasz roli DJ!**')
-        .setColor('Red'),
+    permission_error: createEmbed({
+        description: '❌ **Nie posiadasz permisji by to zrobić!**'
+    }),
 
-    empty_queue_error: new EmbedBuilder()
-        .setDescription('❌ **Skończyła się muzyka w playliście!**')
-        .setColor('Red'),
+    dj_permission_error: createEmbed({
+        description: '❌ **Nie posiadasz roli DJ!**'
+    }),
 
-    player_error: new EmbedBuilder()
-        .setDescription('❌ **Błąd podczas odtwarzania utworu!**')
-        .setColor('Red')
+    empty_queue_error: createEmbed({
+        description: '❌ **Skończyła się muzyka w playliście!**'
+    }),
+
+    player_error: createEmbed({
+        description: '❌ **Błąd podczas odtwarzania utworu!**'
+    }),
+
+    send_dm_succes: createEmbed({
+        description: '✅ **Sprawdź wiadomości prywatne!**'
+    })
 };
-
-module.exports = embeds;

@@ -1,7 +1,7 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
 const embeds = require('../../utils/embeds.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message, args) => {
     if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
@@ -19,7 +19,7 @@ exports.run = async (client, message, args) => {
     const remove = queue.node.remove(index - 1);
 
     await queue.insertTrack(remove, indexTrack - 1);
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`▶️ **Przeniesiono utwór na pozycję ${args[1]}!**`).setColor('Red')]});
+    return message.reply({embeds: [createEmbed({description: `▶️ **Przeniesiono utwór na pozycję ${args[1]}!**`})]});
 };
 
 exports.info = {

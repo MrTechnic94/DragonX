@@ -1,7 +1,7 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
 const embeds = require('../../utils/embeds.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message) => {
     const queue = client.player.nodes.get(message.guild.id);
@@ -12,11 +12,11 @@ exports.run = async (client, message) => {
     const songs = queue.tracks.size;
     const nextSongs = songs > 20 ? `${songs - 20} piosenki` : `w playliście ${songs} piosenka(i)`;
 
-    const embed = new EmbedBuilder()
-    .setTitle('📰 Piosenki w playliście')
-    .setDescription(`**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\nBrak piosenek`)
-    .setColor('Red')
-
+    const embed = createEmbed({
+        title: '📰 Piosenki w playliście',
+        description: `**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\nBrak piosenek`,
+    });
+    
     if (queue.tracks.at(0)) {
         embed.setDescription(`**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${tracks.slice(0, 20).join('\n')}`)
         embed.setFooter({text: nextSongs})

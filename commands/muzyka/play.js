@@ -1,7 +1,7 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
 const embeds = require('../../utils/embeds.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message, args) => {
     if (!args[0]) return message.reply({embeds: [embeds.track_error]});
@@ -34,7 +34,7 @@ exports.run = async (client, message, args) => {
         }
     });
     m.delete();
-    return message.channel.send({embeds: [new EmbedBuilder().setDescription(res.playlist ? `✅ Dodano **${res.tracks.length}** utwory do playlisty!` : `✅ **${res.tracks[0].title}** dodano do playlisty!`).setColor('Red')]});
+    return message.channel.send({embeds: [createEmbed({description: res.playlist ? `✅ Dodano **${res.tracks.length}** utwory do playlisty!` : `✅ **${res.tracks[0].title}** dodano do playlisty!`})]});
 };
 
 exports.info = {

@@ -1,7 +1,7 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
 const embeds = require('../../utils/embeds.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message, args) => {
     if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
@@ -13,12 +13,12 @@ exports.run = async (client, message, args) => {
 
     if (vol < 0 || vol > 200) return message.reply({embeds: [embeds.max_volume_error]});
 
-    if (!vol) return message.reply({embeds: [new EmbedBuilder().setDescription(`🔊 **Aktualna głośność: ${queue.node.volume}%**`).setColor('Red')]});
+    if (!vol) return message.reply({embeds: [createEmbed({description: `🔊 **Aktualna głośność: ${queue.node.volume}%**`})]});
   
     if (queue.node.volume === vol) return message.reply({embeds: [embeds.already_volume_error]});
 
     await queue.node.setVolume(vol);
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`🔊 **Ustawiono głośność na: ${vol}%**`).setColor('Red')]});
+    return message.reply({embeds: [createEmbed({description: `🔊 **Ustawiono głośność na: ${vol}%**`})]});
 };
 
 exports.info = {

@@ -1,27 +1,31 @@
 'use strict';
 
 const { readdirSync } = require('fs');
-const { sep } = require('path');
 
 module.exports = (client) => {
-  readdirSync(`./commands/`).forEach((directory) => {
-    const commandFiles = readdirSync(`./commands/${sep}${directory}`).filter((file) => file.endsWith('.js'));
+  const commands = readdirSync('./commands', {withFileTypes: true})
+    .filter((directory) => directory.isDirectory())
+    .map((directory) => directory.name);
+
+  for (const directory of commands) {
+    const commandFiles = readdirSync(`./commands/${directory}`)
+      .filter((file) => file.endsWith('.js'));
 
     for (const file of commandFiles) {
       const command = require(`../commands/${directory}/${file}`);
 
-      if (command.run && typeof command.run === 'function') {
-        if (client.commands.has(command.info.name)) {
-          console.error(`\x1b[0m[${"\x1b[31m"}Error${"\x1b[0m"}] \x1b[31mZbyt duza ilosc komend ma taka sama nazwe: ${command.info.name}!`);
-          continue;
-        };
-
-        client.commands.set(command.info.name, command);
-        console.log(`\x1b[0m[${"\x1b[36m"}Handler${"\x1b[0m"}] Komenda ${command.info.name} zostala pomyslnie zaladowana!`);
-      } else {
+      if (typeof command.run !== 'function') {
         console.warn(`\x1b[0m[${"\x1b[33m"}Warn${"\x1b[0m"}] \x1b[33mBlad podczas ladowania komendy ${directory}/${file}!`);
         continue;
-      };
+      }
+
+      if (client.commands.has(command.info.name)) {
+        console.error(`\x1b[0m[${"\x1b[31m"}Error${"\x1b[0m"}] \x1b[31mZbyt duza ilosc komend ma taka sama nazwe: ${command.info.name}!`);
+        continue;
+      }
+
+      client.commands.set(command.info.name, command);
+      console.log(`\x1b[0m[${"\x1b[36m"}Handler${"\x1b[0m"}] Komenda ${command.info.name} zostala pomyslnie zaladowana!`);
 
       if (command.info.aliases && Array.isArray(command.info.aliases)) {
         command.info.aliases.forEach((alias) => {
@@ -30,12 +34,12 @@ module.exports = (client) => {
           } else {
             client.aliases.set(alias, command.info.name);
           }
-        })
-      };
+        });
+      }
 
-      if (command.info.owner && typeof command.info.owner === 'boolean' && command.info.owner === true) {
+      if (command.info.owner === true) {
         command.ownerOnly = true;
       }
     }
-  });
+  }
 };

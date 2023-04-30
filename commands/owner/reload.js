@@ -1,6 +1,6 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { createEmbed } = require('../../utils/embedCreator');
 
 exports.run = async (client, message, args) => {
     if (!args[0]) return message.reply({embeds: [embeds.args_category_error]});
@@ -16,9 +16,9 @@ exports.run = async (client, message, args) => {
             const pull = require(`../../commands/${category}/${command}`);
             client.commands.set(command, pull);
 
-            return message.reply({embeds: [new EmbedBuilder().setDescription(`✅ **Przeładowano komendę** \`\`${command}\`\`**!**`).setColor('Red')]});
+            return message.reply({embeds: [createEmbed({description: `✅ **Przeładowano komendę** \`\`${command}\`\`**!**`})]});
         } catch {
-            return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Błąd w przeładowaniu komendy** \`\`${command}\`\`**!**`).setColor('Red')]});
+            return message.reply({embeds: [createEmbed({description: `❌ **Błąd w przeładowaniu komendy** \`\`${command}\`\`**!**`})]});
         };
 };
 

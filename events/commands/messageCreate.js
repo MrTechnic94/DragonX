@@ -1,8 +1,9 @@
 'use strict';
 
-const { EmbedBuilder, PermissionsBitField } = require('discord.js');
+const { PermissionsBitField } = require('discord.js');
 const GuildSettings = require('../../utils/guildSettings.js');
 const embeds = require('../../utils/embeds.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message) => {
   let guildData = await GuildSettings.findOne({guildId: message.guild.id});
@@ -24,9 +25,8 @@ exports.run = async (client, message) => {
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
     return message.reply({
       embeds: [
-        new EmbedBuilder()
-          .setDescription(`**Witaj** \`\`${message.author.tag}\`\`**!**\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``)
-          .setColor('Red')]
+        createEmbed({
+          description: `**Witaj** \`\`${message.author.tag}\`\`**!**\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``})]
     });
   };
   

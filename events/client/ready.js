@@ -11,8 +11,6 @@ exports.run = async (client) => {
     }, 3000);
 
     // -----> Zalogowanie do bazy danych <-----
-    mongoose.set('strictQuery', true);
-
     await mongoose.connect(process.env.MONGODB, {
         useNewUrlParser: true,
         useUnifiedTopology: true

@@ -1,7 +1,7 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
 const embeds = require('../../utils/embeds.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message) => {
     if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     const mode = queue.filters.ffmpeg.isEnabled('vaporwave') ? `wyłączony` : `włączony`;
     await queue.filters.ffmpeg.toggle(['vaporwave', 'normalizer']);
 
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Vaporwave został ${mode}!**`).setColor('Red')]});
+    return message.reply({embeds: [createEmbed({description: `🎵 **Vaporwave został ${mode}!**`})]});
 };
 
 exports.info = {

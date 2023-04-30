@@ -1,7 +1,7 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
 const embeds = require('../../utils/embeds.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message) => {
     const queue = client.player.nodes.get(message.guild.id);
@@ -13,12 +13,10 @@ exports.run = async (client, message) => {
     const requester = queue.currentTrack.requestedBy ?? `brak`;
 
     return message.reply({
-        embeds: [
-            new EmbedBuilder()
-                .setTitle(`⚡ Teraz odtwarzam`)
-                .setDescription(`**Tytuł:** [${queue.currentTrack.title}](${queue.currentTrack.url})\n**Poziom głośności:** ${queue.node.volume}%\n**Na prośbę:** ${requester}\n\n${emoji} | ${progresbar} ${queue.node.getTimestamp().current.label} / ${queue.currentTrack.duration}`)
-                .setThumbnail(queue.currentTrack.thumbnail)
-                .setColor('Red')]
+        embeds: [createEmbed({
+            title: `⚡ Teraz odtwarzam`,
+            description: `**Tytuł:** [${queue.currentTrack.title}](${queue.currentTrack.url})\n**Poziom głośności:** ${queue.node.volume}%\n**Na prośbę:** ${requester}\n\n${emoji} | ${progresbar} ${queue.node.getTimestamp().current.label} / ${queue.currentTrack.duration}`, thumbnail: queue.currentTrack.thumbnail
+        })]
     });
 };
 

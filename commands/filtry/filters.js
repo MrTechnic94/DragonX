@@ -1,7 +1,7 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
 const embeds = require('../../utils/embeds.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message, args) => {
     if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
@@ -13,7 +13,7 @@ exports.run = async (client, message, args) => {
     switch(args[0]?.toLowerCase()) {
         case 'reset':
             await queue.filters.ffmpeg.setFilters(false);
-            return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Wszystkie filtry zostały wyłączone!**`).setColor('Red')]});
+            return message.reply({embeds: [createEmbed({description: `🎵 **Wszystkie filtry zostały wyłączone!**`})]});
     };
 
     const filters = [
@@ -36,13 +36,17 @@ exports.run = async (client, message, args) => {
         embedFields.push(`${status} **${filter.label}**`);
     };
 
-    const embed = new EmbedBuilder()
-    .setTitle('📰 Lista filtrów')
-    .setDescription(embedFields.join('\n'))
-    .setFooter({text: `Przykładowe użycie: ${process.env.PREFIX}bassboost`})
-    .setColor('Red')
-
-    return message.reply({embeds: [embed]});
+    return message.reply({
+        embeds:
+            [createEmbed({
+                title: `📰 Lista filtrów`,
+                description: embedFields.join('\n'),
+                footer: {
+                    text: `Przykładowe użycie: ${process.env.PREFIX}bassboost`
+                }
+            })
+        ]
+    });
 };
 
 exports.info = {

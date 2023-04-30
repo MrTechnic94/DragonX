@@ -1,7 +1,7 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
 const embeds = require('../../utils/embeds.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message) => {
     if (!message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.bot_voice_error]});
@@ -16,7 +16,7 @@ exports.run = async (client, message) => {
         await queue.delete();
     };
     await message.guild.members.me?.voice.disconnect();
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`🔮 **Wychodzę z kanału!**`).setColor('Red')]});
+    return message.reply({embeds: [createEmbed({description: `🔮 **Wychodzę z kanału!**`})]});
 };
 
 exports.info = {

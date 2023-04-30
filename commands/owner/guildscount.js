@@ -1,9 +1,9 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { createEmbed } = require('../../utils/embedCreator');
 
 exports.run = async (client, message) => {
-    message.reply({embeds: [new EmbedBuilder().setDescription(`📰 **Liczba Serwerów** ${client.guilds.cache.size}`).setColor('Red')]});
+    message.reply({embeds: [createEmbed({description: `📰 **Liczba Serwerów** ${client.guilds.cache.size}`})]});
 };
 
 exports.info = {

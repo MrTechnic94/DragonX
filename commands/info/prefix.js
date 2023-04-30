@@ -1,8 +1,8 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
 const GuildSettings = require('../../utils/guildSettings.js');
 const embeds = require('../../utils/embeds.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (_client, message, args) => {
     let prefix = args[0];
@@ -22,7 +22,8 @@ exports.run = async (_client, message, args) => {
         const guildId = message.guildId;
 
         await GuildSettings.updateOne({guildId}, {guildId, prefix}, {upsert: true});
-        return message.reply({embeds: [new EmbedBuilder().setDescription(`✅ **Ustawiono nowy prefix:** \`${prefix}\``).setColor('Red')]});
+
+        return message.reply({embeds: [createEmbed({description: `✅ **Ustawiono nowy prefix:** \`${prefix}\``})]});
     } catch {
         return message.reply({embeds: [embeds.prefix_change_error]});
     };

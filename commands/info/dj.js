@@ -1,8 +1,8 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
 const GuildSettings = require('../../utils/guildSettings.js');
 const embeds = require('../../utils/embeds.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (_client, message, args) => {
   const guildData = await GuildSettings.findOne({guildId: message.guild.id});
@@ -18,7 +18,7 @@ exports.run = async (_client, message, args) => {
     
       await GuildSettings.updateOne({guildId: message.guild.id}, {djRoleId: role.id}, {upsert: true, new: true});
     
-      message.reply({embeds: [new EmbedBuilder().setDescription(`✅ **Ustawiono DJ rolę na:** ${role}`).setColor('Red')]});
+      message.reply({embeds: [createEmbed({description: `✅ **Ustawiono DJ rolę na:** ${role}`})]});
       break;
 
     case 'remove':
@@ -26,7 +26,7 @@ exports.run = async (_client, message, args) => {
       
       await GuildSettings.updateOne({guildId: message.guild.id}, {djRoleId: null}, {upsert: true, new: true});
   
-      message.reply({embeds: [new EmbedBuilder().setDescription(`✅ **Usunięto DJ rolę!**`).setColor('Red')]});
+      message.reply({embeds: [createEmbed({description: `✅ **Usunięto DJ rolę!**`})]});
       break;
   };
 };

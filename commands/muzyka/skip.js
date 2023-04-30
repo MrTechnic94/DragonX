@@ -1,7 +1,7 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
 const embeds = require('../../utils/embeds.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message) => {
     if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
@@ -23,10 +23,10 @@ exports.run = async (client, message) => {
     if (currentVotes >= required) {
         await queue.node.skip();
         queue.votes = [];
-        return message.channel.send({embeds: [new EmbedBuilder().setDescription(`⏩ **Pominięto aktualną piosenkę!**`).setColor('Red')]});
+        return message.channel.send({embeds: [createEmbed({description: `⏩ **Pominięto aktualną piosenkę!**`})]});
     };
     
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`**Zagłosowałeś na pominięcie piosenki (${currentVotes} / ${required})**`).setColor('Red')]});
+    return message.reply({embeds: [createEmbed({description: `**Zagłosowałeś na pominięcie piosenki (${currentVotes} / ${required})**`})]});
 };
 
 exports.info = {

@@ -1,7 +1,7 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
 const embeds = require('../../utils/embeds.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message) => {
     if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
     if (queue.repeatMode === 0 && !queue.tracks.at(0)) return message.reply({embeds: [embeds.track_queue_error]});
 
     await queue.node.skip();
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`⏩ **Pominięto aktualną piosenkę!**`).setColor('Red')]});
+    return message.reply({embeds: [createEmbed({description: `⏩ **Pominięto aktualną piosenkę!**`})]});
 };
 
 exports.info = {
