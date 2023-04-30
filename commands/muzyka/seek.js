@@ -21,6 +21,6 @@ exports.run = async (client, message, args) => {
 
 exports.info = {
     name: "seek",
-    aliases: ["se"],
+    aliases: ["sk"],
     dj: true
 };
