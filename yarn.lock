@@ -5,19 +5,7 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@derhuerst/http-basic@npm:^8.2.0":
-  version: 8.2.4
-  resolution: "@derhuerst/http-basic@npm:8.2.4"
-  dependencies:
-    caseless: ^0.12.0
-    concat-stream: ^2.0.0
-    http-response-object: ^3.0.1
-    parse-cache-control: ^1.0.1
-  checksum: dfb2f30c23fb907988d1c34318fa74c54dcd3c3ba6b4b0e64cdb584d03303ad212dd3b3874328a9367d7282a232976acbd33a20bb9c7a6ea20752e879459253b
-  languageName: node
-  linkType: hard
-
-"@discord-player/equalizer@npm:*":
+"@discord-player/equalizer@npm:*, @discord-player/equalizer@npm:^0.2.1":
   version: 0.2.1
   resolution: "@discord-player/equalizer@npm:0.2.1"
   checksum: 3b5817973ea1a14e6cb470096a16c02751567ed9b827f56c688994c0b783f27a004b73fb2d506988f48a379d195c4fbd90edd79a8dae1b564d66d77ccc7c84cc
@@ -39,7 +27,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discord-player/utils@npm:*":
+"@discord-player/utils@npm:*, @discord-player/utils@npm:^0.2.1":
   version: 0.2.1
   resolution: "@discord-player/utils@npm:0.2.1"
   dependencies:
@@ -156,6 +144,95 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ffmpeg-installer/darwin-arm64@npm:4.1.5":
+  version: 4.1.5
+  resolution: "@ffmpeg-installer/darwin-arm64@npm:4.1.5"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@ffmpeg-installer/darwin-x64@npm:4.1.0":
+  version: 4.1.0
+  resolution: "@ffmpeg-installer/darwin-x64@npm:4.1.0"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@ffmpeg-installer/ffmpeg@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@ffmpeg-installer/ffmpeg@npm:1.1.0"
+  dependencies:
+    "@ffmpeg-installer/darwin-arm64": 4.1.5
+    "@ffmpeg-installer/darwin-x64": 4.1.0
+    "@ffmpeg-installer/linux-arm": 4.1.3
+    "@ffmpeg-installer/linux-arm64": 4.1.4
+    "@ffmpeg-installer/linux-ia32": 4.1.0
+    "@ffmpeg-installer/linux-x64": 4.1.0
+    "@ffmpeg-installer/win32-ia32": 4.1.0
+    "@ffmpeg-installer/win32-x64": 4.1.0
+  dependenciesMeta:
+    "@ffmpeg-installer/darwin-arm64":
+      optional: true
+    "@ffmpeg-installer/darwin-x64":
+      optional: true
+    "@ffmpeg-installer/linux-arm":
+      optional: true
+    "@ffmpeg-installer/linux-arm64":
+      optional: true
+    "@ffmpeg-installer/linux-ia32":
+      optional: true
+    "@ffmpeg-installer/linux-x64":
+      optional: true
+    "@ffmpeg-installer/win32-ia32":
+      optional: true
+    "@ffmpeg-installer/win32-x64":
+      optional: true
+  checksum: 9725b2ae23a705204ac3f2f21ae796c06150d7f1c757583b664523a305be91bd8276859c25717a0d55cc4d2d6afde6d25acb5515050dc0d2d69bcf77c7c59aa4
+  languageName: node
+  linkType: hard
+
+"@ffmpeg-installer/linux-arm64@npm:4.1.4":
+  version: 4.1.4
+  resolution: "@ffmpeg-installer/linux-arm64@npm:4.1.4"
+  conditions: os=linux & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@ffmpeg-installer/linux-arm@npm:4.1.3":
+  version: 4.1.3
+  resolution: "@ffmpeg-installer/linux-arm@npm:4.1.3"
+  conditions: os=linux & cpu=arm
+  languageName: node
+  linkType: hard
+
+"@ffmpeg-installer/linux-ia32@npm:4.1.0":
+  version: 4.1.0
+  resolution: "@ffmpeg-installer/linux-ia32@npm:4.1.0"
+  conditions: os=linux & cpu=ia32
+  languageName: node
+  linkType: hard
+
+"@ffmpeg-installer/linux-x64@npm:4.1.0":
+  version: 4.1.0
+  resolution: "@ffmpeg-installer/linux-x64@npm:4.1.0"
+  conditions: os=linux & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@ffmpeg-installer/win32-ia32@npm:4.1.0":
+  version: 4.1.0
+  resolution: "@ffmpeg-installer/win32-ia32@npm:4.1.0"
+  conditions: os=win32 & cpu=ia32
+  languageName: node
+  linkType: hard
+
+"@ffmpeg-installer/win32-x64@npm:4.1.0":
+  version: 4.1.0
+  resolution: "@ffmpeg-installer/win32-x64@npm:4.1.0"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
 "@gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
@@ -235,13 +312,6 @@ __metadata:
   version: 18.15.11
   resolution: "@types/node@npm:18.15.11"
   checksum: 977b4ad04708897ff0eb049ecf82246d210939c82461922d20f7d2dcfd81bbc661582ba3af28869210f7e8b1934529dcd46bff7d448551400f9d48b9d3bddec3
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^10.0.3":
-  version: 10.17.60
-  resolution: "@types/node@npm:10.17.60"
-  checksum: 2cdb3a77d071ba8513e5e8306fa64bf50e3c3302390feeaeff1fd325dd25c8441369715dfc8e3701011a72fed5958c7dfa94eb9239a81b3c286caa4d97db6eef
   languageName: node
   linkType: hard
 
@@ -399,13 +469,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"buffer-from@npm:^1.0.0":
-  version: 1.1.2
-  resolution: "buffer-from@npm:1.1.2"
-  checksum: 0448524a562b37d4d7ed9efd91685a5b77a50672c556ea254ac9a6d30e3403a517d8981f10e565db24e8339413b43c97ca2951f10e399c6125a0d8911f5679bb
-  languageName: node
-  linkType: hard
-
 "busboy@npm:^1.6.0":
   version: 1.6.0
   resolution: "busboy@npm:1.6.0"
@@ -438,13 +501,6 @@ __metadata:
     tar: ^6.1.11
     unique-filename: ^2.0.0
   checksum: d91409e6e57d7d9a3a25e5dcc589c84e75b178ae8ea7de05cbf6b783f77a5fae938f6e8fda6f5257ed70000be27a681e1e44829251bfffe4c10216002f8f14e6
-  languageName: node
-  linkType: hard
-
-"caseless@npm:^0.12.0":
-  version: 0.12.0
-  resolution: "caseless@npm:0.12.0"
-  checksum: b43bd4c440aa1e8ee6baefee8063b4850fd0d7b378f6aabc796c9ec8cb26d27fb30b46885350777d9bd079c5256c0e1329ad0dc7c2817e0bb466810ebb353751
   languageName: node
   linkType: hard
 
@@ -513,18 +569,6 @@ __metadata:
   version: 0.0.1
   resolution: "concat-map@npm:0.0.1"
   checksum: 902a9f5d8967a3e2faf138d5cb784b9979bad2e6db5357c5b21c568df4ebe62bcb15108af1b2253744844eb964fc023fbd9afbbbb6ddd0bcc204c6fb5b7bf3af
-  languageName: node
-  linkType: hard
-
-"concat-stream@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "concat-stream@npm:2.0.0"
-  dependencies:
-    buffer-from: ^1.0.0
-    inherits: ^2.0.3
-    readable-stream: ^3.0.2
-    typedarray: ^0.0.6
-  checksum: d7f75d48f0ecd356c1545d87e22f57b488172811b1181d96021c7c4b14ab8855f5313280263dca44bb06e5222f274d047da3e290a38841ef87b59719bde967c7
   languageName: node
   linkType: hard
 
@@ -602,15 +646,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-hybrid-sharding@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "discord-hybrid-sharding@npm:2.1.2"
-  dependencies:
-    node-fetch: ^2.6.7
-  checksum: 29a4d9accd20276e6249fd042c423c40c4feff4dc3d2c265a4d44f06efe43f9e8b3444360858e97fbba67f2d4c0bf9d9dc7ecbb42865c6c1b973fc37458f398a
-  languageName: node
-  linkType: hard
-
 "discord-player-deezer@npm:^0.0.8":
   version: 0.0.8
   resolution: "discord-player-deezer@npm:0.0.8"
@@ -624,7 +659,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-player@npm:^6.0.0, discord-player@npm:^6.2.1":
+"discord-player@npm:^6.0.0":
   version: 6.2.1
   resolution: "discord-player@npm:6.2.1"
   dependencies:
@@ -637,6 +672,22 @@ __metadata:
     discord.js: 14.x
     youtube-sr: 4.x
   checksum: 8fa858de5757528fbd8bc0ad1ece3b3609014b5eff763a32ad337b2adbe644c0b7e995fd73b44e55c6cc1d4e122a51e6254dd8a367cef8bb779a89278e648864
+  languageName: node
+  linkType: hard
+
+"discord-player@npm:^6.3.0":
+  version: 6.3.0
+  resolution: "discord-player@npm:6.3.0"
+  dependencies:
+    "@discord-player/equalizer": ^0.2.1
+    "@discord-player/utils": ^0.2.1
+    "@discordjs/voice": latest
+    libsodium-wrappers: ^0.7.10
+  peerDependencies:
+    "@discord-player/extractor": ^4.2.1
+    discord.js: 14.x
+    youtube-sr: 4.x
+  checksum: 33671051bc4c9e7a3de7541d01bd284f97fd665cb145010f4ac42e65ea2164431cb5e64496decbe265ffe6eca5f7554074720a4d74b055269345549ffa7e856a
   languageName: node
   linkType: hard
 
@@ -714,18 +765,20 @@ __metadata:
     "@discordjs/opus": ^0.9.0
     "@discordjs/voice": ^0.16.0
     "@distube/ytdl-core": ^4.11.9
-    discord-hybrid-sharding: ^2.1.2
-    discord-player: ^6.2.1
+    "@ffmpeg-installer/ffmpeg": ^1.1.0
+    discord-player: ^6.3.0
     discord-player-deezer: ^0.0.8
     discord.js: ^14.9.0
     dotenv: ^16.0.3
-    ffmpeg-static: ^5.1.0
     fs: ^0.0.1-security
     mongoose: ^7.1.0
     node-os-utils: ^1.3.7
     path: ^0.12.7
     pretty-ms: 7.0.1
     yarn-upgrade-all: ^0.7.2
+  dependenciesMeta:
+    pm2:
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -770,18 +823,6 @@ __metadata:
   version: 3.1.3
   resolution: "fast-deep-equal@npm:3.1.3"
   checksum: e21a9d8d84f53493b6aa15efc9cfd53dd5b714a1f23f67fb5dc8f574af80df889b3bce25dc081887c6d25457cce704e636395333abad896ccdec03abaf1f3f9d
-  languageName: node
-  linkType: hard
-
-"ffmpeg-static@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "ffmpeg-static@npm:5.1.0"
-  dependencies:
-    "@derhuerst/http-basic": ^8.2.0
-    env-paths: ^2.2.0
-    https-proxy-agent: ^5.0.0
-    progress: ^2.0.3
-  checksum: 0e27d671a0be1f585ef03e48c2af7c2be14f4e61470ffa02e3b8919551243ee854028a898dfcd16cdf1e3c01916f3c5e9938f42cbc7e877d7dd80d566867db8b
   languageName: node
   linkType: hard
 
@@ -978,15 +1019,6 @@ __metadata:
     agent-base: 6
     debug: 4
   checksum: e2ee1ff1656a131953839b2a19cd1f3a52d97c25ba87bd2559af6ae87114abf60971e498021f9b73f9fd78aea8876d1fb0d4656aac8a03c6caa9fc175f22b786
-  languageName: node
-  linkType: hard
-
-"http-response-object@npm:^3.0.1":
-  version: 3.0.2
-  resolution: "http-response-object@npm:3.0.2"
-  dependencies:
-    "@types/node": ^10.0.3
-  checksum: 6cbdcb4ce7b27c9158a131b772c903ed54add2ba831e29cc165e91c3969fa6f8105ddf924aac5b954b534ad15a1ae697b693331b2be5281ee24d79aae20c3264
   languageName: node
   linkType: hard
 
@@ -1556,13 +1588,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parse-cache-control@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "parse-cache-control@npm:1.0.1"
-  checksum: 5a70868792124eb07c2dd07a78fcb824102e972e908254e9e59ce59a4796c51705ff28196d2b20d3b7353d14e9f98e65ed0e4eda9be072cc99b5297dc0466fee
-  languageName: node
-  linkType: hard
-
 "parse-ms@npm:^2.1.0":
   version: 2.1.0
   resolution: "parse-ms@npm:2.1.0"
@@ -1657,13 +1682,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"progress@npm:^2.0.3":
-  version: 2.0.3
-  resolution: "progress@npm:2.0.3"
-  checksum: f67403fe7b34912148d9252cb7481266a354bd99ce82c835f79070643bb3c6583d10dbcfda4d41e04bbc1d8437e9af0fb1e1f2135727878f5308682a579429b7
-  languageName: node
-  linkType: hard
-
 "promise-inflight@npm:^1.0.1":
   version: 1.0.1
   resolution: "promise-inflight@npm:1.0.1"
@@ -1688,7 +1706,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"readable-stream@npm:^3.0.2, readable-stream@npm:^3.6.0":
+"readable-stream@npm:^3.6.0":
   version: 3.6.2
   resolution: "readable-stream@npm:3.6.2"
   dependencies:
@@ -2006,13 +2024,6 @@ __metadata:
   bin:
     tslint-config-prettier-check: bin/check.js
   checksum: f0c548a7a520f9247f8e4ddba1136f300d1b2ec48a8255b030c05e35866cc22c105d9120540dd5ee82e2a04a769d82f5d098b7eaf6928820f6dba1badad6704c
-  languageName: node
-  linkType: hard
-
-"typedarray@npm:^0.0.6":
-  version: 0.0.6
-  resolution: "typedarray@npm:0.0.6"
-  checksum: 33b39f3d0e8463985eeaeeacc3cb2e28bc3dfaf2a5ed219628c0b629d5d7b810b0eb2165f9f607c34871d5daa92ba1dc69f49051cf7d578b4cbd26c340b9d1b1
   languageName: node
   linkType: hard
 
