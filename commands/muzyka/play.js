@@ -16,14 +16,14 @@ exports.run = async (client, message, args) => {
 
     if (!res.hasTracks()) return message.reply({embeds: [embeds.track_error]});
 
-    const m = await message.channel.send(`🔎 **Proszę czekać wyszukuję...**`);
+    const msg = await message.channel.send(`🔎 **Proszę czekać wyszukuję...**`);
 
     await client.player.play(message.member.voice.channel?.id, res, {
         nodeOptions: {
             metadata: {
                 channel: message.channel
             },
-            leaveOnEnd: true,
+            leaveOnEndCooldown: 240000,
             leaveOnStop: true,
             leaveOnEmpty: true,
             skipOnNoStream: true,
@@ -33,7 +33,7 @@ exports.run = async (client, message, args) => {
             }
         }
     });
-    m.delete();
+    msg.delete();
     return message.channel.send({embeds: [createEmbed({description: res.playlist ? `✅ Dodano **${res.tracks.length}** utwory do playlisty!` : `✅ **${res.tracks[0].title}** dodano do playlisty!`})]});
 };
 
