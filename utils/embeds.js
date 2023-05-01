@@ -48,7 +48,7 @@ module.exports = {
     }),
 
     time_seek_error: createEmbed({
-        description: '❌ **Podany czas jest większa od długości utworu, lub równy!**'
+        description: '❌ **Podany czas jest większy lub równy od długości utworu!**'
     }),
 
     send_dm_error: createEmbed({
