@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
 
     const msg = await message.channel.send(`🔎 **Proszę czekać wyszukuję...**`);
 
-    await client.player.play(message.member.voice.channel?.id, res, {
+    await client.player.play(message.member.voice.channel, res, {
         nodeOptions: {
             metadata: message.channel,
             leaveOnEndCooldown: 240000,
