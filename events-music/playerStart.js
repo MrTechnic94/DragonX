@@ -5,7 +5,7 @@ const { createEmbed } = require('../utils/embedCreator');
 exports.run = async (_client, queue, track) => {
     const requester = track.requestedBy ?? `brak`;
     
-    queue.npmessage = await queue.metadata.channel.send({
+    queue.npmessage = await queue.metadata.send({
         embeds: [
             createEmbed({
                 title: `▶️ Aktualnie odtwarzam`,
