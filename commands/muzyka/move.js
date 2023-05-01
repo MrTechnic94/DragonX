@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
+    if (!queue) return message.reply({embeds: [embeds.queue_error]});
 
     const index = parseInt(args[0]);
     const indexTrack = parseInt(args[1]);

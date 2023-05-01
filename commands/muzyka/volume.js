@@ -9,7 +9,7 @@ exports.run = async (client, message, args) => {
     const queue = client.player.nodes.get(message.guild.id);
     const vol = parseInt(args[0]);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
+    if (!queue) return message.reply({embeds: [embeds.queue_error]});
 
     if (vol < 0 || vol > 200) return message.reply({embeds: [embeds.max_volume_error]});
 

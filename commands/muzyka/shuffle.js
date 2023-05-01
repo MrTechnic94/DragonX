@@ -8,7 +8,7 @@ exports.run = async (client, message) => {
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
+    if (!queue) return message.reply({embeds: [embeds.queue_error]});
 
     if (!queue.tracks.at(0)) return message.reply({embeds: [embeds.track_shuffle_error]});
 

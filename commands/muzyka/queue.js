@@ -6,7 +6,7 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 exports.run = async (client, message) => {
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [embeds.queue_error]});
+    if (!queue) return message.reply({embeds: [embeds.queue_error]});
 
     const tracks = queue.tracks.map((track, i) => `**${i + 1}.** [${track.title}](${track.url}) [${track.duration}]`);
     const songs = queue.tracks.size;
