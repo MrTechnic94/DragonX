@@ -6,6 +6,8 @@ const embeds = require('../../utils/embeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message) => {
+  if (message.author.bot || !message.guild) return;
+
   let guildData = await GuildSettings.findOne({guildId: message.guild.id});
   let prefix = guildData?.prefix || process.env.PREFIX;
   const args = message.content
@@ -15,8 +17,6 @@ exports.run = async (client, message) => {
   const command = args.shift().toLowerCase();
   const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
   
-  if (message.author.bot || !message.guild) return;
-
   // -----> Sprawdzenie permisji bota <-----
   if (!message.guild.members.me.permissions.has(PermissionsBitField.Flags.SendMessages && PermissionsBitField.Flags.ReadMessageHistory && PermissionsBitField.Flags.SendMessagesInThreads && PermissionsBitField.Flags.Speak && PermissionsBitField.Flags.PrioritySpeaker && PermissionsBitField.Flags.Connect && PermissionsBitField.Flags.UseVAD && PermissionsBitField.Flags.EmbedLinks))
     return message.channel.send('❌ **Nie posiadam permisji!**');
