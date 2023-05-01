@@ -5,7 +5,7 @@ const embeds = require('../../utils/embeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (_client, message, args) => {
-    let prefix = args[0];
+    const prefix = args[0];
 
     if (prefix === 'clear') {
         prefix = process.env.PREFIX;
