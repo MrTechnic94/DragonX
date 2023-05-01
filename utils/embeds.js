@@ -136,7 +136,11 @@ module.exports = {
     }),
 
     player_error: createEmbed({
-        description: '❌ **Błąd podczas odtwarzania utworu!**'
+        description: '❌ **Wystąpił błąd podczas odtwarzania utworu!**'
+    }),
+
+    restart_error: createEmbed({
+        description: '❌ **Wystąpił błąd podczas restartu!**'
     }),
 
     send_dm_succes: createEmbed({
