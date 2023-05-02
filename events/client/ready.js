@@ -4,14 +4,14 @@ const { ActivityType } = require('discord.js');
 const mongoose = require('mongoose');
 
 exports.run = async (client) => {
-    // -----> Zaladowanie statusu bota <-----
+    // Zaladowanie statusu bota
     client.user.setPresence({activities: [{name: process.env.STATUS, type: ActivityType.Playing}], status: 'idle'});
     setTimeout(() => { 
     client.user.setPresence({activities: [{name: process.env.STATUSTWO, type: ActivityType.Listening}], status: 'online'});
     }, 3000);
 
-    // -----> Zalogowanie do bazy danych <-----
-    await mongoose.connect(process.env.MONGODB, {
+    // Zalogowanie do bazy danych
+    await mongoose.connect(`mongodb://${process.env.DBUSER}:${process.env.DBPASSWORD}@${process.env.DBHOST}/?authSource=admin`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     }).then(() =>

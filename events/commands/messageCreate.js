@@ -17,11 +17,11 @@ exports.run = async (client, message) => {
   const command = args.shift().toLowerCase();
   const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
   
-  // -----> Sprawdzenie permisji bota <-----
+  // Sprawdzenie permisji bota
   if (!message.guild.members.me.permissions.has(PermissionsBitField.Flags.SendMessages && PermissionsBitField.Flags.ReadMessageHistory && PermissionsBitField.Flags.SendMessagesInThreads && PermissionsBitField.Flags.Speak && PermissionsBitField.Flags.PrioritySpeaker && PermissionsBitField.Flags.Connect && PermissionsBitField.Flags.UseVAD && PermissionsBitField.Flags.EmbedLinks))
     return message.channel.send('❌ **Nie posiadam permisji!**');
 
-  // -----> Bot odpowiada na oznaczenie <-----
+  // Bot odpowiada na oznaczenie
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
     return message.reply({
       embeds: [
@@ -32,14 +32,15 @@ exports.run = async (client, message) => {
   
   if (!message.content.startsWith(prefix) || !cmd || cmd.info.stop) return;
 
-  // ----> Sprawdzenie czy uzytkownik ma permisje <----
+  // Sprawdzenie czy uzytkownik ma wymagane permisje
   if (cmd.info.perm && !message.member.permissions.has(cmd.info.perm) || (cmd.ownerOnly && process.env.OWNER !== message.author.id))
     return message.channel.send({embeds: [embeds.permission_error]});
 
-  // -----> Sprawdzenie czy uzytkownik ma dj role <-----
+  // Sprawdzenie czy uzytkownik ma dj role
   if (cmd.info.dj && guildData?.djRoleId && !message.member.roles.cache.has(guildData.djRoleId))
     return message.channel.send({embeds: [embeds.dj_permission_error]});
 
+  // Przechwytuje bledy komend i wyswietla w konsoli
   cmd.run(client, message, args).catch(error => {
     console.error(`[${"\x1b[31m"}Error${"\x1b[0m"}] \x1b[31mKomenda ${cmd.info.name} napotkala blad:\x1b[0m\n${error}`);
   });
