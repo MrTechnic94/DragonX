@@ -7,9 +7,7 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 exports.run = async (_client, message, args) => {
     const prefix = args[0];
 
-    if (prefix === 'clear') {
-        prefix = process.env.PREFIX;
-    };
+    if (prefix === 'clear') prefix = process.env.PREFIX;
 
     let guildData = await GuildSettings.findOne({guildId: message.guild.id});
     const oldPrefix = guildData ? guildData.prefix : process.env.PREFIX;
