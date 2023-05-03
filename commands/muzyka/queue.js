@@ -27,5 +27,5 @@ exports.run = async (client, message) => {
 
 exports.info = {
     name: "queue",
-    aliases: ["q", "list"]
+    aliases: ["q", "list", "playlist"]
 };
