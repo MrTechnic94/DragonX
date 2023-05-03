@@ -10,16 +10,16 @@ exports.run = async (client, message) => {
     const prefix = guildData ? guildData.prefix : process.env.PREFIX;
     const dj = guildData?.djRoleId ? `<@&${guildData.djRoleId}>` : '`nie ustawiono`';
 
-    if (!queue) return message.reply({embeds: [createEmbed({title: `🔧 Ustawienia serwera`, description: `**Prefix:** \`\`${prefix}\`\`\n**DJ Rola:** ${dj}\n**Autoplay:** \`\`wyłączony\`\`\n**Powtarzanie:** \`\`wyłączone\`\`\n**Głośność:** \`\`100%\`\``})]});
+    if (!queue) return message.reply({embeds: [createEmbed({title: `🔧 Ustawienia serwera`, description: `**Prefix:** \`\`${prefix}\`\`\n**DJ Rola:** ${dj}\n**Autoplay:** \`\`wyłączony\`\`\n**Loop:** \`\`wyłączony\`\`\n**Volume:** \`\`100%\`\``})]});
 
     const autoplay = queue.repeatMode === QueueRepeatMode.AUTOPLAY ? '`włączony`' : '`wyłączony`';
-    const loop = queue.repeatMode === QueueRepeatMode.OFF ? '`wyłączone`' : queue.repeatMode === QueueRepeatMode.TRACK ? '`piosenki`' : '`playlisty`';
+    const loop = queue.repeatMode === QueueRepeatMode.OFF ? '`wyłączony`' : queue.repeatMode === QueueRepeatMode.TRACK ? '`track`' : '`playlist`';
 
     return message.reply({
         embeds:
             [createEmbed({
                 title: `🔧 Ustawienia serwera`,
-                description: `**Prefix:** \`\`${prefix}\`\`\n**DJ Rola:** ${dj}\n**Autoplay:** ${autoplay}\n**Powtarzanie:** ${loop}\n**Głośność:** \`\`${queue.node.volume}%\`\``
+                description: `**Prefix:** \`\`${prefix}\`\`\n**DJ Rola:** ${dj}\n**Autoplay:** ${autoplay}\n**Loop:** ${loop}\n**Volume:** \`\`${queue.node.volume}%\`\``
             })]
     });
 };
