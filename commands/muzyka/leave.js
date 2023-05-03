@@ -12,9 +12,7 @@ exports.run = async (client, message) => {
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (queue) {
-        await queue.delete();
-    };
+    if (queue) await queue.delete();
     await message.guild.members.me?.voice.disconnect();
     return message.reply({embeds: [createEmbed({description: `🔮 **Wychodzę z kanału!**`})]});
 };
