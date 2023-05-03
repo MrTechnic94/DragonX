@@ -3,7 +3,7 @@
 const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (_client, message) => {
-    message.reply({
+    return message.reply({
         embeds: [
             createEmbed({
                 title: `📰 Lista komend`,
