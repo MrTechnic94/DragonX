@@ -5,7 +5,7 @@ const os = require('os');
 const { createEmbed } = require('../../utils/embedCreator');
 
 exports.run = async (client, message) => {
-    message.reply({
+    return message.reply({
         embeds:
             [createEmbed({
                 title: `⌚ Informacje bota`, 
