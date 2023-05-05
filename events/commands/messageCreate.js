@@ -6,6 +6,7 @@ const embeds = require('../../utils/embeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message) => {
+  // Sprawdzenie czy komenda zostala wykonana w gildi i czy autor komendy nie jest botem
   if (message.author.bot || !message.guild) return;
 
   let guildData = await GuildSettings.findOne({guildId: message.guild.id});
@@ -37,7 +38,7 @@ exports.run = async (client, message) => {
     return message.channel.send({embeds: [embeds.permission_error]});
 
   // Sprawdzenie czy uzytkownik ma dj role
-  if (cmd.info.dj && guildData?.djRoleId && !message.member.roles.cache.has(guildData.djRoleId))
+  if (cmd.info.dj && guildData?.djRoleId && !message.member.roles.cache.has(guildData.djRoleId) && message.member.voice.channel.members.size > 1)
     return message.channel.send({embeds: [embeds.dj_permission_error]});
 
   // Przechwytuje bledy komend i wyswietla w konsoli
