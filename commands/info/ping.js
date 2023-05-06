@@ -3,7 +3,7 @@
 const { createEmbed } = require('../../utils/embedCreator');
 
 exports.run = async (client, message) => {
-    return message.reply({
+    return message.channel.send({
         embeds: 
         [createEmbed({
             title: `🏓 Pong`,

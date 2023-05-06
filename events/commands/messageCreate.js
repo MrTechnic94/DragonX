@@ -24,7 +24,7 @@ exports.run = async (client, message) => {
 
   // Bot odpowiada na oznaczenie
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`)))
-    return message.reply({
+    return message.channel.send({
       embeds: [
         createEmbed({
           description: `**Witaj** \`\`${message.author.tag}\`\`**!**\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``})]

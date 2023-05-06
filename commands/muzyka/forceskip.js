@@ -4,16 +4,16 @@ const embeds = require('../../utils/embeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message) => {
-    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({embeds: [embeds.voice_error]});
 
     const queue = client.player.nodes.get(message.guild.id);
     
-    if (!queue) return message.reply({embeds: [embeds.queue_error]});
+    if (!queue) return message.channel.send({embeds: [embeds.queue_error]});
 
-    if (queue.repeatMode === 0 && !queue.tracks.at(0)) return message.reply({embeds: [embeds.track_queue_error]});
+    if (queue.repeatMode === 0 && !queue.tracks.at(0)) return message.channel.send({embeds: [embeds.track_queue_error]});
 
     await queue.node.skip();
-    return message.reply({embeds: [createEmbed({description: `⏩ **Pominięto aktualną piosenkę!**`})]});
+    return message.channel.send({embeds: [createEmbed({description: `⏩ **Pominięto aktualną piosenkę!**`})]});
 };
 
 exports.info = {

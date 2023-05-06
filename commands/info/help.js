@@ -3,7 +3,7 @@
 const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (_client, message) => {
-    return message.reply({
+    return message.channel.send({
         embeds: [
             createEmbed({
                 title: `📰 Lista komend`,

@@ -4,16 +4,16 @@ const embeds = require('../../utils/embeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message, args) => {
-    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({embeds: [embeds.voice_error]});
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue) return message.reply({embeds: [embeds.queue_error]});
+    if (!queue) return message.channel.send({embeds: [embeds.queue_error]});
     
     switch(args[0]?.toLowerCase()) {
         case 'reset':
             await queue.filters.ffmpeg.setFilters(false);
-            return message.reply({embeds: [createEmbed({description: `🎵 **Wszystkie filtry zostały wyłączone!**`})]});
+            return message.channel.send({embeds: [createEmbed({description: `🎵 **Wszystkie filtry zostały wyłączone!**`})]});
     };
 
     const filters = [
@@ -36,7 +36,7 @@ exports.run = async (client, message, args) => {
         embedFields.push(`${status} **${filter.label}**`);
     };
 
-    return message.reply({
+    return message.channel.send({
         embeds:
             [createEmbed({
                 title: `📰 Lista filtrów`,

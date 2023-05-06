@@ -4,11 +4,11 @@ const embeds = require('../../utils/embeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message) => {
-    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [embeds.voice_error]});
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({embeds: [embeds.voice_error]});
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue) return message.reply({embeds: [embeds.queue_error]});
+    if (!queue) return message.channel.send({embeds: [embeds.queue_error]});
 
     const requester = queue.currentTrack.author === `cdn.discordapp.com` ? `nieznany` : queue.currentTrack.author;
 
@@ -19,9 +19,9 @@ exports.run = async (client, message) => {
             thumbnail: queue.currentTrack.thumbnail
         })]
     }).then(() => {
-        return message.reply({embeds: [embeds.send_dm_succes]});
+        return message.channel.send({embeds: [embeds.send_dm_succes]});
     }).catch(() => {
-        return message.reply({embeds: [embeds.send_dm_error]});
+        return message.channel.send({embeds: [embeds.send_dm_error]});
     });
 };
 

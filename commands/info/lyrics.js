@@ -14,11 +14,11 @@ exports.run = async (client, message, args) => {
             x = await lyricsFinder.search(query);
         } else {
             const queue = client.player.nodes.get(message.guild.id);
-            if (!queue) return message.reply({embeds: [embeds.queue_error]});
+            if (!queue) return message.channel.send({embeds: [embeds.queue_error]});
             x = await lyricsFinder.search(queue.currentTrack.title);
         };
 
-        return message.reply({
+        return message.channel.send({
             embeds: [
                 new EmbedBuilder()
                     .setTitle(`📜 ${x.artist.name} - ${x.title}`)
@@ -27,7 +27,7 @@ exports.run = async (client, message, args) => {
             ]
         });
     } catch {
-        return message.reply({embeds: [embeds.lyrics_error]});
+        return message.channel.send({embeds: [embeds.lyrics_error]});
     };
 };
 

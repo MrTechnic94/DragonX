@@ -3,8 +3,8 @@
 const { createEmbed } = require('../../utils/embedCreator');
 
 exports.run = async (client, message, args) => {
-    if (!args[0]) return message.reply({embeds: [embeds.args_category_error]});
-    if (!args[1]) return message.reply({embeds: [embeds.args_command_error]});
+    if (!args[0]) return message.channel.send({embeds: [embeds.args_category_error]});
+    if (!args[1]) return message.channel.send({embeds: [embeds.args_command_error]});
 
         let category = args[0].toLowerCase();
         let command = args[1].toLowerCase();
@@ -16,9 +16,9 @@ exports.run = async (client, message, args) => {
             const pull = require(`../../commands/${category}/${command}`);
             client.commands.set(command, pull);
 
-            return message.reply({embeds: [createEmbed({description: `✅ **Przeładowano komendę** \`\`${command}\`\`**!**`})]});
+            return message.channel.send({embeds: [createEmbed({description: `✅ **Przeładowano komendę** \`\`${command}\`\`**!**`})]});
         } catch {
-            return message.reply({embeds: [createEmbed({description: `❌ **Błąd w przeładowaniu komendy** \`\`${command}\`\`**!**`})]});
+            return message.channel.send({embeds: [createEmbed({description: `❌ **Błąd w przeładowaniu komendy** \`\`${command}\`\`**!**`})]});
         };
 };
 
