@@ -23,17 +23,26 @@ const client = new Client({
 	]
 });
 
-// -----> Zaladowanie discord-player <-----
-client.player = new Player(client);
+// Zaladowanie discord-player
+client.player = new Player(client, {
+	leaveOnEndCooldown: 240000,
+	leaveOnStop: true,
+	leaveOnEmpty: true,
+	skipOnNoStream: true,
+	ytdlOptions: {
+		filters: 'audioonly',
+		quality: 'highestaudio'
+	}
+});
 
 client.player.extractors.register(DeezerExtractor);
 
 client.player.extractors.loadDefault();
 
-// -----> Zalodowanie infrastruktury bota <-----
+// Zalodowanie infrastruktury bota
 ['commands', 'aliases'].forEach(x => (client[x] = new Collection()));
 
 ['./structures/events.js', './structures/events-music.js', './structures/commands.js'].forEach(x => require(x)(client));
 
-// -----> Zalogowanie bota do discorda <-----
+// Zalogowanie bota do discorda
 client.login(process.env.TOKEN);
