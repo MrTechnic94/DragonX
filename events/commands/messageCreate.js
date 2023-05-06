@@ -23,13 +23,12 @@ exports.run = async (client, message) => {
     return message.channel.send('❌ **Nie posiadam permisji!**');
 
   // Bot odpowiada na oznaczenie
-  if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
+  if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`)))
     return message.reply({
       embeds: [
         createEmbed({
           description: `**Witaj** \`\`${message.author.tag}\`\`**!**\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``})]
-    });
-  };
+  });
   
   if (!message.content.startsWith(prefix) || !cmd || cmd.info.stop) return;
 
