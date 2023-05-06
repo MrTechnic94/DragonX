@@ -20,7 +20,7 @@ exports.run = async (client, message, args) => {send
 
   if (durationSeconds <= 0) return message.channel.send({embeds: [embeds.number_error]});
 
-  queue.node.seek(durationSeconds * 1000);
+  await queue.node.seek(durationSeconds * 1000);
   return message.channel.send({embeds: [createEmbed({description: `🎵 **Ustawiono odtwarzanie na: ${queue.node.getTimestamp().current.label}!**`})]});
 };
 
