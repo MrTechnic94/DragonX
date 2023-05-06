@@ -11,7 +11,7 @@ exports.run = async (client, message) => {
     if (!queue) return message.channel.send({embeds: [embeds.queue_error]});
 
     const mode = queue.filters.ffmpeg.isEnabled('bassboost_low') ? `wyłączony` : `włączony`;
-    queue.filters.ffmpeg.toggle(['bassboost_low', 'normalizer']);
+    await queue.filters.ffmpeg.toggle(['bassboost_low', 'normalizer']);
 
     return message.channel.send({embeds: [createEmbed({description: `🎵 **Niski Bassboost został ${mode}!**`})]});
 };

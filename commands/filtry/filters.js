@@ -12,7 +12,7 @@ exports.run = async (client, message, args) => {
     
     switch(args[0]?.toLowerCase()) {
         case 'reset':
-            queue.filters.ffmpeg.setFilters(false);
+            await queue.filters.ffmpeg.setFilters(false);
             return message.channel.send({embeds: [createEmbed({description: `🎵 **Wszystkie filtry zostały wyłączone!**`})]});
     };
 

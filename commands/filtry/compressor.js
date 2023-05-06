@@ -11,7 +11,7 @@ exports.run = async (client, message) => {
     if (!queue) return message.channel.send({embeds: [embeds.queue_error]});
 
     const mode = queue.filters.ffmpeg.isEnabled('compressor') ? `wyłączony` : `włączony`;
-    queue.filters.ffmpeg.toggle(['compressor', 'normalizer']);
+    await queue.filters.ffmpeg.toggle(['compressor', 'normalizer']);
 
     return message.channel.send({embeds: [createEmbed({description: `🎵 **Compressor został ${mode}!**`})]});
 };
