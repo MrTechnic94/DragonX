@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
 
     message.channel.send({embeds: [createEmbed({title: `✅ Pomyślnie bot wyszedł z gildi!`, description: `**Guild name:**\n \`\`\`${guild.name}\`\`\`\n **Guild id:**\n \`\`\`${guild.id}\`\`\``})]});
     
-    await guild.leave();
+    guild.leave();
 };
 
 exports.info = {

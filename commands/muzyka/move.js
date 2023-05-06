@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
  
     const remove = queue.node.remove(index - 1);
 
-    await queue.insertTrack(remove, indexTrack - 1);
+    queue.insertTrack(remove, indexTrack - 1);
     return message.channel.send({embeds: [createEmbed({description: `▶️ **Przeniesiono utwór na pozycję ${args[1]}!**`})]});
 };
 

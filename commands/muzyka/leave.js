@@ -12,8 +12,8 @@ exports.run = async (client, message) => {
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (queue) await queue.delete();
-    await message.guild.members.me?.voice.disconnect();
+    if (queue) queue.delete();
+    message.guild.members.me?.voice.disconnect();
     return message.channel.send({embeds: [createEmbed({description: `🔮 **Wychodzę z kanału!**`})]});
 };
 

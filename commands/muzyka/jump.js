@@ -15,7 +15,7 @@ exports.run = async (client, message, args) => {
 
     if (!index || !track || index < 0) return message.channel.send({embeds: [embeds.number_error]});
 
-    await queue.node.skipTo(index);
+    queue.node.skipTo(index);
     return message.channel.send({embeds: [createEmbed({description: `⏩ **Przeskoczono: ${track.title}!**`})]});
 };
 

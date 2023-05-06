@@ -15,7 +15,7 @@ exports.run = async (client, message, args) => {
 
     if (!index || !track || index < 0) return message.channel.send({embeds: [embeds.number_error]});
 
-    await queue.node.remove(index);
+    queue.node.remove(index);
     return message.channel.send({embeds: [createEmbed({description: `🎯 **Usunięto: ${track.title}!**`})]});
 };
 

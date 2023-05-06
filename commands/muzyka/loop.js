@@ -14,19 +14,19 @@ exports.run = async (client, message, args) => {
     switch(args[0]?.toLowerCase()) {
         case 'off':
         if (queue.repeatMode === QueueRepeatMode.OFF) return message.channel.send({embeds: [embeds.loop_off_error]});
-        if (queue.repeatMode !== QueueRepeatMode.OFF) await queue.setRepeatMode(QueueRepeatMode.OFF);
+        if (queue.repeatMode !== QueueRepeatMode.OFF) queue.setRepeatMode(QueueRepeatMode.OFF);
         message.channel.send({embeds: [createEmbed({description: `🔒 **Pętla została zakończona!**`})]});
         break;
         
         case 'track':
         if (queue.repeatMode === QueueRepeatMode.TRACK) return message.channel.send({embeds: [embeds.loop_track_error]});
-        if (queue.repeatMode === QueueRepeatMode.OFF) await queue.setRepeatMode(QueueRepeatMode.TRACK);
+        if (queue.repeatMode === QueueRepeatMode.OFF) queue.setRepeatMode(QueueRepeatMode.TRACK);
         message.channel.send({embeds: [createEmbed({description: `🔂 **Powtarzanie piosenki zostało włączone!**`})]});
         break;
 
         case 'queue':
         if (queue.repeatMode === QueueRepeatMode.QUEUE) return message.channel.send({embeds: [embeds.loop_queue_error]});
-        if (queue.repeatMode === QueueRepeatMode.OFF) await queue.setRepeatMode(QueueRepeatMode.QUEUE);
+        if (queue.repeatMode === QueueRepeatMode.OFF) queue.setRepeatMode(QueueRepeatMode.QUEUE);
         message.channel.send({embeds: [createEmbed({description: `🔁 **Powtarzanie playlisty zostało włączone!**`})]});
         break;
     };

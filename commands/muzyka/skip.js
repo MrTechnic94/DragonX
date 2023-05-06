@@ -21,7 +21,7 @@ exports.run = async (client, message) => {
     const currentVotes = queue.votes.length;
     
     if (currentVotes >= required) {
-        await queue.node.skip();
+        queue.node.skip();
         queue.votes = [];
         return message.channel.send({embeds: [createEmbed({description: `⏩ **Pominięto aktualną piosenkę!**`})]});
     };

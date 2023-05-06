@@ -12,7 +12,7 @@ exports.run = async (client, message) => {
 
     if (!queue.node.isPaused()) return message.channel.send({embeds: [embeds.resumed_error]});
 
-    await queue.node.resume();
+    queue.node.resume();
     return message.channel.send({embeds: [createEmbed({description: `🔊 **Wznowiono odtwarzanie piosenki!**`})]});
 };
 

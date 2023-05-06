@@ -11,7 +11,7 @@ exports.run = async (client, message) => {
     if (!queue) return message.channel.send({embeds: [embeds.queue_error]});
 
     const mode = queue.filters.ffmpeg.isEnabled('lofi') ? `wyłączony` : `włączony`;
-    await queue.filters.ffmpeg.toggle(['lofi', 'normalizer']);
+    queue.filters.ffmpeg.toggle(['lofi', 'normalizer']);
 
     return message.channel.send({embeds: [createEmbed({description: `🎵 **Lofi został ${mode}!**`})]});
 };

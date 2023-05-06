@@ -12,7 +12,7 @@ exports.run = async (client, message) => {
 
     if (!queue.tracks.at(0)) return message.channel.send({embeds: [embeds.track_clear_error]});
 
-    await queue.tracks.clear();
+    queue.tracks.clear();
     return message.channel.send({embeds: [createEmbed({description: `💨 **Playlista została wyczyszczona!**`})]});
 };
 

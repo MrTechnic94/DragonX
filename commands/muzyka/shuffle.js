@@ -12,7 +12,7 @@ exports.run = async (client, message) => {
 
     if (!queue.tracks.at(0)) return message.channel.send({embeds: [embeds.track_shuffle_error]});
 
-    await queue.tracks.shuffle();
+    queue.tracks.shuffle();
     return message.channel.send({embeds: [createEmbed({description: `🔀 **Playlista została przetasowana!**`})]});
 };
 

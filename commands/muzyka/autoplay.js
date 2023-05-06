@@ -11,7 +11,7 @@ exports.run = async (client, message) => {
 
   if (!queue) return message.channel.send({embeds: [embeds.queue_error]});
 
-  await queue.setRepeatMode(queue.repeatMode === QueueRepeatMode.AUTOPLAY ? QueueRepeatMode.OFF : QueueRepeatMode.AUTOPLAY);
+  queue.setRepeatMode(queue.repeatMode === QueueRepeatMode.AUTOPLAY ? QueueRepeatMode.OFF : QueueRepeatMode.AUTOPLAY);
   const mode = queue.repeatMode === QueueRepeatMode.AUTOPLAY ? 'włączony' : 'wyłączony';
   
   return message.channel.send({embeds: [createEmbed({description: `🎵 **Autoplay został ${mode}!**`})]});

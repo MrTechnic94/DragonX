@@ -17,7 +17,7 @@ exports.run = async (client, message, args) => {
   
     if (queue.node.volume === vol) return message.channel.send({embeds: [embeds.already_volume_error]});
 
-    await queue.node.setVolume(vol);
+    queue.node.setVolume(vol);
     return message.channel.send({embeds: [createEmbed({description: `🔊 **Ustawiono głośność na: ${vol}%**`})]});
 };
 

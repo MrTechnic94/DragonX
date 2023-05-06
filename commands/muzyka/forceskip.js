@@ -12,7 +12,7 @@ exports.run = async (client, message) => {
 
     if (queue.repeatMode === 0 && !queue.tracks.at(0)) return message.channel.send({embeds: [embeds.track_queue_error]});
 
-    await queue.node.skip();
+    queue.node.skip();
     return message.channel.send({embeds: [createEmbed({description: `⏩ **Pominięto aktualną piosenkę!**`})]});
 };
 

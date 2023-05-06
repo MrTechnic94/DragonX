@@ -16,8 +16,7 @@ exports.run = async (client, message) => {
         requestedBy: message.member
     });
 
-    await queue.insertTrack(res.tracks[0], 0);
-
+    queue.insertTrack(res.tracks[0], 0);
     return message.channel.send({embeds: [createEmbed({description: `✅ **${res.tracks[0].title}** dodano do playlisty!`})]});
 };
 
