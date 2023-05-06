@@ -20,15 +20,7 @@ exports.run = async (client, message, args) => {
 
     await client.player.play(message.member.voice.channel, res, {
         nodeOptions: {
-            metadata: message.channel,
-            leaveOnEndCooldown: 240000,
-            leaveOnStop: true,
-            leaveOnEmpty: true,
-            skipOnNoStream: true,
-            ytdlOptions: {
-                filters: 'audioonly',
-                quality: 'highestaudio'
-            }
+            metadata: message.channel
         }
     });
     msg.delete();
