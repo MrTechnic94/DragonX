@@ -1,6 +1,6 @@
 'use strict';
 
-const { createEmbed } = require('../../utils/embedCreator');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message, args) => {
     let guild = client.guilds.cache.get(args[0]);

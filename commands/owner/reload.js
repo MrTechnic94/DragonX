@@ -1,6 +1,6 @@
 'use strict';
 
-const { createEmbed } = require('../../utils/embedCreator');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message, args) => {
     if (!args[0]) return message.channel.send({embeds: [embeds.args_category_error]});
