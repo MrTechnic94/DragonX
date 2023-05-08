@@ -24,7 +24,7 @@ exports.run = async (client, message, args) => {
         }
     });
     msg.delete();
-    return message.channel.send({embeds: [createEmbed({description: res.playlist ? `✅ Dodano **${res.tracks.length}** utwory do playlisty!` : `✅ **${res.tracks[0].title}** dodano do playlisty!`})]});
+    return message.channel.send({embeds: [createEmbed({description: res.hasPlaylist() ? `✅ Dodano **${res.tracks.length}** utwory do playlisty!` : `✅ **${res.tracks[0].title}** dodano do playlisty!`})]});
 };
 
 exports.info = {

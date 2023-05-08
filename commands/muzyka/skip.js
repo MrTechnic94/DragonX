@@ -10,7 +10,7 @@ exports.run = async (client, message) => {
     
     if (!queue) return message.channel.send({embeds: [embeds.queue_error]});
 
-    if (queue.repeatMode === 0 && !queue.tracks.at(0)) return message.channel.send({embeds: [embeds.track_queue_error]});
+    if (queue.repeatMode === 0 && !queue.tracks.at(0)) return message.channel.send({embeds: [embeds.queue_error]});
 
     queue.votes = queue?.votes || [];
 
