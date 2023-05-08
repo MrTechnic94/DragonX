@@ -4,7 +4,7 @@ const { createEmbed } = require('./embedCreator.js');
 
 module.exports = {
     queue_error: createEmbed({
-        description: '❌ **Nie gram żadnej piosenki!**'
+        description: '❌ **Nie ma piosenek w playliście!**'
     }),
 
     voice_error: createEmbed({
@@ -35,16 +35,12 @@ module.exports = {
         description: '❌ **Podana głośność jest obecnie używana!**'
     }),
 
-    track_queue_error: createEmbed({
-        description: '❌ **Nie ma żadnych piosenek w playliście!**'
-    }),
-
     already_voted_error: createEmbed({
         description: '❌ **Już zagłosowałeś!**'
     }),
 
     track_shuffle_error: createEmbed({
-        description: '❌ **Nie ma żadnych piosenek do przetasowania!**'
+        description: '❌ **Nie ma piosenek do przetasowania!**'
     }),
 
     time_seek_error: createEmbed({
@@ -76,7 +72,7 @@ module.exports = {
     }),
 
     track_clear_error: createEmbed({
-        description: '❌ **Nie ma żadnych piosenek do wyczyszczenia!**'
+        description: '❌ **Nie ma piosenek do wyczyszczenia!**'
     }),
 
     track_back_error: createEmbed({
