@@ -8,9 +8,11 @@ exports.run = async (client, message) => {
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue || queue.history.previousTracks < 1) return message.channel.send({embeds: [embeds.queue_error]});
+    if (!queue) return message.channel.send({embeds: [embeds.queue_error]});
 
-    await queue.history.back();
+    if (!queue.history.previousTrack) return message.channel.send({embeds: [embeds.track_back_error]});
+
+    queue.history.back();
     return message.channel.send({embeds: [createEmbed({description: `◀️ **Odtwarzam poprzedni utwór!**`})]});
 };
 

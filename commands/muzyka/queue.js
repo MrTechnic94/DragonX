@@ -16,7 +16,7 @@ exports.run = async (client, message) => {
         title: '📰 Piosenki w playliście',
         description: `**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\nBrak piosenek`,
     });
-    
+
     if (queue.tracks.at(0)) {
         embed.setDescription(`**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${tracks.slice(0, 20).join('\n')}`)
         embed.setFooter({text: nextSongs})

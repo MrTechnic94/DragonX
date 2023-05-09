@@ -23,6 +23,10 @@ module.exports = {
         description: '❌ **Nie znaleziono takiej piosenki!**'
     }),
 
+    track_back_error: createEmbed({
+        description: '❌ **Nie ma poprzedniej piosenki!**'
+    }),
+
     number_error: createEmbed({
         description: '❌ **Nieprawidłowa liczba!**'
     }),
