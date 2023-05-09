@@ -4,8 +4,6 @@ const embeds = require('../../utils/embeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message) => {
-    if (!message.member?.voice.channelId) return message.channel.send({embeds: [embeds.member_voice_error]});
-
     if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({embeds: [embeds.voice_error]});
 
     const queue = client.player.nodes.get(message.guild.id);
