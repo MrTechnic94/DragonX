@@ -39,10 +39,6 @@ module.exports = {
         description: '❌ **Już zagłosowałeś!**'
     }),
 
-    track_shuffle_error: createEmbed({
-        description: '❌ **Nie ma piosenek do przetasowania!**'
-    }),
-
     time_seek_error: createEmbed({
         description: '❌ **Podany czas jest większy lub równy od długości utworu!**'
     }),
@@ -69,14 +65,6 @@ module.exports = {
 
     loop_queue_error: createEmbed({
         description: '❌ **Powtarzanie playlisty jest już włączone!**'
-    }),
-
-    track_clear_error: createEmbed({
-        description: '❌ **Nie ma piosenek do wyczyszczenia!**'
-    }),
-
-    track_back_error: createEmbed({
-        description: '❌ **Nie ma poprzedniego utworu!**'
     }),
 
     same_prefix_error: createEmbed({
