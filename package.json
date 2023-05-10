@@ -21,7 +21,7 @@
     "path": "^0.12.7",
     "pretty-ms": "7.0.1"
   },
-  "packageManager": "yarn@3.5.0",
+  "packageManager": "yarn@3.5.1",
   "devDependencies": {
     "yarn-upgrade-all": "^0.7.2"
   }
