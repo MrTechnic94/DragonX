@@ -11,9 +11,9 @@ exports.run = async (client, message, args) => {
 
     if (!queue) return message.channel.send({embeds: [embeds.queue_error]});
 
-    if (vol < 0 || vol > 200) return message.channel.send({embeds: [embeds.max_volume_error]});
-
     if (!vol) return message.channel.send({embeds: [createEmbed({description: `🔊 **Aktualna głośność: ${queue.node.volume}%**`})]});
+
+    if (vol < 0 || vol > 200) return message.channel.send({embeds: [embeds.max_volume_error]});
   
     if (queue.node.volume === vol) return message.channel.send({embeds: [embeds.already_volume_error]});
 
