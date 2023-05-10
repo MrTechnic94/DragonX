@@ -9,8 +9,8 @@ exports.run = async (client, message) => {
   // Sprawdzenie czy komenda zostala wykonana w gildi i czy autor komendy nie jest botem
   if (message.author.bot || !message.guild) return;
 
-  let guildData = await GuildSettings.findOne({guildId: message.guild.id});
-  let prefix = guildData?.prefix || process.env.PREFIX;
+  const guildData = await GuildSettings.findOne({guildId: message.guild.id});
+  const prefix = guildData?.prefix || process.env.PREFIX;
   const args = message.content
     .slice(prefix.length)
     .trim()
