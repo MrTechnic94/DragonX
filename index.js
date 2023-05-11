@@ -35,9 +35,9 @@ client.player = new Player(client, {
 	}
 });
 
-client.player.extractors.register(DeezerExtractor);
-
 client.player.extractors.loadDefault();
+
+client.player.extractors.register(DeezerExtractor);
 
 // Zalodowanie infrastruktury bota
 ['commands', 'aliases'].forEach(x => (client[x] = new Collection()));
