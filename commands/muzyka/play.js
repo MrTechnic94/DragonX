@@ -16,7 +16,7 @@ exports.run = async (client, message, args) => {
 
     if (!res.hasTracks()) return message.channel.send({embeds: [embeds.track_error]});
 
-    const msg = await message.channel.send(`🔎 **Proszę czekać wyszukuję...**`);
+    message.channel.send({embeds: [createEmbed({description: res.hasPlaylist() ? `✅ Dodano **${res.tracks.length}** utwory do playlisty!` : `✅ **${res.tracks[0].title}** dodano do playlisty!`})]});
 
     await client.player.play(message.member.voice.channel, res, {
         nodeOptions: {
@@ -31,8 +31,6 @@ exports.run = async (client, message, args) => {
             quality: 'highestaudio'
         }
     });
-    msg.delete();
-    return message.channel.send({embeds: [createEmbed({description: res.hasPlaylist() ? `✅ Dodano **${res.tracks.length}** utwory do playlisty!` : `✅ **${res.tracks[0].title}** dodano do playlisty!`})]});
 };
 
 exports.info = {
