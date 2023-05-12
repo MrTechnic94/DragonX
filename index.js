@@ -24,16 +24,7 @@ const client = new Client({
 });
 
 // Zaladowanie discord-player
-client.player = new Player(client, {
-	leaveOnEndCooldown: 240000,
-	leaveOnStop: true,
-	leaveOnEmpty: true,
-	skipOnNoStream: true,
-	ytdlOptions: {
-		filters: 'audioonly',
-		quality: 'highestaudio'
-	}
-});
+client.player = new Player(client);
 
 client.player.extractors.loadDefault();
 
