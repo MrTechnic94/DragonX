@@ -9,7 +9,7 @@ exports.run = async (client, message, args) => {
     const queue = client.player.nodes.get(message.guild.id);
     const vol = parseInt(args[0]);
 
-    if (!queue) return message.channel.send({embeds: [embeds.queue_error]});
+    if (!queue?.isPlaying()) return message.channel.send({embeds: [embeds.queue_error]});
 
     if (!vol) return message.channel.send({embeds: [createEmbed({description: `🔊 **Aktualna głośność: ${queue.node.volume}%**`})]});
 

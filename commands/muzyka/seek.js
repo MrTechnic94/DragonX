@@ -9,7 +9,7 @@ exports.run = async (client, message, args) => {
 
   const queue = client.player.nodes.get(message.guild.id);
 
-  if (!queue) return message.channel.send({embeds: [embeds.queue_error]});
+  if (!queue?.isPlaying()) return message.channel.send({embeds: [embeds.queue_error]});
 
   const seekTime = parseTime(args[0]);
   const durationSeconds = Math.round(seekTime / 1000);

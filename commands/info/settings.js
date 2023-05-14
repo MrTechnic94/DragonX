@@ -10,7 +10,7 @@ exports.run = async (client, message) => {
     const prefix = guildData ? guildData.prefix : process.env.PREFIX;
     const dj = guildData?.djRoleId ? `<@&${guildData.djRoleId}>` : '`nie ustawiono`';
 
-    if (!queue) return message.channel.send({embeds: [createEmbed({title: `🔧 Ustawienia serwera`, description: `**Prefix:** \`\`${prefix}\`\`\n**DJ Rola:** ${dj}\n**Autoplay:** \`\`wyłączony\`\`\n**Loop:** \`\`wyłączony\`\`\n**Volume:** \`\`100%\`\``})]});
+    if (!queue?.isPlaying()) return message.channel.send({embeds: [createEmbed({title: `🔧 Ustawienia serwera`, description: `**Prefix:** \`\`${prefix}\`\`\n**DJ Rola:** ${dj}\n**Autoplay:** \`\`wyłączony\`\`\n**Loop:** \`\`wyłączony\`\`\n**Volume:** \`\`100%\`\``})]});
 
     const autoplay = queue.repeatMode === QueueRepeatMode.AUTOPLAY ? '`włączony`' : '`wyłączony`';
     const loop = queue.repeatMode === QueueRepeatMode.OFF ? '`wyłączony`' : queue.repeatMode === QueueRepeatMode.TRACK ? '`track`' : '`playlist`';

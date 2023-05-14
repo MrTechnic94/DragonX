@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
             x = await lyricsFinder.search(query);
         } else {
             const queue = client.player.nodes.get(message.guild.id);
-            if (!queue) return message.channel.send({embeds: [embeds.queue_error]});
+            if (!queue?.isPlaying()) return message.channel.send({embeds: [embeds.queue_error]});
             x = await lyricsFinder.search(queue.currentTrack.title);
         };
 

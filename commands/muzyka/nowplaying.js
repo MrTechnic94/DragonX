@@ -6,7 +6,7 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 exports.run = async (client, message) => {
     const queue = client.player.nodes.get(message.guild.id);
     
-    if (!queue) return message.channel.send({embeds: [embeds.queue_error]});
+    if (!queue?.isPlaying()) return message.channel.send({embeds: [embeds.queue_error]});
 
     const progresbar = queue.node.createProgressBar({timecodes: false, length: 13});
     const emoji = queue.node.isPaused() ? `▶️` : `⏸️`;
