@@ -19,7 +19,7 @@ exports.run = async (client, message) => {
             thumbnail: queue.currentTrack.thumbnail,
             footer: {
                 text: message.guild.name,
-                icon: message.guild.iconURL()
+                icon: message.guild.iconURL({dynamic: true})
             }
         })]
     }).then(() => {
