@@ -16,7 +16,11 @@ exports.run = async (client, message) => {
         embeds: [createEmbed({
             title: `📨 Zapisano piosenkę!`,
             description: `**Tytuł:** [${queue.currentTrack.title}](${queue.currentTrack.url})\n**Czas:** ${queue.currentTrack.duration}\n**Autor:** ${requester}`,
-            thumbnail: queue.currentTrack.thumbnail
+            thumbnail: queue.currentTrack.thumbnail,
+            footer: {
+                text: message.guild.name,
+                icon: message.guild.iconURL()
+            }
         })]
     }).then(() => {
         return message.channel.send({embeds: [embeds.send_dm_succes]});
