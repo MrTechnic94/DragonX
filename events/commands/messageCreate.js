@@ -23,7 +23,7 @@ exports.run = async (client, message) => {
     });
 
   const guildData = await GuildSettings.findOne({guildId: message.guild.id});
-  const prefix = guildData?.prefix || process.env.PREFIX;
+  const prefix = guildData?.prefix ?? process.env.PREFIX;
   const args = message.content
     .slice(prefix.length)
     .trim()
