@@ -22,8 +22,6 @@ exports.run = async (client, message) => {
   const command = args.shift().toLowerCase();
   const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
 
-  if (!message.content.startsWith(prefix) || !cmd || cmd.info.stop) return;
-
   // Bot odpowiada na oznaczenie
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`)))
     return message.channel.send({
@@ -32,6 +30,8 @@ exports.run = async (client, message) => {
           description: `**Witaj** \`\`${message.author.tag}\`\`**!**\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``
         })]
     });
+
+  if (!message.content.startsWith(prefix) || !cmd || cmd.info.stop) return;
 
   // Sprawdzenie czy uzytkownik ma wymagane permisje
   if (cmd.info.perm && !message.member.permissions.has(cmd.info.perm) || (cmd.ownerOnly && process.env.OWNER !== message.author.id))
