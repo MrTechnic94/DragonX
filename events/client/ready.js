@@ -6,15 +6,13 @@ const mongoose = require('mongoose');
 exports.run = async (client) => {
     // Zaladowanie statusu bota
     client.user.setPresence({activities: [{name: process.env.STATUS, type: ActivityType.Playing}], status: 'idle'});
-    setTimeout(() => { 
-    client.user.setPresence({activities: [{name: process.env.STATUSTWO, type: ActivityType.Listening}], status: 'online'});
-    }, 3000);
 
     // Zalogowanie do bazy danych
     await mongoose.connect(`mongodb://${process.env.DBUSER}:${process.env.DBPASSWORD}@${process.env.DBHOST}/?authSource=admin`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     }).then(() =>
+        client.user.setPresence({activities: [{name: process.env.STATUSTWO, type: ActivityType.Listening}], status: 'online'}),
         console.log(`\x1b[0m[${"\x1b[36m"}Database${"\x1b[0m"}] Polaczono do bazy danych!`)
     ).catch(error =>
         console.error(`[${"\x1b[31m"}Error${"\x1b[0m"}] \x1b[31mBlad podczas laczenia z baza danych!\n${error}`)
