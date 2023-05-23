@@ -6,7 +6,7 @@ function parseTime(timeString) {
     const timeParts = /^((\d{1,2}):)?(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?([ms])?$/.exec(timeString);
     if (!timeParts) return null;
 
-    let hours = 0, minutes = 0, seconds = 0, multiplier = 1, milliseconds = 0;
+    let [hours, minutes, seconds, multiplier, milliseconds] = [0, 0, 0, 1, 0];
     if (timeParts[2]) hours = parseInt(timeParts[2], 10);
     minutes = parseInt(timeParts[3], 10);
     seconds = parseInt(timeParts[4], 10);
