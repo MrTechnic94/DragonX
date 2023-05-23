@@ -1,7 +1,7 @@
 'use strict';
 
-const embeds = require('../../utils/embeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
     const queue = client.player.nodes.get(message.guild.id);

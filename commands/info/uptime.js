@@ -1,8 +1,8 @@
 'use strict';
 
+const { createEmbed } = require('../../utils/embedCreator');
 const pretty = require('pretty-ms');
 const os = require('os');
-const { createEmbed } = require('../../utils/embedCreator');
 
 exports.run = async (client, message) => {
     return message.channel.send({

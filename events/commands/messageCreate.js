@@ -1,9 +1,9 @@
 'use strict';
 
 const { PermissionsBitField } = require('discord.js');
-const GuildSettings = require('../../utils/guildSettings.js');
-const embeds = require('../../utils/embeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const embeds = require('../../utils/embeds.js');
+const GuildSettings = require('../../utils/guildSettings.js');
 
 exports.run = async (client, message) => {
   // Sprawdzenie czy komenda zostala wykonana w gildi i czy autor komendy nie jest botem
@@ -35,7 +35,7 @@ exports.run = async (client, message) => {
 
   // Sprawdzenie czy uzytkownik ma wymagane permisje
   if (cmd.info.perm && !message.member.permissions.has(cmd.info.perm) || (cmd.ownerOnly && process.env.OWNER !== message.author.id))
-    return message.channel.send({ embeds: [embeds.permission_error] });
+    return message.channel.send({embeds: [embeds.permission_error]});
 
   // Sprawdzenie czy uzytkownik ma dj role
   if (cmd.info.dj && guildData?.djRoleId && !message.member.roles.cache.has(guildData.djRoleId) && message.member.voice.channel.members.size > 1)

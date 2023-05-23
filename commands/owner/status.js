@@ -1,8 +1,8 @@
 'use strict';
 
 const { ActivityType } = require('discord.js');
-const embeds = require('../../utils/embeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
     if (!args[0]) return message.channel.send({embeds: [embeds.args_status_error]});

@@ -1,8 +1,8 @@
 'use strict';
 
-const GuildSettings = require('../../utils/guildSettings.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 const { QueueRepeatMode } = require('discord-player');
+const GuildSettings = require('../../utils/guildSettings.js');
 
 exports.run = async (client, message) => {
     const queue = client.player.nodes.get(message.guild.id);

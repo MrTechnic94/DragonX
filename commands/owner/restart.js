@@ -1,7 +1,7 @@
 'use strict';
 
-const embeds = require('../../utils/embeds');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const embeds = require('../../utils/embeds');
 
 exports.run = async (_client, message) => {
     try {

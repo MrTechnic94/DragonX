@@ -1,8 +1,8 @@
 'use strict';
 
-const GuildSettings = require('../../utils/guildSettings.js');
-const embeds = require('../../utils/embeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const embeds = require('../../utils/embeds.js');
+const GuildSettings = require('../../utils/guildSettings.js');
 
 exports.run = async (_client, message, args) => {
     let prefix = args[0];

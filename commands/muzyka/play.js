@@ -1,7 +1,7 @@
 'use strict';
 
-const embeds = require('../../utils/embeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
     if (!args[0]) return message.channel.send({embeds: [embeds.track_error]});
@@ -22,13 +22,13 @@ exports.run = async (client, message, args) => {
         nodeOptions: {
             metadata: message.channel,
             leaveOnEndCooldown: 240000,
+            leaveOnEmptyCooldown: 60000,
             leaveOnStop: true,
-            leaveOnEmpty: true,
             skipOnNoStream: true,
-            ytdlOptions: {
-                filters: 'audioonly',
-                quality: 'highestaudio'
-            }
+            // ytdlOptions: {
+            //     filters: 'audioonly',
+            //     quality: 'highestaudio'
+            // }
         }
     });
 };
