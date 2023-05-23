@@ -18,11 +18,6 @@ const guildSettingsSchema = new Schema({
     type: String,
     default: null,
     index: true
-  },
-  channelId: {
-    type: String,
-    default: null,
-    index: true
   }
 });
 
