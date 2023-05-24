@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
     switch(args[0]?.toLowerCase()) {
         case 'off':
         if (queue.repeatMode === QueueRepeatMode.OFF) return message.channel.send({embeds: [embeds.loop_off_error]});
-        if (queue.repeatMode !== QueueRepeatMode.OFF) queue.setRepeatMode(QueueRepeatMode.OFF);
+        queue.setRepeatMode(QueueRepeatMode.OFF);
         message.channel.send({embeds: [createEmbed({description: `🔒 **Pętla została zakończona!**`})]});
         break;
         
