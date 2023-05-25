@@ -24,11 +24,7 @@ exports.run = async (client, message, args) => {
             leaveOnEndCooldown: 240000,
             leaveOnEmptyCooldown: 60000,
             leaveOnStop: true,
-            skipOnNoStream: true,
-            // ytdlOptions: {
-            //     filters: 'audioonly',
-            //     quality: 'highestaudio'
-            // }
+            skipOnNoStream: true
         }
     });
 };

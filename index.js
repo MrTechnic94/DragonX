@@ -2,7 +2,7 @@
 
 const { Client, Collection, GatewayIntentBits, Partials } = require('discord.js');
 const { Player } = require('discord-player');
-const DeezerExtractor = require('discord-player-deezer').default;
+// const DeezerExtractor = require('discord-player-deezer').default;
 require('dotenv').config();
 
 const client = new Client({
@@ -28,7 +28,7 @@ client.player = new Player(client);
 
 client.player.extractors.loadDefault();
 
-client.player.extractors.register(DeezerExtractor);
+// client.player.extractors.register(DeezerExtractor);
 
 // Zalodowanie infrastruktury bota
 ['commands', 'aliases'].forEach(x => (client[x] = new Collection()));
