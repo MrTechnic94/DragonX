@@ -11,12 +11,12 @@ exports.run = async (client, message, args) => {
 
         if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
 
-        const index = parseInt(args[0]) - 1;
-        const track = queue.tracks.at(index);
+        const index = parseInt(args[0]);
+        const track = queue.tracks.at(index - 1);
 
         if (!index || !track || index < 0) return message.channel.send({ embeds: [embeds.number_error] });
 
-        queue.node.skipTo(index);
+        queue.node.skipTo(index - 1);
         return message.channel.send({ embeds: [createEmbed({ description: `⏩ **Przeskoczono: ${track.title}!**` })] });
     } catch {
         return message.channel.send({ embeds: [embeds.catch_error] })
