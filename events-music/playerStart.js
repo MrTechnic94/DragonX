@@ -11,7 +11,7 @@ exports.run = async (_client, queue, track) => {
                 title: `▶️ Aktualnie odtwarzam`,
                 description: `[${track.title}](${track.url})`,
                 fields: [
-                    { name: '**Na prośbę:**', value: requester, inline: true },
+                    { name: '**Na prośbę:**', value: `${requester}`, inline: true },
                     { name: '**Czas trwania:**', value: `\`\`${track.duration}\`\``, inline: true }
                 ],
                 thumbnail: track.thumbnail

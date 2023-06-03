@@ -127,8 +127,12 @@ module.exports = {
         description: '❌ **Wystąpił błąd podczas odtwarzania utworu!**'
     }),
 
-    restart_error: createEmbed({
-        description: '❌ **Wystąpił błąd podczas restartu!**'
+    catch_error: createEmbed({
+        description: '❌ **Wystąpił nieoczekiwany błąd!**'
+    }),
+
+    filters_error: createEmbed({
+        description: '❌ **Żaden filtr nie jest włączony!**'
     }),
 
     send_dm_succes: createEmbed({

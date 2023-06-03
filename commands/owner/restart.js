@@ -5,10 +5,10 @@ const embeds = require('../../utils/embeds');
 
 exports.run = async (_client, message) => {
     try {
-        await message.channel.send({embeds: [createEmbed({description: `✅ **Restartowanie bota...**`})]});
+        await message.channel.send({ embeds: [createEmbed({ description: `✅ **Restartowanie bota...**` })] });
         process.exit();
     } catch {
-        return message.channel.send({embeds: [embeds.restart_error]});
+        return message.channel.send({ embeds: [embeds.catch_error] });
     }
 };
 

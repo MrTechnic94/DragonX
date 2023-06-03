@@ -259,6 +259,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mithron/deezer-music-metadata@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "@mithron/deezer-music-metadata@npm:1.0.3"
+  dependencies:
+    axios: ^0.27.2
+    cheerio: ^1.0.0-rc.12
+  checksum: 4b69210f1ce9f02bab8ce81cb82f6d13314040b47557f3ab753339c4305a301d5f157ab0505eaedd6486321405574386ef29d1e7ab037617b618d70cfe4f4f2b
+  languageName: node
+  linkType: hard
+
 "@npmcli/fs@npm:^2.1.0":
   version: 2.1.2
   resolution: "@npmcli/fs@npm:2.1.2"
@@ -634,12 +644,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"asynckit@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "asynckit@npm:0.4.0"
+  checksum: 7b78c451df768adba04e2d02e63e2d0bf3b07adcd6e42b4cf665cb7ce899bedd344c69a1dcbce355b5f972d597b25aaa1c1742b52cffd9caccb22f348114f6be
+  languageName: node
+  linkType: hard
+
 "axios@npm:^0.21.0":
   version: 0.21.4
   resolution: "axios@npm:0.21.4"
   dependencies:
     follow-redirects: ^1.14.0
   checksum: 44245f24ac971e7458f3120c92f9d66d1fc695e8b97019139de5b0cc65d9b8104647db01e5f46917728edfc0cfd88eb30fc4c55e6053eef4ace76768ce95ff3c
+  languageName: node
+  linkType: hard
+
+"axios@npm:^0.27.2":
+  version: 0.27.2
+  resolution: "axios@npm:0.27.2"
+  dependencies:
+    follow-redirects: ^1.14.9
+    form-data: ^4.0.0
+  checksum: 38cb7540465fe8c4102850c4368053c21683af85c5fdf0ea619f9628abbcb59415d1e22ebc8a6390d2bbc9b58a9806c874f139767389c862ec9b772235f06854
   languageName: node
   linkType: hard
 
@@ -795,7 +822,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cheerio@npm:^1.0.0-rc.10, cheerio@npm:^1.0.0-rc.9":
+"cheerio@npm:^1.0.0-rc.10, cheerio@npm:^1.0.0-rc.12, cheerio@npm:^1.0.0-rc.9":
   version: 1.0.0-rc.12
   resolution: "cheerio@npm:1.0.0-rc.12"
   dependencies:
@@ -874,6 +901,15 @@ __metadata:
   bin:
     color-support: bin.js
   checksum: 9b7356817670b9a13a26ca5af1c21615463b500783b739b7634a0c2047c16cef4b2865d7576875c31c3cddf9dd621fa19285e628f20198b233a5cfdda6d0793b
+  languageName: node
+  linkType: hard
+
+"combined-stream@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "combined-stream@npm:1.0.8"
+  dependencies:
+    delayed-stream: ~1.0.0
+  checksum: 49fa4aeb4916567e33ea81d088f6584749fc90c7abec76fd516bf1c5aa5c79f3584b5ba3de6b86d26ddd64bae5329c4c7479343250cfe71c75bb366eae53bb7c
   languageName: node
   linkType: hard
 
@@ -1010,6 +1046,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"delayed-stream@npm:~1.0.0":
+  version: 1.0.0
+  resolution: "delayed-stream@npm:1.0.0"
+  checksum: 46fe6e83e2cb1d85ba50bd52803c68be9bd953282fa7096f51fc29edd5d67ff84ff753c51966061e5ba7cb5e47ef6d36a91924eddb7f3f3483b1c560f77a0020
+  languageName: node
+  linkType: hard
+
 "delegates@npm:^1.0.0":
   version: 1.0.0
   resolution: "delegates@npm:1.0.0"
@@ -1045,7 +1088,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-player@npm:^6.3.0":
+"discord-player-deezer@npm:^0.0.8":
+  version: 0.0.8
+  resolution: "discord-player-deezer@npm:0.0.8"
+  dependencies:
+    "@mithron/deezer-music-metadata": ^1.0.3
+    discord-player: ^6.0.0
+    tslint-config-prettier: ^1.18.0
+    youtube-sr: ^4.3.4
+    yt-stream: ^1.4.4
+  checksum: cf3256689098e99b3a3e7649dfe586abe5fd482e630b558e665946f431e1ce5d0a1cb8ea6c9f3f6ef1e86a34a00c55ee291d902986a38deef205730b8f842e99
+  languageName: node
+  linkType: hard
+
+"discord-player@npm:^6.0.0, discord-player@npm:^6.3.0":
   version: 6.3.0
   resolution: "discord-player@npm:6.3.0"
   dependencies:
@@ -1121,10 +1177,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.0.3":
-  version: 16.0.3
-  resolution: "dotenv@npm:16.0.3"
-  checksum: afcf03f373d7a6d62c7e9afea6328e62851d627a4e73f2e12d0a8deae1cd375892004f3021883f8aec85932cd2834b091f568ced92b4774625b321db83b827f8
+"dotenv@npm:^16.1.3":
+  version: 16.1.3
+  resolution: "dotenv@npm:16.1.3"
+  checksum: 8f73bae720161cf365b679de162fe79a05f5b7a21d0d2b8bf9fb0601a2ed30f7e9dc49fa8b752d93206e4b7d427eccea2f383a1622cd5da4a1824f43bf8f780b
   languageName: node
   linkType: hard
 
@@ -1137,15 +1193,15 @@ __metadata:
     "@discordjs/voice": ^0.16.0
     "@ffmpeg-installer/ffmpeg": ^1.1.0
     discord-player: ^6.3.0
+    discord-player-deezer: ^0.0.8
     discord.js: ^14.11.0
-    dotenv: ^16.0.3
+    dotenv: ^16.1.3
     fs: ^0.0.1-security
-    mongoose: ^7.2.0
+    mongoose: ^7.2.2
     os: ^0.1.2
     path: ^0.12.7
     pm2: ^5.3.0
     pretty-ms: 7.0.1
-    yarn-upgrade-all: ^0.7.2
     yt-stream: ^1.4.7
   languageName: unknown
   linkType: soft
@@ -1342,13 +1398,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.14.0":
+"follow-redirects@npm:^1.14.0, follow-redirects@npm:^1.14.9":
   version: 1.15.2
   resolution: "follow-redirects@npm:1.15.2"
   peerDependenciesMeta:
     debug:
       optional: true
   checksum: faa66059b66358ba65c234c2f2a37fcec029dc22775f35d9ad6abac56003268baf41e55f9ee645957b32c7d9f62baf1f0b906e68267276f54ec4b4c597c2b190
+  languageName: node
+  linkType: hard
+
+"form-data@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "form-data@npm:4.0.0"
+  dependencies:
+    asynckit: ^0.4.0
+    combined-stream: ^1.0.8
+    mime-types: ^2.1.12
+  checksum: 01135bf8675f9d5c61ff18e2e2932f719ca4de964e3be90ef4c36aacfc7b9cb2fceb5eca0b7e0190e3383fe51c5b37f4cb80b62ca06a99aaabfcfd6ac7c9328c
   languageName: node
   linkType: hard
 
@@ -1975,6 +2042,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mime-db@npm:1.52.0":
+  version: 1.52.0
+  resolution: "mime-db@npm:1.52.0"
+  checksum: 0d99a03585f8b39d68182803b12ac601d9c01abfa28ec56204fa330bc9f3d1c5e14beb049bafadb3dbdf646dfb94b87e24d4ec7b31b7279ef906a8ea9b6a513f
+  languageName: node
+  linkType: hard
+
+"mime-types@npm:^2.1.12":
+  version: 2.1.35
+  resolution: "mime-types@npm:2.1.35"
+  dependencies:
+    mime-db: 1.52.0
+  checksum: 89a5b7f1def9f3af5dad6496c5ed50191ae4331cc5389d7c521c8ad28d5fdad2d06fd81baf38fed813dc4e46bb55c8145bb0ff406330818c9cf712fb2e9b3836
+  languageName: node
+  linkType: hard
+
 "miniget@npm:^4.2.2":
   version: 4.2.2
   resolution: "miniget@npm:4.2.2"
@@ -2129,9 +2212,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongoose@npm:^7.2.0":
-  version: 7.2.0
-  resolution: "mongoose@npm:7.2.0"
+"mongoose@npm:^7.2.2":
+  version: 7.2.2
+  resolution: "mongoose@npm:7.2.2"
   dependencies:
     bson: ^5.3.0
     kareem: 2.5.1
@@ -2140,7 +2223,7 @@ __metadata:
     mquery: 5.0.0
     ms: 2.1.3
     sift: 16.0.1
-  checksum: a71cf66bd995e3322a0ba1c1e564819e252e4930843c5e3518a2d76e37f9731c2d34e71edaf9ca6f623be54091179525b5dc42944752ce781f08fd9c4948fca5
+  checksum: 8111a126f44bc119866b6d905311001a66eaa0dd309ec533752abe7302752f7245efe8a3e14655613b297aefa06d8849bbca396f29ffbcfca502f3d24fbad056
   languageName: node
   linkType: hard
 
@@ -3268,6 +3351,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tslint-config-prettier@npm:^1.18.0":
+  version: 1.18.0
+  resolution: "tslint-config-prettier@npm:1.18.0"
+  bin:
+    tslint-config-prettier-check: bin/check.js
+  checksum: f0c548a7a520f9247f8e4ddba1136f300d1b2ec48a8255b030c05e35866cc22c105d9120540dd5ee82e2a04a769d82f5d098b7eaf6928820f6dba1badad6704c
+  languageName: node
+  linkType: hard
+
 "tv4@npm:^1.3.0":
   version: 1.3.0
   resolution: "tv4@npm:1.3.0"
@@ -3539,15 +3631,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yarn-upgrade-all@npm:^0.7.2":
-  version: 0.7.2
-  resolution: "yarn-upgrade-all@npm:0.7.2"
-  bin:
-    yarn-upgrade-all: build/index.js
-  checksum: accf406dda39ea10045237e2072c33d788836998bff68d8a2ebdf7c7e84fd8e7dfd78c0070f9ee2923f09336ed8f9523ac72371e4d7318f7870ea3223b4885cb
-  languageName: node
-  linkType: hard
-
 "youtube-sr@npm:^4.3.4":
   version: 4.3.4
   resolution: "youtube-sr@npm:4.3.4"
@@ -3555,7 +3638,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yt-stream@npm:^1.4.7":
+"yt-stream@npm:^1.4.4, yt-stream@npm:^1.4.7":
   version: 1.4.7
   resolution: "yt-stream@npm:1.4.7"
   checksum: 27fdefa939591f110ff3bd91812d6daa6719ba4a02c4ff326374a53b2ee05595c202c90b11931be544b241df509b6f13843292e6456683a701cbe6041b0ba5e9

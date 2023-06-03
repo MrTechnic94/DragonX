@@ -4,16 +4,20 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
-    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({embeds: [embeds.voice_error]});
-    
-    const queue = client.player.nodes.get(message.guild.id);
+    try {
+        if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
 
-    if (!queue?.isPlaying()) return message.channel.send({embeds: [embeds.queue_error]});
+        const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue.node.isPaused()) return message.channel.send({embeds: [embeds.resumed_error]});
+        if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
 
-    queue.node.resume();
-    return message.channel.send({embeds: [createEmbed({description: `🔊 **Wznowiono odtwarzanie piosenki!**`})]});
+        if (!queue.node.isPaused()) return message.channel.send({ embeds: [embeds.resumed_error] });
+
+        queue.node.resume();
+        return message.channel.send({ embeds: [createEmbed({ description: `🔊 **Wznowiono odtwarzanie piosenki!**` })] });
+    } catch {
+        return message.channel.send({ embeds: [embeds.catch_error] })
+    };
 };
 
 exports.info = {

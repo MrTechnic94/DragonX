@@ -13,7 +13,7 @@ exports.run = async (client, message) => {
   if (!message.guild.members.me.permissions.has(PermissionsBitField.Flags.SendMessages && PermissionsBitField.Flags.ReadMessageHistory && PermissionsBitField.Flags.SendMessagesInThreads && PermissionsBitField.Flags.Speak && PermissionsBitField.Flags.PrioritySpeaker && PermissionsBitField.Flags.Connect && PermissionsBitField.Flags.UseVAD && PermissionsBitField.Flags.EmbedLinks))
     return message.channel.send('❌ **Nie posiadam permisji!**').catch(() => {});
 
-  const guildData = await GuildSettings.findOne({guildId: message.guild.id});
+  const guildData = await GuildSettings.findOne({ guildId: message.guild.id });
   const prefix = guildData?.prefix ?? process.env.PREFIX;
   const args = message.content
     .slice(prefix.length)
@@ -35,11 +35,11 @@ exports.run = async (client, message) => {
 
   // Sprawdzenie czy uzytkownik ma wymagane permisje
   if (cmd.info.perm && !message.member.permissions.has(cmd.info.perm) || (cmd.ownerOnly && process.env.OWNER !== message.author.id))
-    return message.channel.send({embeds: [embeds.permission_error]});
+    return message.channel.send({ embeds: [embeds.permission_error] });
 
   // Sprawdzenie czy uzytkownik ma dj role
   if (cmd.info.dj && guildData?.djRoleId && !message.member.roles.cache.has(guildData.djRoleId) && message.member.voice.channel.members.size > 1)
-    return message.channel.send({embeds: [embeds.dj_permission_error]});
+    return message.channel.send({ embeds: [embeds.dj_permission_error] });
 
   // Przechwytuje bledy komend i wyswietla w konsoli
   cmd.run(client, message, args).catch(error => {

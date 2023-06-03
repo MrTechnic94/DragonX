@@ -2,7 +2,7 @@
 
 const { EmbedBuilder } = require('discord.js');
 
-function createEmbed({title, description, fields = [], thumbnail, footer = {}}) {
+function createEmbed({ title, description, fields = [], thumbnail, footer = {} }) {
     const embed = new EmbedBuilder()
         .setColor('#ED4245')
 
@@ -11,7 +11,7 @@ function createEmbed({title, description, fields = [], thumbnail, footer = {}}) 
     if (description) embed.setDescription(description);
     if (fields.length > 0) embed.addFields(fields);
     if (thumbnail) embed.setThumbnail(thumbnail);
-    if (footer.text ?? footer.icon) embed.setFooter({text: footer.text ?? undefined, iconURL: footer.icon ?? undefined});
+    if (footer.text ?? footer.icon) embed.setFooter({ text: footer.text ?? undefined, iconURL: footer.icon ?? undefined });
 
     return embed;
 };
