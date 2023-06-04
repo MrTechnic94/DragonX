@@ -135,6 +135,10 @@ module.exports = {
         description: '❌ **Żaden filtr nie jest włączony!**'
     }),
 
+    shuffle_error: createEmbed({
+        description: '❌ **Potrzeba co najmniej 3 utwory w playliście!**'
+    }),
+
     send_dm_succes: createEmbed({
         description: '✅ **Sprawdź wiadomości prywatne!**'
     })
