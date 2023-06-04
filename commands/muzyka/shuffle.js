@@ -9,7 +9,9 @@ exports.run = async (client, message) => {
 
         const queue = client.player.nodes.get(message.guild.id);
 
-        if (!queue?.isPlaying() || queue.getSize() < 3) return message.channel.send({ embeds: [embeds.queue_error] });
+        if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
+
+        if (queue.getSize() < 3) return message.channel.send({ embeds: [embeds.shuffle_error] })
 
         queue.tracks.shuffle();
         return message.channel.send({ embeds: [createEmbed({ description: `🔀 **Playlista została przetasowana!**` })] });
