@@ -136,7 +136,7 @@ module.exports = {
     }),
 
     shuffle_error: createEmbed({
-        description: '❌ **Potrzeba co najmniej 3 utwory w playliście!**'
+        description: '❌ **Wymagane są co najmniej 3 utwory w playliście!**'
     }),
 
     send_dm_succes: createEmbed({
