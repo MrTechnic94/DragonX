@@ -11,7 +11,7 @@ exports.run = async (client, message, args) => {
 
         if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
 
-        if (message.member?.voice.channel.full) return message.channel.send({ embeds: [embeds.full_channel_error] });
+        if (message.member?.voice.channel.full && !message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.full_channel_error] });
 
         const res = await client.player.search(args.join(' '), {
             requestedBy: message.member
