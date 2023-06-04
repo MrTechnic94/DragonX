@@ -139,6 +139,10 @@ module.exports = {
         description: '❌ **Wymagane są co najmniej 3 utwory w playliście!**'
     }),
 
+    full_channel_error: createEmbed({
+        description: '❌ **Kanał głosowy jest pełny!**'
+    }),
+
     send_dm_succes: createEmbed({
         description: '✅ **Sprawdź wiadomości prywatne!**'
     })
