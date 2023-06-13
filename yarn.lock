@@ -12,18 +12,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discord-player/extractor@npm:^4.2.2":
-  version: 4.2.2
-  resolution: "@discord-player/extractor@npm:4.2.2"
+"@discord-player/extractor@npm:^4.3.1":
+  version: 4.3.1
+  resolution: "@discord-player/extractor@npm:4.3.1"
   dependencies:
     file-type: ^16.5.4
-    genius-lyrics: ^4.4.2
+    genius-lyrics: ^4.4.3
     node-html-parser: ^6.1.4
     reverbnation-scraper: ^2.0.0
-    soundcloud-scraper: ^5.0.3
-    spotify-url-info: ^3.2.3
+    soundcloud.ts: ^0.5.0
+    spotify-url-info: ^3.2.5
     youtube-sr: ^4.3.4
-  checksum: 734e5fc3712c720836d51905d7f4d0ef1fb814a6aca15bfd246f0dd787a5c9baf3770c835398cde1340abe7c0fbf8dad8a93e58bf040c56de341d5b98604f39d
+  checksum: fbcb66e886bce41f0b68baaf0e91bd3c794ce26873be990e15bc18e231e5e38d218bf493b2c2815c938b4b5624981d3f61ef7c2281564c452bd53c70bf660e4e
   languageName: node
   linkType: hard
 
@@ -160,6 +160,18 @@ __metadata:
     tslib: ^2.5.0
     ws: ^8.13.0
   checksum: 28eb76ce58e31bc6be8b4d410aae448a8ad6388298f97392d1df002f3f5f1b0ab344bd4cb971aeebd0ea62558dcf1d9554cab3a21485d221f2a7af4ed0766a2e
+  languageName: node
+  linkType: hard
+
+"@distube/ytdl-core@npm:^4.11.10":
+  version: 4.11.10
+  resolution: "@distube/ytdl-core@npm:4.11.10"
+  dependencies:
+    m3u8stream: ^0.8.6
+    miniget: ^4.2.2
+    sax: ^1.2.4
+    undici: ^5.22.1
+  checksum: 3290855820e43efb7e3687ed283b6dae654c2630c79cee833cbe672a3e9c6eda583411eae41ae29399807ee9a848437d624d3e2bae14ba1481b6a9587aeb578b
   languageName: node
   linkType: hard
 
@@ -822,7 +834,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cheerio@npm:^1.0.0-rc.10, cheerio@npm:^1.0.0-rc.12, cheerio@npm:^1.0.0-rc.9":
+"cheerio@npm:^1.0.0-rc.12, cheerio@npm:^1.0.0-rc.9":
   version: 1.0.0-rc.12
   resolution: "cheerio@npm:1.0.0-rc.12"
   dependencies:
@@ -1101,19 +1113,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-player@npm:^6.0.0, discord-player@npm:^6.3.0":
-  version: 6.3.0
-  resolution: "discord-player@npm:6.3.0"
+"discord-player@npm:^6.0.0, discord-player@npm:^6.5.0":
+  version: 6.5.0
+  resolution: "discord-player@npm:6.5.0"
   dependencies:
     "@discord-player/equalizer": ^0.2.1
     "@discord-player/utils": ^0.2.1
     "@discordjs/voice": latest
     libsodium-wrappers: ^0.7.10
   peerDependencies:
-    "@discord-player/extractor": ^4.2.1
+    "@discord-player/extractor": ^4.3.1
     discord.js: 14.x
     youtube-sr: 4.x
-  checksum: 33671051bc4c9e7a3de7541d01bd284f97fd665cb145010f4ac42e65ea2164431cb5e64496decbe265ffe6eca5f7554074720a4d74b055269345549ffa7e856a
+  checksum: b02b64d8f67c9ce43c707932d67b5e64550419890a964d4c2bf174eb127ede2c352f5d81882bc199911096ad1d0b6e6542bc87879c3d0dac456199993aa54375
   languageName: node
   linkType: hard
 
@@ -1177,10 +1189,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.1.3":
-  version: 16.1.3
-  resolution: "dotenv@npm:16.1.3"
-  checksum: 8f73bae720161cf365b679de162fe79a05f5b7a21d0d2b8bf9fb0601a2ed30f7e9dc49fa8b752d93206e4b7d427eccea2f383a1622cd5da4a1824f43bf8f780b
+"dotenv@npm:^16.1.4":
+  version: 16.1.4
+  resolution: "dotenv@npm:16.1.4"
+  checksum: c1b2e13df4d374a6a29e134c56c7b040ba20500677fe8b9939ea654f3b3badb9aaa0b172e40e4dfa1233a4177dbb8fb79d84cc79a50ac9c9641fe2ad98c14876
   languageName: node
   linkType: hard
 
@@ -1188,21 +1200,21 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "dragonxmusic@workspace:."
   dependencies:
-    "@discord-player/extractor": ^4.2.2
+    "@discord-player/extractor": ^4.3.1
     "@discordjs/opus": ^0.9.0
     "@discordjs/voice": ^0.16.0
+    "@distube/ytdl-core": ^4.11.10
     "@ffmpeg-installer/ffmpeg": ^1.1.0
-    discord-player: ^6.3.0
+    discord-player: ^6.5.0
     discord-player-deezer: ^0.0.8
     discord.js: ^14.11.0
-    dotenv: ^16.1.3
+    dotenv: ^16.1.4
     fs: ^0.0.1-security
-    mongoose: ^7.2.2
+    mongoose: ^7.2.4
     os: ^0.1.2
     path: ^0.12.7
     pm2: ^5.3.0
     pretty-ms: 7.0.1
-    yt-stream: ^1.4.7
   languageName: unknown
   linkType: soft
 
@@ -1522,7 +1534,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"genius-lyrics@npm:^4.4.2":
+"genius-lyrics@npm:^4.4.3":
   version: 4.4.3
   resolution: "genius-lyrics@npm:4.4.3"
   dependencies:
@@ -1992,7 +2004,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"m3u8stream@npm:^0.8.4":
+"m3u8stream@npm:^0.8.6":
   version: 0.8.6
   resolution: "m3u8stream@npm:0.8.6"
   dependencies:
@@ -2212,9 +2224,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongoose@npm:^7.2.2":
-  version: 7.2.2
-  resolution: "mongoose@npm:7.2.2"
+"mongoose@npm:^7.2.4":
+  version: 7.2.4
+  resolution: "mongoose@npm:7.2.4"
   dependencies:
     bson: ^5.3.0
     kareem: 2.5.1
@@ -2223,7 +2235,7 @@ __metadata:
     mquery: 5.0.0
     ms: 2.1.3
     sift: 16.0.1
-  checksum: 8111a126f44bc119866b6d905311001a66eaa0dd309ec533752abe7302752f7245efe8a3e14655613b297aefa06d8849bbca396f29ffbcfca502f3d24fbad056
+  checksum: b19a64f0d93944f2c38de3d769b00a3849cc60418bd42c0690e6701304dd76b8e8e523b6ecb88641b598054cc8787ee92f25d78d3ce51a2ba41803285a980173
   languageName: node
   linkType: hard
 
@@ -2300,7 +2312,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.0, node-fetch@npm:^2.6.1":
+"node-fetch@npm:^2.6.0":
   version: 2.6.11
   resolution: "node-fetch@npm:2.6.11"
   dependencies:
@@ -3085,14 +3097,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"soundcloud-scraper@npm:^5.0.3":
-  version: 5.0.3
-  resolution: "soundcloud-scraper@npm:5.0.3"
+"soundcloud.ts@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "soundcloud.ts@npm:0.5.0"
   dependencies:
-    cheerio: ^1.0.0-rc.10
-    m3u8stream: ^0.8.4
-    node-fetch: ^2.6.1
-  checksum: 1acdb5bb3b9d18b1d19ae1f7a5ddd6fc9d676a552570f9bc8023aa12903e97845800db7d13c3fa3f906a56c12c650b1a34fc09e53da054d39f7c6c11b52e8651
+    undici: ^5.21.2
+  checksum: aa2d68f46bd297be96d54f8712d50f260dabce13e43c56af0115c5bcd77c13ddaf50136018dac32cb993c5388a3ea8d5cb2a4c9daf972cecfae2115db4d849f6
   languageName: node
   linkType: hard
 
@@ -3129,7 +3139,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"spotify-url-info@npm:^3.2.3":
+"spotify-url-info@npm:^3.2.5":
   version: 3.2.5
   resolution: "spotify-url-info@npm:3.2.5"
   dependencies:
@@ -3385,21 +3395,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"undici@npm:^5.21.2, undici@npm:^5.22.1, undici@npm:^5.8.2":
+  version: 5.22.1
+  resolution: "undici@npm:5.22.1"
+  dependencies:
+    busboy: ^1.6.0
+  checksum: 048a3365f622be44fb319316cedfaa241c59cf7f3368ae7667a12323447e1822e8cc3d00f6956c852d1478a6fde1cbbe753f49e05f2fdaed229693e716ebaf35
+  languageName: node
+  linkType: hard
+
 "undici@npm:^5.22.0":
   version: 5.22.0
   resolution: "undici@npm:5.22.0"
   dependencies:
     busboy: ^1.6.0
   checksum: 8dc55240a60ae7680798df344e8f46ad0f872ed0fa434fb94cc4fd2b5b2f8053bdf11994d15902999d3880f9bf7cd875a2e90883d2702bf0f366dacd9cbf3fc6
-  languageName: node
-  linkType: hard
-
-"undici@npm:^5.8.2":
-  version: 5.22.1
-  resolution: "undici@npm:5.22.1"
-  dependencies:
-    busboy: ^1.6.0
-  checksum: 048a3365f622be44fb319316cedfaa241c59cf7f3368ae7667a12323447e1822e8cc3d00f6956c852d1478a6fde1cbbe753f49e05f2fdaed229693e716ebaf35
   languageName: node
   linkType: hard
 
@@ -3638,7 +3648,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yt-stream@npm:^1.4.4, yt-stream@npm:^1.4.7":
+"yt-stream@npm:^1.4.4":
   version: 1.4.7
   resolution: "yt-stream@npm:1.4.7"
   checksum: 27fdefa939591f110ff3bd91812d6daa6719ba4a02c4ff326374a53b2ee05595c202c90b11931be544b241df509b6f13843292e6456683a701cbe6041b0ba5e9

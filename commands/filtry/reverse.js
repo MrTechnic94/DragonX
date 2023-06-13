@@ -16,7 +16,7 @@ exports.run = async (client, message) => {
 
         return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Reverse został ${mode}!**` })] });
     } catch {
-        return message.channel.send({ embeds: [embeds.catch_error] })
+        return message.channel.send({ embeds: [embeds.catch_error] });
     };
 };
 

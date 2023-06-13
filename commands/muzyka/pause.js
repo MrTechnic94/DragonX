@@ -16,7 +16,7 @@ exports.run = async (client, message) => {
         queue.node.pause();
         return message.channel.send({ embeds: [createEmbed({ description: `🔇 **Zatrzymano odtwarzanie piosenki!**` })] });
     } catch {
-        return message.channel.send({ embeds: [embeds.catch_error] })
+        return message.channel.send({ embeds: [embeds.catch_error] });
     };
 };
 

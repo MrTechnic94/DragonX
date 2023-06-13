@@ -34,7 +34,7 @@ exports.run = async (client, message, args) => {
             }
         });
     } catch {
-        return message.channel.send({ embeds: [embeds.catch_error] })
+        return message.channel.send({ embeds: [embeds.catch_error] });
     };
 };
 

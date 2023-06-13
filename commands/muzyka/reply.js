@@ -18,7 +18,7 @@ exports.run = async (client, message) => {
         queue.insertTrack(res.tracks[0], 0);
         return message.channel.send({ embeds: [createEmbed({ description: `✅ **${res.tracks[0].title}** dodano do playlisty!` })] });
     } catch {
-        return message.channel.send({ embeds: [embeds.catch_error] })
+        return message.channel.send({ embeds: [embeds.catch_error] });
     };
 };
 

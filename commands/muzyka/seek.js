@@ -22,7 +22,7 @@ exports.run = async (client, message, args) => {
     await queue.node.seek(durationSeconds * 1000);
     return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Ustawiono odtwarzanie na: ${queue.node.getTimestamp().current.label}!**` })] });
   } catch {
-    return message.channel.send({ embeds: [embeds.catch_error] })
+    return message.channel.send({ embeds: [embeds.catch_error] });
   };
 };
 

@@ -22,7 +22,7 @@ exports.run = async (client, message, args) => {
         queue.insertTrack(remove, indexTrack - 1);
         return message.channel.send({ embeds: [createEmbed({ description: `▶️ **Przeniesiono utwór na pozycję ${args[1]}!**` })] });
     } catch {
-        return message.channel.send({ embeds: [embeds.catch_error] })
+        return message.channel.send({ embeds: [embeds.catch_error] });
     };
 };
 

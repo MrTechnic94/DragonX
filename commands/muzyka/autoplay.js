@@ -17,7 +17,7 @@ exports.run = async (client, message) => {
 
     return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Autoplay został ${mode}!**` })] });
   } catch {
-    return message.channel.send({ embeds: [embeds.catch_error] })
+    return message.channel.send({ embeds: [embeds.catch_error] });
   };
 };
 

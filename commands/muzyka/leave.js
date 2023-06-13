@@ -17,7 +17,7 @@ exports.run = async (client, message) => {
         message.guild.members.me?.voice.disconnect();
         return message.channel.send({ embeds: [createEmbed({ description: `🔮 **Wychodzę z kanału!**` })] });
     } catch {
-        return message.channel.send({ embeds: [embeds.catch_error] })
+        return message.channel.send({ embeds: [embeds.catch_error] });
     };
 };
 

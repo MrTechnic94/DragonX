@@ -21,7 +21,7 @@ exports.run = async (client, message, args) => {
         queue.node.setVolume(vol);
         return message.channel.send({ embeds: [createEmbed({ description: `🔊 **Ustawiono głośność na: ${vol}%**` })] });
     } catch {
-        return message.channel.send({ embeds: [embeds.catch_error] })
+        return message.channel.send({ embeds: [embeds.catch_error] });
     };
 };
 

@@ -17,8 +17,8 @@ exports.run = async (client) => {
         console.error(`[${"\x1b[31m"}Error${"\x1b[0m"}] \x1b[31mBlad podczas laczenia z baza danych!\n${error}`)
     );
 
-    // Zaladowanie ponownie statusu bota i wyswietlenie o zalogowaniu sie bota w konsoli
-    client.user.setPresence({ activities: [{ name: process.env.STATUSTWO, type: ActivityType.Listening }], status: 'online' })
+    // Zaladowanie ponownie statusu bota i wyswietlenie informacji o zalogowaniu sie bota w konsoli
+    client.user.setPresence({ activities: [{ name: process.env.STATUSTWO, type: ActivityType.Listening }], status: 'online' });
     console.log(`[\x1b[31mBot\x1b[0m] \x1b[31m${client.user.tag} zalogowal sie!\x1b[0m`);
 };
 

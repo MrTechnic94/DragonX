@@ -15,7 +15,7 @@ exports.run = async (client, message) => {
 
         if (queue.votes.includes(message.author.id)) return message.channel.send({ embeds: [embeds.already_voted_error] });
 
-        const required = Math.ceil((message.channel.members.size - 1) / 2);
+        const required = Math.ceil((message.member.voice.channel.members.size - 1) / 2);
         const currentVotes = queue.votes.length + 1;
 
         queue.votes.push(message.author.id);
@@ -28,7 +28,7 @@ exports.run = async (client, message) => {
 
         return message.channel.send({ embeds: [createEmbed({ description: `**Zagłosowałeś na pominięcie piosenki (${currentVotes} / ${required})**` })] });
     } catch {
-        return message.channel.send({ embeds: [embeds.catch_error] })
+        return message.channel.send({ embeds: [embeds.catch_error] });
     };
 
 };

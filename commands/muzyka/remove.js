@@ -19,7 +19,7 @@ exports.run = async (client, message, args) => {
         queue.node.remove(index - 1);
         return message.channel.send({ embeds: [createEmbed({ description: `🎯 **Usunięto: ${track.title}!**` })] });
     } catch {
-        return message.channel.send({ embeds: [embeds.catch_error] })
+        return message.channel.send({ embeds: [embeds.catch_error] });
     };
 };
 
