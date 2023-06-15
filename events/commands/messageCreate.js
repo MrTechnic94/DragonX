@@ -38,7 +38,7 @@ exports.run = async (client, message) => {
     return message.channel.send({ embeds: [embeds.permission_error] });
 
   // Sprawdzenie czy uzytkownik ma dj role
-  if (cmd.info.dj && guildData?.djRoleId && !message.member.roles.cache.has(guildData.djRoleId) && message.member.voice.channel.members.size > 1)
+  if (cmd.info.dj && guildData?.djRoleId && !message.member.roles.cache.has(guildData.djRoleId) && message.member.voice.channel.members.size > 1 || message.member.permissions.has(PermissionsBitField.Flags.ManageMessages))
     return message.channel.send({ embeds: [embeds.dj_permission_error] });
 
   // Przechwytuje bledy komend i wyswietla w konsoli

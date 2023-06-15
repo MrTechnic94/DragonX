@@ -22,7 +22,7 @@ module.exports = async (client) => {
               client.once(eventName, (...args) => event.run(client, ...args));
             } else {
               client.on(eventName, (...args) => event.run(client, ...args));
-            }
+            };
           })
       );
   }
