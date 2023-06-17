@@ -4,23 +4,19 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
-    try {
-        if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
 
-        const queue = client.player.nodes.get(message.guild.id);
+    const queue = client.player.nodes.get(message.guild.id);
 
-        if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
+    if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
 
-        const index = parseInt(args[0]);
-        const track = queue.tracks.at(index - 1);
+    const index = parseInt(args[0]);
+    const track = queue.tracks.at(index - 1);
 
-        if (!index || !track || index < 0) return message.channel.send({ embeds: [embeds.number_error] });
+    if (!index || !track || index < 0) return message.channel.send({ embeds: [embeds.number_error] });
 
-        queue.node.skipTo(index - 1);
-        return message.channel.send({ embeds: [createEmbed({ description: `⏩ **Przeskoczono: ${track.title}!**` })] });
-    } catch {
-        return message.channel.send({ embeds: [embeds.catch_error] });
-    };
+    queue.node.skipTo(index - 1);
+    return message.channel.send({ embeds: [createEmbed({ description: `⏩ **Przeskoczono: ${track.title}!**` })] });
 };
 
 exports.info = {

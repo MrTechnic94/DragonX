@@ -3,11 +3,7 @@
 const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message) => {
-    try {
-        return message.channel.send({ embeds: [createEmbed({ description: `📰 **Liczba serwerów:** ${client.guilds.cache.size}` })] });
-    } catch {
-        return message.channel.send({ embeds: [embeds.catch_error] });
-    };
+    return message.channel.send({ embeds: [createEmbed({ description: `📰 **Liczba serwerów:** ${client.guilds.cache.size}` })] });
 };
 
 exports.info = {

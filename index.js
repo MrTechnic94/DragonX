@@ -35,5 +35,9 @@ client.player.extractors.register(DeezerExtractor);
 
 ['./structures/events.js', './structures/events-music.js', './structures/commands.js'].forEach(x => require(x)(client));
 
+// Zaladowanie procesow do przechwytywania bledow
+process.on('unhandledRejection', () => {});
+process.on('uncaughtException', () => {});
+
 // Zalogowanie bota do discorda
 client.login(process.env.TOKEN);

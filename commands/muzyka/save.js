@@ -4,11 +4,11 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 const embeds = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
-    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({embeds: [embeds.voice_error]});
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.channel.send({embeds: [embeds.queue_error]});
+    if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
 
     const requester = queue.currentTrack.author === `cdn.discordapp.com` ? `nieznany` : queue.currentTrack.author;
 
@@ -19,13 +19,13 @@ exports.run = async (client, message) => {
             thumbnail: queue.currentTrack.thumbnail,
             footer: {
                 text: message.guild.name,
-                icon: message.guild.iconURL({dynamic: true})
+                icon: message.guild.iconURL({ dynamic: true })
             }
         })]
     }).then(() => {
-        return message.channel.send({embeds: [embeds.send_dm_succes]});
+        return message.channel.send({ embeds: [embeds.send_dm_succes] });
     }).catch(() => {
-        return message.channel.send({embeds: [embeds.send_dm_error]});
+        return message.channel.send({ embeds: [embeds.send_dm_error] });
     });
 };
 
