@@ -18,6 +18,5 @@ exports.run = async (client, message) => {
 
 exports.info = {
     name: "pause",
-    aliases: ["pa"],
     dj: true
 };

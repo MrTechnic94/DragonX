@@ -11,7 +11,7 @@ exports.run = async (client, message, args) => {
     if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
 
     switch (args[0]?.toLowerCase()) {
-        case 'reset':
+        case 'clear':
             if (!queue.filters.ffmpeg.isEnabled('normalizer')) return message.channel.send({ embeds: [embeds.filters_error] });
             await queue.filters.ffmpeg.setFilters(false);
             return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Wszystkie filtry zostały wyłączone!**` })] });

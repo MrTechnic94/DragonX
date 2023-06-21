@@ -1189,10 +1189,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.1.4":
-  version: 16.1.4
-  resolution: "dotenv@npm:16.1.4"
-  checksum: c1b2e13df4d374a6a29e134c56c7b040ba20500677fe8b9939ea654f3b3badb9aaa0b172e40e4dfa1233a4177dbb8fb79d84cc79a50ac9c9641fe2ad98c14876
+"dotenv@npm:^16.3.1":
+  version: 16.3.1
+  resolution: "dotenv@npm:16.3.1"
+  checksum: 15d75e7279018f4bafd0ee9706593dd14455ddb71b3bcba9c52574460b7ccaf67d5cf8b2c08a5af1a9da6db36c956a04a1192b101ee102a3e0cf8817bbcf3dfd
   languageName: node
   linkType: hard
 
@@ -1208,9 +1208,9 @@ __metadata:
     discord-player: ^6.5.0
     discord-player-deezer: ^0.0.8
     discord.js: ^14.11.0
-    dotenv: ^16.1.4
+    dotenv: ^16.3.1
     fs: ^0.0.1-security
-    mongoose: ^7.2.4
+    mongoose: ^7.3.1
     os: ^0.1.2
     path: ^0.12.7
     pm2: ^5.3.0
@@ -2198,9 +2198,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb@npm:5.5.0":
-  version: 5.5.0
-  resolution: "mongodb@npm:5.5.0"
+"mongodb@npm:5.6.0":
+  version: 5.6.0
+  resolution: "mongodb@npm:5.6.0"
   dependencies:
     bson: ^5.3.0
     mongodb-connection-string-url: ^2.6.0
@@ -2220,22 +2220,22 @@ __metadata:
       optional: true
     snappy:
       optional: true
-  checksum: fafb75195d605767cf7269aa82a1f4704c3357240d0fef7296d55e83eab592158844988af3b94165769459ff1b2a0af2fc49bc44c9bbabd10d6ddc319668a0e0
+  checksum: 5b1594b24795b2a7824095a917ede2fc37aaef31e60320c833ee9b11cc2f3de9dd87d5afacea2e41eb5eb579ac9780f5bc4b0bb11d3b1be78e8bf0014528192a
   languageName: node
   linkType: hard
 
-"mongoose@npm:^7.2.4":
-  version: 7.2.4
-  resolution: "mongoose@npm:7.2.4"
+"mongoose@npm:^7.3.1":
+  version: 7.3.1
+  resolution: "mongoose@npm:7.3.1"
   dependencies:
     bson: ^5.3.0
     kareem: 2.5.1
-    mongodb: 5.5.0
+    mongodb: 5.6.0
     mpath: 0.9.0
     mquery: 5.0.0
     ms: 2.1.3
     sift: 16.0.1
-  checksum: b19a64f0d93944f2c38de3d769b00a3849cc60418bd42c0690e6701304dd76b8e8e523b6ecb88641b598054cc8787ee92f25d78d3ce51a2ba41803285a980173
+  checksum: 386d9401e493ff69ce61149912488c6c003dc06ad1245071f80edb67b035751a1d9423f017d0c86ab5eb5fb3c1d68554831a43c8d6e7a705d35f53d56b81c0fe
   languageName: node
   linkType: hard
 
