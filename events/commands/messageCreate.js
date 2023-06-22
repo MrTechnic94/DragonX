@@ -10,7 +10,7 @@ exports.run = async (client, message) => {
   if (message.author.bot || !message.guild) return;
 
   // Sprawdzenie permisji bota
-  if (!message.guild.members.me.permissions.has(PermissionsBitField.Flags.SendMessages && PermissionsBitField.Flags.ReadMessageHistory && PermissionsBitField.Flags.SendMessagesInThreads && PermissionsBitField.Flags.Speak && PermissionsBitField.Flags.PrioritySpeaker && PermissionsBitField.Flags.Connect && PermissionsBitField.Flags.UseVAD && PermissionsBitField.Flags.EmbedLinks))
+  if (!message.guild.members.me.permissions.has(PermissionsBitField.Flags.SendMessages && PermissionsBitField.Flags.ReadMessageHistory && PermissionsBitField.Flags.SendMessagesInThreads && PermissionsBitField.Flags.Speak && PermissionsBitField.Flags.PrioritySpeaker && PermissionsBitField.Flags.Connect && PermissionsBitField.Flags.UseVAD && PermissionsBitField.Flags.EmbedLinks && PermissionsBitField.Flags.ViewChannel))
     return message.channel.send('❌ **Nie posiadam permisji!**').catch(() => {});
 
   const guildData = await GuildSettings.findOne({ guildId: message.guild.id });
