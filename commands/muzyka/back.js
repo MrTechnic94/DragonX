@@ -12,7 +12,7 @@ exports.run = async (client, message) => {
 
     if (!queue.history.previousTrack) return message.channel.send({ embeds: [embeds.track_back_error] });
 
-    queue.history.back();
+    await queue.history.back();
     return message.channel.send({ embeds: [createEmbed({ description: `◀️ **Odtwarzam poprzedni utwór!**` })] });
 };
 

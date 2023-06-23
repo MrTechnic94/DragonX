@@ -1,11 +1,17 @@
 'use strict';
 
 const { ActivityType } = require('discord.js');
+const DeezerExtractor = require('discord-player-deezer').default;
 const mongoose = require('mongoose');
 
 exports.run = async (client) => {
     // Zaladowanie statusu bota
-    client.user.setPresence({ activities: [{ name: process.env.STATUS, type: ActivityType.Playing }], status: 'idle' });
+    client.user.setPresence({ activities: [{ name: process.env.STATUS, type: ActivityType.Listening }], status: 'online' });
+
+    // Zaladowanie extractorow dla discord-player
+    await client.player.extractors.loadDefault();
+
+    await client.player.extractors.register(DeezerExtractor);
 
     // Zalogowanie do bazy danych
     await mongoose.connect(`mongodb://${process.env.DBUSER}:${process.env.DBPASSWORD}@${process.env.DBHOST}/?authSource=admin`, {
@@ -17,8 +23,7 @@ exports.run = async (client) => {
         console.error(`[${"\x1b[31m"}Error${"\x1b[0m"}] \x1b[31mBlad podczas laczenia z baza danych!\n${error}`)
     );
 
-    // Zaladowanie ponownie statusu bota i wyswietlenie informacji o zalogowaniu sie bota w konsoli
-    client.user.setPresence({ activities: [{ name: process.env.STATUSTWO, type: ActivityType.Listening }], status: 'online' });
+    // Wyswietlenie informacji o zalogowaniu sie bota w konsoli
     console.log(`[\x1b[31mBot\x1b[0m] \x1b[31m${client.user.tag} zalogowal sie!\x1b[0m`);
 };
 
