@@ -19,7 +19,14 @@ const client = new Client({
 		Partials.Channel,
 		Partials.Message,
 		Partials.GuildMember
-	]
+	],
+	presence: {
+		activities: [{
+			name: process.env.STATUS,
+			type: 2
+		}],
+		status: 'online'
+	}
 });
 
 // Zaladowanie discord-player
