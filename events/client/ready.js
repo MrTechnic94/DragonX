@@ -1,13 +1,9 @@
 'use strict';
 
-const { ActivityType } = require('discord.js');
 const DeezerExtractor = require('discord-player-deezer').default;
 const mongoose = require('mongoose');
 
 exports.run = async (client) => {
-    // Zaladowanie statusu bota
-    client.user.setPresence({ activities: [{ name: process.env.STATUS, type: ActivityType.Listening }], status: 'online' });
-
     // Zaladowanie extractorow dla discord-player
     await client.player.extractors.loadDefault();
 
