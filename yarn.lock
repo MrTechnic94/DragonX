@@ -5,16 +5,16 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@discord-player/equalizer@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "@discord-player/equalizer@npm:0.2.1"
-  checksum: 3b5817973ea1a14e6cb470096a16c02751567ed9b827f56c688994c0b783f27a004b73fb2d506988f48a379d195c4fbd90edd79a8dae1b564d66d77ccc7c84cc
+"@discord-player/equalizer@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "@discord-player/equalizer@npm:0.2.2"
+  checksum: 33b9991a840d6f87cea7e5f5d9c8e4e3cb73e90152c3797f44545916899794cf4e0efa0c6c595cdfdddf0ac7619cf23a3f51b508f2439870a2fbd7d4dfe59c05
   languageName: node
   linkType: hard
 
-"@discord-player/extractor@npm:^4.3.1":
-  version: 4.3.1
-  resolution: "@discord-player/extractor@npm:4.3.1"
+"@discord-player/extractor@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "@discord-player/extractor@npm:4.4.0"
   dependencies:
     file-type: ^16.5.4
     genius-lyrics: ^4.4.3
@@ -23,7 +23,14 @@ __metadata:
     soundcloud.ts: ^0.5.0
     spotify-url-info: ^3.2.5
     youtube-sr: ^4.3.4
-  checksum: fbcb66e886bce41f0b68baaf0e91bd3c794ce26873be990e15bc18e231e5e38d218bf493b2c2815c938b4b5624981d3f61ef7c2281564c452bd53c70bf660e4e
+  checksum: 2913cc91a06eacc48fef7f446c19594ad179710ac6b990a9cf5d3bdaeffcf0fc90f3285679d549aaac7c20eafc3f168c9cf2d6b1f9bd2e44c362d84838b864e9
+  languageName: node
+  linkType: hard
+
+"@discord-player/ffmpeg@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@discord-player/ffmpeg@npm:0.1.0"
+  checksum: 95653c0f7888799657ab0268f3e5f53ed910d12b56dbd7b280f8f7a27a492d4a9324c60ae76a450e37f61daca5581ef185216fed828b0317c92bfa4b236561a3
   languageName: node
   linkType: hard
 
@@ -33,6 +40,15 @@ __metadata:
   dependencies:
     "@discordjs/collection": ^1.1.0
   checksum: 65fc1d663e969057f258857d85d262fc165d0573512b611285cfe752c4c3f746c527a02dd29eda67d3dbaad0f5d7ddaf78738f3167b933f75b96cc856d60bcde
+  languageName: node
+  linkType: hard
+
+"@discord-player/utils@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "@discord-player/utils@npm:0.2.2"
+  dependencies:
+    "@discordjs/collection": ^1.1.0
+  checksum: 1e82767fa6e0f21e26ee5747b74841589a0dffd6f761233effa0f6380683c975ca40a7089e3dd232854a5c958bb30d8a3ed2e47b1a2cbb42d3fb3717a28b7ac1
   languageName: node
   linkType: hard
 
@@ -160,18 +176,6 @@ __metadata:
     tslib: ^2.5.0
     ws: ^8.13.0
   checksum: 28eb76ce58e31bc6be8b4d410aae448a8ad6388298f97392d1df002f3f5f1b0ab344bd4cb971aeebd0ea62558dcf1d9554cab3a21485d221f2a7af4ed0766a2e
-  languageName: node
-  linkType: hard
-
-"@distube/ytdl-core@npm:^4.11.10":
-  version: 4.11.10
-  resolution: "@distube/ytdl-core@npm:4.11.10"
-  dependencies:
-    m3u8stream: ^0.8.6
-    miniget: ^4.2.2
-    sax: ^1.2.4
-    undici: ^5.22.1
-  checksum: 3290855820e43efb7e3687ed283b6dae654c2630c79cee833cbe672a3e9c6eda583411eae41ae29399807ee9a848437d624d3e2bae14ba1481b6a9587aeb578b
   languageName: node
   linkType: hard
 
@@ -747,10 +751,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bson@npm:^5.3.0":
-  version: 5.3.0
-  resolution: "bson@npm:5.3.0"
-  checksum: c1e57630fea6b82ad8bc0fb83fd8f16a2620a836ab69f6b9433250cd19704c0c8995681a3bfab9f967eae30512f0c8ee921d42ace4c1781726600c4a367593cf
+"bson@npm:^5.4.0":
+  version: 5.4.0
+  resolution: "bson@npm:5.4.0"
+  checksum: 1c07e3d09f139d414bd226bf7f4e9aaa7a726e0c9718c55b53bb23ffa2805cac8b66e4fa46b424c73a35c6e292ed5f7432df5c76ea5d08052642b2ac9e0399e3
   languageName: node
   linkType: hard
 
@@ -810,6 +814,16 @@ __metadata:
     ansi-styles: ^4.1.0
     supports-color: ^7.1.0
   checksum: 8e3ddf3981c4da405ddbd7d9c8d91944ddf6e33d6837756979f7840a29272a69a5189ecae0ff84006750d6d1e92368d413335eab4db5476db6e6703a1d1e0505
+  languageName: node
+  linkType: hard
+
+"chalk@npm:4.1.2":
+  version: 4.1.2
+  resolution: "chalk@npm:4.1.2"
+  dependencies:
+    ansi-styles: ^4.1.0
+    supports-color: ^7.1.0
+  checksum: fe75c9d5c76a7a98d45495b91b2172fa3b7a09e0cc9370e5c8feb1c567b85c4288e2b3fded7cfdd7359ac28d6b3844feb8b82b8686842e93d23c827c417e83fc
   languageName: node
   linkType: hard
 
@@ -1113,11 +1127,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-player@npm:^6.0.0, discord-player@npm:^6.5.0":
-  version: 6.5.0
-  resolution: "discord-player@npm:6.5.0"
+"discord-player@npm:^6.0.0":
+  version: 6.6.0
+  resolution: "discord-player@npm:6.6.0"
   dependencies:
-    "@discord-player/equalizer": ^0.2.1
+    "@discord-player/equalizer": ^0.2.2
+    "@discord-player/ffmpeg": ^0.1.0
     "@discord-player/utils": ^0.2.1
     "@discordjs/voice": latest
     libsodium-wrappers: ^0.7.10
@@ -1125,7 +1140,24 @@ __metadata:
     "@discord-player/extractor": ^4.3.1
     discord.js: 14.x
     youtube-sr: 4.x
-  checksum: b02b64d8f67c9ce43c707932d67b5e64550419890a964d4c2bf174eb127ede2c352f5d81882bc199911096ad1d0b6e6542bc87879c3d0dac456199993aa54375
+  checksum: 76dc343930216b10dddd1dced68f08fd93201071a41c285f0b02c17c1f9201889949f0cdf4c2f24bcbe2330490161849d6826c68752590206d2bb367c849ff03
+  languageName: node
+  linkType: hard
+
+"discord-player@npm:^6.6.1":
+  version: 6.6.1
+  resolution: "discord-player@npm:6.6.1"
+  dependencies:
+    "@discord-player/equalizer": ^0.2.2
+    "@discord-player/ffmpeg": ^0.1.0
+    "@discord-player/utils": ^0.2.2
+    "@discordjs/voice": latest
+    libsodium-wrappers: ^0.7.10
+  peerDependencies:
+    "@discord-player/extractor": ^4.4.0
+    discord.js: 14.x
+    youtube-sr: 4.x
+  checksum: fc2c7b7acf38239cc8222ba3479f8c9421cd3003faf9579dddd03b3b3666ab13f897d6f3e5b7988cddacd3ed7fefdc2cf5c2f632d08a3befad6d57e00ee2fd0e
   languageName: node
   linkType: hard
 
@@ -1200,21 +1232,22 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "dragonxmusic@workspace:."
   dependencies:
-    "@discord-player/extractor": ^4.3.1
+    "@discord-player/extractor": ^4.4.0
     "@discordjs/opus": ^0.9.0
     "@discordjs/voice": ^0.16.0
-    "@distube/ytdl-core": ^4.11.10
     "@ffmpeg-installer/ffmpeg": ^1.1.0
-    discord-player: ^6.5.0
+    chalk: 4.1.2
+    discord-player: ^6.6.1
     discord-player-deezer: ^0.0.8
     discord.js: ^14.11.0
     dotenv: ^16.3.1
     fs: ^0.0.1-security
-    mongoose: ^7.3.1
+    mongoose: ^7.4.0
     os: ^0.1.2
     path: ^0.12.7
     pm2: ^5.3.0
     pretty-ms: 7.0.1
+    yt-stream: ^1.4.8
   languageName: unknown
   linkType: soft
 
@@ -2004,16 +2037,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"m3u8stream@npm:^0.8.6":
-  version: 0.8.6
-  resolution: "m3u8stream@npm:0.8.6"
-  dependencies:
-    miniget: ^4.2.2
-    sax: ^1.2.4
-  checksum: b8f61c1101dd3ad873ff2f3d0e9e6a5139ad17e20990b89ae67f2585043bc2b727151ed85f3e58aabc8a1a95af28e1ee26f69af6ac9e8841ff68129eae2f5ac5
-  languageName: node
-  linkType: hard
-
 "make-dir@npm:^3.1.0":
   version: 3.1.0
   resolution: "make-dir@npm:3.1.0"
@@ -2067,13 +2090,6 @@ __metadata:
   dependencies:
     mime-db: 1.52.0
   checksum: 89a5b7f1def9f3af5dad6496c5ed50191ae4331cc5389d7c521c8ad28d5fdad2d06fd81baf38fed813dc4e46bb55c8145bb0ff406330818c9cf712fb2e9b3836
-  languageName: node
-  linkType: hard
-
-"miniget@npm:^4.2.2":
-  version: 4.2.2
-  resolution: "miniget@npm:4.2.2"
-  checksum: 577a7826cbf521b8ecb31906b3dce55c61b35398318a461f3484681572287208b7ec5a40de7b0bf0b7738f21630d015cc39ba3edcfb69146565f1528ff957612
   languageName: node
   linkType: hard
 
@@ -2198,16 +2214,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb@npm:5.6.0":
-  version: 5.6.0
-  resolution: "mongodb@npm:5.6.0"
+"mongodb@npm:5.7.0":
+  version: 5.7.0
+  resolution: "mongodb@npm:5.7.0"
   dependencies:
-    bson: ^5.3.0
+    bson: ^5.4.0
     mongodb-connection-string-url: ^2.6.0
     saslprep: ^1.0.3
     socks: ^2.7.1
   peerDependencies:
     "@aws-sdk/credential-providers": ^3.201.0
+    "@mongodb-js/zstd": ^1.1.0
+    kerberos: ^2.0.1
     mongodb-client-encryption: ">=2.3.0 <3"
     snappy: ^7.2.2
   dependenciesMeta:
@@ -2216,26 +2234,30 @@ __metadata:
   peerDependenciesMeta:
     "@aws-sdk/credential-providers":
       optional: true
+    "@mongodb-js/zstd":
+      optional: true
+    kerberos:
+      optional: true
     mongodb-client-encryption:
       optional: true
     snappy:
       optional: true
-  checksum: 5b1594b24795b2a7824095a917ede2fc37aaef31e60320c833ee9b11cc2f3de9dd87d5afacea2e41eb5eb579ac9780f5bc4b0bb11d3b1be78e8bf0014528192a
+  checksum: 16357b6229abac165aecea15a6efa873ec8662a00411ecb9e49853f05a590be31aab63d404486125778eedaafe76d70e84eea682fa89b138decc247f4870d2ec
   languageName: node
   linkType: hard
 
-"mongoose@npm:^7.3.1":
-  version: 7.3.1
-  resolution: "mongoose@npm:7.3.1"
+"mongoose@npm:^7.4.0":
+  version: 7.4.0
+  resolution: "mongoose@npm:7.4.0"
   dependencies:
-    bson: ^5.3.0
+    bson: ^5.4.0
     kareem: 2.5.1
-    mongodb: 5.6.0
+    mongodb: 5.7.0
     mpath: 0.9.0
     mquery: 5.0.0
     ms: 2.1.3
     sift: 16.0.1
-  checksum: 386d9401e493ff69ce61149912488c6c003dc06ad1245071f80edb67b035751a1d9423f017d0c86ab5eb5fb3c1d68554831a43c8d6e7a705d35f53d56b81c0fe
+  checksum: 391e28eb2e783150e81579a2cc1543224df621883c61ece45d977298cc11f392b5939f7f4066847f05fce2abad0aaeaf2ec72de8a1c0b7a9898651082c3bcf2d
   languageName: node
   linkType: hard
 
@@ -3395,7 +3417,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici@npm:^5.21.2, undici@npm:^5.22.1, undici@npm:^5.8.2":
+"undici@npm:^5.21.2, undici@npm:^5.8.2":
   version: 5.22.1
   resolution: "undici@npm:5.22.1"
   dependencies:
@@ -3648,9 +3670,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yt-stream@npm:^1.4.4":
-  version: 1.4.7
-  resolution: "yt-stream@npm:1.4.7"
-  checksum: 27fdefa939591f110ff3bd91812d6daa6719ba4a02c4ff326374a53b2ee05595c202c90b11931be544b241df509b6f13843292e6456683a701cbe6041b0ba5e9
+"yt-stream@npm:^1.4.4, yt-stream@npm:^1.4.8":
+  version: 1.4.8
+  resolution: "yt-stream@npm:1.4.8"
+  checksum: 73901f5af07bb75673feadce8f0d04b7b0d283d4a9948fc630ccf80a077221183f3c32541f3a0be9ecd50490ff89792c6bd88d06fccfa1a2f318a85f18f7bad7
   languageName: node
   linkType: hard
