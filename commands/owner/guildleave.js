@@ -1,20 +1,21 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
+const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
+    const guild = client.guilds.cache.get(args[0]);
+    if (!guild) return message.channel.send({ embeds: [createEmbed({ description: `❌ **Nie znaleziono guildi z id** \`\`${guild}\`\`**!**` })] });
 
-    let guild = client.guilds.cache.get(args[0]);
-    if (!guild) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie znaleziono guildi z id \`\`${guild}\`\`**`).setColor("Red")]});
+    message.channel.send({ embeds: [createEmbed({ title: `✅ Pomyślnie bot wyszedł z gildi!`, description: `**Guild name:**\n \`\`\`${guild.name}\`\`\`\n **Guild id:**\n \`\`\`${guild.id}\`\`\`` })] });
 
-    await guild.leave();
-
-    return message.reply({embeds: [new EmbedBuilder().setTitle(`✅ Pomyślnie bot wyszedł z gildi!`).setDescription(`**Guild name:**\n \`\`\`${guild.name}\`\`\`\n **Guild id:**\n \`\`\`${guild.id}\`\`\` `).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Red")]});
-
+    guild.leave().catch(() => {
+        return message.channel.send({ embeds: [embeds.catch_error] });
+    });
 };
 
 exports.info = {
     name: "guildleave",
-    aliases: ['gleave'],
+    aliases: ["gleave"],
     owner: true
 };

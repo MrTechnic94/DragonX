@@ -1,23 +1,34 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
+const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
 
     const queue = client.player.nodes.get(message.guild.id);
-    
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
+    if (!queue?.isPlaying() || queue.repeatMode === 0 && !queue.tracks.at(0)) return message.channel.send({ embeds: [embeds.queue_error] });
 
-    if (!queue.tracks.at(0)) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma żadnych piosenek w kolejce!**`).setColor("Red")]});
+    queue.votes = queue.votes || [];
 
-    await queue.node.skip();
-    return message.reply({embeds: [new EmbedBuilder().setTitle(`⏩ Pominąłeś aktualną piosenkę!`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
+    if (queue.votes.includes(message.author.id)) return message.channel.send({ embeds: [embeds.already_voted_error] });
 
+    const required = Math.ceil((message.member.voice.channel.members.size - 1) / 2);
+    const currentVotes = queue.votes.length + 1;
+
+    queue.votes.push(message.author.id);
+
+    if (currentVotes >= required) {
+        queue.node.skip();
+        queue.votes = [];
+        return message.channel.send({ embeds: [createEmbed({ description: `⏩ **Pominięto aktualną piosenkę!**` })] });
+    };
+
+    return message.channel.send({ embeds: [createEmbed({ description: `**Zagłosowałeś na pominięcie piosenki (${currentVotes} / ${required})**` })] });
 };
 
 exports.info = {
     name: "skip",
-    aliases: ['sk']
+    aliases: ["s", "vote", "next", "n"]
 };

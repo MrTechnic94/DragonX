@@ -1,32 +1,31 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
+const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie ma żadnych piosenek w playliście!**`).setColor("Red")]});
+    if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
-
-    const tracks = queue.tracks.map((track, i) => `**${i + 1}.** [${track.title}](${track.url}) [${track.duration}]`);
-    const songs = queue.tracks.size;
-    const nextSongs = songs > 20 ? `${songs - 20} piosenki` : `w playliście ${songs} piosenka(i)`;
-
-    const embed = new EmbedBuilder()
-    .setTitle('📰 Piosenki w playliście')
-    .setDescription(`**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\nBrak piosenek`)
-    .setColor("Red")
+    const embed = createEmbed({
+        title: '📰 Piosenki w playliście',
+        description: `**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\nBrak piosenek`,
+    });
 
     if (queue.tracks.at(0)) {
+        const tracks = queue.tracks.map((track, i) => `**${i + 1}.** [${track.title}](${track.url}) [${track.duration}]`);
+        const songs = queue.tracks.size;
+        const nextSongs = songs > 20 ? `${songs - 20} piosenki` : `w playliście ${songs} piosenka(i)`;
+
         embed.setDescription(`**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${tracks.slice(0, 20).join('\n')}`)
-        embed.setFooter({text: nextSongs})
+        embed.setFooter({ text: nextSongs })
     };
 
-    return message.reply({embeds: [embed]});
+    return message.channel.send({ embeds: [embed] });
 };
 
 exports.info = {
     name: "queue",
-    aliases: ['q']
+    aliases: ["q", "list", "playlist"]
 };

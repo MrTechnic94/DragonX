@@ -1,32 +1,57 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
+const { embeds } = require('../../utils/embeds.js');
 
-exports.run = async (client, message) => {
+exports.run = async (client, message, args) => {
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setTitle('📰 Lista filtrów').setDescription(`🔴 **BassBoostLow**\n🔴 **BassBoost**\n🔴 **BassBoostHigh**\n🔴 **Karaoke**\n🔴 **Nightcore**\n🔴 **Lofi**`).setFooter({text: `Użycie: ${process.env.PREFIX}bassboost`}).setColor("6b3deb")]});
-    
-    const bsl = queue.filters.ffmpeg.isEnabled('bassboost_low') ? `🟢 **BassBoostLow**` : `🔴 **BassBoostLow**`;
-    const bs = queue.filters.ffmpeg.isEnabled('bassboost') ? `🟢 **BassBoost**` : `🔴 **BassBoost**`;
-    const bsh = queue.filters.ffmpeg.isEnabled('bassboost_high') ? `🟢 **BassBoostHigh**` : `🔴 **BassBoostHigh**`;
-    const kar = queue.filters.ffmpeg.isEnabled('karaoke') ? `🟢 **Karaoke**` : `🔴 **Karaoke**`;
-    const nc = queue.filters.ffmpeg.isEnabled('nightcore') ? `🟢 **Nightcore**` : `🔴 **Nightcore**`;
-    const vap = queue.filters.ffmpeg.isEnabled('vaporwave') ? `🟢 **Vaporwave**` : `🔴 **Vaporwave**`;
-    const lf = queue.filters.ffmpeg.isEnabled('lofi') ? `🟢 **Lofi**` : `🔴 **Lofi**`;
+    if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
 
-    const embed = new EmbedBuilder()
-    .setTitle('📰 Lista filtrów')
-    .setDescription(`${bsl}\n${bs}\n${bsh}\n${kar}\n${nc}\n${vap}\n${lf}`)
-    .setFooter({text: `Użycie: ${process.env.PREFIX}bassboost`})
-    .setColor('6b3deb')
+    switch (args[0]?.toLowerCase()) {
+        case 'clear':
+            if (!queue.filters.ffmpeg.isEnabled('normalizer')) return message.channel.send({ embeds: [embeds.filters_error] });
+            await queue.filters.ffmpeg.setFilters(false);
+            return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Wszystkie filtry zostały wyłączone!**` })] });
+    };
 
-    return message.reply({embeds: [embed]});
+    const filters = [
+        { name: 'bassboost_low', label: 'BassBoostLow' },
+        { name: 'bassboost', label: 'BassBoost' },
+        { name: 'bassboost_high', label: 'BassBoostHigh' },
+        { name: 'karaoke', label: 'Karaoke' },
+        { name: 'nightcore', label: 'Nightcore' },
+        { name: 'vaporwave', label: 'Vaporwave' },
+        { name: 'lofi', label: 'Lofi' },
+        { name: 'compressor', label: 'Compressor' },
+        { name: 'reverse', label: 'Reverse' }
+    ];
 
+    const embedFields = [];
+
+    for (const filter of filters) {
+        const isEnabled = queue.filters.ffmpeg.isEnabled(filter.name);
+        const status = isEnabled ? '🟢' : '🔴';
+        embedFields.push(`${status} **${filter.label}**`);
+    };
+
+    return message.channel.send({
+        embeds:
+            [createEmbed({
+                title: `📰 Lista filtrów`,
+                description: embedFields.join('\n'),
+                footer: {
+                    text: `Przykładowe użycie: ${process.env.PREFIX}bassboost`
+                }
+            })
+            ]
+    });
 };
 
 exports.info = {
     name: "filters",
-    aliases: ["f"]
+    aliases: ["f"],
+    dj: true
 };

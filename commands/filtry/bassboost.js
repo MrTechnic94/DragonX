@@ -1,37 +1,23 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
+const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
+    if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
-
-    const mode = queue.filters.ffmpeg.isEnabled('bassboost') ? `wyłączony` : `włączony`
+    const mode = queue.filters.ffmpeg.isEnabled('bassboost') ? `wyłączony` : `włączony`;
     await queue.filters.ffmpeg.toggle(['bassboost', 'normalizer']);
 
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Bassboost został ${mode}!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor(queue.filters.ffmpeg.isEnabled('bassboost') ? `Green` : `Red`)]});
-
-    // switch(args[0]) {
-    //     case 'on':
-    //         if (queue.filters.ffmpeg.isEnabled('bassboost')) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Ten filtr jest już aktywowany!**`).setColor("Red")]});
-    //         await queue.filters.ffmpeg.toggle(['bassboost', 'normalizer']);
-    //         message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Bassboost został włączony!**`).setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setColor("Green")]});
-    //         break;
-
-    //     case 'off':
-    //         if (!queue.filters.ffmpeg.isEnabled('bassboost')) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Ten filtr nie jest aktywowany!**`).setColor("Red")]});
-    //         await queue.filters.ffmpeg.toggle(['bassboost']);
-    //         message.reply({embeds: [new EmbedBuilder().setDescription(`🎵 **Bassboost został wyłączony!**`).setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) }).setColor("Red")]});
-    //         break;
-    // };
-    
+    return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Bassboost został ${mode}!**` })] });
 };
 
 exports.info = {
     name: "bassboost",
-    aliases: ["bs"]
+    aliases: ["bb", "bass"],
+    dj: true
 };

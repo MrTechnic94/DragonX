@@ -8,16 +8,14 @@ exports.run = async (client, message) => {
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
+    if (!queue?.isPlaying() || queue.repeatMode === 0 && !queue.tracks.at(0)) return message.channel.send({ embeds: [embeds.queue_error] });
 
-    if (!queue.node.isPaused()) return message.channel.send({ embeds: [embeds.resumed_error] });
-
-    queue.node.resume();
-    return message.channel.send({ embeds: [createEmbed({ description: `🔊 **Wznowiono odtwarzanie piosenki!**` })] });
+    queue.node.skip();
+    return message.channel.send({ embeds: [createEmbed({ description: `⏩ **Pominięto aktualną piosenkę!**` })] });
 };
 
 exports.info = {
-    name: "resume",
-    aliases: ["r"],
+    name: "forceskip",
+    aliases: ["fs"],
     dj: true
 };

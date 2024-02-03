@@ -1,28 +1,28 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
+const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
 
     const queue = client.player.nodes.get(message.guild.id);
     const vol = parseInt(args[0]);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
+    if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
+    if (!vol) return message.channel.send({ embeds: [createEmbed({ description: `🔊 **Aktualna głośność: ${queue.node.volume}%**` })] });
 
-    if (vol < 0 || vol > 100) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Zakres głośności musi wynosić 0-100!**`).setColor("Red")]});
+    if (vol < 0 || vol > 200) return message.channel.send({ embeds: [embeds.max_volume_error] });
 
-    if (!vol) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nieprawidłowa liczba**`).setColor("Red")]})
-  
-    if (queue.node.volume === vol) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Podana głośność jest obecnie używana!**`).setColor("Red")]});
+    if (queue.node.volume === vol) return message.channel.send({ embeds: [embeds.already_volume_error] });
 
-    await queue.node.setVolume(vol);
-    return message.reply({embeds: [new EmbedBuilder().setDescription(`🔊 **Ustawiono głośność na: ${vol}%**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Blue")]});
-
+    queue.node.setVolume(vol);
+    return message.channel.send({ embeds: [createEmbed({ description: `🔊 **Ustawiono głośność na: ${vol}%**` })] });
 };
 
 exports.info = {
     name: "volume",
-    aliases: ['v']
+    aliases: ["v", "vol"],
+    dj: true
 };

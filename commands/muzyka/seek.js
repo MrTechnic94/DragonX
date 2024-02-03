@@ -1,26 +1,28 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { parseTime } = require('../../utils/parseTime.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
+const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
+  if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
 
-    const queue = client.player.nodes.get(message.guild.id);
+  const queue = client.player.nodes.get(message.guild.id);
 
-    const s = parseInt(args[0]);
+  if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
+  const seekTime = parseTime(args[0]);
+  const durationSeconds = Math.round(seekTime / 1000);
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
+  if (seekTime === null || seekTime >= queue.currentTrack.durationMS || seekTime <= queue.currentTrack.durationMS || seekTime === queue.currentTrack.durationMS) return message.channel.send({ embeds: [embeds.time_seek_error] });
 
-    if (s * 1000 >= queue.currentTrack.durationMS) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Podany czas jest większa od długości utworu, lub równy!**`).setColor("Red")]});
+  if (durationSeconds <= 0) return message.channel.send({ embeds: [embeds.number_error] });
 
-    if (!s || s <= 0) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nieprawidłowa liczba!**`).setColor("Red")]});
-
-    await queue.node.seek(s * 1000);
-    return message.reply({embeds: [new EmbedBuilder().setTitle(`🎵 Pomyślnie ustawiono czas odtwarzania!`).setDescription(`**Przeskoczyłeś odtwarzanie muzyki o: \`\`${s} sekund\`\`**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("Blue")]});
+  queue.node.seek(durationSeconds * 1000);
+  return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Ustawiono odtwarzanie na: ${args[0]}!**` })] });
 };
 
 exports.info = {
-    name: "seek",
-    aliases: ['se']
+  name: "seek",
+  dj: true
 };

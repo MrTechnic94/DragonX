@@ -1,21 +1,23 @@
 'use strict';
 
-const { EmbedBuilder, ActivityType } = require('discord.js');
+const { ActivityType } = require('discord.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
+const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
+    if (!args[0]) return message.channel.send({ embeds: [embeds.args_status_error] });
 
-    if (!args[0]) return message.reply({embeds: [new EmbedBuilder().setTitle("❌ Musisz podać nazwę statusu!").setColor("Red")]});
+    switch (args[0]) {
+        default:
+            client.user.setPresence({ activities: [{ name: args.join(' '), type: ActivityType.Listening }], status: process.env.STATUS_TYPE });
+            message.channel.send({ embeds: [createEmbed({ description: `✅ **Status został zmieniony na:** \`\`${args.join(' ')}\`\`` })] });
+            break;
 
-    client.user.setPresence({activities: [{name: args.join(' '), type: ActivityType.Listening}]});
-
-    const embed = new EmbedBuilder()
-    .setTitle("✅ Pomyślnie ustawiono status!")
-    .setDescription(`Status został zmieniony na \`\`${args.join(' ')}\`\``)
-    .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
-    .setColor("Green")
-
-    return message.reply({embeds: [embed]});
-
+        case 'clear':
+            client.user.setPresence({ activities: [{ name: process.env.STATUS_NAME, type: ActivityType.Listening }], status: process.env.STATUS_TYPE });
+            message.channel.send({ embeds: [createEmbed({ description: `✅ **Status został zmieniony na:** \`\`${process.env.STATUS_NAME}\`\`` })] });
+            break;
+    };
 };
 
 exports.info = {

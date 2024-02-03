@@ -1,32 +1,36 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
+const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
-
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
+    if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
 
     const requester = queue.currentTrack.author === `cdn.discordapp.com` ? `nieznany` : queue.currentTrack.author;
 
-    const embed = new EmbedBuilder()
-    .setTitle('📨 Zapisano Piosenkę!')
-    .setDescription(`**Tytuł:** [${queue.currentTrack.title}](${queue.currentTrack.url})\n**Czas:** ${queue.currentTrack.duration}\n**Autor:** ${requester}`)
-    .setThumbnail(queue.currentTrack.thumbnail)
-    .setColor('Red')
-
-    return message.member.send({embeds: [embed]}).then(() => {
-        return message.reply({embeds: [new EmbedBuilder().setDescription(`✅ **Sprawdź wiadomości prywatne!**`).setColor("Green")]});
+    return message.member.send({
+        embeds: [
+            createEmbed({
+                title: `📨 Zapisano piosenkę!`,
+                description: `**Tytuł:** [${queue.currentTrack.title}](${queue.currentTrack.url})\n**Czas:** ${queue.currentTrack.duration}\n**Autor:** ${requester}`,
+                thumbnail: queue.currentTrack.thumbnail,
+                footer: {
+                    text: message.guild.name,
+                    icon: message.guild.iconURL()
+                }
+            })]
+    }).then(() => {
+        return message.channel.send({ embeds: [embeds.send_dm_succes] });
     }).catch(() => {
-        return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie mogę wysłać do ciebie wiadomości prywatnej!**`).setColor("Red")]});
+        return message.channel.send({ embeds: [embeds.send_dm_error] });
     });
-
 };
 
 exports.info = {
     name: "save",
-    aliases: ['s']
+    aliases: ["grab", "g"]
 };

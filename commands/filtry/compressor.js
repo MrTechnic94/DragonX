@@ -3,24 +3,21 @@
 const { createEmbed } = require('../../utils/embedCreator.js');
 const { embeds } = require('../../utils/embeds.js');
 
-exports.run = async (client, message, args) => {
+exports.run = async (client, message) => {
     if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
 
     const queue = client.player.nodes.get(message.guild.id);
 
     if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
 
-    const index = parseInt(args[0]);
-    const track = queue.tracks.at(index - 1);
+    const mode = queue.filters.ffmpeg.isEnabled('compressor') ? `wyłączony` : `włączony`;
+    await queue.filters.ffmpeg.toggle(['compressor', 'normalizer']);
 
-    if (!index || !track || index < 0) return message.channel.send({ embeds: [embeds.number_error] });
-
-    queue.node.skipTo(index - 1);
-    return message.channel.send({ embeds: [createEmbed({ description: `⏩ **Przeskoczono: ${track.title}!**` })] });
+    return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Compressor został ${mode}!**` })] });
 };
 
 exports.info = {
-    name: "jump",
-    aliases: ["j", "skipto"],
+    name: "compressor",
+    aliases: ["cm"],
     dj: true
 };

@@ -1,46 +1,25 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
 const { QueueRepeatMode } = require('discord-player');
+const { createEmbed } = require('../../utils/embedCreator.js');
+const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
+  if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
 
   const queue = client.player.nodes.get(message.guild.id);
 
-  if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
+  if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
 
-  if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
+  queue.setRepeatMode(queue.repeatMode === QueueRepeatMode.AUTOPLAY ? QueueRepeatMode.OFF : QueueRepeatMode.AUTOPLAY);
+  
+  const mode = queue.repeatMode === QueueRepeatMode.AUTOPLAY ? 'włączony' : 'wyłączony';
 
-  let mode;
-
-  switch (queue.repeatMode) {
-      case QueueRepeatMode.AUTOPLAY:
-        mode = 'wyłączony';
-        await queue.setRepeatMode(QueueRepeatMode.OFF);
-        break;
-      default:
-        mode = 'włączony';
-        await queue.setRepeatMode(QueueRepeatMode.AUTOPLAY);
-        break;
-  };
-
-  return message.reply({embeds: [new EmbedBuilder().setDescription(`▶️ **Autoplay został ${mode}!**`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
-
-  // switch(args[0]) {
-  //   case 'on':
-  //     if (queue.repeatMode === QueueRepeatMode.AUTOPLAY) return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Automatyczne odtwarzanie jest włączone!**").setColor("Red")]});
-  //     if (queue.repeatMode === QueueRepeatMode.OFF) await queue.setRepeatMode(QueueRepeatMode.AUTOPLAY);
-  //     return message.reply({embeds: [new EmbedBuilder().setDescription("▶️ **Automatyczne odtwarzanie zostało włączone!**").setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
-
-  //   case 'off':
-  //     if (queue.repeatMode === QueueRepeatMode.OFF) return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Automatyczne odtwarzanie jest wyłączone!**").setColor("Red")]});
-  //     if (queue.repeatMode === QueueRepeatMode.AUTOPLAY) await queue.setRepeatMode(QueueRepeatMode.OFF);
-  //     return message.reply({embeds: [new EmbedBuilder().setDescription("▶️ **Automatyczne odtwarzanie zostało wyłączone!**").setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
-  // };
-
+  return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Autoplay został ${mode}!**` })] });
 };
 
 exports.info = {
   name: "autoplay",
-  aliases: ['ap']
+  aliases: ["ap"],
+  dj: true
 };

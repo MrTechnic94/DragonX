@@ -1,17 +1,16 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message) => {
-
-    const embed = new EmbedBuilder()
-    .setTitle("🏓 Pong")
-    .setDescription(`**Ping:** ${Date.now() - message.createdTimestamp}ms\n**API Ping:** ${Math.round(client.ws.ping)}ms`)
-    .setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
-    .setColor("Gold")
-
-    return message.reply({embeds: [embed]});
-
+    return message.channel.send({
+        embeds: [
+            createEmbed({
+                title: `🏓 Pong`,
+                description: `**Ping:** ${Date.now() - message.createdTimestamp}ms\n**API Ping:** ${Math.round(client.ws.ping)}ms`
+            })
+        ]
+    });
 };
 
 exports.info = {

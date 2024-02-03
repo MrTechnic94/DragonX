@@ -1,18 +1,15 @@
 'use strict';
 
-const { Client, Collection, GatewayIntentBits, Partials } = require('discord.js');
-const { Player, useMasterPlayer } = require('discord-player');
-// const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
-const DeezerExtractor = require('discord-player-deezer').default;
+const { Client, Collection, GatewayIntentBits, Partials, ActivityType, PresenceUpdateStatus } = require('discord.js');
+const { Player } = require('discord-player');
+const { logger } = require('./utils/consoleLogs.js');
 require('dotenv').config();
 
 const client = new Client({
-	messageEditHistoryMaxSize: 0,
-	messageCacheMaxSize: 25,
-	messageSweepInterval: 43200,
-	messageCacheLifetime: 21600,
-	// shards: getInfo().SHARD_LIST,
-    // shardCount: getInfo().TOTAL_SHARDS,
+	messageEditHistoryMaxSize: process.env.MESSAGE_EDIT_HISTORY_MAXSIZE,
+	messageCacheMaxSize: process.env.MESSAGE_CACHE_MAX_SIZE,
+	messageSweepInterval: process.env.MESSAGE_SWEEP_INTERVAL,
+	messageCacheLifetime: process.env.MESSAGE_CACHE_LIFETIME,
 	intents: [
 		GatewayIntentBits.Guilds,
 		GatewayIntentBits.GuildMessages,
@@ -23,23 +20,32 @@ const client = new Client({
 		Partials.Channel,
 		Partials.Message,
 		Partials.GuildMember
-	]
+	],
+	presence: {
+		status: PresenceUpdateStatus.Online,
+		activities: [{
+			name: process.env.STATUS_NAME,
+			type: ActivityType.Listening
+		}]
+	}
 });
 
-// -----> Zaladowanie discord-player <-----
-client.player = Player.singleton(client);
+// Zaladowanie discord-player
+client.player = new Player(client);
 
-const player = useMasterPlayer();
+// Zalodowanie infrastruktury bota
+['commands', 'aliases'].forEach(x => (client[x] = new Collection()));
 
-player.extractors.register(DeezerExtractor);
+['./structures/commands.js', './structures/events.js', './structures/events-music.js'].forEach(x => require(x)(client));
 
-// -----> Zaladowanie discord-hybrid-sharding <-----
-// client.cluster = new ClusterClient(client);
+// Zaladowanie procesow do przechwytywania bledow
+process.on('unhandledRejection', err => {
+	logger.error(err);
+});
 
-// -----> Zalodowanie handlera <-----
-["commands", "aliases"].forEach(x => (client[x] = new Collection()));
+process.on('uncaughtException', err => {
+	logger.error(err);
+});
 
-["./handler/events.js", "./handler/events-music.js", "./handler/commands.js"].forEach(x => require(x)(client));
-
-// -----> Zalogowanie bota do discorda <-----
+// Zalogowanie bota do discorda
 client.login(process.env.TOKEN);

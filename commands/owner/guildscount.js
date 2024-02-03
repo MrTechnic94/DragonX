@@ -1,15 +1,13 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 exports.run = async (client, message) => {
-
-    message.reply({embeds: [new EmbedBuilder().setDescription(`📰 **Liczba Serwerów** ${client.guilds.cache.size}`).setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
-
+    return message.channel.send({ embeds: [createEmbed({ description: `📰 **Liczba serwerów:** ${client.guilds.cache.size}` })] });
 };
 
 exports.info = {
     name: "guildscount",
-    aliases: ['gc'],
+    aliases: ["gc"],
     owner: true
 };

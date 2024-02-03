@@ -1,39 +1,39 @@
 'use strict';
 
-const { EmbedBuilder } = require('discord.js');
 const { QueueRepeatMode } = require('discord-player');
+const { createEmbed } = require('../../utils/embedCreator.js');
+const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie gram żadnej piosenki!**`).setColor("Red")]});
+    if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.reply({embeds: [new EmbedBuilder().setDescription(`❌ **Nie jesteś na moim kanale głosowym!**`).setColor("Red")]});
-
-    switch(args[0]) {
+    switch (args[0]?.toLowerCase()) {
         case 'off':
-        if (queue.repeatMode === QueueRepeatMode.OFF) return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Powtarzanie jest wyłączone!**").setColor("Red")]});
-        if (queue.repeatMode === QueueRepeatMode.TRACK || queue.repeatMode === QueueRepeatMode.QUEUE) await queue.setRepeatMode(QueueRepeatMode.OFF);
-        message.reply({embeds: [new EmbedBuilder().setDescription("🔒 **Pętla została zakończona!**").setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
-        break;
-        
-    case 'track':
-        if (queue.repeatMode === QueueRepeatMode.TRACK) return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Powtarzanie piosenki jest już włączone!**").setColor("Red")]});
-        if (queue.repeatMode === QueueRepeatMode.OFF) await queue.setRepeatMode(QueueRepeatMode.TRACK);
-        message.reply({embeds: [new EmbedBuilder().setDescription("🔂 **Powtarzanie piosenki zostało włączone!**").setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
-        break;
+            if (queue.repeatMode === QueueRepeatMode.OFF) return message.channel.send({ embeds: [embeds.loop_off_error] });
+            queue.setRepeatMode(QueueRepeatMode.OFF);
+            message.channel.send({ embeds: [createEmbed({ description: `🔒 **Pętla została zakończona!**` })] });
+            break;
 
-    case 'queue':
-        if (queue.repeatMode === QueueRepeatMode.QUEUE) return message.reply({embeds: [new EmbedBuilder().setDescription("❌ **Powtarzanie kolejki jest już włączone!**").setColor("Red")]});
-        if (queue.repeatMode === QueueRepeatMode.OFF) await queue.setRepeatMode(QueueRepeatMode.QUEUE);
-        message.reply({embeds: [new EmbedBuilder().setDescription("🔁 **Powtarzanie kolejki zostało włączone!**").setFooter({text: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})}).setColor("6b3deb")]});
-        break;
+        case 'track':
+            if (queue.repeatMode === QueueRepeatMode.TRACK) return message.channel.send({ embeds: [embeds.loop_track_error] });
+            if (queue.repeatMode === QueueRepeatMode.OFF) queue.setRepeatMode(QueueRepeatMode.TRACK);
+            message.channel.send({ embeds: [createEmbed({ description: `🔂 **Powtarzanie piosenki zostało włączone!**` })] });
+            break;
+
+        case 'queue':
+            if (queue.repeatMode === QueueRepeatMode.QUEUE) return message.channel.send({ embeds: [embeds.loop_queue_error] });
+            if (queue.repeatMode === QueueRepeatMode.OFF) queue.setRepeatMode(QueueRepeatMode.QUEUE);
+            message.channel.send({ embeds: [createEmbed({ description: `🔁 **Powtarzanie playlisty zostało włączone!**` })] });
+            break;
     };
-
 };
 
 exports.info = {
     name: "loop",
-    aliases: ['l']
+    aliases: ["repeat"],
+    dj: true
 };
