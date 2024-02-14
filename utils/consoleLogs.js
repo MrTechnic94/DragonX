@@ -3,7 +3,7 @@
 const chalk = require('chalk');
 
 function getCurrentTime() {
-    return new Date().toLocaleTimeString({ hour12: false });
+    return new Date().toLocaleTimeString('en-US', { hour12: false });
 };
 
 const logger = {
