@@ -17,7 +17,7 @@ exports.run = async (_client, message, args) => {
 
     if (oldPrefix === prefix) return message.channel.send({ embeds: [embeds.already_prefix_error] });
 
-    const guildId = message.guildId;
+    const guildId = message.guild.id;
 
     try {
         await guildSettings.updateOne({ guildId }, { guildId, prefix }, { upsert: true });

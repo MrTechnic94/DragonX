@@ -7,7 +7,7 @@ exports.run = async (client, message) => {
         embeds: [
             createEmbed({
                 title: `🏓 Pong`,
-                description: `**Ping:** ${Date.now() - message.createdTimestamp}ms\n**API Ping:** ${Math.round(client.ws.ping)}ms`
+                description: `**Latecy:** ${client.ws.ping}ms\n**API Latecy:** ${Date.now() - message.createdTimestamp}ms`
             })
         ]
     });

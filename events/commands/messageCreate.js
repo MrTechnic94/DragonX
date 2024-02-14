@@ -10,8 +10,21 @@ exports.run = async (client, message) => {
   // Sprawdzenie czy komenda zostala wykonana w gildi i czy autor komenda nie jest botem
   if (message.author.bot || !message.guild) return;
 
+  // Utworzenie zmiennej, oraz przypisanie do niej wymaganych permisji bota
+  const bot_permissions = [
+    PermissionsBitField.Flags.SendMessages,
+    PermissionsBitField.Flags.ReadMessageHistory,
+    PermissionsBitField.Flags.SendMessagesInThreads,
+    PermissionsBitField.Flags.Speak,
+    PermissionsBitField.Flags.PrioritySpeaker,
+    PermissionsBitField.Flags.Connect,
+    PermissionsBitField.Flags.UseVAD,
+    PermissionsBitField.Flags.EmbedLinks,
+    PermissionsBitField.Flags.ViewChannel
+  ];
+
   // Sprawdzenie permisji bota
-  if (!message.guild.members.me.permissions.has(PermissionsBitField.Flags.SendMessages && PermissionsBitField.Flags.ReadMessageHistory && PermissionsBitField.Flags.SendMessagesInThreads && PermissionsBitField.Flags.Speak && PermissionsBitField.Flags.PrioritySpeaker && PermissionsBitField.Flags.Connect && PermissionsBitField.Flags.UseVAD && PermissionsBitField.Flags.EmbedLinks && PermissionsBitField.Flags.ViewChannel))
+  if (!message.guild.members.me.permissions.has(bot_permissions))
     return message.channel.send('❌ **Nie posiadam permisji!**').catch(() => {});
 
   const guildData = await guildSettings.findOne({ guildId: message.guild.id });
@@ -28,7 +41,7 @@ exports.run = async (client, message) => {
     return message.channel.send({
       embeds: [
         createEmbed({
-          description: `**Witaj** \`\`${message.author.tag}\`\`**!**\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``
+          description: `**Witaj** \`\`${message.author.tag}\`\`!\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``
         })]
     });
 
