@@ -25,7 +25,7 @@ exports.run = async (client, message) => {
 
   // Sprawdzenie permisji bota
   if (!message.guild.members.me.permissions.has(bot_permissions))
-    return message.channel.send('❌ **Nie posiadam permisji!**').catch(() => {});
+    return message.channel.send(`❌ **Nie posiadam permisji!**`).catch(() => {});
 
   const guildData = await guildSettings.findOne({ guildId: message.guild.id });
   const prefix = guildData?.prefix ?? process.env.PREFIX;

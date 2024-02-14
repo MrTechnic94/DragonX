@@ -14,5 +14,6 @@ exports.run = async (client, message) => {
 };
 
 exports.info = {
-    name: "ping"
+    name: "ping",
+    aliases: ["latecy"]
 };

@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const { default: DeezerExtractor } = require('discord-player-deezer');
 const { logger } = require('../../utils/consoleLogs.js');
 
-exports.run = async (client) => {
+exports.run = async (client) => {    
     // Zaladowanie ekstraktorow dla discord-player
     await client.player.extractors.loadDefault().catch(err => {
         logger.error(`Blad podczas ladowania dodatkow!\n${err}`);

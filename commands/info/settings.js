@@ -26,5 +26,5 @@ exports.run = async (client, message) => {
 
 exports.info = {
     name: "settings",
-    aliases: ["config"]
+    aliases: ["config", "cfg"]
 };

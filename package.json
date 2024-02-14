@@ -30,7 +30,7 @@
     "pm2:default": "pm2 start index.js -- --color && pm2 logs"
   },
   "engines": {
-    "node": "<=18.x"
+    "node": ">=18.x"
   },
   "os": [
     "linux",
