@@ -10,7 +10,7 @@ exports.run = async (client, message) => {
   // Sprawdzenie czy komenda zostala wykonana w gildi i czy autor komenda nie jest botem
   if (message.author.bot || !message.guild) return;
 
-  // Utworzenie zmiennej, oraz przypisanie do niej wymaganych permisji bota
+  // Utworzenie zmiennej oraz przypisanie do niej wymaganych permisji bota
   const bot_permissions = [
     PermissionsBitField.Flags.SendMessages,
     PermissionsBitField.Flags.ReadMessageHistory,
