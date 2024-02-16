@@ -13,8 +13,8 @@ exports.run = async (client, message, args) => {
 
   const seekTime = parseTime(args[0]);
   const durationSeconds = Math.round(seekTime / 1000);
-
-  if (seekTime === null || seekTime >= queue.currentTrack.durationMS || seekTime <= queue.currentTrack.durationMS || seekTime === queue.currentTrack.durationMS) return message.channel.send({ embeds: [embeds.time_seek_error] });
+  
+  if (seekTime === null || seekTime >= queue.currentTrack.durationMS || queue.currentTrack.durationMS <= seekTime || seekTime === queue.currentTrack.durationMS) return message.channel.send({ embeds: [embeds.time_seek_error] });
 
   if (durationSeconds <= 0) return message.channel.send({ embeds: [embeds.number_error] });
 

@@ -31,7 +31,14 @@ const client = new Client({
 });
 
 // Zaladowanie discord-player
-client.player = new Player(client);
+client.player = new Player(client, {
+	useLegacyFFmpeg: process.env.USE_LEGACY_FFMPEG,
+	skipFFmpeg: process.env.SKIP_FFMPEG,
+	ytdlOptions: {
+		quality: process.env.AUDIO_QUALITY,
+		highWaterMark: 1 << 25
+	}
+});
 
 // Zalodowanie infrastruktury bota
 ['commands', 'aliases'].forEach(x => (client[x] = new Collection()));

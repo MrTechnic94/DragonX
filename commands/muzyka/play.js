@@ -31,9 +31,7 @@ exports.run = async (client, message, args) => {
                 pauseOnEmpty: process.env.PAUSE_ON_EMPTY,
                 maxQueueSize: process.env.MAX_QUEUE_SIZE,
                 bufferingTimeout: process.env.BUFFERING_TIMEOUT,
-                connectionTimeout: process.env.CONNECTION_TIMEOUT,
-                skipOnNoStream: process.env.SKIP_ON_NO_STREAM,
-                skipFFmpeg: process.env.SKIP_FFMPEG
+                connectionTimeout: process.env.CONNECTION_TIMEOUT
             }
         });
     } catch (err) {
