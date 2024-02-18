@@ -2,10 +2,19 @@
 
 const { Client, Collection, GatewayIntentBits, Partials, ActivityType, PresenceUpdateStatus } = require('discord.js');
 const { Player } = require('discord-player');
-const { logger } = require('./utils/consoleLogs.js');
+const { errorCatcher } = require('./utils/errorCatcher.js');
 require('dotenv').config();
 
+// Zaladowanie errorCatcher, ktory pozwala przechwycic bledy
+errorCatcher();
+
+// Inicjalizacja klienta bota z określonymi ustawieniami
 const client = new Client({
+	allowedMentions: {
+		parse: ['users', 'roles'],
+		repliedUser: true
+	},
+	restRequestTimeout: 60000,
 	messageEditHistoryMaxSize: process.env.MESSAGE_EDIT_HISTORY_MAXSIZE,
 	messageCacheMaxSize: process.env.MESSAGE_CACHE_MAX_SIZE,
 	messageSweepInterval: process.env.MESSAGE_SWEEP_INTERVAL,
@@ -36,6 +45,7 @@ client.player = new Player(client, {
 	skipFFmpeg: process.env.SKIP_FFMPEG,
 	ytdlOptions: {
 		quality: process.env.AUDIO_QUALITY,
+		filter: process.env.AUDIO_FILTER,
 		highWaterMark: 1 << 25
 	}
 });
@@ -44,15 +54,6 @@ client.player = new Player(client, {
 ['commands', 'aliases'].forEach(x => (client[x] = new Collection()));
 
 ['./structures/commands.js', './structures/events.js', './structures/events-music.js'].forEach(x => require(x)(client));
-
-// Zaladowanie procesow do przechwytywania bledow
-process.on('unhandledRejection', err => {
-	logger.error(err);
-});
-
-process.on('uncaughtException', err => {
-	logger.error(err);
-});
 
 // Zalogowanie bota do discorda
 client.login(process.env.TOKEN);
