@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 const { default: DeezerExtractor } = require('discord-player-deezer');
-const { logger } = require('../../utils/consoleLogs.js');
+const { logger } = require('../../utils/consoleLogger.js');
 
 exports.run = async (client) => {
     // Zaladowanie ekstraktorow dla discord-player
@@ -24,6 +24,8 @@ exports.run = async (client) => {
 
     // Wyswietlenie informacji o zalogowaniu sie bota w konsoli
     logger.success(`${client.user.tag} zalogowal sie!`);
+
+    if (process.env.DEV_MODE === 'true') logger.debug('Running in Dev Mode!');
 };
 
 exports.info = {

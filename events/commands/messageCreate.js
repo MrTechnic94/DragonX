@@ -2,7 +2,7 @@
 
 const guildSettings = require('../../utils/guildSettings.js');
 const { PermissionsBitField } = require('discord.js');
-const { logger } = require('../../utils/consoleLogs.js');
+const { logger } = require('../../utils/consoleLogger.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 const { embeds } = require('../../utils/embeds.js');
 
@@ -12,20 +12,28 @@ exports.run = async (client, message) => {
 
   // Utworzenie zmiennej oraz przypisanie do niej wymaganych permisji bota
   const bot_permissions = [
-    PermissionsBitField.Flags.SendMessages,
-    PermissionsBitField.Flags.ReadMessageHistory,
-    PermissionsBitField.Flags.SendMessagesInThreads,
-    PermissionsBitField.Flags.Speak,
-    PermissionsBitField.Flags.PrioritySpeaker,
-    PermissionsBitField.Flags.Connect,
-    PermissionsBitField.Flags.UseVAD,
-    PermissionsBitField.Flags.EmbedLinks,
-    PermissionsBitField.Flags.ViewChannel
+    { name: PermissionsBitField.Flags.SendMessages, label: 'Send Messages' },
+    { name: PermissionsBitField.Flags.ReadMessageHistory, label: 'Read Message History' },
+    { name: PermissionsBitField.Flags.SendMessagesInThreads, label: 'Send Messages In Threads' },
+    { name: PermissionsBitField.Flags.Speak, label: 'Speak' },
+    { name: PermissionsBitField.Flags.PrioritySpeaker, label: 'Priority Speaker' },
+    { name: PermissionsBitField.Flags.Connect, label: 'Connect' },
+    { name: PermissionsBitField.Flags.UseVAD, label: 'Use Voice Activity' },
+    { name: PermissionsBitField.Flags.EmbedLinks, label: 'Embed Links' },
+    { name: PermissionsBitField.Flags.ViewChannel, label: 'View Channel' }
   ];
 
   // Sprawdzenie permisji bota
-  if (!message.guild.members.me.permissions.has(bot_permissions))
-    return message.channel.send(`❌ **Nie posiadam permisji!**`).catch(() => {});
+  const missingPermissions = bot_permissions.filter(permission => !message.guild.members.me.permissions.has(permission.name));
+
+  if (missingPermissions.length > 0) {
+    const missingPermissionNames = missingPermissions.map(permission => permission.label).join('\n');
+    if (!missingPermissions.some(permission => permission.name === PermissionsBitField.Flags.SendMessages) && !missingPermissions.some(permission => permission.name === PermissionsBitField.Flags.EmbedLinks)) {
+      return message.channel.send({ embeds: [createEmbed({ description: `❌ **Nie posiadam wymaganych permisji:**\n\`\`\`${missingPermissionNames}\`\`\`` })] });
+    } else {
+      return message.channel.send(`❌ **Nie posiadam wymaganych permisji:**\n\`\`\`${missingPermissionNames}\`\`\``);
+    }
+  };
 
   const guildData = await guildSettings.findOne({ guildId: message.guild.id });
   const prefix = guildData?.prefix ?? process.env.PREFIX;

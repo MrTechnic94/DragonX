@@ -18,9 +18,9 @@ exports.run = async (client, message, args) => {
     };
 
     const filters = [
-        { name: 'bassboost_low', label: 'BassBoostLow' },
+        { name: 'bassboost_low', label: 'BassBoost Low' },
         { name: 'bassboost', label: 'BassBoost' },
-        { name: 'bassboost_high', label: 'BassBoostHigh' },
+        { name: 'bassboost_high', label: 'BassBoost High' },
         { name: 'karaoke', label: 'Karaoke' },
         { name: 'nightcore', label: 'Nightcore' },
         { name: 'vaporwave', label: 'Vaporwave' },

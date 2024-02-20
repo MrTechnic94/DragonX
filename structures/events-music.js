@@ -1,7 +1,7 @@
 'use strict';
 
 const { readdirSync } = require('node:fs');
-const { logger } = require('../utils/consoleLogs.js');
+const { logger } = require('../utils/consoleLogger.js');
 
 module.exports = (client) => {
   const events = readdirSync(`./events-music/`).filter((file) => file.endsWith('.js'));

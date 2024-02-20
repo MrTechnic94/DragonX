@@ -1,6 +1,6 @@
 'use strict';
 
-const { logger } = require('../../utils/consoleLogs.js');
+const { logger } = require('../../utils/consoleLogger.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 const { embeds } = require('../../utils/embeds.js');
 

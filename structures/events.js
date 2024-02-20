@@ -2,7 +2,7 @@
 
 const path = require('node:path');
 const { readdirSync } = require('node:fs');
-const { logger } = require('../utils/consoleLogs.js');
+const { logger } = require('../utils/consoleLogger.js');
 
 module.exports = (client) => {
   readdirSync(`./events/`).forEach((directory) => {

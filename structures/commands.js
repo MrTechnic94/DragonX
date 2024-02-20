@@ -1,7 +1,7 @@
 'use strict';
 
 const { readdirSync } = require('node:fs');
-const { logger } = require('../utils/consoleLogs.js');
+const { logger } = require('../utils/consoleLogger.js');
 
 module.exports = (client) => {
   const commands = readdirSync('./commands', { withFileTypes: true })
@@ -43,9 +43,7 @@ module.exports = (client) => {
       };
 
       // Sprawdzenie czy komenda jest tylko dla wlascicieli
-      if (command.info.owner === true) {
-        command.ownerOnly = true;
-      }
+      if (command.info.owner === true) command.ownerOnly = true;
     }
   }
 };
