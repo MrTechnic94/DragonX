@@ -28,11 +28,7 @@ exports.run = async (client, message) => {
 
   if (missingPermissions.length > 0) {
     const missingPermissionNames = missingPermissions.map(permission => permission.label).join('\n');
-    if (!missingPermissions.some(permission => permission.name === PermissionsBitField.Flags.SendMessages) && !missingPermissions.some(permission => permission.name === PermissionsBitField.Flags.EmbedLinks)) {
-      return message.channel.send({ embeds: [createEmbed({ description: `❌ **Nie posiadam wymaganych permisji:**\n\`\`\`${missingPermissionNames}\`\`\`` })] });
-    } else {
-      return message.channel.send(`❌ **Nie posiadam wymaganych permisji:**\n\`\`\`${missingPermissionNames}\`\`\``);
-    }
+    return message.channel.send(`\`\`❌\`\` **Nie posiadam wymaganych permisji:\n\`\`\`${missingPermissionNames}\`\`\`**`).catch(() => { });
   };
 
   const guildData = await guildSettings.findOne({ guildId: message.guild.id });
