@@ -21,7 +21,6 @@ exports.run = async (_client, message, args) => {
 
     try {
         await guildSettings.updateOne({ guildId }, { guildId, prefix }, { upsert: true });
-
         return message.channel.send({ embeds: [createEmbed({ description: `✅ **Ustawiono nowy prefix:** \`${prefix}\`` })] });
     } catch {
         return message.channel.send({ embeds: [embeds.catch_error] });

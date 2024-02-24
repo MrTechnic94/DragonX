@@ -4,13 +4,13 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
+    if (!args[0]) return message.channel.send({ embeds: [embeds.args_category_error] });
+    if (!args[1]) return message.channel.send({ embeds: [embeds.args_command_error] });
+
+    let category = args[0].toLowerCase();
+    let command = args[1].toLowerCase();
+
     try {
-        if (!args[0]) return message.channel.send({ embeds: [embeds.args_category_error] });
-        if (!args[1]) return message.channel.send({ embeds: [embeds.args_command_error] });
-
-        let category = args[0].toLowerCase();
-        let command = args[1].toLowerCase();
-
         delete require.cache[require.resolve(`../../commands/${category}/${command}`)];
         client.commands.delete(command);
 

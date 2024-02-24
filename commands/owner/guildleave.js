@@ -5,6 +5,7 @@ const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message, args) => {
     const guild = client.guilds.cache.get(args[0]);
+    
     if (!guild) return message.channel.send({ embeds: [createEmbed({ description: `❌ **Nie znaleziono guildi z id** \`\`${guild}\`\`**!**` })] });
 
     message.channel.send({ embeds: [createEmbed({ title: `✅ Pomyślnie bot wyszedł z gildi!`, description: `**Guild name:**\n \`\`\`${guild.name}\`\`\`\n **Guild id:**\n \`\`\`${guild.id}\`\`\`` })] });
