@@ -24,7 +24,7 @@ exports.run = async (client, message) => {
                 }
             })]
     }).then(() => {
-        return message.channel.send({ embeds: [embeds.send_dm_succes] });
+        return message.channel.send({ embeds: [embeds.send_dm_success] });
     }).catch(() => {
         return message.channel.send({ embeds: [embeds.send_dm_error] });
     });

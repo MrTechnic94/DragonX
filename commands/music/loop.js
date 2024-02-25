@@ -11,25 +11,32 @@ exports.run = async (client, message, args) => {
 
     if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
 
-    switch (args[0]?.toLowerCase()) {
-        case 'off':
-            if (queue.repeatMode === QueueRepeatMode.OFF) return message.channel.send({ embeds: [embeds.loop_off_error] });
-            queue.setRepeatMode(QueueRepeatMode.OFF);
-            message.channel.send({ embeds: [createEmbed({ description: `🔒 **Pętla została zakończona!**` })] });
-            break;
-
-        case 'track':
-            if (queue.repeatMode === QueueRepeatMode.TRACK) return message.channel.send({ embeds: [embeds.loop_track_error] });
-            if (queue.repeatMode === QueueRepeatMode.OFF) queue.setRepeatMode(QueueRepeatMode.TRACK);
-            message.channel.send({ embeds: [createEmbed({ description: `🔂 **Powtarzanie piosenki zostało włączone!**` })] });
-            break;
-
-        case 'queue':
-            if (queue.repeatMode === QueueRepeatMode.QUEUE) return message.channel.send({ embeds: [embeds.loop_queue_error] });
-            if (queue.repeatMode === QueueRepeatMode.OFF) queue.setRepeatMode(QueueRepeatMode.QUEUE);
-            message.channel.send({ embeds: [createEmbed({ description: `🔁 **Powtarzanie playlisty zostało włączone!**` })] });
-            break;
+    const modes = {
+        off: QueueRepeatMode.OFF,
+        track: QueueRepeatMode.TRACK,
+        queue: QueueRepeatMode.QUEUE
     };
+
+    let requestedMode = args[0]?.toLowerCase();
+
+    if (requestedMode && modes[requestedMode] !== undefined) {
+        if (modes[requestedMode] === queue.repeatMode) {
+            return message.channel.send({ embeds: [createEmbed({ description: `❌ **Tryb ${requestedMode} jest już ustawiony!**` })] });
+        };
+
+        queue.setRepeatMode(modes[requestedMode]);
+    } else {
+        queue.setRepeatMode(queue.repeatMode === QueueRepeatMode.OFF ? QueueRepeatMode.TRACK : (queue.repeatMode === QueueRepeatMode.TRACK ? QueueRepeatMode.QUEUE : QueueRepeatMode.OFF));
+        requestedMode = 'toggle';
+    };
+
+    const mode = queue.repeatMode === QueueRepeatMode.TRACK ? 'piosenki' : 'playlisty';
+
+    const mode_off = queue.repeatMode === QueueRepeatMode.OFF ? 'Wyłączono' : 'Włączono';
+
+    const mode_emoji = queue.repeatMode === QueueRepeatMode.QUEUE ? '🔂' : '🔁';
+
+    return message.channel.send({ embeds: [createEmbed({ description: `${mode_emoji} **${mode_off} pętle dla ${mode}**` })] });
 };
 
 exports.info = {

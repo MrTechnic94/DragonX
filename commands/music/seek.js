@@ -12,13 +12,13 @@ exports.run = async (client, message, args) => {
   if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
 
   const seekTime = parseTime(args[0]);
-  
-  if (seekTime === null || seekTime >= queue.currentTrack.durationMS || queue.currentTrack.durationMS <= seekTime || seekTime === queue.currentTrack.durationMS) return message.channel.send({ embeds: [embeds.time_seek_error] });
 
   const durationSeconds = Math.round(seekTime / 1000);
 
-  if (durationSeconds <= 0) return message.channel.send({ embeds: [embeds.number_error] });
+  if (seekTime === null || durationSeconds <= 0) return message.channel.send({ embeds: [embeds.number_error] });
 
+  if (seekTime >= queue.currentTrack.durationMS) return message.channel.send({ embeds: [embeds.time_seek_error] });
+  
   queue.node.seek(durationSeconds * 1000);
   return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Ustawiono odtwarzanie na: ${args[0]}!**` })] });
 };

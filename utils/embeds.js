@@ -39,7 +39,11 @@ const embeds = {
     filters_error: generateEmbed('❌ **Żaden filtr nie jest włączony!**'),
     shuffle_error: generateEmbed('❌ **Wymagane są co najmniej 3 piosenki w playliście!**'),
     full_channel_error: generateEmbed('❌ **Kanał głosowy jest pełny!**'),
-    send_dm_succes: generateEmbed('✅ **Sprawdź wiadomości prywatne!**')
+    send_dm_success: generateEmbed('✅ **Sprawdź wiadomości prywatne!**'),
+    leave_channel_success: generateEmbed('🔮 **Wychodzę z kanału!**'),
+    loop_end_success: generateEmbed('🔒 **Pętla została zakończona!**'),
+    loop_track_success: generateEmbed('🔂 **Powtarzanie piosenki zostało włączone!**'),
+    loop_playlist_success: generateEmbed('🔁 **Powtarzanie playlisty zostało włączone!**')
 };
 
 module.exports = { embeds };

@@ -1,6 +1,5 @@
 'use strict';
 
-const { createEmbed } = require('../../utils/embedCreator.js');
 const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
@@ -12,9 +11,13 @@ exports.run = async (client, message) => {
 
     const queue = client.player.nodes.get(message.guild.id);
 
-    if (queue) queue.delete();
-    message.guild.members.me?.voice.disconnect();
-    return message.channel.send({ embeds: [createEmbed({ description: `🔮 **Wychodzę z kanału!**` })] });
+    if (queue?.isPlaying()) {
+        queue.delete();
+    } else {
+        message.guild.members.me?.voice.disconnect();
+    };
+
+    return message.channel.send({ embeds: [embeds.leave_channel_success] });
 };
 
 exports.info = {
