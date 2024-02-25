@@ -1,6 +1,5 @@
 'use strict';
 
-const { createEmbed } = require('../../utils/embedCreator.js');
 const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
@@ -13,7 +12,7 @@ exports.run = async (client, message) => {
     if (!queue.node.isPaused()) return message.channel.send({ embeds: [embeds.resumed_error] });
 
     queue.node.resume();
-    return message.channel.send({ embeds: [createEmbed({ description: `🔊 **Wznowiono odtwarzanie piosenki!**` })] });
+    return message.channel.send({ embeds: [embeds.resume_success] });
 };
 
 exports.info = {

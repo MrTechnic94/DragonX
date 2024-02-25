@@ -1,6 +1,5 @@
 'use strict';
 
-const { createEmbed } = require('../../utils/embedCreator.js');
 const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
@@ -13,7 +12,7 @@ exports.run = async (client, message) => {
     if (queue.getSize() < 3) return message.channel.send({ embeds: [embeds.shuffle_error] });
 
     queue.tracks.shuffle();
-    return message.channel.send({ embeds: [createEmbed({ description: `🔀 **Playlista została przetasowana!**` })] });
+    return message.channel.send({ embeds: [embeds.shuffle_success] });
 };
 
 exports.info = {

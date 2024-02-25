@@ -1,6 +1,5 @@
 'use strict';
 
-const { createEmbed } = require('../../utils/embedCreator.js');
 const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
@@ -11,7 +10,7 @@ exports.run = async (client, message) => {
     if (!queue?.isPlaying() || queue.repeatMode === 0 && !queue.tracks.at(0)) return message.channel.send({ embeds: [embeds.queue_error] });
 
     queue.node.skip();
-    return message.channel.send({ embeds: [createEmbed({ description: `⏩ **Pominięto aktualną piosenkę!**` })] });
+    return message.channel.send({ embeds: [embeds.force_skip_success] });
 };
 
 exports.info = {

@@ -16,7 +16,8 @@ exports.run = async (client, message) => {
         embeds: [
             createEmbed({
                 title: `⚡ Teraz odtwarzam`,
-                description: `**Tytuł:** [${queue.currentTrack.title}](${queue.currentTrack.url})\n**Poziom głośności:** ${queue.node.volume}%\n**Na prośbę:** ${requester}\n\n${emoji} | ${progresbar} ${queue.node.getTimestamp().current.label} / ${queue.currentTrack.duration}`, thumbnail: queue.currentTrack.thumbnail
+                description: `**Tytuł:** [${queue.currentTrack.title}](${queue.currentTrack.url})\n**Poziom głośności:** ${queue.node.volume}%\n**Na prośbę:** ${requester}\n\n${emoji} | ${progresbar} ${queue.node.getTimestamp().current.label} / ${queue.currentTrack.duration}`,
+                thumbnail: queue.currentTrack.thumbnail
             })]
     });
 };

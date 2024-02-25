@@ -19,9 +19,6 @@ const embeds = {
     send_dm_error: generateEmbed('❌ **Nie mogę wysłać do Ciebie wiadomości prywatnej!**'),
     resumed_error: generateEmbed('❌ **Piosenka nie jest zatrzymana!**'),
     paused_error: generateEmbed('❌ **Piosenka jest już zatrzymana!**'),
-    loop_off_error: generateEmbed('❌ **Powtarzanie jest wyłączone!**'),
-    loop_track_error: generateEmbed('❌ **Powtarzanie piosenki jest już włączone!**'),
-    loop_queue_error: generateEmbed('❌ **Powtarzanie playlisty jest już włączone!**'),
     same_prefix_error: generateEmbed('❌ **Musisz podać nowy prefix!**'),
     already_prefix_error: generateEmbed('❌ **Ten prefix jest już używany!**'),
     prefix_change_error: generateEmbed('❌ **Wystąpił błąd poczas zmiany prefixu!**'),
@@ -40,7 +37,16 @@ const embeds = {
     shuffle_error: generateEmbed('❌ **Wymagane są co najmniej 3 piosenki w playliście!**'),
     full_channel_error: generateEmbed('❌ **Kanał głosowy jest pełny!**'),
     send_dm_success: generateEmbed('✅ **Sprawdź wiadomości prywatne!**'),
-    leave_channel_success: generateEmbed('🔮 **Wychodzę z kanału!**')
+    leave_channel_success: generateEmbed('🔮 **Wychodzę z kanału!**'),
+    skip_success: generateEmbed('⏩ **Pominięto aktualną piosenkę!**'),
+    shuffle_success: generateEmbed('🔀 **Playlista została przetasowana!**'),
+    resume_success: generateEmbed('🔊 **Wznowiono odtwarzanie piosenki!**'),
+    pause_success: generateEmbed('🔇 **Zatrzymano odtwarzanie piosenki!**'),
+    force_skip_success: generateEmbed('⏩ **Pominięto aktualną piosenkę!**'),
+    clear_success: generateEmbed('💨 **Playlista została wyczyszczona!**'),
+    track_back_success: generateEmbed('◀️ **Odtwarzam poprzednią piosenkę!**'),
+    remove_dj_success: generateEmbed('✅ **Usunięto DJ rolę!**'),
+    restart_bot_success: generateEmbed('✅ **Restartowanie bota...**')
 };
 
 module.exports = { embeds };

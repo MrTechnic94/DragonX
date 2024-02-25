@@ -1,6 +1,5 @@
 'use strict';
 
-const { createEmbed } = require('../../utils/embedCreator.js');
 const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
@@ -11,7 +10,7 @@ exports.run = async (client, message) => {
     if (!queue?.isPlaying() || !queue.tracks.at(0)) return message.channel.send({ embeds: [embeds.queue_error] });
 
     queue.tracks.clear();
-    return message.channel.send({ embeds: [createEmbed({ description: `💨 **Playlista została wyczyszczona!**` })] });
+    return message.channel.send({ embeds: [embeds.clear_success] });
 };
 
 exports.info = {

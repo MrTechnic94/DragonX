@@ -1,6 +1,5 @@
 'use strict';
 
-const { createEmbed } = require('../../utils/embedCreator.js');
 const { embeds } = require('../../utils/embeds.js');
 
 exports.run = async (client, message) => {
@@ -13,7 +12,7 @@ exports.run = async (client, message) => {
     if (!queue.history.previousTrack) return message.channel.send({ embeds: [embeds.track_back_error] });
 
     await queue.history.back();
-    return message.channel.send({ embeds: [createEmbed({ description: `◀️ **Odtwarzam poprzednią piosenkę!**` })] });
+    return message.channel.send({ embeds: [embeds.track_back_success] });
 };
 
 exports.info = {

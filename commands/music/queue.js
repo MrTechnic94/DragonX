@@ -10,7 +10,7 @@ exports.run = async (client, message) => {
 
     const embed = createEmbed({
         title: '📰 Piosenki w playliście',
-        description: `**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\nBrak piosenek`,
+        description: `**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\nBrak piosenek`
     });
 
     if (queue.tracks.at(0)) {

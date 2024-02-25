@@ -26,7 +26,7 @@ exports.run = async (_client, message, args) => {
 
       await guildSettings.updateOne({ guildId: message.guild.id }, { djRoleId: null }, { upsert: true, new: true });
 
-      message.channel.send({ embeds: [createEmbed({ description: `✅ **Usunięto DJ rolę!**` })] });
+      message.channel.send({ embeds: [embeds.remove_dj_success] });
       break;
   };
 };

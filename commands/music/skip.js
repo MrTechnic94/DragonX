@@ -22,7 +22,7 @@ exports.run = async (client, message) => {
     if (currentVotes >= required) {
         queue.node.skip();
         queue.votes = [];
-        return message.channel.send({ embeds: [createEmbed({ description: `⏩ **Pominięto aktualną piosenkę!**` })] });
+        return message.channel.send({ embeds: [embeds.skip_success] });
     };
 
     return message.channel.send({ embeds: [createEmbed({ description: `**Zagłosowałeś na pominięcie piosenki (${currentVotes} / ${required})**` })] });
