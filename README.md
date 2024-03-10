@@ -3,8 +3,8 @@ Doświadcz niezrównanego muzycznego doświadczenia z wyjątkowym botem, który 
 
 ## 🔥 Cechy
 - Lekki oraz wydajny
-- Łatwy do konfiguracji
-- Posiada wiele funckji
+- Łatwy w konfiguracji
+- Posiada wiele funkcji
 - Przyjazny interfejs
 
 ## 🔧 Wymagania
