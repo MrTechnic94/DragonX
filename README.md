@@ -21,4 +21,4 @@ Doświadcz niezrównanego muzycznego doświadczenia z wyjątkowym botem, który 
 - Sprawdź wszystkie polecenia bota komendą ``d!help``, i ciesz się niezrównaną jakością jaką oferuje ten bot!
 
 ## 🛟 Napotkałeś problem?
-Wejdź na nasz serwer [discord](https://discord.gg/eCCCaWpu7h), a my Ci pomożemy!
+Wejdź na nasz serwer [Discord](https://discord.gg/eCCCaWpu7h), a my Ci pomożemy!
