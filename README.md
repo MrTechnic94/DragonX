@@ -10,10 +10,10 @@ Doświadcz niezrównanego muzycznego doświadczenia z wyjątkowym botem, który 
 ## 🔧 Wymagania
 - Node.js (v18 lub nowsza)
 - Yarn
-- FFmpeg (lub ffmpeg-static)
+- FFmpeg lub ffmpeg-static (niezalecane)
 
 ## ❓ Jak zacząć?
-- Zainstaluj (Node.js)[https://nodejs.org/en], (Yarn)[https://yarnpkg.com/] oraz (FFmpeg)[https://ffmpeg.org/] (jeśli chcesz korzystać z wbudowanej wersji w system)
+- Zainstaluj [Node.js](https://nodejs.org/), [Yarn](https://yarnpkg.com/) oraz [FFmpeg](https://ffmpeg.org/) (lub użyj ``yarn add ffmpeg-static``)
 - Sklonuj to repozytorium
 - Uruchom polecenie ``yarn install``
 - Wejdź w plik ``.env`` i skonfiguruj bazę danych, token oraz inne potrzebne opcję
