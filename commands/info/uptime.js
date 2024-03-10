@@ -5,7 +5,6 @@ const pretty = require('pretty-ms');
 const os = require('os');
 
 exports.run = async (client, message) => {
-
     const time = pretty(client.uptime);
     const sys = os.platform();
     const cpu_usage = os.loadavg()[0];
@@ -16,7 +15,8 @@ exports.run = async (client, message) => {
             createEmbed({
                 title: `⌚ Informacje bota`,
                 description: `**Uptime**\n\`\`🔮\`\` **Czas:** ${time}\n\n**Informacje o systemie**\n\`\`💻\`\` **System:** ${sys}\n\`\`💾\`\` **Cpu:** ${cpu_usage}%\n\`\`🔩\`\` **Zużycie RAM:** ${mem_usage}mb`
-            })]
+            })
+        ]
     });
 };
 

@@ -1,17 +1,17 @@
 'use strict';
 
-const { QueueRepeatMode } = require('discord-player');
-const { embeds } = require('../../utils/embeds.js');
+const { useQueue, QueueRepeatMode } = require('discord-player');
+const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
-exports.run = async (client, message) => {
-    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
+exports.run = async (_client, message) => {
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
-    const queue = client.player.nodes.get(message.guild.id);
+    const queue = useQueue(message.guild.id);
 
-    if (!queue?.isPlaying() || queue.repeatMode === QueueRepeatMode.OFF && !queue.tracks.at(0)) return message.channel.send({ embeds: [embeds.queue_error] });
+    if (!queue?.isPlaying() || queue.repeatMode === QueueRepeatMode.OFF && !queue.tracks.at(0)) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
     queue.node.skip();
-    return message.channel.send({ embeds: [embeds.force_skip_success] });
+    return message.channel.send({ embeds: [messageEmbeds.force_skip_success] });
 };
 
 exports.info = {

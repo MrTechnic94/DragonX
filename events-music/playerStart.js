@@ -1,10 +1,10 @@
 'use strict';
 
-const { createEmbed } = require('../utils/embedCreator');
+const { createEmbed } = require('../utils/embedCreator.js');
 
 exports.run = async (_client, queue, track) => {
     const requester = track.requestedBy ?? `brak`;
-
+    
     queue.npmessage = await queue.metadata.send({
         embeds: [
             createEmbed({
@@ -15,6 +15,7 @@ exports.run = async (_client, queue, track) => {
                     { name: '**Czas trwania:**', value: `\`\`${track.duration}\`\``, inline: true }
                 ],
                 thumbnail: track.thumbnail
-            })]
+            })
+        ]
     });
 };

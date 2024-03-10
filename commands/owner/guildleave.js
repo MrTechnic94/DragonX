@@ -1,17 +1,19 @@
 'use strict';
 
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { embeds } = require('../../utils/embeds.js');
+const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 exports.run = async (client, message, args) => {
+    if (!args[0]) return message.channel.send({ embeds: [messageEmbeds.args_guild_id] });
+
     const guild = client.guilds.cache.get(args[0]);
     
-    if (!guild) return message.channel.send({ embeds: [createEmbed({ description: `❌ **Nie znaleziono guildi z id** \`\`${guild}\`\`**!**` })] });
+    if (!guild) return message.channel.send({ embeds: [createEmbed({ description: `❌ **Nie znaleziono guildi z id:** \`\`${args[0]}\`\`**!**` })] });
 
-    message.channel.send({ embeds: [createEmbed({ title: `✅ Pomyślnie bot wyszedł z gildi!`, description: `**Guild name:**\n \`\`\`${guild.name}\`\`\`\n **Guild id:**\n \`\`\`${guild.id}\`\`\`` })] });
+    message.channel.send({ embeds: [createEmbed({ title: `✅ Bot pomyślnie wyszedł z gildi!`, description: `**Guild name:**\n \`\`\`${guild.name}\`\`\`\n **Guild id:**\n \`\`\`${guild.id}\`\`\`` })] });
 
     guild.leave().catch(() => {
-        return message.channel.send({ embeds: [embeds.catch_error] });
+        return message.channel.send({ embeds: [messageEmbeds.catch_error] });
     });
 };
 

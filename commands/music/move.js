@@ -1,25 +1,26 @@
 'use strict';
 
+const { useQueue } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { embeds } = require('../../utils/embeds.js');
+const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
-exports.run = async (client, message, args) => {
-    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
+exports.run = async (_client, message, args) => {
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
-    const queue = client.player.nodes.get(message.guild.id);
+    const queue = useQueue(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
+    if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
     const index = parseInt(args[0]);
     const indexTrack = parseInt(args[1]);
-    const track = queue.tracks.at(index - 1);
+    const trackToMove = queue.tracks.at(index - 1);
 
-    if (!index || !indexTrack || !track || index < 0 || indexTrack < 0 || index > queue.getSize() || indexTrack > queue.getSize()) return message.channel.send({ embeds: [embeds.number_error] });
+    if (!index || !indexTrack || !trackToMove || index < 0 || indexTrack < 0 || index > queue.getSize() || indexTrack > queue.getSize()) return message.channel.send({ embeds: [messageEmbeds.number_error] });
 
-    const remove = queue.node.remove(index - 1);
+    if (index === indexTrack) return message.channel.send({ embeds: [messageEmbeds.same_move_error] });
 
-    queue.insertTrack(remove, indexTrack - 1);
-    return message.channel.send({ embeds: [createEmbed({ description: `▶️ **Przeniesiono piosenkę na pozycję ${args[1]}!**` })] });
+    queue.node.move(trackToMove, indexTrack - 1);
+    return message.channel.send({ embeds: [createEmbed({ description: `▶️ **Przeniesiono piosenkę z pozycji ${index} na ${indexTrack}!**` })] });
 };
 
 exports.info = {

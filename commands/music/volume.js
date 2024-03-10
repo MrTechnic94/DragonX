@@ -1,14 +1,15 @@
 'use strict';
 
+const { useQueue } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { embeds } = require('../../utils/embeds.js');
+const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
-exports.run = async (client, message, args) => {
-    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
+exports.run = async (_client, message, args) => {
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
-    const queue = client.player.nodes.get(message.guild.id);
+    const queue = useQueue(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
+    if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
     const vol = parseInt(args[0]);
 
@@ -16,13 +17,13 @@ exports.run = async (client, message, args) => {
 
     if (isNaN(vol)) return message.channel.send({ embeds: [createEmbed({ description: `${current_volume_emoji} **Aktualna głośność: ${queue.node.volume}%**` })] });
 
-    if (vol < 0 || vol > 200) return message.channel.send({ embeds: [embeds.max_volume_error] });
+    if (vol < 0 || vol > 200) return message.channel.send({ embeds: [messageEmbeds.max_volume_error] });
 
-    if (queue.node.volume === vol) return message.channel.send({ embeds: [embeds.already_volume_error] });
+    if (queue.node.volume === vol) return message.channel.send({ embeds: [messageEmbeds.already_volume_error] });
 
     if (vol === 0) {
-        queue.node.setVolume(0);
         queue.node.pause();
+        queue.node.setVolume(vol);
     } else {
         queue.node.resume();
     };

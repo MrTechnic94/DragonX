@@ -1,7 +1,7 @@
 'use strict';
 
-const { embeds } = require('../utils/embeds.js');
+const { messageEmbeds } = require('../utils/messageEmbeds.js');
 
 exports.run = async (_client, queue) => {
-    return queue.metadata.send({ embeds: [embeds.catch_error] });
+    return queue.metadata.send({ embeds: [messageEmbeds.catch_error] });
 };

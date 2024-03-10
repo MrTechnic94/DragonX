@@ -10,11 +10,7 @@ errorCatcher();
 
 // Inicjalizacja klienta bota z określonymi ustawieniami
 const client = new Client({
-	allowedMentions: {
-		parse: ['users', 'roles'],
-		repliedUser: true
-	},
-	restRequestTimeout: 60000,
+	restRequestTimeout: process.env.REST_REQUEST_TIMEOUT,
 	messageEditHistoryMaxSize: process.env.MESSAGE_EDIT_HISTORY_MAXSIZE,
 	messageCacheMaxSize: process.env.MESSAGE_CACHE_MAX_SIZE,
 	messageSweepInterval: process.env.MESSAGE_SWEEP_INTERVAL,
@@ -36,11 +32,15 @@ const client = new Client({
 			name: process.env.STATUS_NAME,
 			type: ActivityType.Listening
 		}]
-	}
+	},
+	allowedMentions: {
+		parse: ['users', 'roles'],
+		repliedUser: true
+	},
 });
 
 // Zaladowanie discord-player
-client.player = new Player(client, {
+new Player(client, {
 	useLegacyFFmpeg: process.env.USE_LEGACY_FFMPEG,
 	skipFFmpeg: process.env.SKIP_FFMPEG,
 	ytdlOptions: {

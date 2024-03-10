@@ -1,19 +1,19 @@
 'use strict';
 
-const { QueueRepeatMode } = require('discord-player');
+const { useQueue, QueueRepeatMode } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { embeds } = require('../../utils/embeds.js');
+const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
-exports.run = async (client, message) => {
-    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
+exports.run = async (_client, message) => {
+    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
-    const queue = client.player.nodes.get(message.guild.id);
+    const queue = useQueue(message.guild.id);
 
-    if (!queue?.isPlaying() || queue.repeatMode === QueueRepeatMode.OFF && !queue.tracks.at(0)) return message.channel.send({ embeds: [embeds.queue_error] });
+    if (!queue?.isPlaying() || queue.repeatMode === QueueRepeatMode.OFF && !queue.tracks.at(0)) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
     queue.votes = queue.votes || [];
 
-    if (queue.votes.includes(message.author.id)) return message.channel.send({ embeds: [embeds.already_voted_error] });
+    if (queue.votes.includes(message.author.id)) return message.channel.send({ embeds: [messageEmbeds.already_voted_error] });
 
     const required = Math.ceil((message.member.voice.channel.members.size - 1) / 2);
     const currentVotes = queue.votes.length + 1;
@@ -23,7 +23,7 @@ exports.run = async (client, message) => {
     if (currentVotes >= required) {
         queue.node.skip();
         queue.votes = [];
-        return message.channel.send({ embeds: [embeds.skip_success] });
+        return message.channel.send({ embeds: [messageEmbeds.skip_success] });
     };
 
     return message.channel.send({ embeds: [createEmbed({ description: `**Zagłosowałeś na pominięcie piosenki (${currentVotes} / ${required})**` })] });

@@ -1,20 +1,20 @@
 'use strict';
 
+const guildSettings = require('../../utils/guildSettings.js');
+const { useQueue } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { embeds } = require('../../utils/embeds.js');
+const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
-exports.run = async (client, message, args) => {
-    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
+exports.run = async (_client, message, args) => {
+    const queue = useQueue(message.guild.id);
 
-    const queue = client.player.nodes.get(message.guild.id);
-
-    if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
+    if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
     switch (args[0]?.toLowerCase()) {
         case 'clear':
-            if (!queue.filters.ffmpeg.isEnabled('normalizer')) return message.channel.send({ embeds: [embeds.filters_error] });
+            if (!queue.filters.ffmpeg.isEnabled('normalizer')) return message.channel.send({ embeds: [messageEmbeds.filters_error] });
             await queue.filters.ffmpeg.setFilters(false);
-            return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Wszystkie filtry zostały wyłączone!**` })] });
+            return message.channel.send({ embeds: [messageEmbeds.disabled_filters_success]});
     };
 
     const filters = [
@@ -37,16 +37,20 @@ exports.run = async (client, message, args) => {
         embedFields.push(`${status} **${filter.label}**`);
     };
 
+    const guildData = await guildSettings.findOne({ guildId: message.guild.id });
+
+    const prefix = guildData?.prefix ?? process.env.PREFIX;
+
     return message.channel.send({
-        embeds:
-            [createEmbed({
+        embeds: [
+            createEmbed({
                 title: `📰 Lista filtrów`,
                 description: embedFields.join('\n'),
                 footer: {
-                    text: `Przykładowe użycie: ${process.env.PREFIX}bassboost`
+                    text: `Przykładowe użycie: ${prefix}bassboost`
                 }
             })
-            ]
+        ]
     });
 };
 

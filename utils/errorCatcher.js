@@ -47,7 +47,7 @@ const checkNodeVersion = () => {
 };
 
 // Obsługa nieprzechwyconych odrzucen i wyjatkow w procesie
-const setupErrorHandlers = () => {
+const otherErrors = () => {
     process.on('unhandledRejection', err => logger.error(err));
     process.on('uncaughtException', err => logger.error(err));
     process.on('warning', warning => logger.warn(warning));
@@ -58,7 +58,7 @@ const errorCatcher = () => {
     checkFFmpeg();
     checkEnvVariables();
     checkNodeVersion();
-    setupErrorHandlers();
+    otherErrors();
 };
 
 module.exports = { errorCatcher };

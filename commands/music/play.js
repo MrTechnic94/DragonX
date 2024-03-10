@@ -1,28 +1,32 @@
 'use strict';
 
-const { logger } = require('../../utils/consoleLogger.js');
+const { useMainPlayer } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { embeds } = require('../../utils/embeds.js');
+const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
-exports.run = async (client, message, args) => {
-    if (!args[0]) return message.channel.send({ embeds: [embeds.track_error] });
+exports.run = async (_client, message, args) => {
+    if (!args[0]) return message.channel.send({ embeds: [messageEmbeds.track_error] });
 
-    if (!message.member?.voice.channelId) return message.channel.send({ embeds: [embeds.member_voice_error] });
+    if (!message.member?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.member_voice_error] });
 
-    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
+    if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
-    if (message.member?.voice.channel.full && !message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.full_channel_error] });
+    if (message.member?.voice.channel.full && !message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.full_channel_error] });
 
-    const res = await client.player.search(args.join(' '), {
+    const player = useMainPlayer();
+
+    const res = await player.search(args.join(' '), {
         requestedBy: message.member
     });
 
-    if (!res.hasTracks()) return message.channel.send({ embeds: [embeds.track_error] });
+    if (!res.hasTracks()) return message.channel.send({ embeds: [messageEmbeds.track_error] });
+
+    if (res.tracks.length > process.env.MAX_QUEUE_SIZE) return message.channel.send({ embeds: [messageEmbeds.max_queue_error] });
 
     message.channel.send({ embeds: [createEmbed({ description: res.hasPlaylist() ? `✅ Dodano **${res.tracks.length}** utwory do playlisty!` : `✅ **${res.tracks[0].title}** dodano do playlisty!` })] });
 
     try {
-        await client.player.play(message.member.voice.channel, res, {
+        await player.play(message.member.voice.channel, res, {
             nodeOptions: {
                 metadata: message.channel,
                 leaveOnEndCooldown: process.env.LEAVE_ON_END_COOLDOWN,
@@ -34,9 +38,8 @@ exports.run = async (client, message, args) => {
                 connectionTimeout: process.env.CONNECTION_TIMEOUT
             }
         });
-    } catch (err) {
-        logger.error(err);
-        return message.channel.send({ embeds: [embeds.catch_error] });
+    } catch {
+        return message.channel.send({ embeds: [messageEmbeds.catch_error] });
     };
 };
 

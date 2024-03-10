@@ -1,15 +1,15 @@
 'use strict';
 
-const { QueueRepeatMode } = require('discord-player');
+const { useQueue, QueueRepeatMode } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { embeds } = require('../../utils/embeds.js');
+const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
-exports.run = async (client, message) => {
-  if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
+exports.run = async (_client, message) => {
+  if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
-  const queue = client.player.nodes.get(message.guild.id);
+  const queue = useQueue(message.guild.id);
 
-  if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
+  if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
   queue.setRepeatMode(queue.repeatMode === QueueRepeatMode.AUTOPLAY ? QueueRepeatMode.OFF : QueueRepeatMode.AUTOPLAY);
   

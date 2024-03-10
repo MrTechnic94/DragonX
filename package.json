@@ -1,6 +1,6 @@
 {
   "name": "dragonx",
-  "version": "1.0.0",
+  "version": "0.2.8",
   "main": "index.js",
   "author": "MrTechnic",
   "license": "UNLICENSED",
@@ -19,11 +19,13 @@
     "ffmpeg-static": "^5.2.0",
     "fs": "^0.0.1-security",
     "mediaplex": "^0.0.9",
-    "mongoose": "^8.2.0",
+    "mongoose": "^8.2.1",
     "os": "^0.1.2",
     "path": "^0.12.7",
-    "pm2": "^5.3.1",
     "pretty-ms": "7.0.1"
+  },
+  "optionalDependencies": {
+    "pm2": "^5.3.1"
   },
   "scripts": {
     "start": "node index.js",
@@ -39,5 +41,5 @@
     "win64",
     "darwin"
   ],
-  "packageManager": "yarn@4.1.0"
+  "packageManager": "yarn@4.1.1"
 }

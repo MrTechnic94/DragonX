@@ -1,12 +1,13 @@
 'use strict';
 
+const { useQueue } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { embeds } = require('../../utils/embeds.js');
+const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
-exports.run = async (client, message) => {
-    const queue = client.player.nodes.get(message.guild.id);
+exports.run = async (_client, message) => {
+    const queue = useQueue(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
+    if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
     const embed = createEmbed({
         title: '📰 Piosenki w playliście',

@@ -1,14 +1,14 @@
 'use strict';
 
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { embeds } = require('../../utils/embeds.js');
+const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 exports.run = async (client, message, args) => {
-    if (!args[0]) return message.channel.send({ embeds: [embeds.args_category_error] });
-    if (!args[1]) return message.channel.send({ embeds: [embeds.args_command_error] });
+    if (!args[0]) return message.channel.send({ embeds: [messageEmbeds.args_category_error] });
+    if (!args[1]) return message.channel.send({ embeds: [messageEmbeds.args_command_error] });
 
-    let category = args[0].toLowerCase();
-    let command = args[1].toLowerCase();
+    const category = args[0].toLowerCase();
+    const command = args[1].toLowerCase();
 
     try {
         delete require.cache[require.resolve(`../../commands/${category}/${command}`)];
@@ -19,7 +19,7 @@ exports.run = async (client, message, args) => {
 
         return message.channel.send({ embeds: [createEmbed({ description: `✅ **Przeładowano komendę** \`\`${command}\`\`**!**` })] });
     } catch {
-        return message.channel.send({ embeds: [embeds.catch_error] });
+        return message.channel.send({ embeds: [messageEmbeds.catch_error] });
     };
 };
 

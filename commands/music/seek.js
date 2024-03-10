@@ -1,25 +1,24 @@
 'use strict';
 
+const { useQueue } = require('discord-player');
 const { parseTime } = require('../../utils/parseTime.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { embeds } = require('../../utils/embeds.js');
+const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
-exports.run = async (client, message, args) => {
-  if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [embeds.voice_error] });
+exports.run = async (_client, message, args) => {
+  if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
-  const queue = client.player.nodes.get(message.guild.id);
+  const queue = useQueue(message.guild.id);
 
-  if (!queue?.isPlaying()) return message.channel.send({ embeds: [embeds.queue_error] });
+  if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
   const seekTime = parseTime(args[0]);
 
-  const durationSeconds = Math.round(seekTime / 1000);
+  if (!seekTime || seekTime <= 0) return message.channel.send({ embeds: [messageEmbeds.number_error] });
 
-  if (seekTime === null || durationSeconds <= 0) return message.channel.send({ embeds: [embeds.number_error] });
-
-  if (seekTime >= queue.currentTrack.durationMS) return message.channel.send({ embeds: [embeds.time_seek_error] });
+  if (seekTime >= queue.currentTrack.durationMS) return message.channel.send({ embeds: [messageEmbeds.time_seek_error] });
   
-  queue.node.seek(durationSeconds * 1000);
+  queue.node.seek(seekTime);
   return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Ustawiono odtwarzanie na: ${args[0]}!**` })] });
 };
 

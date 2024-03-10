@@ -4,7 +4,7 @@ const guildSettings = require('../../utils/guildSettings.js');
 const { PermissionsBitField } = require('discord.js');
 const { logger } = require('../../utils/consoleLogger.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { embeds } = require('../../utils/embeds.js');
+const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 exports.run = async (client, message) => {
   // Sprawdzenie czy komenda zostala wykonana w gildi i czy autor komenda nie jest botem
@@ -28,7 +28,7 @@ exports.run = async (client, message) => {
 
   if (missingPermissions.length > 0) {
     const missingPermissionNames = missingPermissions.map(permission => permission.label).join('\n');
-    return message.channel.send(`\`\`❌\`\` **Nie posiadam wymaganych permisji:\n\`\`\`${missingPermissionNames}\`\`\`**`).catch(() => { });
+    return message.channel.send(`❌ **Nie posiadam wymaganych permisji:\n\`\`\`${missingPermissionNames}\`\`\`**`).catch(() => { });
   };
 
   const guildData = await guildSettings.findOne({ guildId: message.guild.id });
@@ -53,11 +53,11 @@ exports.run = async (client, message) => {
 
   // Sprawdzenie czy uzytkownik ma wymagane permisje
   if (cmd.info.perm && !message.member.permissions.has(cmd.info.perm) || (cmd.ownerOnly && process.env.OWNER !== message.author.id))
-    return message.channel.send({ embeds: [embeds.permission_error] });
+    return message.channel.send({ embeds: [messageEmbeds.permission_error] });
 
   // Sprawdzenie czy uzytkownik ma dj role
   if (cmd.info.dj && guildData?.djRoleId && !message.member.roles.cache.has(guildData.djRoleId) && message.member.voice.channel.members.size > 1 && !message.member.permissions.has(PermissionsBitField.Flags.ManageMessages))
-    return message.channel.send({ embeds: [embeds.dj_permission_error] });
+    return message.channel.send({ embeds: [messageEmbeds.dj_permission_error] });
 
   // Przechwytuje bledy komend i wyswietla w konsoli
   cmd.run(client, message, args).catch(err => {

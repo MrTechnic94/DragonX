@@ -1,7 +1,5 @@
 'use strict';
 
-const pretty = require('pretty-ms');
-
 function parseTime(timeString) {
     const timeParts = /^((\d{1,2}):)?(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?([ms])?$/.exec(timeString);
     if (!timeParts) return null;
@@ -12,7 +10,7 @@ function parseTime(timeString) {
     seconds = parseInt(timeParts[4], 10);
     if (timeParts[6] === "m") multiplier = 60;
     else if (timeParts[6] === "s") multiplier = 1 / 60;
-    if (timeParts[5]) milliseconds = pretty(`${timeParts[5]}${timeParts[6]}`);
+    if (timeParts[5]) milliseconds = parseInt(timeParts[5], 10) * multiplier * 1000;
 
     return ((hours * 3600) + (minutes * 60) + seconds) * 1000 + milliseconds;
 };
