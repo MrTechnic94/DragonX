@@ -36,7 +36,7 @@ const client = new Client({
 	allowedMentions: {
 		parse: ['users', 'roles'],
 		repliedUser: true
-	},
+	}
 });
 
 // Zaladowanie discord-player
