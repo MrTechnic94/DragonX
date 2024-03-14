@@ -55,7 +55,7 @@ new Player(client, {
 
 ['./structures/commands.js', './structures/events.js', './structures/events-music.js'].forEach(x => require(x)(client));
 
-// Zalogowanie się bota do discord
+// Zalogowanie bota do discord
 const token = process.env.DEV_MODE === 'true' ? process.env.TOKEN_DEV : process.env.TOKEN;
 
 client.login(token);
