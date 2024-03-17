@@ -12,7 +12,7 @@ exports.run = async (client) => {
     try {
         await player.extractors.loadDefault();
         await player.extractors.register(DeezerExtractor);
-        logger.info(`Zaladowane zostaly wszystkie dodatki!`);
+        logger.info(`Zaladowano wszystkie dodatki!`);
     } catch (err) {
         logger.error(`Blad podczas ladowania dodatkow!\n${err}`);
     };
