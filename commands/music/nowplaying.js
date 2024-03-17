@@ -9,7 +9,7 @@ exports.run = async (_client, message) => {
 
     if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
-    const progresbar = queue.node.createProgressBar({ timecodes: false, length: 13 });
+    const progresbar = queue.node.createProgressBar({ timecodes: false, length: 13, leftChar: '[▬](https://top.gg/bot/1107363385676410910)' });
     const emoji = queue.node.isPaused() ? `▶️` : `⏸️`;
     const requester = queue.currentTrack.requestedBy ?? `brak`;
 

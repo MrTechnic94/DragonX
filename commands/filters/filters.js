@@ -14,7 +14,7 @@ exports.run = async (_client, message, args) => {
         case 'clear':
             if (!queue.filters.ffmpeg.isEnabled('normalizer')) return message.channel.send({ embeds: [messageEmbeds.filters_error] });
             await queue.filters.ffmpeg.setFilters(false);
-            return message.channel.send({ embeds: [messageEmbeds.disabled_filters_success]});
+            return message.channel.send({ embeds: [messageEmbeds.disabled_filters_success] });
     };
 
     const filters = [
@@ -29,13 +29,11 @@ exports.run = async (_client, message, args) => {
         { name: 'reverse', label: 'Reverse' }
     ];
 
-    const embedFields = [];
-
-    for (const filter of filters) {
+    const embedFields = filters.map(filter => {
         const isEnabled = queue.filters.ffmpeg.isEnabled(filter.name);
         const status = isEnabled ? '🟢' : '🔴';
-        embedFields.push(`${status} **${filter.label}**`);
-    };
+        return `${status} **${filter.label}**`;
+    });
 
     const guildData = await guildSettings.findOne({ guildId: message.guild.id });
 
