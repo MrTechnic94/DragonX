@@ -3,6 +3,7 @@
 const path = require('node:path');
 const { readdirSync } = require('node:fs');
 const { logger } = require('../utils/consoleLogger.js');
+const { useMainPlayer } = require('discord-player');
 
 module.exports = (client) => {
   readdirSync(`./events/`).forEach((directory) => {
@@ -13,8 +14,16 @@ module.exports = (client) => {
       const event = require(path.join(__dirname, '..', `./events/`, directory, file));
       logger.info(`Zaladowano wydarzenie ${eventName}!`);
 
-      // Sprawdzenie czy parametr once jest ustawiony
-      client[event.once ? 'once' : 'on'](eventName, (...args) => event.run(client, ...args));
+      const player = useMainPlayer();
+      const eventHandler = (...args) => event.run(client, ...args);
+
+      if (directory === 'player') {
+        player.events.on(eventName, eventHandler);
+      } else if (event.once) {
+        client.once(eventName, eventHandler);
+      } else {
+        client.on(eventName, eventHandler);
+      }
     }
   });
 };

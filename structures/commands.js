@@ -22,28 +22,28 @@ module.exports = (client) => {
       };
 
       // Sprawdzenie czy komenda nie ma takiej samej nazwy jak pozostale
-      if (client.commands.has(command.info.name)) {
-        logger.error(`Zbyt wiele polecen posiada taka sama nazwe: ${command.info.name}!`);
+      if (client.commands.has(command.name)) {
+        logger.error(`Zbyt wiele polecen posiada taka sama nazwe: ${command.name}!`);
         continue;
       };
 
       // Zaladowanie komend
-      client.commands.set(command.info.name, command);
-      logger.info(`Polecenie ${command.info.name} zostalo zaladowane!`);
+      client.commands.set(command.name, command);
+      logger.info(`Polecenie ${command.name} zostalo zaladowane!`);
 
       // Sprawdzenie czy komenda nie ma takich samych aliasow jak pozotale
-      if (command.info.aliases && Array.isArray(command.info.aliases)) {
-        command.info.aliases.forEach((alias) => {
+      if (command.aliases && Array.isArray(command.aliases)) {
+        command.aliases.forEach((alias) => {
           if (client.aliases.has(alias)) {
             logger.error(`Zbyt wiele polecen posiada takie same aliasy: ${alias}!`);
           } else {
-            client.aliases.set(alias, command.info.name);
+            client.aliases.set(alias, command.name);
           }
         });
       };
 
-      // Sprawdzenie czy komenda jest tylko dla wlascicieli
-      if (command.info.owner === true) command.ownerOnly = true;
+      // Sprawdzenie czy komenda jest tylko dla wlasciciela
+      if (command.owner === true) command.ownerOnly = true;
     }
   }
 };

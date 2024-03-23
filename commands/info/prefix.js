@@ -4,28 +4,27 @@ const guildSettings = require('../../utils/guildSettings.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
-exports.run = async (_client, message, args) => {
-    const prefix = args[0] === 'clear' ? process.env.PREFIX : args[0];
+module.exports = {
+    name: 'prefix',
+    permission: 'Administrator',
+    run: async (_client, message, args) => {
+        const prefix = args[0] === 'clear' ? process.env.PREFIX : args[0];
 
-    const guildData = await guildSettings.findOne({ guildId: message.guild.id });
-    
-    const oldPrefix = guildData?.prefix ?? process.env.PREFIX;
+        const guildData = await guildSettings.findOne({ guildId: message.guild.id });
 
-    if (!prefix) return message.channel.send({ embeds: [messageEmbeds.prefix_change_error] });
+        const oldPrefix = guildData?.prefix ?? process.env.PREFIX;
 
-    if (oldPrefix === prefix) return message.channel.send({ embeds: [messageEmbeds.already_prefix_error] });
+        if (!prefix) return message.channel.send({ embeds: [messageEmbeds.prefix_change_error] });
 
-    const guildId = message.guild.id;
+        if (oldPrefix === prefix) return message.channel.send({ embeds: [messageEmbeds.already_prefix_error] });
 
-    try {
-        await guildSettings.updateOne({ guildId }, { guildId, prefix }, { upsert: true });
-        return message.channel.send({ embeds: [createEmbed({ description: `✅ **Ustawiono nowy prefix:** \`${prefix}\`` })] });
-    } catch {
-        return message.channel.send({ embeds: [messageEmbeds.catch_error] });
-    };
-};
+        const guildId = message.guild.id;
 
-exports.info = {
-    name: "prefix",
-    perm: "Administrator"
+        try {
+            await guildSettings.updateOne({ guildId }, { guildId, prefix }, { upsert: true });
+            return message.channel.send({ embeds: [createEmbed({ description: `✅ **Ustawiono nowy prefix:** \`${prefix}\`` })] });
+        } catch {
+            return message.channel.send({ embeds: [messageEmbeds.catch_error] });
+        };
+    }
 };

@@ -45,7 +45,6 @@ new Player(client, {
 	skipFFmpeg: process.env.SKIP_FFMPEG,
 	ytdlOptions: {
 		quality: process.env.AUDIO_QUALITY,
-		filter: process.env.AUDIO_FILTER,
 		highWaterMark: 1 << 25
 	}
 });
@@ -53,7 +52,7 @@ new Player(client, {
 // Zalodowanie infrastruktury bota
 ['commands', 'aliases'].forEach(x => (client[x] = new Collection()));
 
-['./structures/commands.js', './structures/events.js', './structures/events-music.js'].forEach(x => require(x)(client));
+['./structures/commands.js', './structures/events.js'].forEach(x => require(x)(client));
 
 // Zalogowanie bota do discord
 const token = process.env.DEV_MODE === 'true' ? process.env.TOKEN_DEV : process.env.TOKEN;

@@ -4,7 +4,7 @@ const chalk = require('chalk');
 
 // Stworzenie funckji odpowiadajacej za wyswietlanie akutalnego czasu w konsoli
 function getCurrentTime() {
-    return new Date().toLocaleTimeString('pl', { hour12: false });
+    return new Date().toLocaleTimeString({ hour12: false });
 };
 
 // Utworzenie zmiennej logger wykorzystywanej do wyswietlania informacji w konsoli

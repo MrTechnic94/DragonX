@@ -2,12 +2,11 @@
 
 const { createEmbed } = require('../../utils/embedCreator.js');
 
-exports.run = async (client, message) => {
-    return message.channel.send({ embeds: [createEmbed({ description: `📰 **Liczba serwerów:** ${client.guilds.cache.size}` })] });
-};
-
-exports.info = {
-    name: "guildscount",
-    aliases: ["gc"],
-    owner: true
+module.exports = {
+    name: 'guildcount',
+    aliases: ['gc'],
+    owner: true,
+    run: async (client, message) => {
+        return message.channel.send({ embeds: [createEmbed({ description: `📰 **Liczba serwerów:** ${client.guilds.cache.size}` })] });
+    }
 };

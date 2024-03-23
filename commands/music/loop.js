@@ -4,43 +4,42 @@ const { useQueue, QueueRepeatMode } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
 const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
-exports.run = async (_client, message, args) => {
-    if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
+module.exports = {
+    name: 'loop',
+    aliases: ['repeat'],
+    dj: true,
+    run: async (_client, message, args) => {
+        if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
-    const queue = useQueue(message.guild.id);
+        const queue = useQueue(message.guild.id);
 
-    if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
+        if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
-    const modes = {
-        off: QueueRepeatMode.OFF,
-        track: QueueRepeatMode.TRACK,
-        queue: QueueRepeatMode.QUEUE
-    };
-
-    let requestedMode = args[0]?.toLowerCase();
-
-    if (requestedMode && modes[requestedMode] !== undefined) {
-        if (modes[requestedMode] === queue.repeatMode) {
-            return message.channel.send({ embeds: [createEmbed({ description: `❌ **Tryb ${requestedMode} jest już ustawiony!**` })] });
+        const modes = {
+            off: QueueRepeatMode.OFF,
+            track: QueueRepeatMode.TRACK,
+            queue: QueueRepeatMode.QUEUE
         };
 
-        queue.setRepeatMode(modes[requestedMode]);
-    } else {
-        queue.setRepeatMode(queue.repeatMode === QueueRepeatMode.OFF ? QueueRepeatMode.TRACK : (queue.repeatMode === QueueRepeatMode.TRACK ? QueueRepeatMode.QUEUE : QueueRepeatMode.OFF));
-        requestedMode = 'toggle';
-    };
+        let requestedMode = args[0]?.toLowerCase();
 
-    const mode = queue.repeatMode === QueueRepeatMode.TRACK ? 'piosenki' : 'playlisty';
+        if (requestedMode && modes[requestedMode] !== undefined) {
+            if (modes[requestedMode] === queue.repeatMode) {
+                return message.channel.send({ embeds: [createEmbed({ description: `❌ **Tryb ${requestedMode} jest już ustawiony!**` })] });
+            };
 
-    const mode_off = queue.repeatMode === QueueRepeatMode.OFF ? 'Wyłączono' : 'Włączono';
+            queue.setRepeatMode(modes[requestedMode]);
+        } else {
+            queue.setRepeatMode(queue.repeatMode === QueueRepeatMode.OFF ? QueueRepeatMode.TRACK : (queue.repeatMode === QueueRepeatMode.TRACK ? QueueRepeatMode.QUEUE : QueueRepeatMode.OFF));
+            requestedMode = 'toggle';
+        };
 
-    const mode_emoji = queue.repeatMode === QueueRepeatMode.QUEUE ? '🔂' : '🔁';
+        const mode = queue.repeatMode === QueueRepeatMode.TRACK ? 'piosenki' : 'playlisty';
 
-    return message.channel.send({ embeds: [createEmbed({ description: `${mode_emoji} **${mode_off} pętle dla ${mode}**` })] });
-};
+        const mode_off = queue.repeatMode === QueueRepeatMode.OFF ? 'Wyłączono' : 'Włączono';
 
-exports.info = {
-    name: "loop",
-    aliases: ["repeat"],
-    dj: true
+        const mode_emoji = queue.repeatMode === QueueRepeatMode.QUEUE ? '🔂' : '🔁';
+
+        return message.channel.send({ embeds: [createEmbed({ description: `${mode_emoji} **${mode_off} pętle dla ${mode}**` })] });
+    }
 };
