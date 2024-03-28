@@ -18,7 +18,7 @@
     "dotenv": "^16.4.5",
     "fs": "^0.0.1-security",
     "mediaplex": "^0.0.9",
-    "mongoose": "^8.2.3",
+    "mongoose": "^8.2.4",
     "os": "^0.1.2",
     "path": "^0.12.7"
   },
