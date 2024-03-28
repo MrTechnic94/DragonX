@@ -4,9 +4,10 @@ const mongoose = require('mongoose');
 const { useMainPlayer } = require('discord-player');
 const { default: DeezerExtractor } = require('discord-player-deezer');
 const { logger } = require('../../utils/consoleLogger.js');
+const { Events } = require('discord.js');
 
 module.exports = {
-    name: 'ready',
+    name: Events.ClientReady,
     once: true,
     run: async (client) => {
         const player = useMainPlayer();
@@ -31,6 +32,7 @@ module.exports = {
         // Wyswietlenie informacji o zalogowaniu sie bota w konsoli
         logger.success(`${client.user.tag} zalogowal sie!`);
 
+        // Sprawdzenie czy tryb developera jest wlaczony
         if (process.env.DEV_MODE === 'true') logger.debug(`Running in Dev Mode!\n${player.scanDeps()}`);
     }
 };

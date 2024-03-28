@@ -1,5 +1,6 @@
 'use strict';
 
+const config = require('../../config/default.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
@@ -9,7 +10,7 @@ module.exports = {
     run: async (client, message, args) => {
         if (!args[0]) return message.channel.send({ embeds: [messageEmbeds.args_status_error] });
 
-        const query = args[0] === 'clear' ? process.env.STATUS_NAME : args.join(' ');
+        const query = args[0] === 'clear' ? config.presence.activities[0].name : args.join(' ');
 
         client.user.setPresence({ activities: [{ name: query }] });
 

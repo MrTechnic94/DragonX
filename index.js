@@ -1,50 +1,33 @@
 'use strict';
 
-const { Client, Collection, GatewayIntentBits, Partials, ActivityType, PresenceUpdateStatus } = require('discord.js');
+const config = require('./config/default.js');
+const { Client, Collection } = require('discord.js');
 const { Player } = require('discord-player');
 const { errorCatcher } = require('./utils/errorCatcher.js');
-require('dotenv').config();
+require('dotenv').config({ path: './config/.env' });
 
 // Zaladowanie errorCatcher, ktory pozwala przechwycic bledy
 errorCatcher();
 
 // Inicjalizacja klienta bota z określonymi ustawieniami
 const client = new Client({
-	restRequestTimeout: process.env.REST_REQUEST_TIMEOUT,
-	messageEditHistoryMaxSize: process.env.MESSAGE_EDIT_HISTORY_MAXSIZE,
-	messageCacheMaxSize: process.env.MESSAGE_CACHE_MAX_SIZE,
-	messageSweepInterval: process.env.MESSAGE_SWEEP_INTERVAL,
-	messageCacheLifetime: process.env.MESSAGE_CACHE_LIFETIME,
-	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.GuildVoiceStates,
-		GatewayIntentBits.MessageContent
-	],
-	partials: [
-		Partials.Channel,
-		Partials.Message,
-		Partials.GuildMember
-	],
-	presence: {
-		status: PresenceUpdateStatus.Online,
-		activities: [{
-			name: process.env.STATUS_NAME,
-			type: ActivityType.Listening
-		}]
-	},
-	allowedMentions: {
-		parse: ['users', 'roles'],
-		repliedUser: true
-	}
+	restRequestTimeout: config.restRequestTimeout,
+	messageEditHistoryMaxSize: config.messageEditHistoryMaxSize,
+	messageCacheMaxSize: config.messageCacheMaxSize,
+	messageSweepInterval: config.messageSweepInterval,
+	messageCacheLifetime: config.messageCacheLifetime,
+	intents: config.intents,
+	partials: config.partials,
+	presence: config.presence,
+	allowedMentions: config.allowedMentions
 });
 
 // Zaladowanie discord-player
 new Player(client, {
-	useLegacyFFmpeg: process.env.USE_LEGACY_FFMPEG,
-	skipFFmpeg: process.env.SKIP_FFMPEG,
+	useLegacyFFmpeg: config.useLegacyFFmpeg,
+	skipFFmpeg: config.skipFFmpeg,
 	ytdlOptions: {
-		quality: process.env.AUDIO_QUALITY,
+		quality: config.audioQuality,
 		highWaterMark: 1 << 25
 	}
 });

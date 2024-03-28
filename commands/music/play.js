@@ -1,5 +1,6 @@
 'use strict';
 
+const config = require('../../config/default.js');
 const { useMainPlayer } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
 const { messageEmbeds } = require('../../utils/messageEmbeds.js');
@@ -25,7 +26,7 @@ module.exports = {
 
         if (!res.hasTracks()) return message.channel.send({ embeds: [messageEmbeds.track_error] });
 
-        if (res.tracks.length > process.env.MAX_QUEUE_SIZE) return message.channel.send({ embeds: [messageEmbeds.max_queue_error] });
+        if (res.tracks.length > config.maxQueueSize) return message.channel.send({ embeds: [messageEmbeds.max_queue_error] });
 
         message.channel.send({ embeds: [createEmbed({ description: res.hasPlaylist() ? `✅ Dodano **${res.tracks.length}** utwory do playlisty!` : `✅ **${res.tracks[0].title}** dodano do playlisty!` })] });
 
@@ -33,13 +34,13 @@ module.exports = {
             await player.play(message.member.voice.channel, res, {
                 nodeOptions: {
                     metadata: message.channel,
-                    leaveOnEndCooldown: process.env.LEAVE_ON_END_COOLDOWN,
-                    leaveOnEmptyCooldown: process.env.LEAVE_ON_EMPTY_COOLDOWN,
-                    leaveOnStop: process.env.LEAVE_ON_STOP,
-                    pauseOnEmpty: process.env.PAUSE_ON_EMPTY,
-                    maxQueueSize: process.env.MAX_QUEUE_SIZE,
-                    bufferingTimeout: process.env.BUFFERING_TIMEOUT,
-                    connectionTimeout: process.env.CONNECTION_TIMEOUT
+                    leaveOnEndCooldown: config.leaveOnEndCooldown,
+                    leaveOnEmptyCooldown: config.leaveOnEmptyCooldown,
+                    leaveOnStop: config.leaveOnStop,
+                    pauseOnEmpty: config.pauseOnEmpty,
+                    maxQueueSize: config.maxQueueSize,
+                    bufferingTimeout: config.bufferingTimeout,
+                    connectionTimeout: config.connectionTimeout
                 }
             });
         } catch {

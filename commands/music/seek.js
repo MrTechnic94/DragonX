@@ -1,7 +1,7 @@
 'use strict';
 
 const { useQueue } = require('discord-player');
-const { parseTime } = require('../../utils/parseTime.js');
+const { parseTime } = require('../../utils/formatTime.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 

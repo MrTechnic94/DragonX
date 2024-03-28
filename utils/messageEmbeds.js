@@ -4,6 +4,7 @@ const { createEmbed } = require('./embedCreator.js');
 
 const generateEmbed = (description) => createEmbed({ description });
 
+// Stworzenie zmiennej z gotowymi wiadomosciami do wywolania
 const messageEmbeds = {
     queue_error: generateEmbed('❌ **Nie ma piosenek w playliście!**'),
     voice_error: generateEmbed('❌ **Nie jesteś na moim kanale głosowym!**'),
@@ -39,6 +40,8 @@ const messageEmbeds = {
     full_channel_error: generateEmbed('❌ **Kanał głosowy jest pełny!**'),
     max_queue_error: generateEmbed('❌ **Playlista osiągnąła limit!**'),
     same_move_error: generateEmbed('❌ **Nie można przenieść piosenki w to samo miejsce!**'),
+    no_found_lyrics_error: generateEmbed('❌ **Nie znaleziono tekstu do tej piosenki!**'),
+    no_lyrics_args_error: generateEmbed('❌ **Podaj nazwę piosenki lub włącz jej odtwarzanie!**'),
     send_dm_success: generateEmbed('✅ **Sprawdź wiadomości prywatne!**'),
     remove_dj_success: generateEmbed('✅ **Usunięto DJ rolę!**'),
     restart_bot_success: generateEmbed('✅ **Restartowanie bota...**'),

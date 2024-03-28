@@ -1,13 +1,13 @@
 'use strict';
 
 const guildSettings = require('../../utils/guildSettings.js');
-const { PermissionsBitField } = require('discord.js');
+const { Events, PermissionsBitField } = require('discord.js');
 const { logger } = require('../../utils/consoleLogger.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 module.exports = {
-  name: 'messageCreate',
+  name: Events.MessageCreate,
   run: async (client, message) => {
     // Sprawdzenie czy komenda zostala wykonana w gildi i czy autor komenda nie jest botem
     if (message.author.bot || !message.guild) return;
