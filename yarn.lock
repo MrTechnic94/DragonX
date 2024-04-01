@@ -47,9 +47,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discord-player/extractor@npm:^4.4.6":
-  version: 4.4.6
-  resolution: "@discord-player/extractor@npm:4.4.6"
+"@discord-player/extractor@npm:^4.4.7":
+  version: 4.4.7
+  resolution: "@discord-player/extractor@npm:4.4.7"
   dependencies:
     file-type: ^16.5.4
     genius-lyrics: ^4.4.6
@@ -59,7 +59,7 @@ __metadata:
     soundcloud.ts: ^0.5.2
     spotify-url-info: ^3.2.6
     youtube-sr: ^4.3.9
-  checksum: c19638ebb57365e7c5c72968dacdd1dda83558e625a419774a0dbb5470ac1d15f59c19b60d21a77f36fb6ac70e022bc236174e09fb3114c4c2cd2d1c69016e61
+  checksum: 8e1d9bd64de9f5e4ae7ef6afbef06c93381b3fc5e47c08bec7775f24be3523bebbd0ebe2e53e056abb2eda465c373d6eb834b37e75495d93b4814650c1ff6e1b
   languageName: node
   linkType: hard
 
@@ -1153,7 +1153,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "dragonx@workspace:."
   dependencies:
-    "@discord-player/extractor": ^4.4.6
+    "@discord-player/extractor": ^4.4.7
     "@discord-player/opus": ^0.1.2
     "@distube/ytdl-core": ^4.13.3
     chalk: 4.1.2

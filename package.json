@@ -6,7 +6,7 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@discord-player/extractor": "^4.4.6",
+    "@discord-player/extractor": "^4.4.7",
     "@discord-player/opus": "^0.1.2",
     "@distube/ytdl-core": "^4.13.3",
     "chalk": "4.1.2",
