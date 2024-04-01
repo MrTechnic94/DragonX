@@ -28,7 +28,7 @@ module.exports = {
 
         if (res.tracks.length > config.maxQueueSize) return message.channel.send({ embeds: [messageEmbeds.max_queue_error] });
 
-        message.channel.send({ embeds: [createEmbed({ description: res.hasPlaylist() ? `✅ Dodano **${res.tracks.length}** utwory do playlisty!` : `✅ **${res.tracks[0].title}** dodano do playlisty!` })] });
+        message.channel.send({ embeds: [createEmbed({ description: res.hasPlaylist() ? `✅ **Dodano \`\`${res.tracks.length}\`\` utwory do playlisty!**` : `✅ **Dodano \`\`${res.tracks[0].title}\`\` do playlisty!**` })] });
 
         try {
             await player.play(message.member.voice.channel, res, {

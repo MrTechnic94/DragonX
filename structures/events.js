@@ -13,7 +13,7 @@ module.exports = (client) => {
       const eventName = file.slice(0, file.lastIndexOf('.'));
       const event = require(path.join(__dirname, '..', `./events/`, directory, file));
       logger.info(`Zaladowano wydarzenie ${eventName}!`);
-      
+
       const eventHandler = (...args) => event.run(client, ...args);
 
       if (directory === 'player') {

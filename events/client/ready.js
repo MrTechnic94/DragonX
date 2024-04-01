@@ -14,9 +14,10 @@ module.exports = {
                 logger.info(`Polaczono do bazy danych!`)
             }).catch(err => {
                 logger.error(`Blad podczas laczenia do bazy danych!\n${err}`)
+                process.exit(1);
             });
 
-        // Wyswietlenie informacji o zalogowaniu sie bota w konsoli
+        // Wyswietlenie informacji o zalogowaniu sie bota
         logger.success(`${client.user.tag} zalogowal sie!`);
 
         // Sprawdzenie czy tryb developera jest wlaczony

@@ -48,9 +48,8 @@ const checkNodeVersion = () => {
 
 // Obsługa nieprzechwyconych odrzucen i wyjatkow w procesie
 const otherErrors = () => {
-    process.on('unhandledRejection', err => logger.error(err));
+    process.on('unhandledRejection', reason => logger.error(reason));
     process.on('uncaughtException', err => logger.error(err));
-    process.on('warning', warning => logger.warn(warning));
 };
 
 // Zaladowanie utworzonych wczesniej zmiennych

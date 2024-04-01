@@ -42,6 +42,7 @@ const player = new Player(client, {
 		logger.info(`Zaladowano wszystkie dodatki!`);
 	} catch (err) {
 		logger.error(`Blad podczas ladowania dodatkow!\n${err}`);
+		process.exit(1);
 	};
 })();
 
