@@ -61,7 +61,7 @@ module.exports = {
     if (cmd.dj && guildData?.djRoleId && !message.member.roles.cache.has(guildData.djRoleId) && message.member.voice.channel.members.size > 1 && !message.member.permissions.has(PermissionsBitField.Flags.ManageMessages))
       return message.channel.send({ embeds: [messageEmbeds.dj_permission_error] });
 
-    // Przechwytuje bledy komend i wyswietla w konsoli
+    // Przechwytuje i wyswietla bledy komend
     cmd.run(client, message, args).catch(err => {
       logger.error(`Komenda ${cmd.name} napotkala blad!\n${err}`);
     });
