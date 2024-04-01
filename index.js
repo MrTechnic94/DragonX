@@ -3,7 +3,9 @@
 const config = require('./config/default.js');
 const { Client, Collection } = require('discord.js');
 const { Player } = require('discord-player');
+const { default: DeezerExtractor } = require('discord-player-deezer');
 const { errorCatcher } = require('./utils/errorCatcher.js');
+const { logger } = require('./utils/consoleLogger.js');
 require('dotenv').config({ path: './config/.env' });
 
 // Zaladowanie errorCatcher, ktory pozwala przechwycic bledy
@@ -23,7 +25,7 @@ const client = new Client({
 });
 
 // Zaladowanie discord-player
-new Player(client, {
+const player = new Player(client, {
 	useLegacyFFmpeg: config.useLegacyFFmpeg,
 	skipFFmpeg: config.skipFFmpeg,
 	ytdlOptions: {
@@ -32,8 +34,19 @@ new Player(client, {
 	}
 });
 
+// Zaladowanie dodatkow dla discord-player
+(async () => {
+	try {
+		await player.extractors.loadDefault();
+		await player.extractors.register(DeezerExtractor);
+		logger.info(`Zaladowano wszystkie dodatki!`);
+	} catch (err) {
+		logger.error(`Blad podczas ladowania dodatkow!\n${err}`);
+	};
+})();
+
 // Zalodowanie infrastruktury bota
-['commands', 'aliases'].forEach(x => (client[x] = new Collection()));
+['commands', 'aliases'].forEach(x => client[x] = new Collection());
 
 ['./structures/commands.js', './structures/events.js'].forEach(x => require(x)(client));
 

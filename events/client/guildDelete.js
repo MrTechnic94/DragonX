@@ -9,9 +9,9 @@ module.exports = {
     run: async (_client, guild) => {
         try {
             const existingGuild = await guildSettings.findOneAndDelete({ guildId: guild.id });
-            if (existingGuild) logger.info(`Usunieto wpis z bazy danych dla: ${guild.name}`);
+            if (existingGuild) return logger.info(`Usunieto wpis z bazy danych dla: ${guild.name}`);
         } catch (err) {
-            logger.error(`Blad podczas usuwania wpisu z bazy danych dla: ${guild.name}\n${err}`);
+            return logger.error(`Blad podczas usuwania wpisu dla: ${guild.name}`);
         }
     }
 };

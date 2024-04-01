@@ -17,7 +17,7 @@ module.exports = {
         if (message.guild.members.me?.voice.channelId && message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
         if (message.member?.voice.channel.full && !message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.full_channel_error] });
-
+        
         const player = useMainPlayer();
 
         const res = await player.search(args.join(' '), {
