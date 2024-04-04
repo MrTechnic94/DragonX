@@ -17,33 +17,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discord-player/equalizer@npm:^0.2.2":
-  version: 0.2.2
-  resolution: "@discord-player/equalizer@npm:0.2.2"
-  checksum: 33b9991a840d6f87cea7e5f5d9c8e4e3cb73e90152c3797f44545916899794cf4e0efa0c6c595cdfdddf0ac7619cf23a3f51b508f2439870a2fbd7d4dfe59c05
-  languageName: node
-  linkType: hard
-
 "@discord-player/equalizer@npm:^0.2.3":
   version: 0.2.3
   resolution: "@discord-player/equalizer@npm:0.2.3"
   checksum: 6f60c41b483253c647d79d18a4b94ed413281aa38af190b62fc8cd4c11feb1ea84a6662dbb08922cdb9000e32dee78ac5cb13c4f9a47711890e5a9ebb24e9f08
-  languageName: node
-  linkType: hard
-
-"@discord-player/extractor@npm:^4.4.4":
-  version: 4.4.5
-  resolution: "@discord-player/extractor@npm:4.4.5"
-  dependencies:
-    file-type: "npm:^16.5.4"
-    genius-lyrics: "npm:^4.4.6"
-    isomorphic-unfetch: "npm:^4.0.2"
-    node-html-parser: "npm:^6.1.4"
-    reverbnation-scraper: "npm:^2.0.0"
-    soundcloud.ts: "npm:^0.5.2"
-    spotify-url-info: "npm:^3.2.6"
-    youtube-sr: "npm:^4.3.9"
-  checksum: 05ae6d4b7b71d03d97db21805e162fbf8a52a50e5b978f08b47e23546b3f810c0a30b2808665c6cbe14bae9e0b291dadb66d56ccbfb50e007f2fa3f7ecbabbfd
   languageName: node
   linkType: hard
 
@@ -217,12 +194,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mongodb-js/saslprep@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@mongodb-js/saslprep@npm:1.1.0"
+"@mongodb-js/saslprep@npm:^1.1.5":
+  version: 1.1.5
+  resolution: "@mongodb-js/saslprep@npm:1.1.5"
   dependencies:
-    sparse-bitfield: "npm:^3.0.3"
-  checksum: 1479a43e216734672f8eb1a2a55165b6896841bd00fb5bd645390a24374ef6c29f0f6d19a43618a19b8f1912fcbd2b2cc2210a62361103d1f28dce6852cf31d4
+    sparse-bitfield: ^3.0.3
+  checksum: 8e38bc604707933959f34576ea3db667b14ef6ca604e42ae4a825d3dab00149fc1b78cb83a542c01016f3c9072872210e78610005565e1fd25d8df78415a159b
   languageName: node
   linkType: hard
 
@@ -676,10 +653,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bson@npm:^6.2.0":
-  version: 6.2.0
-  resolution: "bson@npm:6.2.0"
-  checksum: 950fccd2abd0ff5a1bd3637f4697631298f1538314994ab8c9e13f1c9851d0fd042b54fe8340e00151c2acee43917ea40e64b800ceeea811b00f2de3e900c77e
+"bson@npm:^6.4.0, bson@npm:^6.5.0":
+  version: 6.6.0
+  resolution: "bson@npm:6.6.0"
+  checksum: 537d29a4e2b1c086dcace1c21d31ffcd7a2e081ba27af064f8c2b63b323e104e2c44f56b1cdfd0775ba1407629786d7d4a2466137f51f59a78544688b0bed5a0
   languageName: node
   linkType: hard
 
@@ -1018,52 +995,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-player-deezer@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "discord-player-deezer@npm:1.0.0"
+"discord-player-deezer@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "discord-player-deezer@npm:1.0.1"
   dependencies:
-    "@discord-player/extractor": "npm:^4.4.4"
-    "@mithron/deezer-music-metadata": "npm:^1.0.3"
-    discord-player: "npm:*"
-    soundcloud.ts: "npm:^0.5.2"
-    tslint-config-prettier: "npm:^1.18.0"
-    youtube-sr: "npm:^4.3.4"
-    yt-stream: "npm:^1.4.4"
-  checksum: 0576fe8818244253637cb150731cd5c73404af8446f6cc085faca33f2890a7d036439f1612a7d1ffc656a2c5010600e0e7307c86164d0118e8ea277bf26cf6d4
+    "@mithron/deezer-music-metadata": ^1.0.3
+    soundcloud.ts: ^0.5.2
+    tslint-config-prettier: ^1.18.0
+    youtube-sr: ^4.3.4
+    yt-stream: ^1.4.4
+  checksum: 14414c7154632056db0aafb44f602f2f250b6f28461ad9f884ba1a586fd568060ee9949bb41ae6b9055037f931be4436ba1a0611eacda9a945290490a2209ea6
   languageName: node
   linkType: hard
 
-"discord-player@npm:*":
-  version: 6.6.3
-  resolution: "discord-player@npm:6.6.3"
-  dependencies:
-    "@discord-player/equalizer": "npm:^0.2.2"
-    "@discord-player/ffmpeg": "npm:^0.1.0"
-    "@discord-player/utils": "npm:^0.2.2"
-    discord-voip: "npm:^0.1.3"
-    ip: "npm:^1.1.8"
-    libsodium-wrappers: "npm:^0.7.10"
-  peerDependencies:
-    "@discord-player/extractor": ^4.4.2
-    discord.js: 14.x
-    youtube-sr: 4.x
-  checksum: c98d8539805bf09359a4966ce9af46581839d7dbfd659eb0e992a3834962ba4b9a4a3f582f17f34d847516903a86748ebc314f181e76304f863ad700e215da9d
-  languageName: node
-  linkType: hard
-
-"discord-player@npm:^6.6.7":
-  version: 6.6.7
-  resolution: "discord-player@npm:6.6.7"
+"discord-player@npm:^6.6.8":
+  version: 6.6.8
+  resolution: "discord-player@npm:6.6.8"
   dependencies:
     "@discord-player/equalizer": ^0.2.3
     "@discord-player/ffmpeg": ^0.1.0
     "@discord-player/utils": ^0.2.2
     discord-voip: ^0.1.3
     ip: ^1.1.8
-    libsodium-wrappers: ^0.7.10
+    libsodium-wrappers: ^0.7.13
   peerDependencies:
-    "@discord-player/extractor": ^4.4.6
-  checksum: 7e9153f24a61f316d082355dd2b7649448ce351de9673af07ce2594c0dcbe5c03f2a7f72f3c1517a57e08473d2f97e2c948a981927ebd510216da2b270021e4e
+    "@discord-player/extractor": ^4.4.7
+  checksum: f8eba9a770114d74e95c6dc944d507b2daf7e42b1f70eadf43cc0e081b00db0de72377d8c13312e1bbe89e2fb8a34d498214c552bc4ef5708e02b526fc27cb21
   languageName: node
   linkType: hard
 
@@ -1158,15 +1115,15 @@ __metadata:
     "@distube/ytdl-core": ^4.13.3
     chalk: 4.1.2
     child_process: ^1.0.2
-    discord-player: ^6.6.7
-    discord-player-deezer: ^1.0.0
+    discord-player: ^6.6.8
+    discord-player-deezer: ^1.0.1
     discord-voip: ^0.1.3
     discord.js: ^14.14.1
     dotenv: ^16.4.5
     ffmpeg-static: ^5.2.0
     fs: ^0.0.1-security
     mediaplex: ^0.0.9
-    mongoose: ^8.2.4
+    mongoose: ^8.3.0
     os: ^0.1.2
     path: ^0.12.7
     pm2: ^5.3.1
@@ -1922,10 +1879,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kareem@npm:2.5.1":
-  version: 2.5.1
-  resolution: "kareem@npm:2.5.1"
-  checksum: b019a960a7b9e44b6ef224ef85e7583d4e969619f53319e571677fbed7e57e01ee8774589726b29741e42790996567d878003c18e674296742dc343bfbf3efb9
+"kareem@npm:2.6.0":
+  version: 2.6.0
+  resolution: "kareem@npm:2.6.0"
+  checksum: 9a4886fa334da48dcc638c63a63685b26cf2ba212d43a41b7f633237b568ad4f644c6d3faf19255f1b23ef862c6a01539250cf52ec62aca190bb1e0ca5949d28
   languageName: node
   linkType: hard
 
@@ -1936,19 +1893,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"libsodium-wrappers@npm:^0.7.10":
-  version: 0.7.11
-  resolution: "libsodium-wrappers@npm:0.7.11"
+"libsodium-wrappers@npm:^0.7.13":
+  version: 0.7.13
+  resolution: "libsodium-wrappers@npm:0.7.13"
   dependencies:
-    libsodium: "npm:^0.7.11"
-  checksum: 6a6ef47b2213e3fb4687196c28fee4c9885f70d89547d845e62d96014d3d5ad9f59cb05fadc601debc0031a3cfd0b9b416d7efbeb5bf66db6aa0ed69f55a6293
+    libsodium: ^0.7.13
+  checksum: d184395f7c33023414b191ef9ea2171eb1a5cb061503e886ea877590cb7adc3a4feaf794b9b08731a20515518fa23dbf1c1bfcd376e5ab01728e95cf1cb7525a
   languageName: node
   linkType: hard
 
-"libsodium@npm:^0.7.11":
-  version: 0.7.11
-  resolution: "libsodium@npm:0.7.11"
-  checksum: 0a3493ac1829d1e346178b6984c4eb449dc77157c906876441386c0c653142e3fa56f623ce980bb50e580196578689298c9cd406ce6d514904090e370c6bc0f7
+"libsodium@npm:^0.7.13":
+  version: 0.7.13
+  resolution: "libsodium@npm:0.7.13"
+  checksum: 75a5f70e84c197d54d9b67dcbd852abbd41cca8facd510767c7c8400a52a23da293e83eebf1693831b2c0c0498f266bd9350a8c27ec66f46a055890dff758d38
   languageName: node
   linkType: hard
 
@@ -2299,13 +2256,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb@npm:6.3.0":
-  version: 6.3.0
-  resolution: "mongodb@npm:6.3.0"
+"mongodb@npm:6.5.0":
+  version: 6.5.0
+  resolution: "mongodb@npm:6.5.0"
   dependencies:
-    "@mongodb-js/saslprep": "npm:^1.1.0"
-    bson: "npm:^6.2.0"
-    mongodb-connection-string-url: "npm:^3.0.0"
+    "@mongodb-js/saslprep": ^1.1.5
+    bson: ^6.4.0
+    mongodb-connection-string-url: ^3.0.0
   peerDependencies:
     "@aws-sdk/credential-providers": ^3.188.0
     "@mongodb-js/zstd": ^1.1.0
@@ -2329,22 +2286,22 @@ __metadata:
       optional: true
     socks:
       optional: true
-  checksum: ebc5d9dbd1299321b6873e86eb4ea635316f97450644811db24ce2b01432b1c641def864facf2eab6f0c0c5c360c318108ea5555142f55177ca4c33991c6d7c4
+  checksum: 5774dfdd02d8d8e6bb70bf870f19bfad332da612fa6685d182b2e09da4f1306995ddf54f13ae0f6c3936e74444741689c04e7c009e7a847473f08f522ad16542
   languageName: node
   linkType: hard
 
-"mongoose@npm:^8.2.4":
-  version: 8.2.4
-  resolution: "mongoose@npm:8.2.4"
+"mongoose@npm:^8.3.0":
+  version: 8.3.0
+  resolution: "mongoose@npm:8.3.0"
   dependencies:
-    bson: ^6.2.0
-    kareem: 2.5.1
-    mongodb: 6.3.0
+    bson: ^6.5.0
+    kareem: 2.6.0
+    mongodb: 6.5.0
     mpath: 0.9.0
     mquery: 5.0.0
     ms: 2.1.3
     sift: 16.0.1
-  checksum: 21507e0cf34f42c591db3f603f51700d845ecbd8a0162421e873f21b36a964bf035391e088e01a2da3ec4492c0b6503c1a594a43c8832b47165308d63ca7103a
+  checksum: eb4a0ad59e59e71468012ac8b16a3e1154ea15273a01f5f062f83cd12c6b4f9b67c001f0c98287601bf8b507b49b14997a0fbf676c9afd1a6a9b29aea6f9b1c5
   languageName: node
   linkType: hard
 

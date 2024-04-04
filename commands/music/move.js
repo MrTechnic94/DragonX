@@ -1,8 +1,8 @@
 'use strict';
 
+const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { useQueue } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 module.exports = {
     name: 'move',
@@ -24,6 +24,6 @@ module.exports = {
         if (index === indexTrack) return message.channel.send({ embeds: [messageEmbeds.same_move_error] });
 
         queue.node.move(trackToMove, indexTrack - 1);
-        return message.channel.send({ embeds: [createEmbed({ description: `▶️ **Przeniesiono piosenkę z pozycji ${index} na ${indexTrack}!**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `▶️ **Przeniesiono piosenkę z pozycji \`\`${index}\`\` na \`\`${indexTrack}\`\`!**` })] });
     }
 };

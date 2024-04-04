@@ -1,8 +1,8 @@
 'use strict';
 
+const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { useQueue, QueueRepeatMode } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 module.exports = {
     name: 'loop',
@@ -25,7 +25,7 @@ module.exports = {
 
         if (requestedMode && modes[requestedMode] !== undefined) {
             if (modes[requestedMode] === queue.repeatMode) {
-                return message.channel.send({ embeds: [createEmbed({ description: `❌ **Tryb ${requestedMode} jest już ustawiony!**` })] });
+                return message.channel.send({ embeds: [createEmbed({ description: `❌ **Tryb \`\`${requestedMode}\`\` jest już ustawiony!**` })] });
             };
 
             queue.setRepeatMode(modes[requestedMode]);
@@ -40,6 +40,6 @@ module.exports = {
 
         const mode_emoji = queue.repeatMode === QueueRepeatMode.QUEUE ? '🔂' : '🔁';
 
-        return message.channel.send({ embeds: [createEmbed({ description: `${mode_emoji} **${mode_off} pętle dla ${mode}**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `${mode_emoji} **\`\`${mode_off}\`\` pętle dla \`\`${mode}\`\`**` })] });
     }
 };

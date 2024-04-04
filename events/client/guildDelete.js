@@ -1,7 +1,7 @@
 'use strict';
 
 const guildSettings = require('../../utils/guildSettings.js');
-const { logger } = require('../../utils/consoleLogger.js');
+const logger = require('../../utils/consoleLogger.js');
 const { Events } = require('discord.js');
 
 module.exports = {

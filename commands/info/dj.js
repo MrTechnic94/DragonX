@@ -1,8 +1,8 @@
 'use strict';
 
 const guildSettings = require('../../utils/guildSettings.js');
+const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 module.exports = {
   name: 'dj',

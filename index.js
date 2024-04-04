@@ -1,11 +1,11 @@
 'use strict';
 
 const config = require('./config/default.js');
+const logger = require('./utils/consoleLogger.js');
+const { errorCatcher } = require('./utils/errorCatcher.js');
 const { Client, Collection } = require('discord.js');
 const { Player } = require('discord-player');
 const { default: DeezerExtractor } = require('discord-player-deezer');
-const { errorCatcher } = require('./utils/errorCatcher.js');
-const { logger } = require('./utils/consoleLogger.js');
 require('dotenv').config({ path: './config/.env' });
 
 // Zaladowanie errorCatcher, ktory pozwala przechwycic bledy
@@ -34,24 +34,25 @@ const player = new Player(client, {
 	}
 });
 
-// Zaladowanie dodatkow dla discord-player
-(async () => {
-	try {
-		await player.extractors.loadDefault();
-		await player.extractors.register(DeezerExtractor);
-		logger.info(`Zaladowano wszystkie dodatki!`);
-	} catch (err) {
-		logger.error(`Blad podczas ladowania dodatkow!\n${err}`);
-		process.exit(1);
-	};
-})();
-
-// Zalodowanie infrastruktury bota
+// Zalodowanie handlerow dla komend i eventow bota
 ['commands', 'aliases'].forEach(x => client[x] = new Collection());
 
 ['./structures/commands.js', './structures/events.js'].forEach(x => require(x)(client));
 
-// Zalogowanie bota do discord
-const token = process.env.DEV_MODE === 'true' ? process.env.TOKEN_DEV : process.env.TOKEN;
+// Stworzenie funkcji asynchronicznej
+(async () => {
+	try {
+		// Zaladowanie dodatkow dla discord-player
+		await player.extractors.loadDefault();
+		await player.extractors.register(DeezerExtractor);
+		logger.info(`Zaladowano wszystkie dodatki!`);
 
-client.login(token);
+		// Zalogowanie bota do discord
+		const token = process.env.DEV_MODE === 'true' ? process.env.TOKEN_DEV : process.env.TOKEN;
+
+		await client.login(token);
+	} catch (err) {
+		logger.error(`Wystapil nieoczekiwany blad!\n${err}`);
+		process.exit(1);
+	};
+})();

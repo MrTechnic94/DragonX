@@ -1,8 +1,8 @@
 'use strict';
 
+const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { useQueue, QueueRepeatMode } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 module.exports = {
   name: 'autoplay',
@@ -19,6 +19,6 @@ module.exports = {
 
     const mode = queue.repeatMode === QueueRepeatMode.AUTOPLAY ? 'włączony' : 'wyłączony';
 
-    return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Autoplay został ${mode}!**` })] });
+    return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Autoplay został \`\`${mode}\`\`!**` })] });
   }
 };

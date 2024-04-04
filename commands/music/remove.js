@@ -1,8 +1,8 @@
 'use strict';
 
+const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { useQueue } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 module.exports = {
     name: 'remove',
@@ -21,6 +21,6 @@ module.exports = {
         if (!index || !track || index < 0) return message.channel.send({ embeds: [messageEmbeds.number_error] });
 
         queue.node.remove(track);
-        return message.channel.send({ embeds: [createEmbed({ description: `🎯 **Usunięto: ${track.title}!**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `🎯 **Usunięto \`\`${track.title}\`\`**` })] });
     }
 };

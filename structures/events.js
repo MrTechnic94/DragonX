@@ -1,8 +1,8 @@
 'use strict';
 
 const path = require('node:path');
+const logger = require('../utils/consoleLogger.js');
 const { readdirSync } = require('node:fs');
-const { logger } = require('../utils/consoleLogger.js');
 const { useMainPlayer } = require('discord-player');
 
 module.exports = (client) => {

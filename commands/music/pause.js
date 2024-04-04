@@ -1,7 +1,8 @@
 'use strict';
 
+const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { useQueue } = require('discord-player');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 module.exports = {
     name: 'pause',
@@ -13,9 +14,10 @@ module.exports = {
 
         if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
-        if (queue.node.isPaused()) return message.channel.send({ embeds: [messageEmbeds.paused_error] });
+        queue.node.setPaused(!queue.node.isPaused());
 
-        queue.node.pause();
-        return message.channel.send({ embeds: [messageEmbeds.pause_success] });
+        const mode = queue.node.isPaused() ? `▶️ \`\`Zatrzymano\`\`` : `⏸️ \`\`Wznowiono\`\``;
+
+        return message.channel.send({ embeds: [createEmbed({ description: `**${mode} odtwarzanie piosenki!**` })] });
     }
 };

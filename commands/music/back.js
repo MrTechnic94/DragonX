@@ -1,7 +1,7 @@
 'use strict';
 
+const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { useHistory } = require('discord-player');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 module.exports = {
     name: 'back',
@@ -16,7 +16,7 @@ module.exports = {
 
         if (history.isEmpty()) return message.channel.send({ embeds: [messageEmbeds.track_back_error] });
 
-        await history.back();
+        await history.previous();
         return message.channel.send({ embeds: [messageEmbeds.track_back_success] });
     }
 };

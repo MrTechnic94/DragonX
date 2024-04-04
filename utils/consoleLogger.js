@@ -20,4 +20,4 @@ const logger = {
     success: (content) => console.log(`${chalk.cyan(`[${chalk.gray(getCurrentTime())}]`)}${chalk.cyan(`[${chalk.green(`+`)}]`)} ${chalk.green(content)}`)
 };
 
-module.exports = { logger };
+module.exports = logger;

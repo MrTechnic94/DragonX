@@ -1,8 +1,8 @@
 'use strict';
 
+const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { useQueue } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 module.exports = {
     name: 'bassboost',
@@ -18,6 +18,6 @@ module.exports = {
         const mode = queue.filters.ffmpeg.isEnabled('bassboost') ? `wyłączony` : `włączony`;
         await queue.filters.ffmpeg.toggle(['bassboost', 'normalizer']);
 
-        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Bassboost został ${mode}!**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Bassboost został \`\`${mode}\`\`!**` })] });
     }
 };

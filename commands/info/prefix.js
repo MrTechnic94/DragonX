@@ -1,8 +1,8 @@
 'use strict';
 
 const guildSettings = require('../../utils/guildSettings.js');
+const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 module.exports = {
     name: 'prefix',
@@ -22,7 +22,7 @@ module.exports = {
 
         try {
             await guildSettings.updateOne({ guildId }, { guildId, prefix }, { upsert: true });
-            return message.channel.send({ embeds: [createEmbed({ description: `✅ **Ustawiono nowy prefix:** \`${prefix}\`` })] });
+            return message.channel.send({ embeds: [createEmbed({ description: `✅ **Ustawiono nowy prefix: \`\`${prefix}\`\`**` })] });
         } catch {
             return message.channel.send({ embeds: [messageEmbeds.catch_error] });
         };

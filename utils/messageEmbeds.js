@@ -51,9 +51,7 @@ const messageEmbeds = {
     force_skip_success: generateEmbed('⏩ **Pominięto aktualną piosenkę!**'),
     track_back_success: generateEmbed('◀️ **Odtwarzam poprzednią piosenkę!**'),
     clear_success: generateEmbed('💨 **Playlista została wyczyszczona!**'),
-    resume_success: generateEmbed('🔊 **Wznowiono odtwarzanie piosenki!**'),
-    pause_success: generateEmbed('🔇 **Zatrzymano odtwarzanie piosenki!**'),
     disabled_filters_success: generateEmbed('🎵 **Wszystkie filtry zostały wyłączone!**')
 };
 
-module.exports = { messageEmbeds };
+module.exports = messageEmbeds;

@@ -1,8 +1,8 @@
 'use strict';
 
 const config = require('../../config/default.js');
+const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 module.exports = {
     name: 'status',
@@ -14,6 +14,6 @@ module.exports = {
 
         client.user.setPresence({ activities: [{ name: query }] });
 
-        message.channel.send({ embeds: [createEmbed({ description: `✅ **Status został zmieniony na:** \`\`${query}\`\`` })] });
+        message.channel.send({ embeds: [createEmbed({ description: `✅ **Status został zmieniony na: \`\`${query}\`\`**` })] });
     }
 };

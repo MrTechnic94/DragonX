@@ -1,7 +1,7 @@
 'use strict';
 
+const logger = require('./consoleLogger.js');
 const { exec } = require('child_process');
-const { logger } = require('./consoleLogger.js');
 
 // Sprawdzenie czy ffmpeg jest zainstalowany
 const checkFFmpeg = () => {
@@ -41,7 +41,7 @@ const checkEnvVariables = () => {
 const checkNodeVersion = () => {
     const version = Number(process.version.split('.')[0].replace('v', ''));
     if (version < 18) {
-        logger.error('Outdated Node.js version! Update to a newer version.');
+        logger.error('Outdated Node.js version. Update to a newer version!');
         process.exit(1);
     }
 };

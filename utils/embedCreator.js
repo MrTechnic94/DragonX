@@ -2,14 +2,18 @@
 
 const { EmbedBuilder } = require('discord.js');
 
-function createEmbed({ title, description, fields = [], thumbnail, footer = {}, color }) {
+function createEmbed({ title, description, thumbnail, url, color, image, timestamp, fields = [], author = {}, footer = {} }) {
     const embed = new EmbedBuilder()
 
     // Ustawienia podczas tworzenia embedu
+    if (url) embed.setURL(url);
     if (title) embed.setTitle(title);
+    if (image) embed.setImage(image)
+    if (timestamp) embed.setTimestamp(timestamp);
     if (description) embed.setDescription(description);
     if (fields.length > 0) embed.addFields(fields);
     if (thumbnail) embed.setThumbnail(thumbnail);
+    if (author.name ?? author.icon ?? author.url) embed.setAuthor({ name: author.name ?? undefined, iconURL: author.icon ?? undefined, url: author.url ?? undefined });
     if (footer.text ?? footer.icon) embed.setFooter({ text: footer.text ?? undefined, iconURL: footer.icon ?? undefined });
     embed.setColor(color ?? 0xED4245);
 

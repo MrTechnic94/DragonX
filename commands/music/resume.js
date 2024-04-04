@@ -1,11 +1,11 @@
 'use strict';
 
+const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { useQueue } = require('discord-player');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
+const { createEmbed } = require('../../utils/embedCreator.js');
 
 module.exports = {
     name: 'resume',
-    aliases: ['r'],
     dj: true,
     run: async (_client, message) => {
         if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
@@ -14,9 +14,10 @@ module.exports = {
 
         if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
-        if (!queue.node.isPaused()) return message.channel.send({ embeds: [messageEmbeds.resumed_error] });
+        !queue.node.setPaused(!queue.node.isPaused());
 
-        queue.node.resume();
-        return message.channel.send({ embeds: [messageEmbeds.resume_success] });
+        const mode = queue.node.isPaused() ? `▶️ \`\`Zatrzymano\`\`` : `⏸️ \`\`Wznowiono\`\``;
+
+        return message.channel.send({ embeds: [createEmbed({ description: `**${mode} odtwarzanie piosenki!**` })] });
     }
 };

@@ -1,10 +1,10 @@
 'use strict';
 
 const guildSettings = require('../../utils/guildSettings.js');
+const logger = require('../../utils/consoleLogger.js');
+const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { Events, PermissionsBitField } = require('discord.js');
-const { logger } = require('../../utils/consoleLogger.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 module.exports = {
   name: Events.MessageCreate,
@@ -47,7 +47,7 @@ module.exports = {
       return message.channel.send({
         embeds: [
           createEmbed({
-            description: `**Witaj** \`\`${message.author.tag}\`\`**!**\n**Mój prefix to:** \`\`${prefix}\`\`\n**Jeśli chcesz poznać więcej moich komend wpisz:** \`\`${prefix}help\`\``
+            description: `**Witaj** <@${message.author.id}>\n**Mój prefix to: \`\`${prefix}\`\`**\n**Jeśli chcesz poznać więcej moich komend wpisz: \`\`${prefix}help\`\`**`
           })]
       });
 

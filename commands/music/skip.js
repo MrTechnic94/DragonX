@@ -1,8 +1,8 @@
 'use strict';
 
+const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { useQueue, QueueRepeatMode } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 module.exports = {
     name: 'skip',
@@ -30,6 +30,6 @@ module.exports = {
             return message.channel.send({ embeds: [messageEmbeds.skip_success] });
         };
 
-        return message.channel.send({ embeds: [createEmbed({ description: `**Zagłosowałeś na pominięcie piosenki (${currentVotes} / ${required})**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `<@${message.author.id}> **zagłosował na pominięcie piosenki (${currentVotes} / ${required})**` })] });
     }
 };

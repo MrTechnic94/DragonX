@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const { logger } = require('../../utils/consoleLogger.js');
+const logger = require('../../utils/consoleLogger.js');
 const { Events } = require('discord.js');
 
 module.exports = {

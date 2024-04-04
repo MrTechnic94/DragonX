@@ -1,7 +1,7 @@
 'use strict';
 
+const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 module.exports = {
     name: 'reload',
@@ -20,7 +20,7 @@ module.exports = {
             const pull = require(`../../commands/${category}/${command}`);
             client.commands.set(command, pull);
 
-            return message.channel.send({ embeds: [createEmbed({ description: `✅ **Przeładowano komendę** \`\`${command}\`\`**!**` })] });
+            return message.channel.send({ embeds: [createEmbed({ description: `✅ **Przeładowano komendę \`\`${command}\`\`!**` })] });
         } catch {
             return message.channel.send({ embeds: [messageEmbeds.catch_error] });
         };

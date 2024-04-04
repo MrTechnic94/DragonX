@@ -1,8 +1,9 @@
 'use strict';
 
-const { useQueue } = require('discord-player');
+const config = require('../../config/default.js');
+const messageEmbeds = require('../../utils/messageEmbeds.js');
+const { useQueue, useMainPlayer } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 module.exports = {
     name: 'reply',
@@ -14,11 +15,17 @@ module.exports = {
 
         if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
-        const res = await player.search(queue.currentTrack.url, {
+        const player = useMainPlayer();
+
+        const result = await player.search(queue.currentTrack.url, {
             requestedBy: message.member
         });
 
-        queue.insertTrack(res.tracks[0], 0);
-        return message.channel.send({ embeds: [createEmbed({ description: `✅ **${res.tracks[0].title}** dodano do playlisty!` })] });
+        if (!result.hasTracks()) return message.channel.send({ embeds: [messageEmbeds.track_error] });
+
+        if (result.tracks.length >= config.maxQueueSize) return message.channel.send({ embeds: [messageEmbeds.max_queue_error] });
+
+        queue.insertTrack(result.tracks[0], 0);
+        return message.channel.send({ embeds: [createEmbed({ description: `✅ **Dodano \`\`${result.tracks[0].title}\`\` do playlisty!**` })] });
     }
 };

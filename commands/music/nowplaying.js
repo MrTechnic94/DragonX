@@ -1,27 +1,28 @@
 'use strict';
 
-const { useQueue } = require('discord-player');
+const messageEmbeds = require('../../utils/messageEmbeds.js');
+const { useTimeline, usePlayer } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 module.exports = {
     name: 'nowplaying',
     aliases: ['np'],
     run: async (_client, message) => {
-        const queue = useQueue(message.guild.id);
+        const node = usePlayer(message.guild.id);
+        const timeline = useTimeline(message.guild.id);
 
-        if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
+        if (!timeline?.track) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
-        const progresbar = queue.node.createProgressBar({ timecodes: false, length: 13, leftChar: '[▬](https://top.gg/bot/1107363385676410910)' });
-        const emoji = queue.node.isPaused() ? `▶️` : `⏸️`;
-        const requester = queue.currentTrack.requestedBy ?? `brak`;
+        const progresbar = node.createProgressBar({ timecodes: false, length: 13, leftChar: '[▬](https://top.gg/bot/1107363385676410910)' });
+        const emoji = timeline.paused ? `▶️` : `⏸️`;
+        const requester = timeline.track.requestedBy ?? `brak`;
 
         return message.channel.send({
             embeds: [
                 createEmbed({
                     title: `⚡ Teraz odtwarzam`,
-                    description: `**Tytuł:** [${queue.currentTrack.title}](${queue.currentTrack.url})\n**Poziom głośności:** ${queue.node.volume}%\n**Na prośbę:** ${requester}\n\n${emoji} | ${progresbar} ${queue.node.getTimestamp().current.label} / ${queue.currentTrack.duration}`,
-                    thumbnail: queue.currentTrack.thumbnail
+                    description: `**Tytuł:** [${timeline.track.title}](${timeline.track.url})\n**Poziom głośności: \`\`${timeline.volume}%\`\`**\n**Na prośbę:** ${requester}\n\n${emoji} | ${progresbar} ${timeline.timestamp.current.label} / ${timeline.timestamp.total.label}`,
+                    thumbnail: timeline.track.thumbnail
                 })
             ]
         });

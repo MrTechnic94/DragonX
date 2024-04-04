@@ -1,8 +1,8 @@
 'use strict';
 
+const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { useQueue } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
-const { messageEmbeds } = require('../../utils/messageEmbeds.js');
 
 module.exports = {
     name: 'vaprowave',
@@ -18,6 +18,6 @@ module.exports = {
         const mode = queue.filters.ffmpeg.isEnabled('vaporwave') ? `wyłączony` : `włączony`;
         await queue.filters.ffmpeg.toggle(['vaporwave', 'normalizer']);
 
-        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Vaporwave został ${mode}!**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Vaporwave został \`\`${mode}\`\`!**` })] });
     }
 };
