@@ -1,6 +1,6 @@
 'use strict';
 
-const chalk = require('chalk');
+const { cyan, gray, yellow, red, blue, green } = require('colorette');
 
 // Stworzenie funckji odpowiadajacej za wyswietlanie akutalnego czasu w konsoli
 function getCurrentTime() {
@@ -13,11 +13,11 @@ function getCurrentTime() {
 
 // Utworzenie zmiennej logger wykorzystywanej do wyswietlania informacji w konsoli
 const logger = {
-    info: (content) => console.log(`${chalk.cyan(`[${chalk.gray(getCurrentTime())}]`)}${chalk.cyan(`[${chalk.yellow(`?`)}]`)} ${chalk.cyan(content)}`),
-    warn: (content) => console.log(`${chalk.cyan(`[${chalk.gray(getCurrentTime())}]`)}${chalk.cyan(`[${chalk.yellow(`!`)}]`)} ${chalk.yellow(content)}`),
-    error: (content) => console.log(`${chalk.cyan(`[${chalk.gray(getCurrentTime())}]`)}${chalk.cyan(`[${chalk.red(`-`)}]`)} ${chalk.red(content)}`),
-    debug: (content) => console.log(`${chalk.cyan(`[${chalk.gray(getCurrentTime())}]`)}${chalk.cyan(`[${chalk.blue(`/`)}]`)} ${chalk.blue(content)}`),
-    success: (content) => console.log(`${chalk.cyan(`[${chalk.gray(getCurrentTime())}]`)}${chalk.cyan(`[${chalk.green(`+`)}]`)} ${chalk.green(content)}`)
+    info: (content) => console.log(`${cyan(`[${gray(getCurrentTime())}]`)}${cyan(`[${yellow(`?`)}]`)} ${cyan(content)}`),
+    warn: (content) => console.log(`${cyan(`[${gray(getCurrentTime())}]`)}${cyan(`[${yellow(`!`)}]`)} ${yellow(content)}`),
+    error: (content) => console.log(`${cyan(`[${gray(getCurrentTime())}]`)}${cyan(`[${red(`-`)}]`)} ${red(content)}`),
+    debug: (content) => console.log(`${cyan(`[${gray(getCurrentTime())}]`)}${cyan(`[${blue(`/`)}]`)} ${blue(content)}`),
+    success: (content) => console.log(`${cyan(`[${gray(getCurrentTime())}]`)}${cyan(`[${green(`+`)}]`)} ${green(content)}`)
 };
 
 module.exports = logger;

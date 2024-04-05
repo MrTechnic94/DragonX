@@ -8,7 +8,7 @@ function createEmbed({ title, description, thumbnail, url, color, image, timesta
     // Ustawienia podczas tworzenia embedu
     if (url) embed.setURL(url);
     if (title) embed.setTitle(title);
-    if (image) embed.setImage(image)
+    if (image) embed.setImage(image);
     if (timestamp) embed.setTimestamp(timestamp);
     if (description) embed.setDescription(description);
     if (fields.length > 0) embed.addFields(fields);
