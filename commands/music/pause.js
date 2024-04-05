@@ -14,6 +14,8 @@ module.exports = {
 
         if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
+        if (queue.node.volume === 0) return message.channel.send({ embeds: [messageEmbeds.muted_player_error] });
+
         queue.node.setPaused(!queue.node.isPaused());
 
         const mode = queue.node.isPaused() ? `▶️ \`\`Zatrzymano\`\`` : `⏸️ \`\`Wznowiono\`\``;
