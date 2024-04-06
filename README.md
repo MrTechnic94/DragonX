@@ -13,7 +13,7 @@ Doświadcz niezrównanego muzycznego doświadczenia z wyjątkowym botem, który 
 - FFmpeg lub ffmpeg-static (niezalecane)
 
 ## ❓ Jak zacząć?
-- Zainstaluj [Node.js](https://nodejs.org/), [Pnpm](https://pnpm.io/) oraz [FFmpeg](https://ffmpeg.org/) (lub użyj ``yarn add ffmpeg-static``)
+- Zainstaluj [Node.js](https://nodejs.org/), [Pnpm](https://pnpm.io/) oraz [FFmpeg](https://ffmpeg.org/) (lub użyj ``pnpm add ffmpeg-static``)
 - Sklonuj to repozytorium
 - Uruchom polecenie ``pnpm install``
 - Wejdź w plik ``.env`` i skonfiguruj bazę danych, token oraz inne potrzebne opcję
