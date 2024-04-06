@@ -9,7 +9,7 @@ Doświadcz niezrównanego muzycznego doświadczenia z wyjątkowym botem, który 
 
 ## 🔧 Wymagania
 - Node.js (v18 lub nowsza)
-- Yarn
+- Pnpm
 - FFmpeg lub ffmpeg-static (niezalecane)
 
 ## ❓ Jak zacząć?
