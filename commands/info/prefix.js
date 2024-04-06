@@ -1,6 +1,6 @@
 'use strict';
 
-const guildSettings = require('../../utils/guildSettings.js');
+const db = require('../../utils/guildSettings.js');
 const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 
@@ -10,7 +10,7 @@ module.exports = {
     run: async (_client, message, args) => {
         const prefix = args[0] === 'clear' ? process.env.PREFIX : args[0];
 
-        const guildData = await guildSettings.findOne({ guildId: message.guild.id });
+        const guildData = await db.getGuildSettings(message.guild.id);
 
         const oldPrefix = guildData?.prefix ?? process.env.PREFIX;
 
@@ -21,7 +21,7 @@ module.exports = {
         const guildId = message.guild.id;
 
         try {
-            await guildSettings.updateOne({ guildId }, { guildId, prefix }, { upsert: true });
+            await db.setGuildSettings(guildId, prefix, guildData.djRoleId);
             return message.channel.send({ embeds: [createEmbed({ description: `✅ **Ustawiono nowy prefix: \`\`${prefix}\`\`**` })] });
         } catch {
             return message.channel.send({ embeds: [messageEmbeds.catch_error] });

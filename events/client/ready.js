@@ -1,6 +1,6 @@
 'use strict';
 
-const mongoose = require('mongoose');
+const Redis = require('ioredis');
 const logger = require('../../utils/consoleLogger.js');
 const { Events } = require('discord.js');
 
@@ -9,13 +9,20 @@ module.exports = {
     once: true,
     run: async (client) => {
         // Zalogowanie do bazy danych
-        await mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/?authSource=${process.env.DB_USER}`)
-            .then(() => {
-                logger.info(`Polaczono do bazy danych!`)
-            }).catch(err => {
-                logger.error(`Blad podczas laczenia do bazy danych!\n${err}`)
-                process.exit(1);
-            });
+        const redis = new Redis({
+            host: process.env.DB_HOST,
+            port: process.env.DB_PORT,
+            password: process.env.DB_PASSWORD
+        });
+
+        redis.once('connect', () => {
+            logger.info(`Polaczono z baza danych!`);
+        });
+
+        redis.on('error', (err) => {
+            logger.error(`Blad podczas laczenia z baza danych!\n${err}`);
+            process.exit(1);
+        });
 
         // Wyswietlenie informacji o zalogowaniu sie bota
         logger.success(`${client.user.tag} zalogowal sie!`);

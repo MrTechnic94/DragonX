@@ -1,6 +1,6 @@
 'use strict';
 
-const guildSettings = require('../../utils/guildSettings.js');
+const db = require('../../utils/guildSettings.js');
 const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 
@@ -8,7 +8,7 @@ module.exports = {
   name: 'dj',
   permission: 'Administrator',
   run: async (_client, message, args) => {
-    const guildData = await guildSettings.findOne({ guildId: message.guild.id });
+    const guildData = await db.getGuildSettings(message.guild.id);
 
     switch (args[0]?.toLowerCase()) {
       default:
@@ -20,7 +20,7 @@ module.exports = {
 
         if (guildData?.djRoleId === role.id) return message.channel.send({ embeds: [messageEmbeds.already_role_error] });
 
-        await guildSettings.updateOne({ guildId: message.guild.id }, { djRoleId: role.id }, { upsert: true, new: true });
+        await db.setGuildSettings(message.guild.id, guildData.prefix ?? process.env.PREFIX, role.id);
 
         message.channel.send({ embeds: [createEmbed({ description: `✅ **Ustawiono DJ rolę na:** ${role}` })] });
         break;
@@ -28,7 +28,7 @@ module.exports = {
       case 'remove':
         if (!message.guild.roles.cache.has(guildData?.djRoleId)) return message.channel.send({ embeds: [messageEmbeds.dj_set_error] });
 
-        await guildSettings.updateOne({ guildId: message.guild.id }, { djRoleId: null }, { upsert: true, new: true });
+        await db.setGuildSettings(message.guild.id, guildData.prefix ?? process.env.PREFIX, null);
 
         message.channel.send({ embeds: [messageEmbeds.remove_dj_success] });
         break;

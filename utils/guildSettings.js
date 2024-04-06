@@ -1,22 +1,23 @@
 'use strict';
 
-const { Schema, model } = require('mongoose');
+const Redis = require('ioredis');
 
-// Stworzenie schematu odpowiedzialnego za przechowywanie id guildi, prefixu oraz id roli dj
-const guildSettingsSchema = new Schema({
-  guildId: {
-    type: String,
-    unique: true,
-    required: true
-  },
-  prefix: {
-    type: String,
-    default: process.env.PREFIX
-  },
-  djRoleId: {
-    type: String,
-    default: null
-  }
+const redis = new Redis({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  password: process.env.DB_PASSWORD
 });
 
-module.exports = model('guildSettings', guildSettingsSchema);
+module.exports = {
+  setGuildSettings: async (guildId, prefix, djRoleId) => {
+    return await redis.hmset(guildId, 'prefix', prefix, 'djRoleId', djRoleId);
+  },
+
+  getGuildSettings: async (guildId) => {
+    return await redis.hgetall(guildId);
+  },
+
+  removeGuildSettings: async (guildId) => {
+    return await redis.del(guildId);
+  }
+};

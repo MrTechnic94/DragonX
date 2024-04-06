@@ -1,6 +1,6 @@
 'use strict';
 
-const guildSettings = require('../../utils/guildSettings.js');
+const db = require('../../utils/guildSettings.js');
 const logger = require('../../utils/consoleLogger.js');
 const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { Events, PermissionsBitField } = require('discord.js');
@@ -33,7 +33,7 @@ module.exports = {
       return message.channel.send(`❌ **Nie posiadam wymaganych permisji:\n\`\`\`${missingPermissionNames}\`\`\`**`).catch(() => { });
     };
 
-    const guildData = await guildSettings.findOne({ guildId: message.guild.id });
+    const guildData = await db.getGuildSettings(message.guild.id);
     const prefix = guildData?.prefix ?? process.env.PREFIX;
     const args = message.content
       .slice(prefix.length)
@@ -58,7 +58,7 @@ module.exports = {
       return message.channel.send({ embeds: [messageEmbeds.permission_error] });
 
     // Sprawdzenie czy uzytkownik ma dj role
-    if (cmd.dj && guildData?.djRoleId && !message.member.roles.cache.has(guildData.djRoleId) && message.member.voice.channel.members.size > 1 && !message.member.permissions.has(PermissionsBitField.Flags.ManageMessages))
+    if (cmd.dj && guildData?.djRoleId && !message.member.roles.cache.has(guildData.djRoleId) && message.member.voice.channel && message.member.voice.channel.members.size > 1 && !message.member.permissions.has(PermissionsBitField.Flags.ManageMessages))
       return message.channel.send({ embeds: [messageEmbeds.dj_permission_error] });
 
     // Przechwytuje i wyswietla bledy komend

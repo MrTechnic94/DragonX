@@ -26,8 +26,6 @@ module.exports = {
 
         if (!result.hasTracks()) return message.channel.send({ embeds: [messageEmbeds.track_error] });
 
-        if (result.tracks.length >= config.maxQueueSize) return message.channel.send({ embeds: [messageEmbeds.max_queue_error] });
-
         try {
             message.channel.send({ embeds: [createEmbed({ description: result.hasPlaylist() ? `✅ **Dodano \`\`${result.tracks.length}\`\` utwory z \`\`${result.playlist.title}\`\`!**` : `✅ **Dodano \`\`${result.tracks[0].title}\`\` do playlisty!**` })] });
 

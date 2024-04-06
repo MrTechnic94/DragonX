@@ -1,6 +1,5 @@
 'use strict';
 
-const config = require('../../config/default.js');
 const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { useQueue, useMainPlayer } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
@@ -22,8 +21,6 @@ module.exports = {
         });
 
         if (!result.hasTracks()) return message.channel.send({ embeds: [messageEmbeds.track_error] });
-
-        if (result.tracks.length >= config.maxQueueSize) return message.channel.send({ embeds: [messageEmbeds.max_queue_error] });
 
         queue.insertTrack(result.tracks[0], 0);
         return message.channel.send({ embeds: [createEmbed({ description: `✅ **Dodano \`\`${result.tracks[0].title}\`\` do playlisty!**` })] });

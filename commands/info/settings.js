@@ -1,6 +1,6 @@
 'use strict';
 
-const guildSettings = require('../../utils/guildSettings.js');
+const db = require('../../utils/guildSettings.js');
 const { useQueue, useTimeline, QueueRepeatMode } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
 
@@ -10,7 +10,7 @@ module.exports = {
     run: async (_client, message) => {
         const queue = useQueue(message.guild.id);
         const timeline = useTimeline(message.guild.id);
-        const guildData = await guildSettings.findOne({ guildId: message.guild.id });
+        const guildData = await db.getGuildSettings(message.guild.id);
         const prefix = guildData?.prefix ?? process.env.PREFIX;
         const dj = guildData?.djRoleId ? `<@&${guildData.djRoleId}>` : '**``nie ustawiono``**';
 

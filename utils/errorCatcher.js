@@ -16,7 +16,7 @@ const checkFFmpeg = () => {
 
 // Sprawdzenie obecnosci wymaganych parametrow w pliku .env
 const checkEnvVariables = () => {
-    const requiredEnvVariables = ['TOKEN', 'OWNER', 'PREFIX', 'DB_HOST', 'DB_USER', 'DB_PASSWORD'];
+    const requiredEnvVariables = ['TOKEN', 'OWNER', 'PREFIX', 'DB_HOST', 'DB_PORT', 'DB_PASSWORD'];
     const optionalEnvVariables = ['TOKEN_DEV'];
 
     requiredEnvVariables.forEach((variable) => {
