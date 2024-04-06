@@ -13,11 +13,11 @@ Doświadcz niezrównanego muzycznego doświadczenia z wyjątkowym botem, który 
 - FFmpeg lub ffmpeg-static (niezalecane)
 
 ## ❓ Jak zacząć?
-- Zainstaluj [Node.js](https://nodejs.org/), [Yarn](https://yarnpkg.com/) oraz [FFmpeg](https://ffmpeg.org/) (lub użyj ``yarn add ffmpeg-static``)
+- Zainstaluj [Node.js](https://nodejs.org/), [Pnpm](https://pnpm.io/) oraz [FFmpeg](https://ffmpeg.org/) (lub użyj ``yarn add ffmpeg-static``)
 - Sklonuj to repozytorium
-- Uruchom polecenie ``yarn install``
+- Uruchom polecenie ``pnpm install``
 - Wejdź w plik ``.env`` i skonfiguruj bazę danych, token oraz inne potrzebne opcję
-- Uruchom bota używając polecenia ``yarn run start`` lub ``yarn run pm2``, jeśli chcesz użyć ``pm2``
+- Uruchom bota używając polecenia ``pnpm start`` lub ``pnpm pm2``, jeśli chcesz użyć ``pm2``
 - Sprawdź wszystkie polecenia bota komendą ``d!help``, i ciesz się niezrównaną jakością jaką oferuje ten bot!
 
 ## 🛟 Napotkałeś problem?
