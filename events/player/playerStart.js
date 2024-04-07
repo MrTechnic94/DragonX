@@ -7,7 +7,7 @@ module.exports = {
     run: async (_client, queue, track) => {
         const requester = track.requestedBy ?? `brak`;
 
-        queue.npmessage = queue.metadata.send({
+        queue.npmessage = await queue.metadata.send({
             embeds: [
                 createEmbed({
                     title: `▶️ Aktualnie odtwarzam`,

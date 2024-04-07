@@ -19,6 +19,8 @@ module.exports = (client) => {
       if (directory === 'player') {
         const player = useMainPlayer();
         player.events.on(eventName, eventHandler);
+      } else if (directory === 'process') {
+        process.on(eventName, eventHandler);
       } else if (event.once) {
         client.once(eventName, eventHandler);
       } else {
