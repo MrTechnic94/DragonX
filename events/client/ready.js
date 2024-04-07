@@ -8,7 +8,7 @@ module.exports = {
     name: Events.ClientReady,
     once: true,
     run: async (client) => {
-        // Zalogowanie do bazy danych
+        // Polaczenie z baza danych
         const redis = new Redis({
             host: process.env.DB_HOST,
             port: process.env.DB_PORT,
