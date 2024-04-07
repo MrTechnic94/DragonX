@@ -9,15 +9,15 @@ const redis = new Redis({
 });
 
 module.exports = {
-  setGuildSettings: async (guildId, prefix, djRoleId) => {
+  async setGuildSettings(guildId, prefix, djRoleId) {
     return await redis.hmset(guildId, 'prefix', prefix, 'djRoleId', djRoleId);
   },
 
-  getGuildSettings: async (guildId) => {
+  async getGuildSettings(guildId) {
     return await redis.hgetall(guildId);
   },
 
-  removeGuildSettings: async (guildId) => {
+  async removeGuildSettings(guildId) {
     return await redis.del(guildId);
   }
 };
