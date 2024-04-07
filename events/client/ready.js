@@ -15,6 +15,7 @@ module.exports = {
             password: process.env.DB_PASSWORD
         });
 
+        // Obsluga zdarzen zwiazanych z polaczeniem i bledami bazy danych
         redis.once('connect', () => {
             logger.info(`Polaczono z baza danych!`);
         });
