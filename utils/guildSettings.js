@@ -2,7 +2,7 @@
 
 const Redis = require('ioredis');
 
-// Polaczenie sie z baza redis
+// Polaczenie sie z baza danych redis
 const redis = new Redis({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
