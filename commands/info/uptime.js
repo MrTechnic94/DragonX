@@ -8,7 +8,7 @@ module.exports = {
     name: 'uptime',
     run: async (client, message) => {
         const time = formatTime(client.uptime);
-        const sys = process.platform;
+        const sys = os.platform();
         const cpuUsage = os.loadavg()[0];
         const memUsage = (process.memoryUsage().rss / 1024 / 1024).toFixed(0);
 

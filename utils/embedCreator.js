@@ -2,6 +2,7 @@
 
 const { EmbedBuilder } = require('discord.js');
 
+// Utworzenie funkcji odpowiadajacej za generowanie embedu
 function createEmbed({ url, title, image, timestamp, description, fields = {}, thumbnail, author = {}, footer = {}, color }) {
     const embed = new EmbedBuilder()
 
