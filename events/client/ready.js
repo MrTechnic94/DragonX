@@ -17,7 +17,7 @@ module.exports = {
 
         // Obsluga zdarzen zwiazanych z polaczeniem i bledami bazy danych
         redis.once('connect', () => {
-            logger.info(`Polaczono z baza danych!`);
+            return logger.info(`Polaczono z baza danych!`);
         });
 
         redis.on('error', (err) => {
@@ -29,6 +29,6 @@ module.exports = {
         logger.success(`${client.user.tag} zalogowal sie!`);
 
         // Sprawdzenie czy tryb developera jest wlaczony
-        if (process.env.DEV_MODE === 'true') logger.debug(`Running in Dev Mode!`);
+        if (process.env.DEV_MODE === 'true') return logger.debug(`Running in Dev Mode!`);
     }
 };

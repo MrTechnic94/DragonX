@@ -7,9 +7,8 @@ const { exec } = require('child_process');
 const checkFFmpeg = () => {
     exec('ffmpeg -version', (err) => {
         if (err) {
-            logger.error('FFmpeg is not installed or available on your system.');
-            logger.error('Install FFmpeg (https://ffmpeg.org/download.html) and try again.');
-            logger.error('If you are using Windows, make sure to add FFmpeg to your PATH.');
+            logger.error('No FFmpeg installed!');
+            logger.error('Install FFmpeg or use ffmpeg-static!');
         }
     });
 };

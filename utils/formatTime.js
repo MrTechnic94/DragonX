@@ -29,7 +29,7 @@ function formatTime(milliseconds) {
     if (minutes) parts.push(`${minutes}m`);
     if (seconds) parts.push(`${seconds}s`);
 
-    return parts.join(' ');
+    return parts.length ? parts.join(' ') : '0s';
 };
 
 module.exports = { parseTime, formatTime };
