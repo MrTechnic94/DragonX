@@ -66,11 +66,9 @@ module.exports = {
             await interaction.update({ embeds: [embed], components: [row] });
         });
 
-        function updateEmbed() {
-            embed.setDescription(`**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${tracks.slice(page * 20, (page + 1) * 20).join('\n')}`);
-            embed.setFooter({ text: `Strona ${page + 1}/${totalPages} • ${queue.tracks.size} piosenki` });
-            updateButtons();
-        };
+        collector.on('end', () => {
+            msg.edit({ components: [] });
+        });
 
         function updateButtons() {
             row.components = [];
@@ -78,8 +76,10 @@ module.exports = {
             if (page < totalPages - 1) row.addComponents(forwardButton);
         };
 
-        collector.on('end', () => {
-            msg.edit({ components: [] });
-        });
+        function updateEmbed() {
+            embed.setDescription(`**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${tracks.slice(page * 20, (page + 1) * 20).join('\n')}`);
+            embed.setFooter({ text: `Strona ${page + 1}/${totalPages} • ${queue.tracks.size} piosenki` });
+            updateButtons();
+        };
     }
 };
