@@ -20,7 +20,7 @@ module.exports = {
         return message.member.send({
             embeds: [
                 createEmbed({
-                    title: `📨 Zapisano piosenkę!`,
+                    title: `📨 Zapisano piosenkę`,
                     description: `**Tytuł:** [${queue.currentTrack.title}](${queue.currentTrack.url})\n**Czas:** ${queue.currentTrack.duration}\n**Autor:** ${requester}`,
                     thumbnail: queue.currentTrack.thumbnail,
                     footer: {

@@ -2,7 +2,7 @@
 
 const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { useTimeline } = require('discord-player');
-const { parseTime } = require('../../utils/formatTime.js');
+const { parseTime } = require('../../utils/timeFormatter.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 
 module.exports = {

@@ -1,7 +1,7 @@
 'use strict';
 
 const os = require('node:os');
-const { formatTime } = require('../../utils/formatTime.js');
+const { formatTime } = require('../../utils/timeFormatter.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 
 module.exports = {
