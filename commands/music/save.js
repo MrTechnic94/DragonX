@@ -1,7 +1,7 @@
 'use strict';
 
 const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { useQueue } = require('discord-player');
+const { useTimeline } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
 
 module.exports = {
@@ -11,18 +11,18 @@ module.exports = {
     run: async (_client, message) => {
         if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
-        const queue = useQueue(message.guild.id);
+        const timeline = useTimeline(message.guild.id);
 
-        if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
+        if (!timeline?.track) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
-        const requester = queue.currentTrack.author === `cdn.discordapp.com` ? `nieznany` : queue.currentTrack.author;
+        const requester = timeline.track.author === `cdn.discordapp.com` ? `nieznany` : timeline.track.author;
 
         return message.member.send({
             embeds: [
                 createEmbed({
                     title: `📨 Zapisano piosenkę`,
-                    description: `**Tytuł:** [${queue.currentTrack.title}](${queue.currentTrack.url})\n**Czas:** ${queue.currentTrack.duration}\n**Autor:** ${requester}`,
-                    thumbnail: queue.currentTrack.thumbnail,
+                    description: `**Tytuł:** [${timeline.track.title}](${timeline.track.url})\n**Czas: \`${timeline.track.duration}\`**\n**Autor: \`${requester}\`**`,
+                    thumbnail: timeline.track.thumbnail,
                     footer: {
                         text: message.guild.name,
                         icon: message.guild.iconURL()

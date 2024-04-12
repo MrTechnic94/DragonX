@@ -1,6 +1,6 @@
 'use strict';
 
-const { PresenceUpdateStatus, ActivityType, GatewayIntentBits, Partials } = require("discord.js");
+const { PresenceUpdateStatus, ActivityType, GatewayIntentBits, Partials } = require('discord.js');
 
 module.exports = {
     // Konfiguracja klienta discord.js

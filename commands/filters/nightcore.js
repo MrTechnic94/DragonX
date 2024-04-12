@@ -18,6 +18,6 @@ module.exports = {
         const mode = queue.filters.ffmpeg.isEnabled('nightcore') ? `wyłączony` : `włączony`;
         await queue.filters.ffmpeg.toggle(['nightcore', 'normalizer']);
 
-        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Nightcore został \`\`${mode}\`\`!**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Nightcore został \`${mode}\`!**` })] });
     }
 };

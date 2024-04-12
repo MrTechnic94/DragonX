@@ -18,6 +18,6 @@ module.exports = {
         const mode = queue.filters.ffmpeg.isEnabled('reverse') ? `wyłączony` : `włączony`;
         await queue.filters.ffmpeg.toggle(['reverse', 'normalizer']);
 
-        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Reverse został \`\`${mode}\`\`!**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Reverse został \`${mode}\`!**` })] });
     }
 };

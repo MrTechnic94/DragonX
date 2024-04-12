@@ -24,6 +24,6 @@ module.exports = {
         if (index === indexTrack) return message.channel.send({ embeds: [messageEmbeds.same_move_error] });
 
         queue.node.move(trackToMove, indexTrack - 1);
-        return message.channel.send({ embeds: [createEmbed({ description: `▶️ **Przeniesiono piosenkę z pozycji \`\`${index}\`\` na \`\`${indexTrack}\`\`!**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `▶️ **Przeniesiono piosenkę z pozycji \`${index}\` na \`${indexTrack}\`!**` })] });
     }
 };

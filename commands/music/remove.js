@@ -21,6 +21,6 @@ module.exports = {
         if (!index || !track || index < 0) return message.channel.send({ embeds: [messageEmbeds.number_error] });
 
         queue.node.remove(track);
-        return message.channel.send({ embeds: [createEmbed({ description: `🎯 **Usunięto \`\`${track.title}\`\`**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `🎯 **Usunięto \`${track.title}\`**` })] });
     }
 };

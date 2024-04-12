@@ -20,7 +20,7 @@ module.exports = {
             const pull = require(`../../commands/${category}/${command}`);
             client.commands.set(command, pull);
 
-            return message.channel.send({ embeds: [createEmbed({ description: `✅ **Przeładowano komendę \`\`${command}\`\`!**` })] });
+            return message.channel.send({ embeds: [createEmbed({ description: `✅ **Przeładowano komendę \`${command}\`!**` })] });
         } catch {
             return message.channel.send({ embeds: [messageEmbeds.catch_error] });
         };

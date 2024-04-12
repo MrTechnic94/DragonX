@@ -12,7 +12,7 @@ module.exports = {
 
         const guild = client.guilds.cache.get(args[0]);
 
-        if (!guild) return message.channel.send({ embeds: [createEmbed({ description: `❌ **Nie znaleziono guildi z id \`\`${args[0]}\`\`!**` })] });
+        if (!guild) return message.channel.send({ embeds: [createEmbed({ description: `❌ **Nie znaleziono guildi z id \`${args[0]}\`!**` })] });
 
         message.channel.send({ embeds: [createEmbed({ title: `✅ Bot pomyślnie wyszedł z gildi!`, description: `**Guild name:**\n \`\`\`${guild.name}\`\`\`\n **Guild id:**\n \`\`\`${guild.id}\`\`\`` })] });
 

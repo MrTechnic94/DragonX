@@ -18,6 +18,6 @@ module.exports = {
         const mode = queue.filters.ffmpeg.isEnabled('vaporwave') ? `wyłączony` : `włączony`;
         await queue.filters.ffmpeg.toggle(['vaporwave', 'normalizer']);
 
-        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Vaporwave został \`\`${mode}\`\`!**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Vaporwave został \`${mode}\`!**` })] });
     }
 };

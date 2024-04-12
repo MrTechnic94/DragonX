@@ -22,7 +22,7 @@ module.exports = {
 
         try {
             await db.setGuildSettings(guildId, prefix, guildData.djRoleId);
-            return message.channel.send({ embeds: [createEmbed({ description: `✅ **Ustawiono nowy prefix: \`\`${prefix}\`\`**` })] });
+            return message.channel.send({ embeds: [createEmbed({ description: `✅ **Ustawiono nowy prefix: \`${prefix}\`**` })] });
         } catch {
             return message.channel.send({ embeds: [messageEmbeds.catch_error] });
         };

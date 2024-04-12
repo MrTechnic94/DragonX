@@ -10,7 +10,7 @@ module.exports = {
             embeds: [
                 createEmbed({
                     title: `🏓 Pong`,
-                    description: `**Latecy: \`\`${Date.now() - message.createdTimestamp}ms\`\`**\n**API Latecy: \`\`${Math.round(client.ws.ping)}ms\`\`**`
+                    description: `**Latecy: \`${Date.now() - message.createdTimestamp}ms\`**\n**API Latecy: \`${Math.round(client.ws.ping)}ms\`**`
                 })
             ]
         });

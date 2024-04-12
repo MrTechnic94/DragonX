@@ -16,7 +16,7 @@ module.exports = {
             embeds: [
                 createEmbed({
                     title: `⌚ Informacje bota`,
-                    description: `**Uptime: \`\`${time}\`\`**\n**System: \`\`${sys}\`\`**\n**Użycie Cpu: \`\`${cpuUsage}%\`\`**\n**Użycie Ram: \`\`${memUsage}mb\`\`**`
+                    description: `**Uptime: \`${time}\`**\n**System: \`${sys}\`**\n**Użycie Cpu: \`${cpuUsage}%\`**\n**Użycie Ram: \`${memUsage}mb\`**`
                 })
             ]
         });

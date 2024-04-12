@@ -18,6 +18,6 @@ module.exports = {
         const mode = queue.filters.ffmpeg.isEnabled('bassboost') ? `wyłączony` : `włączony`;
         await queue.filters.ffmpeg.toggle(['bassboost', 'normalizer']);
 
-        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Bassboost został \`\`${mode}\`\`!**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Bassboost został \`${mode}\`!**` })] });
     }
 };

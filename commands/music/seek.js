@@ -22,6 +22,6 @@ module.exports = {
     if (seekTime >= timeline.track.durationMS) return message.channel.send({ embeds: [messageEmbeds.time_seek_error] });
 
     await timeline.setPosition(seekTime);
-    return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Ustawiono odtwarzanie na \`\`${args[0]}\`\`**` })] });
+    return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Ustawiono odtwarzanie na \`${args[0]}\`**` })] });
   }
 };

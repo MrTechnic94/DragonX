@@ -19,6 +19,6 @@ module.exports = {
 
     const mode = queue.repeatMode === QueueRepeatMode.AUTOPLAY ? 'włączony' : 'wyłączony';
 
-    return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Autoplay został \`\`${mode}\`\`!**` })] });
+    return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Autoplay został \`${mode}\`!**` })] });
   }
 };

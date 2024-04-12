@@ -18,6 +18,6 @@ module.exports = {
         const mode = queue.filters.ffmpeg.isEnabled('karaoke') ? `wyłączony` : `włączony`;
         await queue.filters.ffmpeg.toggle(['karaoke', 'normalizer']);
 
-        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Karaoke został \`\`${mode}\`\`!**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Karaoke został \`${mode}\`!**` })] });
     }
 };

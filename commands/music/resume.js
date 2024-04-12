@@ -18,7 +18,7 @@ module.exports = {
 
         !queue.node.setPaused(!queue.node.isPaused());
 
-        const mode = queue.node.isPaused() ? `▶️ \`\`Zatrzymano\`\`` : `⏸️ \`\`Wznowiono\`\``;
+        const mode = queue.node.isPaused() ? `▶️ \`Zatrzymano\`` : `⏸️ \`Wznowiono\``;
 
         return message.channel.send({ embeds: [createEmbed({ description: `**${mode} odtwarzanie piosenki!**` })] });
     }
