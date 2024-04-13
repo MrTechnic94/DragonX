@@ -15,7 +15,7 @@ module.exports = {
 
         const progresbar = node.createProgressBar({ timecodes: false, length: 13, leftChar: '[▬](https://top.gg/bot/1107363385676410910)' });
         const emoji = timeline.paused ? `▶️` : `⏸️`;
-        const requester = timeline.track.requestedBy ?? `brak`;
+        const requester = timeline.track.requestedBy ?? `**\`brak\`**`;
 
         return message.channel.send({
             embeds: [

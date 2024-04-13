@@ -8,7 +8,6 @@ module.exports = {
     name: Events.ClientReady,
     once: true,
     run: async (client) => {
-
         // Obsluga zdarzen zwiazanych z polaczeniem i bledami bazy danych
         redis.once('connect', () => {
             logger.info(`Polaczono z baza danych!`);
