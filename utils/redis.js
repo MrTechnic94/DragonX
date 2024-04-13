@@ -10,9 +10,11 @@ const redis = new Redis({
     password: process.env.DB_PASSWORD
 });
 
-logger.info(`Polaczono z baza danych!`);
+// Obsluga zdarzen zwiazanych z polaczeniem i bledami bazy danych
+redis.once('connect', () => {
+    logger.info(`Polaczono z baza danych!`);
+});
 
-// Obsluga zdarzenia zwiazana z bledami bazy danych
 redis.on('error', (err) => {
     logger.error(`Blad podczas laczenia z baza danych!\n${err}`);
     process.exit(1);
