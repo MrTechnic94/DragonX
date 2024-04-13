@@ -15,6 +15,6 @@ module.exports = {
         if (!queue?.isPlaying() || queue.repeatMode === QueueRepeatMode.OFF && !queue.tracks.at(0)) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
         queue.node.skip();
-        return message.channel.send({ embeds: [messageEmbeds.force_skip_success] });
+        return message.channel.send({ embeds: [messageEmbeds.skip_success] });
     }
 };

@@ -1,6 +1,6 @@
 'use strict';
 
-const Redis = require('ioredis');
+const redis = require('../../utils/redis.js');
 const logger = require('../../utils/consoleLogger.js');
 const { Events } = require('discord.js');
 
@@ -8,16 +8,10 @@ module.exports = {
     name: Events.ClientReady,
     once: true,
     run: async (client) => {
-        // Polaczenie z baza danych
-        const redis = new Redis({
-            host: process.env.DB_HOST,
-            port: process.env.DB_PORT,
-            password: process.env.DB_PASSWORD
-        });
 
         // Obsluga zdarzen zwiazanych z polaczeniem i bledami bazy danych
         redis.once('connect', () => {
-            return logger.info(`Polaczono z baza danych!`);
+            logger.info(`Polaczono z baza danych!`);
         });
 
         redis.on('error', (err) => {

@@ -63,7 +63,7 @@ module.exports = {
 
     // Przechwytuje i wyswietla bledy komend
     cmd.run(client, message, args).catch(err => {
-      return logger.error(`Komenda ${cmd.name} napotkala blad!\n${err}`);
+      logger.error(`Komenda ${cmd.name} napotkala blad!\n${err}`);
     });
   }
 };

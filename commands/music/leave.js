@@ -5,7 +5,7 @@ const { useQueue } = require('discord-player');
 
 module.exports = {
     name: 'leave',
-    aliases: ['l', 'disconnect', 'dc'],
+    aliases: ['l', 'disconnect', 'dc', 'stop'],
     dj: true,
     run: async (_client, message) => {
         if (!message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.bot_voice_error] });

@@ -1,13 +1,6 @@
 'use strict';
 
-const Redis = require('ioredis');
-
-// Polaczenie sie z baza danych redis
-const redis = new Redis({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  password: process.env.DB_PASSWORD
-});
+const redis = require('./redis.js');
 
 module.exports = {
   // Utworzenie funkcji odpowiadajacej za ustawienie parametrow dla guildi
