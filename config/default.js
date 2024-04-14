@@ -24,7 +24,7 @@ module.exports = {
         status: PresenceUpdateStatus.Online,
         activities: [{
             name: '❓d!help 🎵d!play',
-            type: ActivityType.Online
+            type: ActivityType.Listening
         }]
     },
     allowedMentions: {
