@@ -1,6 +1,6 @@
 'use strict';
 
-const db = require('../../utils/guildSettings.js');
+const redis = require('../../utils/redis.js');
 const logger = require('../../utils/consoleLogger.js');
 const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { Events, PermissionsBitField } = require('discord.js');
@@ -33,7 +33,7 @@ module.exports = {
       return message.channel.send(`❌ **Nie posiadam wymaganych permisji:\n\`\`\`${missingPermissionNames}\`\`\`**`).catch(() => { });
     };
 
-    const guildData = await db.getGuildSettings(message.guild.id);
+    const guildData = await redis.hgetall(message.guild.id);
     const prefix = guildData?.prefix ?? process.env.PREFIX;
     const args = message.content
       .slice(prefix.length)

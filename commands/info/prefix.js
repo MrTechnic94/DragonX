@@ -1,6 +1,6 @@
 'use strict';
 
-const db = require('../../utils/guildSettings.js');
+const redis = require('../../utils/redis.js');
 const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
 
@@ -10,7 +10,7 @@ module.exports = {
     run: async (_client, message, args) => {
         const prefix = args[0] === 'clear' ? process.env.PREFIX : args[0];
 
-        const guildData = await db.getGuildSettings(message.guild.id);
+        const guildData = await redis.hgetall(message.guild.id);
 
         const oldPrefix = guildData?.prefix ?? process.env.PREFIX;
 
@@ -18,10 +18,11 @@ module.exports = {
 
         if (oldPrefix === prefix) return message.channel.send({ embeds: [messageEmbeds.already_prefix_error] });
 
-        const guildId = message.guild.id;
-
         try {
-            await db.setGuildSettings(guildId, prefix, guildData.djRoleId);
+            await redis.hmset(message.guild.id, {
+                prefix: prefix,
+                djRoleId: guildData.djRoleId
+            });
             return message.channel.send({ embeds: [createEmbed({ description: `✅ **Ustawiono nowy prefix: \`${prefix}\`**` })] });
         } catch {
             return message.channel.send({ embeds: [messageEmbeds.catch_error] });

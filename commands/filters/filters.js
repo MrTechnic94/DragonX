@@ -1,6 +1,6 @@
 'use strict';
 
-const db = require('../../utils/guildSettings.js');
+const redis = require('../../utils/redis.js');
 const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { useQueue } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
@@ -39,7 +39,7 @@ module.exports = {
             return `${status} **${filter.label}**`;
         });
 
-        const guildData = await db.getGuildSettings(message.guild.id);
+        const guildData = await redis.hgetall(message.guild.id);
 
         const prefix = guildData?.prefix ?? process.env.PREFIX;
 
