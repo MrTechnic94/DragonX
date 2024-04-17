@@ -1,6 +1,6 @@
 {
   "name": "dragonx",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "main": "index.js",
   "description": "Muzyczny bot dla aplikacji Discord",
   "author": "MrTechnic",
@@ -17,7 +17,7 @@
     "discord-voip": "^0.1.3",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5",
-    "ioredis": "^5.3.2",
+    "ioredis": "^5.4.0",
     "mediaplex": "^0.0.9"
   },
   "optionalDependencies": {

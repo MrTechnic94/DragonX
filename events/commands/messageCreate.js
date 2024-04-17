@@ -54,7 +54,7 @@ module.exports = {
     if (!message.content.startsWith(prefix) || !cmd || cmd.stop) return;
 
     // Sprawdzenie czy uzytkownik ma wymagane permisje
-    if (cmd.permission && !message.member.permissions.has(cmd.permission) || (cmd.ownerOnly && process.env.OWNER !== message.author.id))
+    if (cmd.permission && !message.member.permissions.has(cmd.permission) || (cmd.ownerOnly && process.env.OWNER_ID !== message.author.id))
       return message.channel.send({ embeds: [messageEmbeds.permission_error] });
 
     // Sprawdzenie czy uzytkownik ma dj role
