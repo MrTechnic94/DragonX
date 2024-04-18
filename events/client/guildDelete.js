@@ -12,7 +12,7 @@ module.exports = {
             const existingGuild = await redis.del(guild.id);
 
             // Jesli guildia posiada wpis w bazie danych, zwraca informacje o usunieciu
-            if (existingGuild) return logger.success(`Usunieto wpis z bazy danych dla: ${guild.name}`);
+            if (existingGuild) return logger.info(`Usunieto wpis z bazy danych dla: ${guild.name}`);
         } catch (err) {
             return logger.error(`Blad podczas usuwania wpisu dla: ${guild.name}`);
         }

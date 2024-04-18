@@ -8,7 +8,7 @@ module.exports = {
     aliases: ['gleave'],
     owner: true,
     run: async (client, message, args) => {
-        if (!args[0]) return message.channel.send({ embeds: [messageEmbeds.args_guild_id] });
+        if (!args[0]) return message.channel.send({ embeds: [messageEmbeds.args_guild_id_error] });
 
         const guild = client.guilds.cache.get(args[0]);
 
