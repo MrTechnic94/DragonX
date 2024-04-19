@@ -10,7 +10,7 @@ module.exports = {
     run: async (_client, message) => {
         const guildData = await redis.hgetall(message.guild.id);
         const prefix = guildData?.prefix ?? process.env.PREFIX;
-        let totalPages = 2;
+        const totalPages = 2;
         let currentPage = 0;
 
         const commands = {

@@ -48,5 +48,5 @@
     "win64",
     "darwin"
   ],
-  "packageManager": "pnpm@8.15.6+sha256.01c01eeb990e379b31ef19c03e9d06a14afa5250b82e81303f88721c99ff2e6f"
+  "packageManager": "pnpm@9.0.3+sha256.f5becd4b77fe9150c8d89423612eb413945114bf6dd00fdcb5940434b84731c4"
 }
