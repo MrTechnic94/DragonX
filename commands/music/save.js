@@ -15,7 +15,7 @@ module.exports = {
 
         if (!timeline?.track) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
-        const requester = timeline.track.author === `cdn.discordapp.com` ? `nieznany` : timeline.track.author;
+        const requester = timeline.track.author === `cdn.discordapp.com` ? `brak` : timeline.track.author;
 
         return message.member.send({
             embeds: [
