@@ -28,10 +28,7 @@ module.exports = {
             { name: 'bassboost_high', label: 'BassBoost High' },
             { name: 'karaoke', label: 'Karaoke' },
             { name: 'nightcore', label: 'Nightcore' },
-            { name: 'vaporwave', label: 'Vaporwave' },
-            // { name: 'lofi', label: 'Lofi' },
-            // { name: 'compressor', label: 'Compressor' },
-            // { name: 'reverse', label: 'Reverse' }
+            { name: 'vaporwave', label: 'Vaporwave' }
         ];
 
         const embedFields = filters.map(filter => {
