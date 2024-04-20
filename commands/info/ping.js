@@ -5,6 +5,7 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 module.exports = {
     name: 'ping',
     aliases: ['latecy'],
+    cooldown: 2,
     run: async (client, message) => {
         return message.channel.send({
             embeds: [

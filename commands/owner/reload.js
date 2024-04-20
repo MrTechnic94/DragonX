@@ -6,6 +6,7 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 module.exports = {
     name: 'reload',
     owner: true,
+    cooldown: 2,
     run: async (client, message, args) => {
         if (!args[0]) return message.channel.send({ embeds: [messageEmbeds.args_category_error] });
         if (!args[1]) return message.channel.send({ embeds: [messageEmbeds.args_command_error] });

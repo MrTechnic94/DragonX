@@ -7,6 +7,7 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 module.exports = {
     name: 'nowplaying',
     aliases: ['np'],
+    cooldown: 2,
     run: async (_client, message) => {
         const node = usePlayer(message.guild.id);
         const timeline = useTimeline(message.guild.id);

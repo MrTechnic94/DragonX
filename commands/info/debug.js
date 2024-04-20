@@ -6,6 +6,7 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 
 module.exports = {
     name: 'debug',
+    cooldown: 2,
     run: async (client, message) => {
         const time = formatTime(client.uptime);
         const sys = os.platform();

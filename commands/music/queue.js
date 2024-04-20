@@ -8,6 +8,7 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 module.exports = {
     name: 'queue',
     aliases: ['q', 'list', 'playlist'],
+    cooldown: 2,
     run: async (_client, message) => {
         const queue = useQueue(message.guild.id);
 

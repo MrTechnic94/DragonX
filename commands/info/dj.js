@@ -7,6 +7,7 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 module.exports = {
   name: 'dj',
   permission: 'Administrator',
+  cooldown: 2,
   run: async (_client, message, args) => {
     const guildData = await redis.hgetall(message.guild.id);
 

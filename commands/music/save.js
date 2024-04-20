@@ -8,6 +8,7 @@ module.exports = {
     name: 'save',
     aliases: ['grab', 'g'],
     dj: true,
+    cooldown: 2,
     run: async (_client, message) => {
         if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 

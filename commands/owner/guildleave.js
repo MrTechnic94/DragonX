@@ -7,6 +7,7 @@ module.exports = {
     name: 'guildleave',
     aliases: ['gleave'],
     owner: true,
+    cooldown: 2,
     run: async (client, message, args) => {
         if (!args[0]) return message.channel.send({ embeds: [messageEmbeds.args_guild_id_error] });
 

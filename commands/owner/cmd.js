@@ -7,6 +7,7 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 module.exports = {
     name: 'cmd',
     owner: true,
+    cooldown: 2,
     run: async (_client, message, args) => {
         if (!args.length) return message.channel.send({ embeds: [messageEmbeds.args_cmd_error] });
 

@@ -7,6 +7,7 @@ const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 module.exports = {
     name: 'help',
     aliases: ['h'],
+    cooldown: 2,
     run: async (_client, message) => {
         const guildData = await redis.hgetall(message.guild.id);
         const prefix = guildData?.prefix ?? process.env.PREFIX;

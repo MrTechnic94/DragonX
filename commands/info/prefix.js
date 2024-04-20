@@ -7,6 +7,7 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 module.exports = {
     name: 'prefix',
     permission: 'Administrator',
+    cooldown: 2,
     run: async (_client, message, args) => {
         const prefix = args[0] === 'clear' ? process.env.PREFIX : args[0];
 

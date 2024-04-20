@@ -5,6 +5,7 @@ const logger = require('../../utils/consoleLogger.js');
 const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { Events, PermissionsBitField } = require('discord.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const cooldowns = new Map();
 
 module.exports = {
   name: Events.MessageCreate,
@@ -52,6 +53,21 @@ module.exports = {
       });
 
     if (!message.content.startsWith(prefix) || !cmd || cmd.stop) return;
+
+    // Sprawdzenie czy komenda ma cooldown
+    if (cmd.cooldown && cooldowns.has(cmd.name)) {
+      const remainingTime = cooldowns.get(cmd.name) - Date.now();
+
+      if (remainingTime > 0) {
+        const shortenedTime = (remainingTime / 1000).toFixed(1);
+        return message.channel.send({ embeds: [createEmbed({ description: `❌ **Cooldown nadal trwa, spróbuj za \`${shortenedTime}s\`**` })] }).catch(() => { });
+      }
+    };
+
+    // Ustawienie nowego czasu wygasniecia cooldownu
+    const newExpirationTime = Date.now() + cmd.cooldown * 1000;
+    cooldowns.set(cmd.name, newExpirationTime);
+    setTimeout(() => cooldowns.delete(cmd.name), cmd.cooldown * 1000);
 
     // Sprawdzenie czy uzytkownik ma wymagane permisje
     if (cmd.permission && !message.member.permissions.has(cmd.permission) || (cmd.ownerOnly && process.env.OWNER_ID !== message.author.id))

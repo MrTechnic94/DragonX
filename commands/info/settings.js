@@ -7,6 +7,7 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 module.exports = {
     name: 'settings',
     aliases: ['config', 'cfg'],
+    cooldown: 2,
     run: async (_client, message) => {
         const queue = useQueue(message.guild.id);
         const timeline = useTimeline(message.guild.id);

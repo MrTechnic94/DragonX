@@ -7,6 +7,7 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 
 module.exports = {
     name: 'lyrics',
+    cooldown: 2,
     run: async (_client, message, args) => {
         const timeline = useTimeline(message.guild.id);
         const lyricsFinder = lyricsExtractor(process.env.GENIUS_LYRICS_API);

@@ -9,6 +9,7 @@ module.exports = {
     name: 'play',
     aliases: ['p', 'songrequest', 'sr'],
     dj: true,
+    cooldown: 2,
     run: async (_client, message, args) => {
         if (!args[0]) return message.channel.send({ embeds: [messageEmbeds.track_error] });
 

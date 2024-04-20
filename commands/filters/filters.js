@@ -9,6 +9,7 @@ module.exports = {
     name: 'filters',
     aliases: ['f'],
     dj: true,
+    cooldown: 2,
     run: async (_client, message, args) => {
         const queue = useQueue(message.guild.id);
 
@@ -28,9 +29,9 @@ module.exports = {
             { name: 'karaoke', label: 'Karaoke' },
             { name: 'nightcore', label: 'Nightcore' },
             { name: 'vaporwave', label: 'Vaporwave' },
-            { name: 'lofi', label: 'Lofi' },
-            { name: 'compressor', label: 'Compressor' },
-            { name: 'reverse', label: 'Reverse' }
+            // { name: 'lofi', label: 'Lofi' },
+            // { name: 'compressor', label: 'Compressor' },
+            // { name: 'reverse', label: 'Reverse' }
         ];
 
         const embedFields = filters.map(filter => {
