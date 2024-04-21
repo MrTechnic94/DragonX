@@ -1,5 +1,6 @@
 'use strict';
 
+const { createEmbed } = require('../../utils/embedCreator.js');
 const messageEmbeds = require('../../utils/messageEmbeds.js');
 const { useQueue } = require('discord-player');
 
@@ -23,6 +24,6 @@ module.exports = {
             message.guild.members.me?.voice.disconnect();
         };
 
-        return message.channel.send({ embeds: [messageEmbeds.leave_channel_success] });
+        return message.channel.send({ embeds: [createEmbed({ description: `🔮 **Wychodzę z kanału** <#${message.member?.voice.channelId}>` })] });
     }
 };

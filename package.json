@@ -28,9 +28,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "pm2": "npx pm2 start index.js -- --color && npx pm2 logs",
-    "pm2:default": "pm2 start index.js -- --color && pm2 logs",
-    "manual:update": "corepack use pnpm@latest && pnpm install && pnpm update"
+    "pm2": "npx pm2 start index.js --name bot -- --color && npx pm2 logs",
+    "pm2:default": "pm2 start index.js --name bot -- --color && pm2 logs",
+    "update:all": "corepack use pnpm@latest && pnpm install && pnpm update"
   },
   "repository": {
     "type": "git",

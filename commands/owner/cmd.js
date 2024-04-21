@@ -14,7 +14,7 @@ module.exports = {
         exec(args.join(' '), (error, stdout) => {
             if (error) return message.channel.send({ embeds: [createEmbed({ description: `❌ **Wystąpił błąd podczas wykonywania komendy:**\n\`\`\`${error}\`\`\`` })] });
 
-            return message.channel.send({ embeds: [createEmbed({ description: `✅ **Komenda została wykonana pomyślnie:**\n\`\`\`${stdout}\`\`\`` })] });
+            return message.channel.send({ embeds: [createEmbed({ description: `✅ **Komenda została pomyślnie wykonana:**\n\`\`\`${stdout}\`\`\`` })] });
         });
     }
 };

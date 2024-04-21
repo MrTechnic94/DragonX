@@ -60,21 +60,22 @@ module.exports = {
 
       if (remainingTime > 0) {
         const shortenedTime = (remainingTime / 1000).toFixed(1);
-        return message.channel.send({ embeds: [createEmbed({ description: `❌ **Cooldown nadal trwa, spróbuj za \`${shortenedTime}s\`**` })] }).catch(() => { });
+        return message.channel.send({ embeds: [createEmbed({ description: `❌ **Cooldown nadal trwa, spróbuj za \`${shortenedTime}s\`**` })] });
       }
     };
 
     // Ustawienie nowego czasu wygasniecia cooldownu
-    const newExpirationTime = Date.now() + cmd.cooldown * 1000;
+    const cooldownTime = cmd.cooldown * 1000;
+    const newExpirationTime = Date.now() + cooldownTime;
     cooldowns.set(cmd.name, newExpirationTime);
-    setTimeout(() => cooldowns.delete(cmd.name), cmd.cooldown * 1000);
+    setTimeout(() => cooldowns.delete(cmd.name), cooldownTime);
 
     // Sprawdzenie czy uzytkownik ma wymagane permisje
     if (cmd.permission && !message.member.permissions.has(cmd.permission) || (cmd.ownerOnly && process.env.OWNER_ID !== message.author.id))
       return message.channel.send({ embeds: [messageEmbeds.permission_error] });
 
     // Sprawdzenie czy uzytkownik ma dj role
-    if (cmd.dj && guildData?.djRoleId && !message.member.roles.cache.has(guildData.djRoleId) && message.member.voice.channel && message.member.voice.channel.members.size > 1 && !message.member.permissions.has(PermissionsBitField.Flags.ManageMessages))
+    if (cmd.dj && guildData?.djRoleId && !message.member.roles.cache.has(guildData.djRoleId) && message.member.voice.channel?.members.size > 2 && !message.member.permissions.has(PermissionsBitField.Flags.ManageMessages))
       return message.channel.send({ embeds: [messageEmbeds.dj_permission_error] });
 
     // Przechwytuje i wyswietla bledy komend

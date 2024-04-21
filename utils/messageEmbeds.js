@@ -44,7 +44,6 @@ const messageEmbeds = {
     send_dm_success: generateEmbed('✅ **Sprawdź wiadomości prywatne!**'),
     remove_dj_success: generateEmbed('✅ **Usunięto DJ rolę!**'),
     restart_bot_success: generateEmbed('✅ **Restartowanie bota...**'),
-    leave_channel_success: generateEmbed('🔮 **Wychodzę z kanału!**'),
     skip_success: generateEmbed('⏩ **Pominięto aktualną piosenkę!**'),
     shuffle_success: generateEmbed('🔀 **Playlista została przetasowana!**'),
     track_back_success: generateEmbed('◀️ **Odtwarzam poprzednią piosenkę!**'),
