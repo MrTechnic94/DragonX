@@ -3,8 +3,8 @@
 const redis = require('../../utils/redis.js');
 const logger = require('../../utils/consoleLogger.js');
 const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { Events, PermissionsBitField } = require('discord.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const { Events, PermissionsBitField } = require('discord.js');
 const cooldowns = new Map();
 
 module.exports = {
@@ -41,7 +41,7 @@ module.exports = {
       .trim()
       .split(/ +/g);
     const command = args.shift().toLowerCase();
-    const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
+    const cmd = client.commands.get(command) ?? client.commands.get(client.aliases.get(command));
 
     // Bot odpowiada na oznaczenie
     if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`)))
