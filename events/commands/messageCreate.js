@@ -13,7 +13,7 @@ module.exports = {
     // Sprawdzenie czy komenda zostala wykonana w gildi i czy autor komenda nie jest botem
     if (message.author.bot || !message.guild) return;
 
-    // Utworzenie zmiennej oraz przypisanie do niej wymaganych permisji bota
+    // Utworzenie zmiennej oraz przypisanie do niej wymaganych permisji dla bota
     const bot_permissions = [
       { name: PermissionsBitField.Flags.SendMessages, label: 'Send Messages' },
       { name: PermissionsBitField.Flags.ReadMessageHistory, label: 'Read Message History' },
@@ -43,7 +43,7 @@ module.exports = {
     const command = args.shift().toLowerCase();
     const cmd = client.commands.get(command) ?? client.commands.get(client.aliases.get(command));
 
-    // Bot odpowiada na oznaczenie
+    // Odpowiedzenie bota na oznaczenie
     if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`)))
       return message.channel.send({
         embeds: [
