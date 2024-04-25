@@ -18,7 +18,7 @@
     "dotenv": "^16.4.5",
     "ioredis": "^5.4.1",
     "mediaplex": "^0.0.9",
-    "pino": "^8.20.0",
+    "pino": "^9.0.0",
     "pino-pretty": "^11.0.0"
   },
   "optionalDependencies": {
@@ -49,5 +49,5 @@
     "win64",
     "darwin"
   ],
-  "packageManager": "pnpm@9.0.5+sha256.61bd66913b52012107ec25a6ee4d6a161021ab99e04f6acee3aa50d0e34b4af9"
+  "packageManager": "pnpm@9.0.6+sha256.0624e30eff866cdeb363b15061bdb7fd9425b17bc1bb42c22f5f4efdea21f6b3"
 }
