@@ -1,8 +1,8 @@
 'use strict';
 
 const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { useQueue } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const { useQueue } = require('discord-player');
 
 module.exports = {
     name: 'resume',
@@ -17,7 +17,7 @@ module.exports = {
 
         if (queue.node.volume === 0) return message.channel.send({ embeds: [messageEmbeds.muted_player_error] });
 
-        !queue.node.setPaused(!queue.node.isPaused());
+        queue.node.setPaused(!queue.node.isPaused());
 
         const mode = queue.node.isPaused() ? `▶️ \`Zatrzymano\`` : `⏸️ \`Wznowiono\``;
 
