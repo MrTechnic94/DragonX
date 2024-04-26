@@ -2,8 +2,8 @@
 
 const redis = require('../../utils/redis.js');
 const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { useQueue } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const { useQueue } = require('discord-player');
 
 module.exports = {
     name: 'filters',
@@ -44,7 +44,7 @@ module.exports = {
         return message.channel.send({
             embeds: [
                 createEmbed({
-                    title: `📰 Lista filtrów`,
+                    title: '📰 Lista filtrów',
                     description: embedFields.join('\n'),
                     footer: {
                         text: `Przykładowe użycie: ${prefix}bassboost`
