@@ -16,16 +16,10 @@ module.exports = (client) => {
       const command = require(`../commands/${directory}/${file}`);
 
       // Sprawdzenie czy komenda poprawnie sie laduje
-      if (typeof command.run !== 'function') {
-        logger.warn(`Blad podczas ladowania polecenia: ${directory}/${file}!`);
-        continue;
-      };
+      if (typeof command.run !== 'function') return logger.error(`Blad podczas ladowania polecenia: ${directory}/${file}!`);
 
       // Sprawdzenie czy komenda nie ma takiej samej nazwy jak pozostale
-      if (client.commands.has(command.name)) {
-        logger.error(`Zbyt wiele polecen posiada taka sama nazwe: ${command.name}!`);
-        continue;
-      };
+      if (client.commands.has(command.name)) return logger.warn(`Zbyt wiele polecen posiada taka sama nazwe: ${command.name}!`);
 
       // Zaladowanie komend
       client.commands.set(command.name, command);
@@ -35,7 +29,7 @@ module.exports = (client) => {
       if (command.aliases && Array.isArray(command.aliases)) {
         command.aliases.forEach((alias) => {
           if (client.aliases.has(alias)) {
-            logger.error(`Zbyt wiele polecen posiada takie same aliasy: ${alias}!`);
+            logger.warn(`Zbyt wiele polecen posiada takie same aliasy: ${alias}!`);
           } else {
             client.aliases.set(alias, command.name);
           }

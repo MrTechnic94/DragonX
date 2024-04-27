@@ -3,16 +3,6 @@
 const logger = require('./consoleLogger.js');
 const { exec } = require('child_process');
 
-// Sprawdzenie czy ffmpeg jest zainstalowany
-const checkFFmpeg = () => {
-    exec('ffmpeg -version', (err) => {
-        if (err) {
-            logger.error('No FFmpeg installed!');
-            logger.error('Install FFmpeg or use ffmpeg-static!');
-        }
-    });
-};
-
 // Sprawdzenie obecnosci wymaganych parametrow w pliku .env
 const checkEnvVariables = () => {
     const requiredEnvVariables = ['TOKEN', 'OWNER_ID', 'PREFIX', 'DB_HOST', 'DB_PORT', 'DB_PASSWORD'];
@@ -45,11 +35,21 @@ const checkNodeVersion = () => {
     }
 };
 
+// Sprawdzenie czy ffmpeg jest zainstalowany
+const checkFFmpeg = () => {
+    exec('ffmpeg -version', (err) => {
+        if (err) {
+            logger.error('No FFmpeg installed!');
+            logger.error('Install FFmpeg or use ffmpeg-static!');
+        }
+    });
+};
+
 // Zaladowanie utworzonych wczesniej zmiennych
 const errorCatcher = () => {
-    checkFFmpeg();
     checkEnvVariables();
     checkNodeVersion();
+    checkFFmpeg();
 };
 
 module.exports = { errorCatcher };
