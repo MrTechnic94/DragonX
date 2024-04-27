@@ -15,7 +15,7 @@ Doświadcz niezrównanego muzycznego doświadczenia z wyjątkowym botem, który 
 ## ❓ Jak zacząć?
 - Zainstaluj [Node.js](https://nodejs.org/), [Pnpm](https://pnpm.io/) oraz [FFmpeg](https://ffmpeg.org/) (lub użyj `pnpm add ffmpeg-static`)
 - Sklonuj to repozytorium
-- Uruchom polecenie `pnpm manual:update`
+- Uruchom polecenie `pnpm update:all`
 - Wejdź w plik `.env` i skonfiguruj bazę danych, token oraz inne potrzebne opcję
 - Uruchom bota używając polecenia `pnpm start` lub `pnpm pm2`, jeśli chcesz użyć `pm2`
 - Sprawdź wszystkie polecenia bota komendą `d!help`, i ciesz się niezrównaną jakością jaką oferuje ten bot!
