@@ -8,12 +8,12 @@ Doświadcz niezrównanego muzycznego doświadczenia z wyjątkowym botem, który 
 - Przyjazny interfejs
 
 ## 🔧 Wymagania
-- Node.js (v18 lub nowsza)
+- Nodejs (v18 lub nowszy)
 - Pnpm
 - FFmpeg lub ffmpeg-static (niezalecane)
 
 ## ❓ Jak zacząć?
-- Zainstaluj [Node.js](https://nodejs.org/), [Pnpm](https://pnpm.io/) oraz [FFmpeg](https://ffmpeg.org/) (lub użyj `pnpm add ffmpeg-static`)
+- Zainstaluj [Nodejs](https://nodejs.org/), [Pnpm](https://pnpm.io/) oraz [FFmpeg](https://ffmpeg.org/) (lub użyj `pnpm add ffmpeg-static`)
 - Sklonuj to repozytorium
 - Uruchom polecenie `pnpm update:all`
 - Wejdź w plik `.env` i skonfiguruj bazę danych, token oraz inne potrzebne opcję
