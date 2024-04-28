@@ -17,7 +17,7 @@ module.exports = {
 
         if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
-        if (queue.filters.ffmpeg.getFiltersEnabled().length >= config.maxFiltersEnabled + 1 && queue.filters.ffmpeg.isDisabled('bassboost_high')) return message.channel.send({ embeds: [messageEmbeds.max_filters_enabled_error] });
+        if (queue.filters.ffmpeg.getFiltersEnabled().length >= config.maxFiltersEnabled && queue.filters.ffmpeg.isDisabled('bassboost_high')) return message.channel.send({ embeds: [messageEmbeds.max_filters_enabled_error] });
 
         const mode = queue.filters.ffmpeg.isEnabled('bassboost_high') ? `wyłączony` : `włączony`;
         await queue.filters.ffmpeg.toggle(['bassboost_high', 'normalizer']);
