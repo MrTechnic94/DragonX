@@ -21,10 +21,8 @@ module.exports = (client) => {
         player.events.on(eventName, eventHandler);
       } else if (directory === 'process') {
         process.on(eventName, eventHandler);
-      } else if (event.once) {
-        client.once(eventName, eventHandler);
       } else {
-        client.on(eventName, eventHandler);
+        client[(event.once ? 'once' : 'on')](eventName, eventHandler);
       }
     }
   });
