@@ -17,6 +17,7 @@ const messageEmbeds = {
     max_volume_error: generateEmbed('❌ **Zakres głośności musi wynosić 1-200!**'),
     already_volume_error: generateEmbed('❌ **Podana głośność jest obecnie używana!**'),
     muted_player_error: generateEmbed('❌ **Odtwarzacz jest wyciszony!**'),
+    muted_bot_error: generateEmbed('❌ **Jestem wyciszony!**'),
     already_voted_error: generateEmbed('❌ **Już zagłosowałeś!**'),
     time_seek_error: generateEmbed('❌ **Podany czas jest większy lub równy od długości piosenki!**'),
     send_dm_error: generateEmbed('❌ **Nie mogę wysłać do Ciebie wiadomości prywatnej!**'),

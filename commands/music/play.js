@@ -19,7 +19,7 @@ module.exports = {
 
         if (message.member?.voice.channel.full && !message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.full_channel_error] });
 
-        if (message.guild.members.me?.voice.mute) return message.channel.send({ embeds: [messageEmbeds.muted_player_error] });
+        if (message.guild.members.me?.voice.mute) return message.channel.send({ embeds: [messageEmbeds.muted_bot_error] });
 
         const player = useMainPlayer();
 
