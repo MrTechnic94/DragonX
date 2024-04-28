@@ -1,5 +1,6 @@
 'use strict';
 
+const config = require('../config/default.js');
 const { EmbedBuilder } = require('discord.js');
 
 // Utworzenie funkcji odpowiadajacej za generowanie embedu
@@ -16,7 +17,7 @@ function createEmbed({ url, title, image, timestamp, description, fields = {}, t
     if (thumbnail) embed.setThumbnail(thumbnail);
     if (author.name ?? author.icon ?? author.url) embed.setAuthor({ name: author.name ?? undefined, iconURL: author.icon ?? undefined, url: author.url ?? undefined });
     if (footer.text ?? footer.icon) embed.setFooter({ text: footer.text ?? undefined, iconURL: footer.icon ?? undefined });
-    embed.setColor(color ?? process.env.DEV_MODE === 'true' ? 0x6133FF : 0xED4245);
+    embed.setColor(color ?? process.env.DEV_MODE === 'true' ? config.devEmbedColor : config.embedColor);
 
     return embed;
 };

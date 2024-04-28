@@ -3,7 +3,7 @@
 const { PresenceUpdateStatus, ActivityType, GatewayIntentBits, Partials } = require('discord.js');
 
 module.exports = {
-    // Konfiguracja klienta discord.js
+    // Ustawienia klienta discord.js
     restRequestTimeout: 60000,
     messageEditHistoryMaxSize: 0,
     messageCacheMaxSize: 25,
@@ -32,7 +32,7 @@ module.exports = {
         repliedUser: true
     },
 
-    // Konfiguracja odtwarzacza discord-player
+    // Ustawienia odtwarzacza discord-player
     leaveOnEndCooldown: 240000,
     leaveOnEmptyCooldown: 60000,
     leaveOnStop: true,
@@ -42,5 +42,10 @@ module.exports = {
     connectionTimeout: 20000,
     useLegacyFFmpeg: false,
     skipFFmpeg: true,
-    audioQuality: 'highestaudio'
+    maxFiltersEnabled: 1,
+    audioQuality: 'highestaudio',
+
+    // Inne ustawienia
+    embedColor: 0xED4245,
+    devEmbedColor: 0x6133FF
 };

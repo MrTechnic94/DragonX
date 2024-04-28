@@ -1,5 +1,6 @@
 'use strict';
 
+const config = require('../config/default.js');
 const { createEmbed } = require('./embedCreator.js');
 
 const generateEmbed = (description) => createEmbed({ description });
@@ -36,7 +37,7 @@ const messageEmbeds = {
     player_error: generateEmbed('❌ **Wystąpił błąd podczas odtwarzania piosenki!**'),
     catch_error: generateEmbed('❌ **Wystąpił nieoczekiwany błąd!**'),
     filters_error: generateEmbed('❌ **Żaden filtr nie jest włączony!**'),
-    max_filters_enabled_error: generateEmbed('❌ **Jednocześnie może być włączony tylko 1 filtr!**'),
+    max_filters_enabled_error: generateEmbed(`❌ **Jednocześnie może być włączony tylko ${config.maxFiltersEnabled} filtr!**`),
     shuffle_error: generateEmbed('❌ **Wymagane są co najmniej 3 piosenki w playliście!**'),
     full_channel_error: generateEmbed('❌ **Kanał głosowy jest pełny!**'),
     same_move_error: generateEmbed('❌ **Nie można przenieść piosenki w to samo miejsce!**'),
