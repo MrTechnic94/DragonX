@@ -8,7 +8,7 @@ module.exports = {
     aliases: ['b', 'previous', 'prev'],
     dj: true,
     cooldown: 2,
-    run: async (_client, message) => {
+    async run(_client, message) {
         if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
         const history = useHistory(message.guild.id);

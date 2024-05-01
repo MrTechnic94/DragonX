@@ -1,15 +1,15 @@
 'use strict';
 
 const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { useQueue, QueueRepeatMode } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const { useQueue, QueueRepeatMode } = require('discord-player');
 
 module.exports = {
     name: 'loop',
     aliases: ['repeat'],
     dj: true,
     cooldown: 2,
-    run: async (_client, message, args) => {
+    async run(_client, message, args) {
         if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
         const queue = useQueue(message.guild.id);
@@ -26,7 +26,7 @@ module.exports = {
 
         if (requestedMode && modes[requestedMode] !== undefined) {
             if (modes[requestedMode] === queue.repeatMode) {
-                return message.channel.send({ embeds: [createEmbed({ description: `❌ **Tryb \`${requestedMode}\` jest już ustawiony!**` })] });
+                return message.channel.send({ embeds: [createEmbed({ description: `❌ **Tryb \`${requestedMode}\` jest już ustawiony**` })] });
             };
 
             queue.setRepeatMode(modes[requestedMode]);

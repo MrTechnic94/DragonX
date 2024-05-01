@@ -9,7 +9,7 @@ module.exports = {
     name: 'queue',
     aliases: ['q', 'list', 'playlist'],
     cooldown: 2,
-    run: async (_client, message) => {
+    async run(_client, message) {
         const queue = useQueue(message.guild.id);
 
         if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
@@ -25,7 +25,7 @@ module.exports = {
         if (queue.tracks.size > 0) footerText += ` • ${queue.tracks.size.toString()} ${queue.tracks.size < 2 ? `piosenka` : `piosenki`}`;
 
         const embed = createEmbed({
-            title: `📰 Piosenki w playliście`,
+            title: '📰 Piosenki w playliście',
             description: `**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${queue.tracks.size === 0 ? `Brak piosenek` : tracks.slice(page * 20, (page + 1) * 20).join('\n')}`,
             footer: {
                 text: footerText

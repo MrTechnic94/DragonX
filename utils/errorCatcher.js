@@ -10,7 +10,7 @@ const checkEnvVariables = () => {
 
     requiredEnvVariables.forEach((variable) => {
         if (!process.env[variable]) {
-            logger.error(`Missing ${variable} in .env file!`);
+            logger.error(`Missing ${variable} in .env file`);
             process.exit(1);
         }
     });
@@ -19,7 +19,7 @@ const checkEnvVariables = () => {
     if (process.env.DEV_MODE === 'true') {
         optionalEnvVariables.forEach((variable) => {
             if (!process.env[variable]) {
-                logger.error(`Missing ${variable} in .env file!`);
+                logger.error(`Missing ${variable} in .env file`);
                 process.exit(1);
             }
         });
@@ -30,7 +30,7 @@ const checkEnvVariables = () => {
 const checkNodeVersion = () => {
     const version = Number(process.version.split('.')[0].replace('v', ''));
     if (version < 18) {
-        logger.error('Outdated Node.js version. Update to a newer version!');
+        logger.error('Outdated Node.js version. Update to a newer version');
         process.exit(1);
     }
 };
@@ -39,8 +39,8 @@ const checkNodeVersion = () => {
 const checkFFmpeg = () => {
     exec('ffmpeg -version', (err) => {
         if (err) {
-            logger.error('No FFmpeg installed!');
-            logger.error('Install FFmpeg or use ffmpeg-static!');
+            logger.error('No FFmpeg installed');
+            logger.error('Install FFmpeg or use ffmpeg-static');
         }
     });
 };

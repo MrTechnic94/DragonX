@@ -6,11 +6,11 @@ const { Events } = require('discord.js');
 module.exports = {
     name: Events.ClientReady,
     once: true,
-    run: async (client) => {
+    async run(client) {
         // Wyswietlenie informacji o zalogowaniu sie bota
-        logger.info(`${client.user.tag} zalogowal sie!`);
+        logger.info(`${client.user.tag} zalogowal sie`);
 
         // Sprawdzenie czy tryb developera jest wlaczony
-        if (process.env.DEV_MODE === 'true') return logger.debug(`Running in Dev Mode!`);
+        if (process.env.DEV_MODE === 'true') return logger.debug('Running in Dev Mode');
     }
 };

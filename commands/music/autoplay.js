@@ -1,15 +1,15 @@
 'use strict';
 
 const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { useQueue, QueueRepeatMode } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const { useQueue, QueueRepeatMode } = require('discord-player');
 
 module.exports = {
   name: 'autoplay',
   aliases: ['ap'],
   dj: true,
   cooldown: 2,
-  run: async (_client, message) => {
+  async run(_client, message) {
     if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
     const queue = useQueue(message.guild.id);
@@ -20,6 +20,6 @@ module.exports = {
 
     const mode = queue.repeatMode === QueueRepeatMode.AUTOPLAY ? 'włączony' : 'wyłączony';
 
-    return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Autoplay został \`${mode}\`!**` })] });
+    return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Autoplay został \`${mode}\`**` })] });
   }
 };

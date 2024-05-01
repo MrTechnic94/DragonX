@@ -6,11 +6,11 @@ module.exports = {
     name: 'ping',
     aliases: ['latecy'],
     cooldown: 2,
-    run: async (client, message) => {
+    async run(client, message) {
         return message.channel.send({
             embeds: [
                 createEmbed({
-                    title: `🏓 Pong`,
+                    title: '🏓 Pong',
                     description: `**Latecy: \`${Date.now() - message.createdTimestamp}ms\`**\n**API Latecy: \`${Math.round(client.ws.ping)}ms\`**`
                 })
             ]

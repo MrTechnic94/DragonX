@@ -2,7 +2,7 @@
 
 module.exports = {
     name: 'connectionDestroyed',
-    run: async (_client, queue) => {
+    async run(_client, queue) {
         if (queue.npmessage?.editable) await queue.npmessage.delete().catch(() => { });
     }
 };

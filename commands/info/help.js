@@ -8,7 +8,7 @@ module.exports = {
     name: 'help',
     aliases: ['h'],
     cooldown: 2,
-    run: async (_client, message) => {
+    async run(_client, message) {
         const guildData = await redis.hgetall(message.guild.id);
         const prefix = guildData?.prefix ?? process.env.PREFIX;
         const totalPages = 2;

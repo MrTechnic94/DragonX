@@ -10,7 +10,7 @@ module.exports = {
     aliases: ['p', 'songrequest', 'sr'],
     dj: true,
     cooldown: 2,
-    run: async (_client, message, args) => {
+    async run(_client, message, args) {
         if (!args[0]) return message.channel.send({ embeds: [messageEmbeds.track_error] });
 
         if (!message.member?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.member_voice_error] });
@@ -30,7 +30,7 @@ module.exports = {
         if (!result.hasTracks()) return message.channel.send({ embeds: [messageEmbeds.track_error] });
 
         try {
-            message.channel.send({ embeds: [createEmbed({ description: result.hasPlaylist() ? `✅ **Dodano \`${result.tracks.length}\` utwory z \`${result.playlist.title}\`!**` : `✅ **Dodano \`${result.tracks[0].title}\` do playlisty!**` })] });
+            message.channel.send({ embeds: [createEmbed({ description: result.hasPlaylist() ? `✅ **Dodano \`${result.tracks.length}\` utwory z \`${result.playlist.title}\`**` : `✅ **Dodano \`${result.tracks[0].title}\` do playlisty**` })] });
 
             await player.play(message.member.voice.channel, result, {
                 nodeOptions: {

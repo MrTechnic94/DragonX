@@ -1,15 +1,15 @@
 'use strict';
 
 const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { useQueue } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const { useQueue } = require('discord-player');
 
 module.exports = {
     name: 'remove',
     aliases: ['rm', 'delete', 'del'],
     dj: true,
     cooldown: 2,
-    run: async (_client, message, args) => {
+    async run(_client, message, args) {
         if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
         const queue = useQueue(message.guild.id);

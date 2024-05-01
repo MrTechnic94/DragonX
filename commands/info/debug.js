@@ -7,7 +7,7 @@ const { createEmbed } = require('../../utils/embedCreator.js');
 module.exports = {
     name: 'debug',
     cooldown: 2,
-    run: async (client, message) => {
+    async run(client, message) {
         const time = formatTime(client.uptime);
         const sys = os.platform();
         const cpuUsage = os.loadavg()[0];
@@ -16,7 +16,7 @@ module.exports = {
         return message.channel.send({
             embeds: [
                 createEmbed({
-                    title: `⌚ Informacje bota`,
+                    title: '⌚ Informacje bota',
                     description: `**Uptime: \`${time}\`**\n**System: \`${sys}\`**\n**Użycie Cpu: \`${cpuUsage}%\`**\n**Użycie Ram: \`${memUsage}mb\`**`
                 })
             ]

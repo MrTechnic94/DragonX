@@ -8,7 +8,7 @@ module.exports = {
     name: 'resume',
     dj: true,
     cooldown: 2,
-    run: async (_client, message) => {
+    async run(_client, message) {
         if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
         const queue = useQueue(message.guild.id);
@@ -19,8 +19,8 @@ module.exports = {
 
         queue.node.setPaused(!queue.node.isPaused());
 
-        const mode = queue.node.isPaused() ? `▶️ \`Zatrzymano\`` : `⏸️ \`Wznowiono\``;
+        const mode = queue.node.isPaused() ? '▶️ `Zatrzymano`' : '⏸️ `Wznowiono`';
 
-        return message.channel.send({ embeds: [createEmbed({ description: `**${mode} odtwarzanie piosenki!**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `**${mode} odtwarzanie piosenki**` })] });
     }
 };

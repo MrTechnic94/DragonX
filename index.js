@@ -45,14 +45,14 @@ const player = new Player(client, {
 		// Zaladowanie dodatkow dla discord-player
 		await player.extractors.loadDefault();
 		await player.extractors.register(DeezerExtractor);
-		logger.info(`Zaladowano wszystkie dodatki!`);
+		logger.info('Zaladowano wszystkie dodatki');
 
 		// Zalogowanie bota do discord
 		const token = process.env.DEV_MODE === 'true' ? process.env.TOKEN_DEV : process.env.TOKEN;
 
 		await client.login(token);
 	} catch (err) {
-		logger.error(`Wystapil nieoczekiwany blad!\n${err}`);
+		logger.error(`Wystapil nieoczekiwany blad\n${err}`);
 		process.exit(1);
 	};
 })();

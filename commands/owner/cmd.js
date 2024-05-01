@@ -1,14 +1,14 @@
 'use strict';
 
 const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { exec } = require('child_process');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const { exec } = require('child_process');
 
 module.exports = {
     name: 'cmd',
     owner: true,
     cooldown: 2,
-    run: async (_client, message, args) => {
+    async run(_client, message, args) {
         if (!args.length) return message.channel.send({ embeds: [messageEmbeds.args_cmd_error] });
 
         exec(args.join(' '), (error, stdout) => {

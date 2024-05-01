@@ -9,7 +9,7 @@ module.exports = {
     aliases: ['l', 'disconnect', 'dc', 'stop'],
     dj: true,
     cooldown: 2,
-    run: async (_client, message) => {
+    async run(_client, message) {
         if (!message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.bot_voice_error] });
 
         if (!message.member?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.member_voice_error] });

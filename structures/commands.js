@@ -16,24 +16,30 @@ module.exports = (client) => {
       const command = require(`../commands/${directory}/${file}`);
 
       // Sprawdzenie czy komenda poprawnie sie laduje
-      if (typeof command.run !== 'function') return logger.error(`Blad podczas ladowania polecenia: ${directory}/${file}!`);
+      if (typeof command.run !== 'function') {
+        logger.error(`Blad podczas ladowania polecenia: ${directory}/${file}`);
+        continue;
+      };
 
       // Sprawdzenie czy komenda nie ma takiej samej nazwy jak pozostale
-      if (client.commands.has(command.name)) return logger.warn(`Zbyt wiele polecen posiada taka sama nazwe: ${command.name}!`);
+      if (client.commands.has(command.name)) {
+        logger.warn(`Zbyt wiele polecen posiada taka sama nazwe: ${command.name}`);
+        continue;
+      };
 
       // Zaladowanie komend
       client.commands.set(command.name, command);
-      logger.info(`Polecenie ${command.name} zostalo zaladowane!`);
+      logger.info(`Polecenie ${command.name} zostalo zaladowane`);
 
       // Sprawdzenie czy komenda nie ma takich samych aliasow jak pozotale
       if (command.aliases && Array.isArray(command.aliases)) {
         command.aliases.forEach((alias) => {
           if (client.aliases.has(alias)) {
-            logger.warn(`Zbyt wiele polecen posiada takie same aliasy: ${alias}!`);
+            logger.warn(`Zbyt wiele polecen posiada takie same aliasy: ${alias}`);
           } else {
             client.aliases.set(alias, command.name);
           }
-        });
+        })
       };
 
       // Sprawdzenie czy komenda jest tylko dla wlasciciela

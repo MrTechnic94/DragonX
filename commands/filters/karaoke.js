@@ -10,7 +10,7 @@ module.exports = {
     aliases: ['ka'],
     dj: true,
     cooldown: 2,
-    run: async (_client, message) => {
+    async run(_client, message) {
         if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
         const queue = useQueue(message.guild.id);
@@ -19,9 +19,9 @@ module.exports = {
 
         if (queue.filters.ffmpeg.getFiltersEnabled().length >= config.maxFiltersEnabled && queue.filters.ffmpeg.isDisabled('karaoke')) return message.channel.send({ embeds: [messageEmbeds.max_filters_enabled_error] });
 
-        const mode = queue.filters.ffmpeg.isEnabled('karaoke') ? `wyłączony` : `włączony`;
+        const mode = queue.filters.ffmpeg.isEnabled('karaoke') ? 'wyłączony' : 'włączony';
         await queue.filters.ffmpeg.toggle(['karaoke', 'normalizer']);
 
-        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Karaoke został \`${mode}\`!**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Karaoke został \`${mode}\`**` })] });
     }
 };

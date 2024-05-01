@@ -12,7 +12,7 @@ module.exports = (client) => {
     for (const file of eventFiles) {
       const eventName = file.slice(0, file.lastIndexOf('.'));
       const event = require(path.join(__dirname, '..', `./events/`, directory, file));
-      logger.info(`Zaladowano wydarzenie ${eventName}!`);
+      logger.info(`Wydarzenie ${eventName} zostalo zaladowane`);
 
       const eventHandler = (...args) => event.run(client, ...args);
 
@@ -25,5 +25,5 @@ module.exports = (client) => {
         client[(event.once ? 'once' : 'on')](eventName, eventHandler);
       }
     }
-  });
+  })
 };

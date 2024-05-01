@@ -1,15 +1,15 @@
 'use strict';
 
 const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { useTimeline } = require('discord-player');
 const { parseTime } = require('../../utils/timeFormatter.js');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const { useTimeline } = require('discord-player');
 
 module.exports = {
   name: 'seek',
   dj: true,
   cooldown: 2,
-  run: async (_client, message, args) => {
+  async run(_client, message, args) {
     if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
     const timeline = useTimeline(message.guild.id);

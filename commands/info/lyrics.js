@@ -1,21 +1,22 @@
 'use strict';
 
 const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { useTimeline } = require('discord-player');
-const { lyricsExtractor } = require('@discord-player/extractor');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const { lyricsExtractor } = require('@discord-player/extractor');
+const { useTimeline } = require('discord-player');
 
 module.exports = {
     name: 'lyrics',
     cooldown: 2,
-    run: async (_client, message, args) => {
+    async run(_client, message, args) {
         const timeline = useTimeline(message.guild.id);
         const lyricsFinder = lyricsExtractor(process.env.GENIUS_LYRICS_API);
-        const query = args.join(' ');
+        const query = args.join(' ').toLowerCase().replace(/\(lyrics|lyric|official music video|official video hd|official video|audio|official|clip officiel|clip|extended|hq|remix\)/g, '');
+        const currentTrackFormated = timeline?.track?.title.toLowerCase().replace(/\(lyrics|lyric|official music video|official video hd|official video|audio|official|clip officiel|clip|extended|hq|remix\)/g, '');
 
         if (!query && !timeline?.track) return message.channel.send({ embeds: [messageEmbeds.no_lyrics_args_error] });
 
-        const lyrics = timeline?.track && !query ? await lyricsFinder.search(timeline.track.title).catch(() => null) : await lyricsFinder.search(query).catch(() => null);
+        const lyrics = timeline?.track && !query ? await lyricsFinder.search(currentTrackFormated).catch(() => null) : await lyricsFinder.search(query).catch(() => null);
 
         if (!lyrics) return message.channel.send({ embeds: [messageEmbeds.no_found_lyrics_error] });
 

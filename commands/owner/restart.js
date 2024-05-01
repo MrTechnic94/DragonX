@@ -6,11 +6,13 @@ module.exports = {
     name: 'restart',
     owner: true,
     cooldown: 2,
-    run: async (_client, message) => {
-        await message.channel.send({ embeds: [messageEmbeds.restart_bot_success] });
+    async run(_client, message) {
+        try {
+            await message.channel.send({ embeds: [messageEmbeds.restart_bot_success] });
 
-        process.exit(1).catch(() => {
+            process.exit(1);
+        } catch {
             return message.channel.send({ embeds: [messageEmbeds.catch_error] });
-        });
+        };
     }
 };

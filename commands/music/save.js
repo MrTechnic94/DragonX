@@ -1,15 +1,15 @@
 'use strict';
 
 const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { useTimeline } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const { useTimeline } = require('discord-player');
 
 module.exports = {
     name: 'save',
     aliases: ['grab', 'g'],
     dj: true,
     cooldown: 2,
-    run: async (_client, message) => {
+    async run(_client, message) {
         if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
         const timeline = useTimeline(message.guild.id);
@@ -21,7 +21,7 @@ module.exports = {
         return message.member.send({
             embeds: [
                 createEmbed({
-                    title: `📨 Zapisano piosenkę`,
+                    title: '📨 Zapisano piosenkę',
                     description: `**Tytuł:** [${timeline.track.title}](${timeline.track.url})\n**Czas: \`${timeline.track.duration}\`**\n**Autor: \`${requester}\`**`,
                     thumbnail: timeline.track.thumbnail,
                     footer: {

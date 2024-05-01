@@ -6,7 +6,7 @@ const { Events } = require('discord.js');
 
 module.exports = {
     name: Events.GuildDelete,
-    run: async (_client, guild) => {
+    async run(_client, guild) {
         try {
             // Sprawdzenie i usuniecie wpisu z bazy danych dla danej guildi
             const existingGuild = await redis.del(guild.id);

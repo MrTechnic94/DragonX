@@ -1,15 +1,15 @@
 'use strict';
 
 const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { useQueue } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const { useQueue } = require('discord-player');
 
 module.exports = {
     name: 'move',
     aliases: ['m', 'insert'],
     dj: true,
     cooldown: 2,
-    run: async (_client, message, args) => {
+    async run(_client, message, args) {
         if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
         const queue = useQueue(message.guild.id);
@@ -25,6 +25,6 @@ module.exports = {
         if (index === indexTrack) return message.channel.send({ embeds: [messageEmbeds.same_move_error] });
 
         queue.node.move(trackToMove, indexTrack - 1);
-        return message.channel.send({ embeds: [createEmbed({ description: `▶️ **Przeniesiono piosenkę z pozycji \`${index}\` na \`${indexTrack}\`!**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `▶️ **Przeniesiono piosenkę z pozycji \`${index}\` na \`${indexTrack}\`**` })] });
     }
 };

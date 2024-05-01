@@ -9,7 +9,7 @@ const cooldowns = new Map();
 
 module.exports = {
   name: Events.MessageCreate,
-  run: async (client, message) => {
+  async run(client, message) {
     // Sprawdzenie czy komenda zostala wykonana w gildi i czy autor komenda nie jest botem
     if (message.author.bot || !message.guild) return;
 
@@ -80,7 +80,7 @@ module.exports = {
 
     // Przechwytuje i wyswietla bledy komend
     cmd.run(client, message, args).catch(err => {
-      logger.error(`Komenda ${cmd.name} napotkala blad!\n${err}`);
+      logger.error(`Komenda ${cmd.name} napotkala blad\n${err}`);
     });
   }
 };

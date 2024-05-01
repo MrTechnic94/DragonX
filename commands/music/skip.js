@@ -1,15 +1,15 @@
 'use strict';
 
 const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { useQueue, QueueRepeatMode } = require('discord-player');
 const { createEmbed } = require('../../utils/embedCreator.js');
+const { useQueue, QueueRepeatMode } = require('discord-player');
 
 module.exports = {
     name: 'skip',
     aliases: ['s', 'vote', 'next', 'n'],
     dj: true,
     cooldown: 2,
-    run: async (_client, message) => {
+    async run(_client, message) {
         if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
         const queue = useQueue(message.guild.id);
@@ -31,6 +31,6 @@ module.exports = {
             return message.channel.send({ embeds: [messageEmbeds.skip_success] });
         };
 
-        return message.channel.send({ embeds: [createEmbed({ description: `<@${message.author.id}> **zagłosował na pominięcie piosenki (${currentVotes} / ${required})**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `<@${message.author.id}> **zagłosował/a na pominięcie piosenki (${currentVotes} / ${required})**` })] });
     }
 };

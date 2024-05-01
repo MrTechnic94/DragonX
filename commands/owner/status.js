@@ -8,13 +8,13 @@ module.exports = {
     name: 'status',
     owner: true,
     cooldown: 2,
-    run: async (client, message, args) => {
+    async run(client, message, args) {
         if (!args[0]) return message.channel.send({ embeds: [messageEmbeds.args_status_error] });
 
         const query = args[0] === 'clear' ? config.presence.activities[0].name : args.join(' ');
 
         client.user.setPresence({ activities: [{ name: query }] });
 
-        message.channel.send({ embeds: [createEmbed({ description: `✅ **Status został zmieniony na \`${query}\`**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `✅ **Status został zmieniony na \`${query}\`**` })] });
     }
 };

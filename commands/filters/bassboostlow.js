@@ -10,7 +10,7 @@ module.exports = {
     aliases: ['bbl'],
     dj: true,
     cooldown: 2,
-    run: async (_client, message) => {
+    async run(_client, message) {
         if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
         const queue = useQueue(message.guild.id);
@@ -19,9 +19,9 @@ module.exports = {
 
         if (queue.filters.ffmpeg.getFiltersEnabled().length >= config.maxFiltersEnabled && queue.filters.ffmpeg.isDisabled('bassboost_low')) return message.channel.send({ embeds: [messageEmbeds.max_filters_enabled_error] });
 
-        const mode = queue.filters.ffmpeg.isEnabled('bassboost_low') ? `wyłączony` : `włączony`;
+        const mode = queue.filters.ffmpeg.isEnabled('bassboost_low') ? 'wyłączony' : 'włączony';
         await queue.filters.ffmpeg.toggle(['bassboost_low', 'normalizer']);
 
-        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Niski Bassboost został \`${mode}\`!**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Niski Bassboost został \`${mode}\`**` })] });
     }
 };
