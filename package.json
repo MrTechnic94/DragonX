@@ -21,7 +21,6 @@
     "pino": "^9.0.0"
   },
   "optionalDependencies": {
-    "ffmpeg-static": "^5.2.0",
     "pino-pretty": "^11.0.0",
     "pm2": "^5.3.1"
   },
