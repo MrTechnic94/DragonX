@@ -1,6 +1,6 @@
 {
   "name": "dragonx",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "main": "index.js",
   "description": "Muzyczny bot dla aplikacji Discord",
   "author": "MrTechnic",
@@ -21,6 +21,7 @@
     "pino": "^9.0.0"
   },
   "optionalDependencies": {
+    "ffmpeg-static": "^5.2.0",
     "pino-pretty": "^11.0.0",
     "pm2": "^5.3.1"
   },
