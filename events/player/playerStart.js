@@ -1,6 +1,6 @@
 'use strict';
 
-const { createEmbed } = require('../../utils/embedCreator.js');
+const { createEmbed } = require('../../utils/embedCreator');
 
 module.exports = {
     name: 'playerStart',

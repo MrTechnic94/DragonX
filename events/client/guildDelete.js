@@ -1,7 +1,7 @@
 'use strict';
 
-const redis = require('../../utils/redis.js');
-const logger = require('../../utils/consoleLogger.js');
+const redis = require('../../utils/redis');
+const logger = require('../../utils/consoleLogger');
 const { Events } = require('discord.js');
 
 module.exports = {

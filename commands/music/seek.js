@@ -1,8 +1,8 @@
 'use strict';
 
-const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { parseTime } = require('../../utils/timeFormatter.js');
-const { createEmbed } = require('../../utils/embedCreator.js');
+const messageEmbeds = require('../../utils/messageEmbeds');
+const { parseTime } = require('../../utils/timeFormatter');
+const { createEmbed } = require('../../utils/embedCreator');
 const { useTimeline } = require('discord-player');
 
 module.exports = {

@@ -1,6 +1,6 @@
 'use strict';
 
-const config = require('../config/default.js');
+const config = require('../config/default');
 const { EmbedBuilder } = require('discord.js');
 
 // Utworzenie funkcji odpowiadajacej za generowanie embedu

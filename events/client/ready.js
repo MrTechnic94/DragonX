@@ -1,6 +1,6 @@
 'use strict';
 
-const logger = require('../../utils/consoleLogger.js');
+const logger = require('../../utils/consoleLogger');
 const { Events } = require('discord.js');
 
 module.exports = {

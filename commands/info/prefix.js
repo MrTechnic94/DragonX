@@ -1,8 +1,8 @@
 'use strict';
 
-const redis = require('../../utils/redis.js');
-const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { createEmbed } = require('../../utils/embedCreator.js');
+const redis = require('../../utils/redis');
+const messageEmbeds = require('../../utils/messageEmbeds');
+const { createEmbed } = require('../../utils/embedCreator');
 
 module.exports = {
     name: 'prefix',
@@ -20,10 +20,11 @@ module.exports = {
         if (oldPrefix === prefix) return message.channel.send({ embeds: [messageEmbeds.already_prefix_error] });
 
         try {
-            await redis.hmset(message.guild.id, {
+            await redis.hset(message.guild.id, {
                 prefix: prefix,
                 djRoleId: guildData.djRoleId
             });
+
             return message.channel.send({ embeds: [createEmbed({ description: `✅ **Ustawiono nowy prefix: \`${prefix}\`**` })] });
         } catch {
             return message.channel.send({ embeds: [messageEmbeds.catch_error] });

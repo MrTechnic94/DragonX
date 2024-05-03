@@ -1,7 +1,7 @@
 'use strict';
 
-const redis = require('../../utils/redis.js');
-const { createEmbed } = require('../../utils/embedCreator.js');
+const redis = require('../../utils/redis');
+const { createEmbed } = require('../../utils/embedCreator');
 const { useQueue, useTimeline, QueueRepeatMode } = require('discord-player');
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
         if (!queue?.isPlaying()) return message.channel.send({ embeds: [createEmbed({ title: '🔧 Ustawienia serwera', description: `**Prefix: \`${prefix}\`**\n**DJ Rola:** ${dj}\n**Autoplay: \`wyłączony\`**\n**Loop: \`wyłączony\`**\n**Volume: \`100%\`**` })] });
 
         const autoplay = queue.repeatMode === QueueRepeatMode.AUTOPLAY ? '`włączony`' : '`wyłączony`';
-        const loop = queue.repeatMode === QueueRepeatMode.OFF ? '`wyłączony`' : queue.repeatMode === QueueRepeatMode.TRACK ? '`track`' : '`playlist`';
+        const loop = queue.repeatMode === QueueRepeatMode.OFF ? '`wyłączony`' : queue.repeatMode === QueueRepeatMode.TRACK ? '`piosenka`' : '`playlista`';
 
         return message.channel.send({
             embeds: [

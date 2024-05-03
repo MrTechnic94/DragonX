@@ -1,8 +1,8 @@
 'use strict';
 
 const os = require('node:os');
-const { formatTime } = require('../../utils/timeFormatter.js');
-const { createEmbed } = require('../../utils/embedCreator.js');
+const { formatTime } = require('../../utils/timeFormatter');
+const { createEmbed } = require('../../utils/embedCreator');
 
 module.exports = {
     name: 'debug',

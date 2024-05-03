@@ -1,42 +1,29 @@
 'use strict';
 
-const logger = require('./consoleLogger.js');
+const logger = require('./consoleLogger');
 const { exec } = require('child_process');
 
-// Sprawdzenie obecnosci wymaganych parametrow w pliku .env
-const checkEnvVariables = () => {
-    const requiredEnvVariables = ['TOKEN', 'OWNER_ID', 'PREFIX', 'DB_HOST', 'DB_PORT', 'DB_PASSWORD'];
-    const optionalEnvVariables = ['TOKEN_DEV'];
-
-    requiredEnvVariables.forEach((variable) => {
+// Funkcja sprawdzająca obecnosc wymaganych parametrow w pliku .env
+function checkEnvVariables(variables) {
+    for (const variable of variables) {
         if (!process.env[variable]) {
             logger.error(`Missing ${variable} in .env file`);
             process.exit(1);
         }
-    });
-
-    // Sprawdzenie czy DEV_MODE jest ustawiony na true, jesli tak to sprawdza czy parametr w TOKEN_DEV jest obecny
-    if (process.env.DEV_MODE === 'true') {
-        optionalEnvVariables.forEach((variable) => {
-            if (!process.env[variable]) {
-                logger.error(`Missing ${variable} in .env file`);
-                process.exit(1);
-            }
-        });
     }
 };
 
-// Sprawdzenie czy wersja node.js jest wieksza niz v18
-const checkNodeVersion = () => {
-    const version = Number(process.version.split('.')[0].replace('v', ''));
+// Sprawdzenie czy wersja nodejs jest większa niż v18
+function checkNodeVersion() {
+    const version = Number(process.version.slice(1).split('.')[0]);
     if (version < 18) {
         logger.error('Outdated Node.js version. Update to a newer version');
         process.exit(1);
     }
 };
 
-// Sprawdzenie czy ffmpeg jest zainstalowany
-const checkFFmpeg = () => {
+// Sprawdzenie obecnosci FFmpeg
+function checkFFmpeg() {
     exec('ffmpeg -version', (err) => {
         if (err) {
             logger.error('No FFmpeg installed');
@@ -45,10 +32,18 @@ const checkFFmpeg = () => {
     });
 };
 
-// Zaladowanie utworzonych wczesniej zmiennych
-const errorCatcher = () => {
-    checkEnvVariables();
+// Funkcja glowna odpowiedzialna za przechwytywanie bledow i sprawdzanie wymagan
+function errorCatcher() {
+    // Sprawdzenie wymaganych zmiennych środowiskowych
+    checkEnvVariables(['TOKEN', 'OWNER_ID', 'PREFIX', 'DB_HOST', 'DB_PORT', 'DB_PASSWORD']);
+
+    // Sprawdzenie opcjonalnych zmiennych srodowiskowych w trybie deweloperskim
+    if (process.env.DEV_MODE === 'true') checkEnvVariables(['TOKEN_DEV']);
+
+    // Sprawdzenie wersji Nodejs
     checkNodeVersion();
+
+    // Sprawdzenie obecności FFmpeg
     checkFFmpeg();
 };
 

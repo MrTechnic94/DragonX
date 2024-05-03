@@ -1,9 +1,9 @@
 'use strict';
 
-const messageEmbeds = require('../../utils/messageEmbeds.js');
+const messageEmbeds = require('../../utils/messageEmbeds');
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { useQueue } = require('discord-player');
-const { createEmbed } = require('../../utils/embedCreator.js');
+const { createEmbed } = require('../../utils/embedCreator');
 
 module.exports = {
     name: 'queue',

@@ -1,7 +1,7 @@
 'use strict';
 
 const Redis = require('ioredis');
-const logger = require('./consoleLogger.js');
+const logger = require('./consoleLogger');
 
 // Utworzenie klienta redis
 const redis = new Redis({

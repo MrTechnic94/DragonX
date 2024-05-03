@@ -1,7 +1,7 @@
 'use strict';
 
-const redis = require('../../utils/redis.js');
-const { createEmbed } = require('../../utils/embedCreator.js');
+const redis = require('../../utils/redis');
+const { createEmbed } = require('../../utils/embedCreator');
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
 module.exports = {

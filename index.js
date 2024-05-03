@@ -1,8 +1,21 @@
+/**
+ * Ten kod został stworzony z pasji przez MrTechnic.
+ * Pierwotnie był wykorzystywany przez bota DragonX,
+ * ale teraz udostępniam go dla wszystkich jako projekt open-source.
+ * Jest łatwy w konfiguracji, prosty w obsłudze i posiada przejrzysty interfejs.
+ * Kod ten umożliwia tworzenie i obsługę różnych funkcji bota Discord,
+ * takich jak obsługa komend, zarządzanie cooldownami, czy sprawdzanie uprawnień użytkowników.
+ * Zachęcam do wykorzystania tego kodu w swoim projekcie,
+ * a także do zgłaszania błędów i sugestii na GitHubie.
+ * 
+ * Znajdziesz mnie i moje projekty tutaj: https://github.com/MrTechnic94/
+*/
+
 'use strict';
 
-const config = require('./config/default.js');
-const logger = require('./utils/consoleLogger.js');
-const { errorCatcher } = require('./utils/errorCatcher.js');
+const config = require('./config/default');
+const logger = require('./utils/consoleLogger');
+const { errorCatcher } = require('./utils/errorCatcher');
 const { Client, Collection } = require('discord.js');
 const { Player } = require('discord-player');
 const { default: DeezerExtractor } = require('discord-player-deezer');

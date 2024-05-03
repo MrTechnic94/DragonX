@@ -1,8 +1,8 @@
 'use strict';
 
-const redis = require('../../utils/redis.js');
-const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { createEmbed } = require('../../utils/embedCreator.js');
+const redis = require('../../utils/redis');
+const messageEmbeds = require('../../utils/messageEmbeds');
+const { createEmbed } = require('../../utils/embedCreator');
 
 module.exports = {
   name: 'dj',
@@ -21,7 +21,7 @@ module.exports = {
 
         if (guildData?.djRoleId === role.id) return message.channel.send({ embeds: [messageEmbeds.already_role_error] });
 
-        await redis.hmset(message.guild.id, {
+        await redis.hset(message.guild.id, {
           prefix: guildData.prefix ?? process.env.PREFIX,
           djRoleId: role.id
         });
@@ -32,7 +32,7 @@ module.exports = {
       case 'remove':
         if (!message.guild.roles.cache.has(guildData?.djRoleId)) return message.channel.send({ embeds: [messageEmbeds.dj_set_error] });
 
-        await redis.hmset(message.guild.id, {
+        await redis.hset(message.guild.id, {
           prefix: guildData.prefix ?? process.env.PREFIX,
           djRoleId: null
         });

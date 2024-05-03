@@ -1,8 +1,8 @@
 'use strict';
 
-const redis = require('../../utils/redis.js');
-const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { createEmbed } = require('../../utils/embedCreator.js');
+const redis = require('../../utils/redis');
+const messageEmbeds = require('../../utils/messageEmbeds');
+const { createEmbed } = require('../../utils/embedCreator');
 const { useQueue } = require('discord-player');
 
 module.exports = {

@@ -1,8 +1,8 @@
 'use strict';
 
-const config = require('../../config/default.js');
-const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { createEmbed } = require('../../utils/embedCreator.js');
+const config = require('../../config/default');
+const messageEmbeds = require('../../utils/messageEmbeds');
+const { createEmbed } = require('../../utils/embedCreator');
 
 module.exports = {
     name: 'status',

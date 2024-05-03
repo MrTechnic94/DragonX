@@ -1,6 +1,6 @@
 'use strict';
 
-const logger = require('../utils/consoleLogger.js');
+const logger = require('../utils/consoleLogger');
 const { readdirSync } = require('node:fs');
 
 module.exports = (client) => {

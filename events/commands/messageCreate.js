@@ -1,30 +1,30 @@
 'use strict';
 
-const redis = require('../../utils/redis.js');
-const logger = require('../../utils/consoleLogger.js');
-const messageEmbeds = require('../../utils/messageEmbeds.js');
-const { createEmbed } = require('../../utils/embedCreator.js');
+const redis = require('../../utils/redis');
+const logger = require('../../utils/consoleLogger');
+const messageEmbeds = require('../../utils/messageEmbeds');
+const { createEmbed } = require('../../utils/embedCreator');
 const { Events, PermissionsBitField } = require('discord.js');
 const cooldowns = new Map();
+
+// Utworzenie zmiennej oraz przypisanie do niej wymaganych permisji dla bota
+const bot_permissions = [
+  { name: PermissionsBitField.Flags.SendMessages, label: 'Send Messages' },
+  { name: PermissionsBitField.Flags.ReadMessageHistory, label: 'Read Message History' },
+  { name: PermissionsBitField.Flags.SendMessagesInThreads, label: 'Send Messages In Threads' },
+  { name: PermissionsBitField.Flags.Speak, label: 'Speak' },
+  { name: PermissionsBitField.Flags.PrioritySpeaker, label: 'Priority Speaker' },
+  { name: PermissionsBitField.Flags.Connect, label: 'Connect' },
+  { name: PermissionsBitField.Flags.UseVAD, label: 'Use Voice Activity' },
+  { name: PermissionsBitField.Flags.EmbedLinks, label: 'Embed Links' },
+  { name: PermissionsBitField.Flags.ViewChannel, label: 'View Channel' }
+];
 
 module.exports = {
   name: Events.MessageCreate,
   async run(client, message) {
     // Sprawdzenie czy komenda zostala wykonana w gildi i czy autor komenda nie jest botem
     if (message.author.bot || !message.guild) return;
-
-    // Utworzenie zmiennej oraz przypisanie do niej wymaganych permisji dla bota
-    const bot_permissions = [
-      { name: PermissionsBitField.Flags.SendMessages, label: 'Send Messages' },
-      { name: PermissionsBitField.Flags.ReadMessageHistory, label: 'Read Message History' },
-      { name: PermissionsBitField.Flags.SendMessagesInThreads, label: 'Send Messages In Threads' },
-      { name: PermissionsBitField.Flags.Speak, label: 'Speak' },
-      { name: PermissionsBitField.Flags.PrioritySpeaker, label: 'Priority Speaker' },
-      { name: PermissionsBitField.Flags.Connect, label: 'Connect' },
-      { name: PermissionsBitField.Flags.UseVAD, label: 'Use Voice Activity' },
-      { name: PermissionsBitField.Flags.EmbedLinks, label: 'Embed Links' },
-      { name: PermissionsBitField.Flags.ViewChannel, label: 'View Channel' }
-    ];
 
     // Sprawdzenie permisji bota
     const missingPermissions = bot_permissions.filter(permission => !message.guild.members.me.permissions.has(permission.name));
@@ -79,8 +79,10 @@ module.exports = {
       return message.channel.send({ embeds: [messageEmbeds.dj_permission_error] });
 
     // Przechwytuje i wyswietla bledy komend
-    cmd.run(client, message, args).catch(err => {
-      logger.error(`Komenda ${cmd.name} napotkala blad\n${err}`);
-    });
+    try {
+      cmd.run(client, message, args);
+    } catch (err) {
+      return logger.error(`Komenda ${cmd.name} napotkala blad\n${err}`);
+    };
   }
 };
