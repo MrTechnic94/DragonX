@@ -15,14 +15,18 @@ module.exports = (client) => {
       logger.info(`Wydarzenie ${eventName} zostalo zaladowane`);
 
       const eventHandler = (...args) => event.run(client, ...args);
+      const player = useMainPlayer();
 
-      if (directory === 'player') {
-        const player = useMainPlayer();
-        player.events.on(eventName, eventHandler);
-      } else if (directory === 'process') {
-        process.on(eventName, eventHandler);
-      } else {
-        client[(event.once ? 'once' : 'on')](eventName, eventHandler);
+      switch (directory) {
+        case 'player':
+          player.events.on(eventName, eventHandler);
+          break;
+        case 'process':
+          process.on(eventName, eventHandler);
+          break;
+        default:
+          client[(event.once ? 'once' : 'on')](eventName, eventHandler);
+          break;
       }
     }
   })

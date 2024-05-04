@@ -18,7 +18,7 @@ module.exports = {
 
     const seekTime = parseTime(args[0]);
 
-    if (!seekTime || seekTime <= 0) return message.channel.send({ embeds: [messageEmbeds.number_error] });
+    if (!seekTime || seekTime === 0) return message.channel.send({ embeds: [messageEmbeds.number_error] });
 
     if (seekTime >= timeline.track.durationMS) return message.channel.send({ embeds: [messageEmbeds.time_seek_error] });
 

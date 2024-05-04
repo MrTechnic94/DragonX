@@ -34,7 +34,7 @@ function checkFFmpeg() {
 
 // Funkcja glowna odpowiedzialna za przechwytywanie bledow i sprawdzanie wymagan
 function errorCatcher() {
-    // Sprawdzenie wymaganych zmiennych środowiskowych
+    // Sprawdzenie wymaganych zmiennych srodowiskowych
     checkEnvVariables(['TOKEN', 'OWNER_ID', 'PREFIX', 'DB_HOST', 'DB_PORT', 'DB_PASSWORD']);
 
     // Sprawdzenie opcjonalnych zmiennych srodowiskowych w trybie deweloperskim
@@ -43,7 +43,7 @@ function errorCatcher() {
     // Sprawdzenie wersji Nodejs
     checkNodeVersion();
 
-    // Sprawdzenie obecności FFmpeg
+    // Sprawdzenie obecnosci FFmpeg
     checkFFmpeg();
 };
 

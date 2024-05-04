@@ -45,7 +45,7 @@ const messages = {
     player_error: '❌ **Wystąpił błąd podczas odtwarzania piosenki**',
     catch_error: '❌ **Wystąpił nieoczekiwany błąd**',
     filters_error: '❌ **Żaden filtr nie jest włączony**',
-    max_filters_enabled_error: `❌ **Jednocześnie może być włączony tylko ${config.maxFiltersEnabled} filtr**`,
+    max_filters_enabled_error: `❌ **Jednocześnie może być włączony tylko ${config.playerOptions.maxFiltersEnabled} filtr**`,
     shuffle_error: '❌ **Wymagane są co najmniej 3 piosenki w playliście**',
     full_channel_error: '❌ **Kanał głosowy jest pełny**',
     same_move_error: '❌ **Nie można przenieść piosenki w to samo miejsce**',

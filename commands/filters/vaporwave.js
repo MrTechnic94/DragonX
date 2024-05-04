@@ -17,7 +17,7 @@ module.exports = {
 
         if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
-        if (queue.filters.ffmpeg.getFiltersEnabled().length >= config.maxFiltersEnabled && queue.filters.ffmpeg.isDisabled('vaporwave')) return message.channel.send({ embeds: [messageEmbeds.max_filters_enabled_error] });
+        if (queue.filters.ffmpeg.getFiltersEnabled().length >= config.playerOptions.maxFiltersEnabled&& queue.filters.ffmpeg.isDisabled('vaporwave')) return message.channel.send({ embeds: [messageEmbeds.max_filters_enabled_error] });
 
         const mode = queue.filters.ffmpeg.isEnabled('vaporwave') ? 'wyłączony' : 'włączony';
         await queue.filters.ffmpeg.toggle(['vaporwave', 'normalizer']);

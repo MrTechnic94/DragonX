@@ -35,13 +35,7 @@ module.exports = {
             await player.play(message.member.voice.channel, result, {
                 nodeOptions: {
                     metadata: message.channel,
-                    leaveOnEndCooldown: config.leaveOnEndCooldown,
-                    leaveOnEmptyCooldown: config.leaveOnEmptyCooldown,
-                    leaveOnStop: config.leaveOnStop,
-                    pauseOnEmpty: config.pauseOnEmpty,
-                    maxQueueSize: config.maxQueueSize,
-                    bufferingTimeout: config.bufferingTimeout,
-                    connectionTimeout: config.connectionTimeout
+                    ...config.clientPlayerOptions
                 }
             });
         } catch {

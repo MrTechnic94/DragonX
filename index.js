@@ -4,7 +4,7 @@
  * ale teraz udostępniam go dla wszystkich jako projekt open-source.
  * Jest łatwy w konfiguracji, prosty w obsłudze i posiada przejrzysty interfejs.
  * Kod ten umożliwia tworzenie i obsługę różnych funkcji bota Discord,
- * takich jak obsługa komend, zarządzanie cooldownami, czy sprawdzanie uprawnień użytkowników.
+ * takich jak obsługa komend muzycznych, zarządzanie cooldownami, czy lekka konstrukcja bota.
  * Zachęcam do wykorzystania tego kodu w swoim projekcie,
  * a także do zgłaszania błędów i sugestii na GitHubie.
  * 
@@ -26,23 +26,26 @@ errorCatcher();
 
 // Inicjalizacja klienta bota z określonymi ustawieniami
 const client = new Client({
-	restRequestTimeout: config.restRequestTimeout,
-	messageEditHistoryMaxSize: config.messageEditHistoryMaxSize,
-	messageCacheMaxSize: config.messageCacheMaxSize,
-	messageSweepInterval: config.messageSweepInterval,
-	messageCacheLifetime: config.messageCacheLifetime,
-	intents: config.intents,
-	partials: config.partials,
-	presence: config.presence,
-	allowedMentions: config.allowedMentions
+	// restRequestTimeout: config.restRequestTimeout,
+	// messageEditHistoryMaxSize: config.messageEditHistoryMaxSize,
+	// messageCacheMaxSize: config.messageCacheMaxSize,
+	// messageSweepInterval: config.messageSweepInterval,
+	// messageCacheLifetime: config.messageCacheLifetime,
+	// intents: config.intents,
+	// makeCache: config.makeCache,
+	// sweepers: config.sweepers,
+	// // partials: config.partials,
+	// presence: config.presence,
+	// allowedMentions: config.allowedMentions
+	...config.clientOptions
 });
 
 // Zaladowanie discord-player
 const player = new Player(client, {
-	useLegacyFFmpeg: config.useLegacyFFmpeg,
-	skipFFmpeg: config.skipFFmpeg,
+	useLegacyFFmpeg: config.clientPlayerOptions.useLegacyFFmpeg,
+	skipFFmpeg: config.clientPlayerOptions.skipFFmpeg,
 	ytdlOptions: {
-		quality: config.audioQuality,
+		quality: config.clientPlayerOptions.audioQuality,
 		highWaterMark: 1 << 25
 	}
 });

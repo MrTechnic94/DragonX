@@ -5,6 +5,8 @@ const logger = require('../../utils/consoleLogger');
 const messageEmbeds = require('../../utils/messageEmbeds');
 const { createEmbed } = require('../../utils/embedCreator');
 const { Events, PermissionsBitField } = require('discord.js');
+
+// Mapa przechowująca czas do uplyniecia cooldownu dla komend
 const cooldowns = new Map();
 
 // Utworzenie zmiennej oraz przypisanie do niej wymaganych permisji dla bota
@@ -52,7 +54,8 @@ module.exports = {
           })]
       });
 
-    if (!message.content.startsWith(prefix) || !cmd || cmd.stop) return;
+    // if (!message.content.startsWith(prefix) || !cmd || cmd.stop) return;
+    if (!message.content.startsWith(prefix) || !cmd) return;
 
     // Sprawdzenie czy komenda ma cooldown
     if (cmd.cooldown && cooldowns.has(cmd.name)) {
