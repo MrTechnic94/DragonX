@@ -8,17 +8,15 @@
   "private": true,
   "dependencies": {
     "@discord-player/extractor": "^4.4.7",
-    "@discord-player/opus": "^0.1.2",
-    "@distube/ytdl-core": "^4.13.3",
     "child_process": "^1.0.2",
     "discord-player": "^6.6.8",
     "discord-player-deezer": "^1.0.1",
-    "discord-voip": "^0.1.3",
-    "discord.js": "^14.14.1",
+    "discord.js": "^14.15.1",
     "dotenv": "^16.4.5",
     "ioredis": "^5.4.1",
     "mediaplex": "^0.0.9",
-    "pino": "^9.0.0"
+    "pino": "^9.0.0",
+    "youtube-ext": "^1.1.25"
   },
   "optionalDependencies": {
     "pino-pretty": "^11.0.0",
