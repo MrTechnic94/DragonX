@@ -31,10 +31,10 @@ const client = new Client({
 
 // Zaladowanie discord-player
 const player = new Player(client, {
-	useLegacyFFmpeg: config.clientPlayerOptions.useLegacyFFmpeg,
-	skipFFmpeg: config.clientPlayerOptions.skipFFmpeg,
+	useLegacyFFmpeg: config.playerOptions.useLegacyFFmpeg,
+	skipFFmpeg: config.playerOptions.skipFFmpeg,
 	ytdlOptions: {
-		quality: config.clientPlayerOptions.audioQuality,
+		quality: config.playerOptions.audioQuality,
 		highWaterMark: 1 << 25
 	}
 });
