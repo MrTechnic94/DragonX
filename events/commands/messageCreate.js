@@ -54,7 +54,7 @@ module.exports = {
           })]
       });
 
-    // if (!message.content.startsWith(prefix) || !cmd || cmd.stop) return;
+    // Sprawdzenie czy komenda instnieje i czy zaczyna sie od prefixu
     if (!message.content.startsWith(prefix) || !cmd) return;
 
     // Sprawdzenie czy komenda ma cooldown

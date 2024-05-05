@@ -3,15 +3,6 @@
 const config = require('../config/default');
 const { createEmbed } = require('./embedCreator');
 
-// Funkcja pomocnicza do generowania obiektu z gotowymi wiadomosciami
-const generateEmbed = (messages) => {
-    const embeds = {};
-    for (const [key, description] of Object.entries(messages)) {
-        embeds[key] = createEmbed({ description });
-    };
-    return embeds;
-};
-
 // Obiekt z gotowymi wiadomosciami
 const messages = {
     queue_error: '❌ **Nie ma piosenek w playliście**',
@@ -62,6 +53,6 @@ const messages = {
 };
 
 // Generowanie gotowych wiadomosci
-const messageEmbeds = generateEmbed(messages);
+const messageEmbeds = Object.fromEntries(Object.entries(messages).map(([key, description]) => [key, createEmbed({ description })]));
 
 module.exports = messageEmbeds;

@@ -5,12 +5,9 @@ function parseTime(timeString) {
     const timeParts = /^((\d{1,2}):)?(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?([ms])?$/.exec(timeString);
     if (!timeParts) return null;
 
-    let [hours, minutes, seconds, multiplier, milliseconds] = [0, 0, 0, 1, 0];
-    if (timeParts[2]) hours = parseInt(timeParts[2], 10);
-    minutes = parseInt(timeParts[3], 10);
-    seconds = parseInt(timeParts[4], 10);
+    let [hours = 0, minutes, seconds, multiplier, milliseconds = 0] = timeParts.slice(2).map(part => parseInt(part || 0, 10));
     multiplier = timeParts[6] === 'm' ? 60 : (timeParts[6] === 's' ? 1 / 60 : 1);
-    milliseconds = timeParts[5] ? parseInt(timeParts[5], 10) * multiplier * 1000 : 0;
+    milliseconds *= multiplier * 1000;
 
     return ((hours * 3600 + minutes * 60 + seconds) * 1000 + milliseconds);
 };

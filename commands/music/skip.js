@@ -21,6 +21,7 @@ module.exports = {
         if (queue.votes.includes(message.author.id)) return message.channel.send({ embeds: [messageEmbeds.already_voted_error] });
 
         const required = Math.ceil((message.member.voice.channel.members.size - 1) / 2);
+        
         const currentVotes = queue.votes.length + 1;
 
         queue.votes.push(message.author.id);

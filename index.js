@@ -26,17 +26,6 @@ errorCatcher();
 
 // Inicjalizacja klienta bota z określonymi ustawieniami
 const client = new Client({
-	// restRequestTimeout: config.restRequestTimeout,
-	// messageEditHistoryMaxSize: config.messageEditHistoryMaxSize,
-	// messageCacheMaxSize: config.messageCacheMaxSize,
-	// messageSweepInterval: config.messageSweepInterval,
-	// messageCacheLifetime: config.messageCacheLifetime,
-	// intents: config.intents,
-	// makeCache: config.makeCache,
-	// sweepers: config.sweepers,
-	// // partials: config.partials,
-	// presence: config.presence,
-	// allowedMentions: config.allowedMentions
 	...config.clientOptions
 });
 

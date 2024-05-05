@@ -11,6 +11,6 @@ module.exports = {
         logger.info(`${client.user.tag} zalogowal sie`);
 
         // Sprawdzenie czy tryb developera jest wlaczony
-        if (process.env.DEV_MODE === 'true') return logger.info('Running in Dev Mode');
+        if (process.env.DEV_MODE === 'true') logger.info('Running in Dev Mode');
     }
 };
