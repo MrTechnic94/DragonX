@@ -1,4 +1,4 @@
-/**
+/*
  * Ten kod został stworzony z pasji przez MrTechnic.
  * Pierwotnie był wykorzystywany przez bota DragonX,
  * ale teraz udostępniam go dla wszystkich jako projekt open-source.
@@ -13,33 +13,33 @@
 
 'use strict';
 
-const config = require('./config/default');
 const logger = require('./utils/consoleLogger');
+const { clientOptions, playerOptions } = require('./config/default');
 const { errorCatcher } = require('./utils/errorCatcher');
 const { Client, Collection } = require('discord.js');
 const { Player } = require('discord-player');
 const { default: DeezerExtractor } = require('discord-player-deezer');
 require('dotenv').config({ path: './config/.env' });
 
-// Zaladowanie errorCatcher, ktory pozwala przechwycic bledy
+// Pozwala przechwycic bledy oraz sprawdzic obecnosc wymaganych parametrow
 errorCatcher();
 
 // Inicjalizacja klienta bota z określonymi ustawieniami
 const client = new Client({
-	...config.clientOptions
+	...clientOptions
 });
 
 // Zaladowanie discord-player
 const player = new Player(client, {
-	useLegacyFFmpeg: config.playerOptions.useLegacyFFmpeg,
-	skipFFmpeg: config.playerOptions.skipFFmpeg,
+	useLegacyFFmpeg: playerOptions.useLegacyFFmpeg,
+	skipFFmpeg: playerOptions.skipFFmpeg,
 	ytdlOptions: {
-		quality: config.playerOptions.audioQuality,
+		quality: playerOptions.audioQuality,
 		highWaterMark: 1 << 25
 	}
 });
 
-// Zalodowanie handlerow dla komend i eventow bota
+// Zalodowanie handlerow komend i eventow
 ['commands', 'aliases'].forEach(x => client[x] = new Collection());
 
 ['./structures/commands.js', './structures/events.js'].forEach(x => require(x)(client));
