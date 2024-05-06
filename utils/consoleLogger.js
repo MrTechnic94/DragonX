@@ -1,6 +1,7 @@
 'use strict';
 
 const pino = require('pino');
+
 let logger;
 
 try {

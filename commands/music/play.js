@@ -1,6 +1,6 @@
 'use strict';
 
-const config = require('../../config/default');
+const { clientPlayerOptions } = require('../../config/default');
 const messageEmbeds = require('../../utils/messageEmbeds');
 const { createEmbed } = require('../../utils/embedCreator');
 const { useMainPlayer } = require('discord-player');
@@ -35,7 +35,7 @@ module.exports = {
             await player.play(message.member.voice.channel, result, {
                 nodeOptions: {
                     metadata: message.channel,
-                    ...config.clientPlayerOptions
+                    ...clientPlayerOptions
                 }
             });
         } catch {
