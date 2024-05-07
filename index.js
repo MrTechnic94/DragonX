@@ -3,11 +3,11 @@
  * Pierwotnie był wykorzystywany przez bota DragonX,
  * ale teraz udostępniam go dla wszystkich jako projekt open-source.
  * Jest łatwy w konfiguracji, prosty w obsłudze i posiada przejrzysty interfejs.
- * Kod ten umożliwia tworzenie i obsługę różnych funkcji bota Discord,
+ * Kod ten posiada wszystkie funkcje bota DragonX,
  * takich jak obsługa komend muzycznych, zarządzanie cooldownami, czy lekka konstrukcja bota.
  * Zachęcam do wykorzystania tego kodu w swoim projekcie,
  * a także do zgłaszania błędów i sugestii na GitHubie.
- * 
+ *
  * Znajdziesz mnie i moje projekty tutaj: https://github.com/MrTechnic94/
 */
 

@@ -29,7 +29,7 @@ function checkFFmpeg() {
             logger.error('No FFmpeg installed');
             logger.error('Install FFmpeg or use ffmpeg-static');
         }
-    });
+    })
 };
 
 // Funkcja glowna odpowiedzialna za przechwytywanie bledow i sprawdzanie wymagan
