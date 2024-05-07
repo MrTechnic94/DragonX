@@ -3,7 +3,7 @@
 const { playerOptions } = require('../config/default');
 const { createEmbed } = require('./embedCreator');
 
-// Obiekt z gotowymi wiadomosciami
+// Zmienna z gotowymi wiadomosciami
 const messages = {
     queue_error: '❌ **Nie ma piosenek w playliście**',
     voice_error: '❌ **Nie jesteś na moim kanale głosowym**',
