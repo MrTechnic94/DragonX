@@ -1,4 +1,4 @@
-/*
+/**
  * Ten kod został stworzony z pasji przez MrTechnic.
  * Pierwotnie był wykorzystywany przez bota DragonX,
  * ale teraz udostępniam go dla wszystkich jako projekt open-source.

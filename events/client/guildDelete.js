@@ -9,7 +9,7 @@ module.exports = {
     async run(_client, guild) {
         try {
             // Sprawdzenie i usuniecie wpisu z bazy danych dla wybranej guildi
-            const existingGuild = await redis.hdel(guild.id);
+            const existingGuild = await redis.del(guild.id);
 
             // Jesli guildia posiada wpis w bazie danych, zwraca informacje o usunieciu
             if (existingGuild) return logger.info(`Usunieto wpis z bazy danych dla: ${guild.name}`);

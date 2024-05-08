@@ -1,7 +1,7 @@
 'use strict';
 
-const { clientOptions } = require('../../config/default');
 const messageEmbeds = require('../../utils/messageEmbeds');
+const { clientOptions } = require('../../config/default');
 const { createEmbed } = require('../../utils/embedCreator');
 
 module.exports = {

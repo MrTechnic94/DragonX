@@ -1,7 +1,7 @@
 'use strict';
 
-const { clientPlayerOptions } = require('../../config/default');
 const messageEmbeds = require('../../utils/messageEmbeds');
+const { clientPlayerOptions } = require('../../config/default');
 const { createEmbed } = require('../../utils/embedCreator');
 const { useMainPlayer } = require('discord-player');
 
