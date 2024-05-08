@@ -3,10 +3,11 @@
 const redis = require('../../utils/redis');
 const messageEmbeds = require('../../utils/messageEmbeds');
 const { createEmbed } = require('../../utils/embedCreator');
+const { PermissionsBitField } = require('discord.js');
 
 module.exports = {
   name: 'dj',
-  permission: 'Administrator',
+  permission: PermissionsBitField.Flags.ManageMessages,
   cooldown: 2,
   async run(_client, message, args) {
     const guildData = await redis.hgetall(message.guild.id);

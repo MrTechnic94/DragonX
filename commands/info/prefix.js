@@ -3,10 +3,11 @@
 const redis = require('../../utils/redis');
 const messageEmbeds = require('../../utils/messageEmbeds');
 const { createEmbed } = require('../../utils/embedCreator');
+const { PermissionsBitField } = require('discord.js');
 
 module.exports = {
     name: 'prefix',
-    permission: 'Administrator',
+    permission: PermissionsBitField.Flags.ManageMessages,
     cooldown: 2,
     async run(_client, message, args) {
         const prefix = args[0] === 'clear' ? process.env.PREFIX : args[0];

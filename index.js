@@ -42,7 +42,7 @@ const player = new Player(client, {
 // Zalodowanie handlerow komend i eventow
 ['commands', 'aliases'].forEach(x => client[x] = new Collection());
 
-['./structures/commands.js', './structures/events.js'].forEach(x => require(x)(client));
+['./structures/commands', './structures/events'].forEach(x => require(x)(client));
 
 // Stworzenie funkcji asynchronicznej
 (async () => {
