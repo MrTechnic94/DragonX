@@ -23,7 +23,7 @@ module.exports.clientOptions = {
         ReactionManager: 0,
         GuildMemberManager: {
             maxSize: 50,
-            keepOverLimit: member => member.id === member.client.user?.id
+            keepOverLimit: member => member.id === member.client.user.id
         }
     }),
     sweepers: {
@@ -34,7 +34,7 @@ module.exports.clientOptions = {
         },
         users: {
             interval: 3600,
-            filter: () => user => user.id !== user.client.user?.id
+            filter: () => user => user.id !== user.client.user.id
         }
     },
     presence: {
@@ -72,5 +72,5 @@ module.exports.playerOptions = {
 // Inne ustawienia
 module.exports.embedOptions = {
     embedColor: 0xED4245,
-    devEmbedColor: 0x6133FF
+    devEmbedColor: 0x2f3136
 };

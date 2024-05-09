@@ -25,9 +25,7 @@ require('dotenv').config({ path: './config/.env' });
 errorCatcher();
 
 // Inicjalizacja klienta bota z określonymi ustawieniami
-const client = new Client({
-	...clientOptions
-});
+const client = new Client(clientOptions);
 
 // Zaladowanie discord-player
 const player = new Player(client, {
@@ -47,14 +45,21 @@ const player = new Player(client, {
 // Stworzenie funkcji asynchronicznej
 (async () => {
 	try {
+		// Sprawdzenie czy Dev Mode jest ustawiony na true
+		const isDev = process.env.DEV_MODE === 'true';
+
+		// Lista dodatkow do zaladowania
+		const extractors = isDev ? null : ext => ext !== 'YouTubeExtractor';
+
+		// Token bota
+		const token = isDev ? process.env.TOKEN_DEV : process.env.TOKEN;
+
 		// Zaladowanie dodatkow dla discord-player
-		await player.extractors.loadDefault();
+		await player.extractors.loadDefault(extractors);
 		await player.extractors.register(DeezerExtractor);
 		logger.info('Zaladowano wszystkie dodatki');
 
 		// Zalogowanie bota do discord
-		const token = process.env.DEV_MODE === 'true' ? process.env.TOKEN_DEV : process.env.TOKEN;
-
 		await client.login(token);
 	} catch (err) {
 		logger.error(`Wystapil nieoczekiwany blad\n${err}`);

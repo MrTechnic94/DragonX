@@ -5,6 +5,7 @@ const { createEmbed } = require('./embedCreator');
 
 // Zmienna z gotowymi wiadomosciami
 const messages = {
+    // Wiadomosci z errorem
     queue_error: '❌ **Nie ma piosenek w playliście**',
     voice_error: '❌ **Nie jesteś na moim kanale głosowym**',
     member_voice_error: '❌ **Nie jesteś na kanale głosowym**',
@@ -17,7 +18,7 @@ const messages = {
     muted_player_error: '❌ **Odtwarzacz jest wyciszony**',
     muted_bot_error: '❌ **Jestem wyciszony**',
     already_voted_error: '❌ **Już zagłosowałeś**',
-    time_seek_error: '❌ **Podany czas jest większy lub równy od długości piosenki**',
+    time_seek_error: '❌ **Podany czas jest większy lub równy długości piosenki**',
     send_dm_error: '❌ **Nie mogę wysłać do Ciebie wiadomości prywatnej**',
     same_prefix_error: '❌ **Musisz podać nowy prefix**',
     already_prefix_error: '❌ **Ten prefix jest już używany**',
@@ -33,15 +34,17 @@ const messages = {
     permission_error: '❌ **Nie posiadasz permisji by to zrobić**',
     dj_permission_error: '❌ **Nie posiadasz roli DJ**',
     empty_queue_error: '❌ **Skończyła się muzyka w playliście**',
-    player_error: '❌ **Wystąpił błąd podczas odtwarzania piosenki**',
+    player_error: '❌ **Wystąpił błąd odtwarzacza**',
     catch_error: '❌ **Wystąpił nieoczekiwany błąd**',
     filters_error: '❌ **Żaden filtr nie jest włączony**',
-    max_filters_enabled_error: `❌ **Jednocześnie może być włączony tylko ${playerOptions.maxFiltersEnabled} filtr**`,
+    max_filters_enabled_error: `❌ **Jednocześnie może być włączony tylko \`${playerOptions.maxFiltersEnabled}\` filtr**`,
     shuffle_error: '❌ **Wymagane są co najmniej 3 piosenki w playliście**',
     full_channel_error: '❌ **Kanał głosowy jest pełny**',
     same_move_error: '❌ **Nie można przenieść piosenki w to samo miejsce**',
-    no_found_lyrics_error: '❌ **Nie znaleziono tekstu do tej piosenki**',
+    no_found_lyrics_error: '❌ **Nie znaleziono tekstu dla tej piosenki**',
     no_lyrics_args_error: '❌ **Podaj nazwę piosenki lub włącz jej odtwarzanie**',
+
+    // Wiadomosci z sukcesem
     send_dm_success: '✅ **Sprawdź wiadomości prywatne**',
     remove_dj_success: '✅ **Usunięto DJ rolę**',
     restart_bot_success: '✅ **Restartowanie bota...**',
