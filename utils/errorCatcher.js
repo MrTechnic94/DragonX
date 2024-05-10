@@ -40,7 +40,7 @@ function errorCatcher() {
     // Sprawdzenie opcjonalnych zmiennych srodowiskowych w trybie deweloperskim
     if (process.env.DEV_MODE === 'true') checkEnvVariables(['TOKEN_DEV']);
 
-    // Sprawdzenie wersji Node.js
+    // Sprawdzenie wersji node.js
     checkNodeVersion();
 
     // Sprawdzenie obecnosci FFmpeg
