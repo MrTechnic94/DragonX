@@ -20,7 +20,7 @@ module.exports = {
 
         const current_volume_emoji = timeline.volume === 0 ? '🔇' : timeline.volume >= 51 ? '🔊' : '🔉';
 
-        if (isNaN(vol)) return message.channel.send({ embeds: [createEmbed({ description: `${current_volume_emoji} **Aktualna głośność: \`\`${timeline.volume}%\`\`**` })] });
+        if (isNaN(vol)) return message.channel.send({ embeds: [createEmbed({ description: `${current_volume_emoji} **Aktualna głośność: \`${timeline.volume}%\`**` })] });
 
         if (vol < 0 || vol > 200) return message.channel.send({ embeds: [messageEmbeds.max_volume_error] });
 
@@ -36,6 +36,6 @@ module.exports = {
         const volume_emoji = vol === 0 ? '🔇' : vol >= 51 ? '🔊' : '🔉';
 
         timeline.setVolume(vol);
-        return message.channel.send({ embeds: [createEmbed({ description: `${volume_emoji} **Ustawiono głośność na \`\`${vol}%\`\`**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `${volume_emoji} **Ustawiono głośność na \`${vol}%\`**` })] });
     }
 };

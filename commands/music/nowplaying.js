@@ -17,12 +17,13 @@ module.exports = {
         const progresbar = node.createProgressBar({ timecodes: false, length: 13, leftChar: '[▬](https://top.gg/bot/1107363385676410910)' });
         const emoji = timeline.paused ? '▶️' : '⏸️';
         const requester = timeline.track.requestedBy ?? '**`brak`**';
+        const author = timeline.track.author ?? 'nieznany';
 
         return message.channel.send({
             embeds: [
                 createEmbed({
                     title: '⚡ Teraz odtwarzam',
-                    description: `**Tytuł:** [${timeline.track.title}](${timeline.track.url})\n**Poziom głośności: \`${timeline.volume}%\`**\n**Na prośbę:** ${requester}\n\n${emoji} | ${progresbar} ${timeline.timestamp.current.label} / ${timeline.timestamp.total.label}`,
+                    description: `**Tytuł:** [${timeline.track.title}](${timeline.track.url})\n**Autor: \`${author}\`**\n**Poziom głośności: \`${timeline.volume}%\`**\n**Na prośbę:** ${requester}\n\n${emoji} | ${progresbar} ${timeline.timestamp.current.label} / ${timeline.timestamp.total.label}`,
                     thumbnail: timeline.track.thumbnail
                 })
             ]
