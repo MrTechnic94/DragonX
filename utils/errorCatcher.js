@@ -13,7 +13,7 @@ function checkEnvVariables(variables) {
     }
 };
 
-// Sprawdzenie czy wersja nodejs jest większa niż v18
+// Sprawdzenie czy wersja node.js jest większa niż v18
 function checkNodeVersion() {
     const version = Number(process.version.slice(1).split('.')[0]);
     if (version < 18) {
@@ -40,7 +40,7 @@ function errorCatcher() {
     // Sprawdzenie opcjonalnych zmiennych srodowiskowych w trybie deweloperskim
     if (process.env.DEV_MODE === 'true') checkEnvVariables(['TOKEN_DEV']);
 
-    // Sprawdzenie wersji Nodejs
+    // Sprawdzenie wersji Node.js
     checkNodeVersion();
 
     // Sprawdzenie obecnosci FFmpeg
