@@ -24,7 +24,7 @@ require('dotenv').config({ path: './config/.env' });
 // Pozwala przechwycic bledy oraz sprawdzic obecnosc wymaganych parametrow
 errorCatcher();
 
-// Inicjalizacja klienta bota z określonymi ustawieniami
+// Inicjalizacja klienta z okreslonymi ustawieniami
 const client = new Client(clientOptions);
 
 // Zaladowanie discord-player
@@ -46,13 +46,13 @@ const player = new Player(client, {
 (async () => {
 	try {
 		// Sprawdzenie czy Dev Mode jest ustawiony na true
-		const isDev = process.env.DEV_MODE === 'true';
+		const _isDev = process.env.DEV_MODE === 'true';
 
 		// Lista dodatkow do zaladowania
-		const extractors = isDev ? null : ext => ext !== 'YouTubeExtractor';
+		const extractors = _isDev ? null : ext => ext !== 'YouTubeExtractor';
 
 		// Token bota
-		const token = isDev ? process.env.TOKEN_DEV : process.env.TOKEN;
+		const token = _isDev ? process.env.TOKEN_DEV : process.env.TOKEN;
 
 		// Zaladowanie dodatkow dla discord-player
 		await player.extractors.loadDefault(extractors);
