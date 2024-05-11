@@ -1,7 +1,7 @@
 'use strict';
 
 const logger = require('./consoleLogger');
-const { exec } = require('child_process');
+const { exec } = require('node:child_process');
 
 // Funkcja sprawdzająca obecnosc wymaganych parametrow w pliku .env
 function checkEnvVariables(variables) {

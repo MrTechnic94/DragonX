@@ -2,7 +2,7 @@
 
 const messageEmbeds = require('../../utils/messageEmbeds');
 const { createEmbed } = require('../../utils/embedCreator');
-const { exec } = require('child_process');
+const { exec } = require('node:child_process');
 
 module.exports = {
     name: 'cmd',
