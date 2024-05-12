@@ -35,12 +35,12 @@ module.exports = {
             requestedMode = 'toggle';
         };
 
-        const mode = queue.repeatMode === QueueRepeatMode.TRACK ? 'piosenki' : 'playlisty';
+        const modeName = queue.repeatMode === QueueRepeatMode.TRACK ? 'piosenki' : 'playlisty';
 
-        const mode_off = queue.repeatMode === QueueRepeatMode.OFF ? 'Wyłączono' : 'Włączono';
+        const modeOff = queue.repeatMode === QueueRepeatMode.OFF ? 'Wyłączono' : 'Włączono';
 
-        const mode_emoji = queue.repeatMode === QueueRepeatMode.QUEUE ? '🔂' : '🔁';
+        const modeEmoji = queue.repeatMode === QueueRepeatMode.QUEUE ? '🔂' : '🔁';
 
-        return message.channel.send({ embeds: [createEmbed({ description: `${mode_emoji} **\`${mode_off}\` pętle dla \`${mode}\`**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `${modeEmoji} **\`${modeOff}\` pętle dla \`${modeName}\`**` })] });
     }
 };
