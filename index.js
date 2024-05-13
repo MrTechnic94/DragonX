@@ -38,7 +38,7 @@ const player = new Player(client, {
 });
 
 // Zalodowanie handlerow komend i eventow
-['commands', 'aliases'].forEach(collection => client[collection] = new Collection());
+['commands', 'aliases'].forEach(name => client[name] = new Collection());
 
 ['./structures/commands', './structures/events'].forEach(path => require(path)(client));
 
