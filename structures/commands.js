@@ -1,23 +1,24 @@
 'use strict';
 
 const logger = require('../utils/consoleLogger');
+const path = require('node:path');
 const { readdirSync } = require('node:fs');
 
 module.exports = (client) => {
-  const commands = readdirSync('./commands', { withFileTypes: true })
-    .filter((directory) => directory.isDirectory())
-    .map((directory) => directory.name);
+  const commandsDir = path.join(__dirname, '../commands');
 
-  for (const directory of commands) {
-    const commandFiles = readdirSync(`./commands/${directory}`)
+  readdirSync(commandsDir, { withFileTypes: true }).forEach((directory) => {
+    if (!directory.isDirectory()) return;
+
+    const commandFiles = readdirSync(path.join(commandsDir, directory.name))
       .filter((file) => file.endsWith('.js'));
 
     for (const file of commandFiles) {
-      const command = require(`../commands/${directory}/${file}`);
+      const command = require(path.join(commandsDir, directory.name, file));
 
       // Sprawdzenie czy komenda poprawnie sie laduje
       if (typeof command.run !== 'function') {
-        logger.error(`Blad podczas ladowania polecenia: ${directory}/${file}`);
+        logger.error(`Blad podczas ladowania polecenia: ${directory.name}/${file}`);
         continue;
       };
 
@@ -45,5 +46,5 @@ module.exports = (client) => {
       // Sprawdzenie czy komenda jest tylko dla wlasciciela
       if (command.owner === true) command.ownerOnly = true;
     }
-  }
+  });
 };

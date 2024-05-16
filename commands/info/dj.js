@@ -11,12 +11,14 @@ module.exports = {
   cooldown: 2,
   async run(_client, message, args) {
     const guildData = await redis.hgetall(message.guild.id);
+    let roleName;
+    let role;
 
     switch (args[0]?.toLowerCase()) {
       default:
-        const roleName = args.join(' ');
+        roleName = args.join(' ');
 
-        const role = message.mentions.roles?.first() || message.guild.roles.cache.find((r) => r.name.toLowerCase() === roleName.toLowerCase()) || message.guild.roles.cache.get(roleName);
+        role = message.mentions.roles?.first() || message.guild.roles.cache.find((r) => r.name.toLowerCase() === roleName.toLowerCase()) || message.guild.roles.cache.get(roleName);
 
         if (!role) return message.channel.send({ embeds: [messageEmbeds.role_error] });
 

@@ -37,7 +37,7 @@ function errorCatcher() {
     // Sprawdzenie wymaganych zmiennych srodowiskowych
     checkEnvVariables(['TOKEN', 'OWNER_ID', 'PREFIX', 'DB_HOST', 'DB_PORT', 'DB_PASSWORD']);
 
-    // Sprawdzenie opcjonalnych zmiennych srodowiskowych w trybie deweloperskim
+    // Sprawdzenie opcjonalnych zmiennych srodowiskowych w Dev Mode
     if (process.env.DEV_MODE === 'true') checkEnvVariables(['TOKEN_DEV']);
 
     // Sprawdzenie wersji node.js

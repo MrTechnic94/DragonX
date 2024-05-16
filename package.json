@@ -1,8 +1,16 @@
 {
   "name": "dragonx",
   "version": "0.3.9",
-  "main": "index.js",
   "description": "Muzyczny bot dla aplikacji Discord",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "pm2": "npx pm2 start index.js --name bot -- --color && npx pm2 logs",
+    "pm2:default": "pm2 start index.js --name bot -- --color && pm2 logs",
+    "update:all": "corepack use pnpm@latest && pnpm install && pnpm update"
+  },
+  "keywords": [],
   "author": "MrTechnic",
   "license": "UNLICENSED",
   "private": true,
@@ -14,19 +22,12 @@
     "dotenv": "^16.4.5",
     "ioredis": "^5.4.1",
     "mediaplex": "^0.0.9",
-    "pino": "^9.0.0",
+    "pino": "^9.1.0",
     "youtube-ext": "^1.1.25"
   },
   "optionalDependencies": {
     "pino-pretty": "^11.0.0",
     "pm2": "^5.3.1"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "pm2": "npx pm2 start index.js --name bot -- --color && npx pm2 logs",
-    "pm2:default": "pm2 start index.js --name bot -- --color && pm2 logs",
-    "update:all": "corepack use pnpm@latest && pnpm install && pnpm update"
   },
   "repository": {
     "type": "git",
@@ -39,11 +40,5 @@
   "engines": {
     "node": ">=18.x"
   },
-  "os": [
-    "linux",
-    "win32",
-    "win64",
-    "darwin"
-  ],
-  "packageManager": "pnpm@9.1.0+sha256.22e36fba7f4880ecf749a5ca128b8435da085ecd49575e7fb9e64d6bf4fad394"
+  "packageManager": "pnpm@9.1.1+sha256.9551e803dcb7a1839fdf5416153a844060c7bce013218ce823410532504ac10b"
 }
