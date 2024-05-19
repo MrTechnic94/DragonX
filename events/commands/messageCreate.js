@@ -75,10 +75,14 @@ module.exports = {
 		setTimeout(() => cooldowns.delete(cmd.name), cooldownTime);
 
 		// Sprawdzenie czy uzytkownik ma wymagane permisje
-		if (cmd.permission && !message.member.permissions.has(cmd.permission) || (cmd.ownerOnly && process.env.OWNER_ID !== message.author.id)) { return message.channel.send({ embeds: [messageEmbeds.permission_error] }); }
+		if (cmd.permission && !message.member.permissions.has(cmd.permission) || (cmd.ownerOnly && process.env.OWNER_ID !== message.author.id)) {
+			return message.channel.send({ embeds: [messageEmbeds.permission_error] });
+		}
 
 		// Sprawdzenie czy uzytkownik ma dj role
-		if (cmd.dj && guildData?.djRoleId && !message.member.roles.cache.has(guildData.djRoleId) && message.member.voice.channel?.members.size > 2 && !message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) { return message.channel.send({ embeds: [messageEmbeds.dj_permission_error] }); }
+		if (cmd.dj && guildData?.djRoleId && !message.member.roles.cache.has(guildData.djRoleId) && message.member.voice.channel?.members.size > 2 && !message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
+			return message.channel.send({ embeds: [messageEmbeds.dj_permission_error] });
+		}
 
 		// Przechwytuje i wyswietla bledy komend
 		try {
