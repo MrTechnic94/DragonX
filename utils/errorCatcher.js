@@ -1,8 +1,8 @@
 'use strict';
 
+const pkg = require('../package.json');
 const logger = require('./consoleLogger');
 const { exec } = require('node:child_process');
-const pkg = require('../package.json');
 
 // Funkcja sprawdzająca obecnosc wymaganych parametrow w pliku .env
 function checkEnvVariables(variables) {
