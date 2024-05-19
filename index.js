@@ -64,5 +64,5 @@ const player = new Player(client, {
 	} catch (err) {
 		logger.error(`Wystapil nieoczekiwany blad\n${err}`);
 		process.exit(1);
-	};
+	}
 })();
