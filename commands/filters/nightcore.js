@@ -23,5 +23,5 @@ module.exports = {
         await queue.filters.ffmpeg.toggle(['nightcore', 'normalizer']);
 
         return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Nightcore został \`${mode}\`**` })] });
-    }
+    },
 };

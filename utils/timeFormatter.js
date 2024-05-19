@@ -10,7 +10,7 @@ function parseTime(timeString) {
     milliseconds *= multiplier * 1000;
 
     return ((hours * 3600 + minutes * 60 + seconds) * 1000 + milliseconds);
-};
+}
 
 // Utworzenie funkcji formatTime potrzebnej do formatowania milisekund na czytelny czas w formacie dd:hh:mm:ss
 function formatTime(milliseconds) {
@@ -26,6 +26,6 @@ function formatTime(milliseconds) {
     if (seconds) parts.push(`${seconds}s`);
 
     return parts.length ? parts.join(' ') : '0s';
-};
+}
 
 module.exports = { parseTime, formatTime };

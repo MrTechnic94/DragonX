@@ -22,11 +22,11 @@ module.exports = {
 
         let footerText = `Strona ${page + 1}/${totalPages}`;
 
-        if (queue.tracks.size > 0) footerText += ` • ${queue.tracks.size.toString()} ${queue.tracks.size < 2 ? `piosenka` : `piosenki`}`;
+        if (queue.tracks.size > 0) footerText += ` • ${queue.tracks.size.toString()} ${queue.tracks.size < 2 ? 'piosenka' : 'piosenki'}`;
 
         const embed = createEmbed({
             title: '📰 Piosenki w playliście',
-            description: `**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${queue.tracks.size === 0 ? `Brak piosenek` : tracks.slice(page * 20, (page + 1) * 20).join('\n')}`,
+            description: `**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${queue.tracks.size === 0 ? 'Brak piosenek' : tracks.slice(page * 20, (page + 1) * 20).join('\n')}`,
             footer: {
                 text: footerText
             }
@@ -49,7 +49,7 @@ module.exports = {
         if (totalPages > 1) {
             if (page > 0) row.addComponents(backwardButton);
             if (page < totalPages - 1) row.addComponents(forwardButton);
-        };
+        }
 
         const msg = await message.channel.send({ embeds: [embed], components: [row] });
 
@@ -62,7 +62,7 @@ module.exports = {
                 page--;
             } else if (interaction.customId === 'forward' && page < totalPages - 1) {
                 page++;
-            };
+            }
             updateEmbed();
             await interaction.update({ embeds: [embed], components: [row] });
         });
@@ -75,12 +75,12 @@ module.exports = {
             row.components = [];
             if (page > 0) row.addComponents(backwardButton);
             if (page < totalPages - 1) row.addComponents(forwardButton);
-        };
+        }
 
         function updateEmbed() {
             embed.setDescription(`**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${tracks.slice(page * 20, (page + 1) * 20).join('\n')}`);
             embed.setFooter({ text: `Strona ${page + 1}/${totalPages} • ${queue.tracks.size} piosenki` });
             updateButtons();
-        };
-    }
+        }
+    },
 };

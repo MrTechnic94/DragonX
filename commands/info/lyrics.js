@@ -33,7 +33,7 @@ module.exports = {
             embeds.push(embed);
             trimmedLyrics = trimmedLyrics.substring(maxChars);
             isFirstEmbed = false;
-        };
+        }
 
         if (trimmedLyrics.length > 0 || embeds.length === 0) {
             const embed = createEmbed({
@@ -41,10 +41,10 @@ module.exports = {
                 description: trimmedLyrics
             });
             embeds.push(embed);
-        };
+        }
 
         for (const embed of embeds) {
             message.channel.send({ embeds: [embed] });
-        };
-    }
+        }
+    },
 };

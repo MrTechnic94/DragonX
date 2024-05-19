@@ -38,6 +38,6 @@ module.exports = {
 
         message.channel.send({ embeds: [messageEmbeds.remove_dj_success] });
         break;
-    };
-  }
+    }
+  },
 };

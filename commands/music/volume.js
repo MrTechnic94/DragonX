@@ -31,11 +31,11 @@ module.exports = {
             timeline.setVolume(vol);
         } else {
             timeline.resume();
-        };
+        }
 
         const volume_emoji = vol === 0 ? '🔇' : vol >= 51 ? '🔊' : '🔉';
 
         timeline.setVolume(vol);
         return message.channel.send({ embeds: [createEmbed({ description: `${volume_emoji} **Ustawiono głośność na \`${vol}%\`**` })] });
-    }
+    },
 };

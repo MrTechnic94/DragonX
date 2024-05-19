@@ -23,5 +23,5 @@ module.exports = {
         await queue.filters.ffmpeg.toggle(['karaoke', 'normalizer']);
 
         return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Karaoke został \`${mode}\`**` })] });
-    }
+    },
 };

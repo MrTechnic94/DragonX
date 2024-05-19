@@ -20,13 +20,13 @@ module.exports = (client) => {
       if (typeof command.run !== 'function') {
         logger.error(`Blad podczas ladowania polecenia: ${directory.name}/${file}`);
         continue;
-      };
+      }
 
       // Sprawdzenie czy komenda nie ma takiej samej nazwy jak pozostale
       if (client.commands.has(command.name)) {
         logger.warn(`Zbyt wiele polecen posiada taka sama nazwe: ${command.name}`);
         continue;
-      };
+      }
 
       // Zaladowanie komend
       client.commands.set(command.name, command);
@@ -40,8 +40,8 @@ module.exports = (client) => {
           } else {
             client.aliases.set(alias, command.name);
           }
-        })
-      };
+        });
+      }
 
       // Sprawdzenie czy komenda jest tylko dla wlasciciela
       if (command.owner === true) command.ownerOnly = true;

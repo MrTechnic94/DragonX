@@ -16,5 +16,5 @@ module.exports = {
 
             return message.channel.send({ embeds: [createEmbed({ description: `✅ **Komenda została pomyślnie wykonana:**\n\`\`\`${stdout}\`\`\`` })] });
         });
-    }
+    },
 };

@@ -5,7 +5,7 @@ const { EmbedBuilder } = require('discord.js');
 
 // Utworzenie funkcji odpowiadajacej za generowanie embedu
 function createEmbed({ url, title, image, timestamp, description, fields = {}, thumbnail, author = {}, footer = {}, color }) {
-    const embed = new EmbedBuilder()
+    const embed = new EmbedBuilder();
 
     // Ustawienia podczas tworzenia embedu
     if (url) embed.setURL(url);
@@ -20,6 +20,6 @@ function createEmbed({ url, title, image, timestamp, description, fields = {}, t
     embed.setColor(color ?? process.env.DEV_MODE === 'true' ? embedOptions.devEmbedColor : embedOptions.embedColor);
 
     return embed;
-};
+}
 
 module.exports = { createEmbed };

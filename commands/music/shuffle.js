@@ -18,5 +18,5 @@ module.exports = {
 
         queue.tracks.shuffle();
         return message.channel.send({ embeds: [messageEmbeds.shuffle_success] });
-    }
+    },
 };

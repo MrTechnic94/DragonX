@@ -19,6 +19,6 @@ try {
 } catch {
     // Uzycie zwyklego pino, jesli modul pino-pretty nie jest zainstalowany, lub jesli wystapil blad
     logger = pino();
-};
+}
 
 module.exports = logger;

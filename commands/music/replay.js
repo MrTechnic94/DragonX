@@ -28,5 +28,5 @@ module.exports = {
 
         queue.insertTrack(result.tracks[0], 0);
         return message.channel.send({ embeds: [createEmbed({ description: `✅ **Dodano \`${result.tracks[0].title}\` do playlisty**` })] });
-    }
+    },
 };

@@ -47,7 +47,7 @@ module.exports = {
                 { name: 'Dj <rola>', description: 'Ustawia rolę DJ na serwerze' },
                 { name: 'Dj <remove>', description: 'Usuwa ustawioną rolę DJ' },
                 { name: 'Settings', description: 'Aktualne ustawienia dla serwera' }
-            ]
+            ],
         };
 
         const embeds = [
@@ -56,12 +56,12 @@ module.exports = {
                 description: commands.music.map(command => `\`${prefix}${command.name}\` - **${command.description}**`).join('\n'),
                 footer: {
                     text: `Strona ${currentPage + 1}/${totalPages}`
-                }
+                },
             }),
             createEmbed({
                 title: '❓ Komendy ogólne',
                 description: commands.general.map(command => `\`${prefix}${command.name}\` - **${command.description}**`).join('\n')
-            })
+            }),
         ];
 
         const backwardButton = new ButtonBuilder()
@@ -79,7 +79,7 @@ module.exports = {
         if (totalPages > 1) {
             if (currentPage > 0) row.addComponents(backwardButton);
             if (currentPage < totalPages - 1) row.addComponents(forwardButton);
-        };
+        }
 
         const msg = await message.channel.send({ embeds: [embeds[currentPage]], components: [row] });
 
@@ -109,6 +109,6 @@ module.exports = {
 
         function updateEmbed() {
             embeds[currentPage].setFooter({ text: `Strona ${currentPage + 1}/${totalPages}` });
-        };
-    }
+        }
+    },
 };

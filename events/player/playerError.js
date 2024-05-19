@@ -3,8 +3,8 @@
 const messageEmbeds = require('../../utils/messageEmbeds');
 
 module.exports = {
-    name: 'playerError',
-    async run(_client, queue) {
-        queue.metadata.send({ embeds: [messageEmbeds.player_error] });
-    }
+	name: 'playerError',
+	async run(_client, queue) {
+		queue.metadata.send({ embeds: [messageEmbeds.player_error] });
+	},
 };

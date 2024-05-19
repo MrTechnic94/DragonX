@@ -27,13 +27,13 @@ module.exports = {
         if (requestedMode && modes[requestedMode] !== undefined) {
             if (modes[requestedMode] === queue.repeatMode) {
                 return message.channel.send({ embeds: [createEmbed({ description: `❌ **Tryb \`${requestedMode}\` jest już ustawiony**` })] });
-            };
+            }
 
             queue.setRepeatMode(modes[requestedMode]);
         } else {
             queue.setRepeatMode(queue.repeatMode === QueueRepeatMode.OFF ? QueueRepeatMode.TRACK : (queue.repeatMode === QueueRepeatMode.TRACK ? QueueRepeatMode.QUEUE : QueueRepeatMode.OFF));
             requestedMode = 'toggle';
-        };
+        }
 
         const modeName = queue.repeatMode === QueueRepeatMode.TRACK ? 'piosenki' : 'playlisty';
 
@@ -42,5 +42,5 @@ module.exports = {
         const modeEmoji = queue.repeatMode === QueueRepeatMode.QUEUE ? '🔂' : '🔁';
 
         return message.channel.send({ embeds: [createEmbed({ description: `${modeEmoji} **\`${modeOff}\` pętle dla \`${modeName}\`**` })] });
-    }
+    },
 };

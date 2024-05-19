@@ -12,7 +12,7 @@ function checkEnvVariables(variables) {
             process.exit(1);
         }
     }
-};
+}
 
 // Sprawdzenie czy wersja node.js jest większa niż v18
 function checkNodeVersion() {
@@ -21,7 +21,7 @@ function checkNodeVersion() {
         logger.error('Outdated Node.js version. Update to a newer version');
         process.exit(1);
     }
-};
+}
 
 // Sprawdzenie obecnosci FFmpeg
 function checkFFmpeg() {
@@ -33,8 +33,8 @@ function checkFFmpeg() {
             logger.error('Install FFmpeg or use ffmpeg-static');
             process.exit(1);
         }
-    })
-};
+    });
+}
 
 // Funkcja glowna odpowiedzialna za przechwytywanie bledow i sprawdzanie wymagan
 function errorCatcher() {
@@ -49,6 +49,6 @@ function errorCatcher() {
 
     // Sprawdzenie obecnosci FFmpeg
     checkFFmpeg();
-};
+}
 
 module.exports = { errorCatcher };

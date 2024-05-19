@@ -29,6 +29,6 @@ module.exports = {
             return message.channel.send({ embeds: [createEmbed({ description: `✅ **Ustawiono nowy prefix: \`${prefix}\`**` })] });
         } catch {
             return message.channel.send({ embeds: [messageEmbeds.catch_error] });
-        };
-    }
+        }
+    },
 };

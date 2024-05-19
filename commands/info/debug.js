@@ -18,8 +18,8 @@ module.exports = {
                 createEmbed({
                     title: '⌚ Informacje bota',
                     description: `**Uptime: \`${formattedTime}\`**\n**System: \`${sys}\`**\n**Użycie Cpu: \`${cpuUsage}%\`**\n**Użycie Ram: \`${memUsage}mb\`**`
-                })
-            ]
+                }),
+            ],
         });
-    }
+    },
 };

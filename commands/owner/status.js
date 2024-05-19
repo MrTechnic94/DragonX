@@ -16,5 +16,5 @@ module.exports = {
         client.user.setPresence({ activities: [{ name: query }] });
 
         return message.channel.send({ embeds: [createEmbed({ description: `✅ **Status został zmieniony na \`${query}\`**` })] });
-    }
+    },
 };

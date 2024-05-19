@@ -17,5 +17,5 @@ module.exports = {
 
         queue.tracks.clear();
         return message.channel.send({ embeds: [messageEmbeds.clear_success] });
-    }
+    },
 };

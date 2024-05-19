@@ -23,5 +23,5 @@ module.exports = {
         await queue.filters.ffmpeg.toggle(['vaporwave', 'normalizer']);
 
         return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Vaporwave został \`${mode}\`**` })] });
-    }
+    },
 };

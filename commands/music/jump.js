@@ -23,5 +23,5 @@ module.exports = {
 
         queue.node.jump(track);
         return message.channel.send({ embeds: [createEmbed({ description: `⏩ **Przeskoczono do \`${track.title}\`**` })] });
-    }
+    },
 };

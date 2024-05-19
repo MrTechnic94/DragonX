@@ -9,5 +9,5 @@ module.exports = {
     cooldown: 2,
     async run(client, message) {
         message.channel.send({ embeds: [createEmbed({ description: `📰 **Liczba serwerów: \`${client.guilds.cache.size}\`**` })] });
-    }
+    },
 };

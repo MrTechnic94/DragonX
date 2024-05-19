@@ -25,8 +25,8 @@ module.exports = {
                 createEmbed({
                     title: '🔧 Ustawienia serwer',
                     description: `**Prefix: \`${prefix}\`**\n**DJ Rola:** ${dj}\n**Autoplay: ${autoplay}**\n**Loop: ${loop}**\n**Volume: \`${timeline.volume}%\`**`
-                })
-            ]
+                }),
+            ],
         });
-    }
+    },
 };

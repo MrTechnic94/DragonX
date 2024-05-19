@@ -20,7 +20,7 @@ module.exports = {
                 if (!queue.filters.ffmpeg.isEnabled('normalizer')) return message.channel.send({ embeds: [messageEmbeds.filters_error] });
                 await queue.filters.ffmpeg.setFilters(false);
                 return message.channel.send({ embeds: [messageEmbeds.disabled_filters_success] });
-        };
+        }
 
         const filters = [
             { name: 'bassboost_low', label: 'BassBoost Low' },
@@ -48,9 +48,9 @@ module.exports = {
                     description: embedFields.join('\n'),
                     footer: {
                         text: `Przykładowe użycie: ${prefix}bassboost`
-                    }
-                })
-            ]
+                    },
+                }),
+            ],
         });
-    }
+    },
 };

@@ -23,5 +23,5 @@ module.exports = {
         await queue.filters.ffmpeg.toggle(['bassboost', 'normalizer']);
 
         return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Bassboost został \`${mode}\`**` })] });
-    }
+    },
 };

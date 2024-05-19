@@ -25,8 +25,8 @@ module.exports = {
                     title: '⚡ Teraz odtwarzam',
                     description: `**Tytuł:** [${timeline.track.title}](${timeline.track.url})\n**Autor: \`${author}\`**\n**Poziom głośności: \`${timeline.volume}%\`**\n**Na prośbę:** ${requester}\n\n${emoji} | ${progresbar} ${timeline.timestamp.current.label} / ${timeline.timestamp.total.label}`,
                     thumbnail: timeline.track.thumbnail
-                })
-            ]
+                }),
+            ],
         });
-    }
+    },
 };

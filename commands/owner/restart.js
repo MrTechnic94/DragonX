@@ -13,6 +13,6 @@ module.exports = {
             process.exit(1);
         } catch {
             return message.channel.send({ embeds: [messageEmbeds.catch_error] });
-        };
-    }
+        }
+    },
 };

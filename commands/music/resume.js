@@ -22,5 +22,5 @@ module.exports = {
         const mode = queue.node.isPaused() ? '▶️ `Zatrzymano`' : '⏸️ `Wznowiono`';
 
         return message.channel.send({ embeds: [createEmbed({ description: `**${mode} odtwarzanie piosenki**` })] });
-    }
+    },
 };

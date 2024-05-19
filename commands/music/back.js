@@ -19,5 +19,5 @@ module.exports = {
 
         await history.previous();
         return message.channel.send({ embeds: [messageEmbeds.track_back_success] });
-    }
+    },
 };

@@ -24,5 +24,5 @@ module.exports = {
 
     await timeline.setPosition(seekTime);
     return message.channel.send({ embeds: [createEmbed({ description: `🎵 **Ustawiono odtwarzanie na \`${args[0]}\`**` })] });
-  }
+  },
 };

@@ -26,5 +26,5 @@ module.exports = {
 
         queue.node.move(trackToMove, indexTrack - 1);
         return message.channel.send({ embeds: [createEmbed({ description: `▶️ **Przeniesiono piosenkę z pozycji \`${index}\` na \`${indexTrack}\`**` })] });
-    }
+    },
 };

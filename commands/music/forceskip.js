@@ -17,5 +17,5 @@ module.exports = {
 
         queue.node.skip();
         return message.channel.send({ embeds: [messageEmbeds.skip_success] });
-    }
+    },
 };

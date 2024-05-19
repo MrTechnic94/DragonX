@@ -40,6 +40,6 @@ module.exports = {
             });
         } catch {
             return message.channel.send({ embeds: [messageEmbeds.catch_error] });
-        };
-    }
+        }
+    },
 };

@@ -21,6 +21,6 @@ module.exports = {
             return message.channel.send({ embeds: [createEmbed({ title: '✅ Bot pomyślnie wyszedł z guildi', description: `**Guild name:\n \`\`\`${guild.name}\`\`\`\n Guild id:\n \`\`\`${guild.id}\`\`\`**` })] });
         } catch {
             return message.channel.send({ embeds: [messageEmbeds.catch_error] });
-        };
-    }
+        }
+    },
 };

@@ -22,8 +22,8 @@ module.exports = {
             queue.delete();
         } else {
             message.guild.members.me?.voice.disconnect();
-        };
+        }
 
         return message.channel.send({ embeds: [createEmbed({ description: `🔮 **Wychodzę z kanału** <#${message.member?.voice.channelId}>` })] });
-    }
+    },
 };

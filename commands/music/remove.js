@@ -23,5 +23,5 @@ module.exports = {
 
         queue.node.remove(track);
         return message.channel.send({ embeds: [createEmbed({ description: `🎯 **Usunięto \`${track.title}\`**` })] });
-    }
+    },
 };
