@@ -2,6 +2,7 @@
 
 const logger = require('./consoleLogger');
 const { exec } = require('node:child_process');
+const pkg = require('../package.json');
 
 // Funkcja sprawdzająca obecnosc wymaganych parametrow w pliku .env
 function checkEnvVariables(variables) {
@@ -24,10 +25,13 @@ function checkNodeVersion() {
 
 // Sprawdzenie obecnosci FFmpeg
 function checkFFmpeg() {
+    const hasFFmpegStatic = pkg.dependencies['ffmpeg-static'] || pkg.optionalDependencies?.['ffmpeg-static'] || pkg.devDependencies?.['ffmpeg-static'];
+
     exec('ffmpeg -version', (err) => {
-        if (err) {
+        if (err && !hasFFmpegStatic) {
             logger.error('No FFmpeg installed');
             logger.error('Install FFmpeg or use ffmpeg-static');
+            process.exit(1);
         }
     })
 };

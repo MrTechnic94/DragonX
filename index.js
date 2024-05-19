@@ -9,7 +9,7 @@
  * a także do zgłaszania błędów i sugestii na GitHubie.
  *
  * Znajdziesz mnie i moje projekty tutaj: https://github.com/MrTechnic94/
-*/
+ */
 
 'use strict';
 
