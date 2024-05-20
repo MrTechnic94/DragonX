@@ -2,14 +2,15 @@
 
 // Utworzenie funckji parseTime potrzebnej do konwersji czasu z formatu hh:mm:ss na milisekundy
 function parseTime(timeString) {
-    const timeParts = /^((\d{1,2}):)?(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?([ms])?$/.exec(timeString);
+    const timeParts = /^((\d{1,2}):)?(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?$/.exec(timeString);
     if (!timeParts) return null;
 
-    let [hours = 0, minutes, seconds, multiplier, milliseconds = 0] = timeParts.slice(2).map(part => parseInt(part || 0, 10));
-    multiplier = timeParts[6] === 'm' ? 60 : (timeParts[6] === 's' ? 1 / 60 : 1);
-    milliseconds *= multiplier * 1000;
+    const hours = timeParts[2] ? parseInt(timeParts[2], 10) : 0;
+    const minutes = parseInt(timeParts[3], 10);
+    const seconds = parseInt(timeParts[4], 10);
+    const milliseconds = timeParts[5] ? parseInt(timeParts[5], 10) : 0;
 
-    return ((hours * 3600 + minutes * 60 + seconds) * 1000 + milliseconds);
+    return ((hours * 3600) + (minutes * 60) + seconds) * 1000 + milliseconds;
 }
 
 // Utworzenie funkcji formatTime potrzebnej do formatowania milisekund na czytelny czas w formacie dd:hh:mm:ss
