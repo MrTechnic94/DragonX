@@ -4,7 +4,6 @@ const { embedOptions } = require('../config/default');
 const { EmbedBuilder } = require('discord.js');
 
 // Utworzenie funkcji odpowiadajacej za generowanie embedu
-// @FIXME Zoptymalizowac to / przepisac
 function createEmbed({ url, title, image, timestamp, description, fields = {}, thumbnail, author = {}, footer = {}, color }) {
     const embed = new EmbedBuilder();
 
@@ -12,7 +11,7 @@ function createEmbed({ url, title, image, timestamp, description, fields = {}, t
     if (url) embed.setURL(url);
     if (title) embed.setTitle(title);
     if (image) embed.setImage(image);
-    if (timestamp) embed.setTimestamp(timestamp);
+    if (timestamp) embed.setTimestamp(new Date(timestamp) ?? undefined);
     if (description) embed.setDescription(description);
     if (fields.length > 0) embed.addFields(fields);
     if (thumbnail) embed.setThumbnail(thumbnail);

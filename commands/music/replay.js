@@ -27,6 +27,6 @@ module.exports = {
         if (!result.hasTracks()) return message.channel.send({ embeds: [messageEmbeds.track_error] });
 
         queue.insertTrack(result.tracks[0], 0);
-        return message.channel.send({ embeds: [createEmbed({ description: `✅ **Dodano \`${result.tracks[0].title}\` do playlisty**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `✅ **Dodano \`${result.tracks[0].cleanTitle}\` do playlisty**` })] });
     },
 };

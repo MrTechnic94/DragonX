@@ -1,6 +1,6 @@
 {
   "name": "dragonx",
-  "version": "0.3.9",
+  "version": "0.4.0",
   "description": "Muzyczny bot dla aplikacji Discord",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,8 @@
   "private": true,
   "dependencies": {
     "@discord-player/extractor": "^4.4.7",
-    "discord-player": "^6.6.8",
+    "@web-scrobbler/metadata-filter": "^3.1.0",
+    "discord-player": "^6.6.9",
     "discord-player-deezer": "^1.0.1",
     "discord.js": "^14.15.2",
     "dotenv": "^16.4.5",
@@ -25,7 +26,7 @@
     "youtube-ext": "^1.1.25"
   },
   "optionalDependencies": {
-    "pino-pretty": "^11.0.0",
+    "pino-pretty": "^11.1.0",
     "pm2": "^5.3.1"
   },
   "repository": {
@@ -39,5 +40,8 @@
   "engines": {
     "node": ">=18.x"
   },
-  "packageManager": "pnpm@9.1.1+sha256.9551e803dcb7a1839fdf5416153a844060c7bce013218ce823410532504ac10b"
+  "packageManager": "pnpm@9.1.2+sha512.127dc83b9ea10c32be65d22a8efb4a65fb952e8fefbdfded39bdc3c97efc32d31b48b00420df2c1187ace28c921c902f0cb5a134a4d032b8b5295cbfa2c681e2",
+  "devDependencies": {
+    "eslint": "8.57.0"
+  }
 }

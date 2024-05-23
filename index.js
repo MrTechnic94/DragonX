@@ -49,7 +49,7 @@ const player = new Player(client, {
 		const _isDev = process.env.DEV_MODE === 'true';
 
 		// Lista dodatkow do zaladowania
-		const extractors = _isDev ? null : ext => ext !== 'YouTubeExtractor';
+		const extractors = _isDev || process.env.TOKEN ? null : ext => ext !== 'YouTubeExtractor';
 
 		// Token bota
 		const token = _isDev ? process.env.TOKEN_DEV : process.env.TOKEN;

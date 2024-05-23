@@ -72,5 +72,5 @@ module.exports.playerOptions = {
 // Inne ustawienia
 module.exports.embedOptions = {
     embedColor: 0xED4245,
-    devEmbedColor: 0x2f3136
+    devEmbedColor: 0x6133FF
 };

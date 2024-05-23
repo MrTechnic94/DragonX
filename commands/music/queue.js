@@ -18,7 +18,7 @@ module.exports = {
 
         const totalPages = Math.max(Math.ceil(queue.tracks.size / 20), 1);
 
-        const tracks = queue.tracks.map((track, i) => `**${i + 1}.** [${track.title}](${track.url}) [${track.duration}]`);
+        const tracks = queue.tracks.map((track, i) => `**${i + 1}.** [${track.cleanTitle}](${track.url}) [${track.duration}]`);
 
         let footerText = `Strona ${page + 1}/${totalPages}`;
 
@@ -26,7 +26,7 @@ module.exports = {
 
         const embed = createEmbed({
             title: '📰 Piosenki w playliście',
-            description: `**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${queue.tracks.size === 0 ? 'Brak piosenek' : tracks.slice(page * 20, (page + 1) * 20).join('\n')}`,
+            description: `**Teraz odtwarzam:**\n[${queue.currentTrack.cleanTitle}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${queue.tracks.size === 0 ? 'Brak piosenek' : tracks.slice(page * 20, (page + 1) * 20).join('\n')}`,
             footer: {
                 text: footerText
             }
@@ -78,7 +78,7 @@ module.exports = {
         }
 
         function updateEmbed() {
-            embed.setDescription(`**Teraz odtwarzam:**\n[${queue.currentTrack.title}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${tracks.slice(page * 20, (page + 1) * 20).join('\n')}`);
+            embed.setDescription(`**Teraz odtwarzam:**\n[${queue.currentTrack.cleanTitle}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${tracks.slice(page * 20, (page + 1) * 20).join('\n')}`);
             embed.setFooter({ text: `Strona ${page + 1}/${totalPages} • ${queue.tracks.size} piosenki` });
             updateButtons();
         }
