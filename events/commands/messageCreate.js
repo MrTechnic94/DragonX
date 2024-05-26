@@ -10,7 +10,7 @@ const { Events, PermissionsBitField } = require('discord.js');
 const cooldowns = new Map();
 
 // Utworzenie zmiennej oraz przypisanie do niej wymaganych permisji dla bota
-const bot_permissions = [
+const botPermissions = [
 	{ name: PermissionsBitField.Flags.SendMessages, label: 'Send Messages' },
 	{ name: PermissionsBitField.Flags.ReadMessageHistory, label: 'Read Message History' },
 	{ name: PermissionsBitField.Flags.SendMessagesInThreads, label: 'Send Messages In Threads' },
@@ -29,7 +29,7 @@ module.exports = {
 		if (message.author.bot || !message.guild) return;
 
 		// Sprawdzenie permisji bota
-		const missingPermissions = bot_permissions.filter(permission => !message.guild.members.me.permissions.has(permission.name));
+		const missingPermissions = botPermissions.filter(permission => !message.guild.members.me.permissions.has(permission.name));
 
 		if (missingPermissions.length > 0) {
 			const missingPermissionNames = missingPermissions.map(permission => permission.label).join('\n');
