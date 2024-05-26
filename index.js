@@ -46,13 +46,13 @@ const player = new Player(client, {
 (async () => {
 	try {
 		// Sprawdzenie czy Dev Mode jest ustawiony na true
-		const _isDev = process.env.DEV_MODE === 'true';
+		const isDev = process.env.DEV_MODE === 'true';
 
 		// Lista dodatkow do zaladowania
-		const extractors = _isDev || process.env.TOKEN ? null : ext => ext !== 'YouTubeExtractor';
+		const extractors = isDev || process.env.TOKEN ? null : ext => ext !== 'YouTubeExtractor';
 
 		// Token bota
-		const token = _isDev ? process.env.TOKEN_DEV : process.env.TOKEN;
+		const token = isDev ? process.env.TOKEN_DEV : process.env.TOKEN;
 
 		// Zaladowanie dodatkow dla discord-player
 		await player.extractors.register(DeezerExtractor);
