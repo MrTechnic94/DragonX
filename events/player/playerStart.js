@@ -11,7 +11,7 @@ module.exports = {
 			embeds: [
 				createEmbed({
 					title: '▶️ Aktualnie odtwarzam',
-					description: `[${track.cleanTitle}](${track.url})`,
+					description: `**[\`${track.cleanTitle}\`](${track.url})**`,
 					fields: [
 						{ name: '**Na prośbę:**', value: `${requester}`, inline: true },
 						{ name: '**Czas trwania:**', value: `**\`${track.duration}\`**`, inline: true },

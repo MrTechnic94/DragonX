@@ -22,7 +22,7 @@ module.exports = {
             embeds: [
                 createEmbed({
                     title: '📨 Zapisano piosenkę',
-                    description: `**Tytuł:** [${timeline.track.cleanTitle}](${timeline.track.url})\n**Czas: \`${timeline.track.duration}\`**\n**Autor: \`${requester}\`**`,
+                    description: `**Tytuł: [\`${timeline.track.cleanTitle}\`](${timeline.track.url})**\n**Czas: \`${timeline.track.duration}\`**\n**Autor: \`${requester}\`**`,
                     thumbnail: timeline.track.thumbnail,
                     footer: {
                         text: message.guild.name,

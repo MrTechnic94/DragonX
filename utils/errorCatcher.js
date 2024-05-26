@@ -2,7 +2,7 @@
 
 const pkg = require('../package.json');
 const logger = require('./consoleLogger');
-const { exec } = require('node:child_process');
+const { execSync } = require('node:child_process');
 
 // Funkcja sprawdzająca obecnosc wymaganych parametrow w pliku .env
 function checkEnvVariables(variables) {
@@ -25,15 +25,17 @@ function checkNodeVersion() {
 
 // Sprawdzenie obecnosci FFmpeg
 function checkFFmpeg() {
-    const hasFFmpegStatic = pkg.dependencies['ffmpeg-static'] || pkg.optionalDependencies?.['ffmpeg-static'] || pkg.devDependencies?.['ffmpeg-static'];
+    const hasFFmpegStatic = ['dependencies', 'optionalDependencies', 'devDependencies'].some(dep => pkg[dep]?.['ffmpeg-static']);
 
-    exec('ffmpeg -version', (err) => {
-        if (err && !hasFFmpegStatic) {
+    try {
+        execSync('ffmpeg -version', { stdio: 'ignore' });
+    } catch {
+        if (!hasFFmpegStatic) {
             logger.error('No FFmpeg installed');
             logger.error('Install FFmpeg or use ffmpeg-static');
             process.exit(1);
         }
-    });
+    }
 }
 
 // Funkcja glowna odpowiedzialna za przechwytywanie bledow i sprawdzanie wymagan
