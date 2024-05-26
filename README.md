@@ -17,7 +17,7 @@ Doświadcz niezrównanego muzycznego doświadczenia z wyjątkowym botem, który 
 - Sklonuj to repozytorium
 - Uruchom polecenie `pnpm update:all`
 - Wejdź w plik `.env` i skonfiguruj bazę danych, token oraz inne potrzebne opcję
-- Uruchom bota używając polecenia `pnpm start` lub `pnpm pm2`, jeśli chcesz użyć `pm2`
+- Uruchom bota używając polecenia `pnpm start` lub `pnpm pm2` (jeśli chcesz użyć `pm2`)
 - Sprawdź wszystkie polecenia bota komendą `d!help`, i ciesz się niezrównaną jakością jaką oferuje ten bot!
 
 ## 🛟 Napotkałeś problem?
