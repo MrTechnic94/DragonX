@@ -55,8 +55,8 @@ const messages = {
     track_back_success: '◀️ **Odtwarzam poprzednią piosenkę**',
     clear_success: '💨 **Playlista została wyczyszczona**',
     disabled_filters_success: '🎵 **Wszystkie filtry zostały wyłączone**',
-    resume_success: '⏸️ **\`Wznowiono\` odtwarzanie piosenki**',
-    pause_success: '▶️ **\`Zatrzymano\` odtwarzanie piosenki**'
+    resume_success: '⏸️ **`Wznowiono` odtwarzanie piosenki**',
+    pause_success: '▶️ **`Zatrzymano` odtwarzanie piosenki**'
 };
 
 // Generowanie gotowych wiadomosci

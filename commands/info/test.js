@@ -30,6 +30,6 @@ module.exports = {
         // Utworzenie embedu
         const embed = createEmbed(embedData);
         message.channel.send({ embeds: [embed] });
-        logger.info(embed)
+        logger.info(embed);
     },
 };

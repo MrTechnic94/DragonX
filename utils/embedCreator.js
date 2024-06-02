@@ -16,7 +16,7 @@ function createEmbed({ url, title, image, timestamp, description, fields = {}, t
     if (fields.length) {
         const validFields = fields.filter(field => field.name && field.value);
         embed.addFields(validFields);
-    };
+    }
     if (thumbnail) embed.setThumbnail(thumbnail);
     if (author.name ?? author.icon ?? author.url) embed.setAuthor({ name: author.name, iconURL: author.icon, url: author.url });
     if (footer.text ?? footer.icon) embed.setFooter({ text: footer.text ?? null, iconURL: footer.icon });
