@@ -1,8 +1,7 @@
 'use strict';
 
 const messageEmbeds = require('../../utils/messageEmbeds');
-const { createEmbed } = require('../../utils/embedCreator');
-const { useQueue } = require('discord-player');
+const { useTimeline } = require('discord-player');
 
 module.exports = {
     name: 'pause',
@@ -11,16 +10,16 @@ module.exports = {
     async run(_client, message) {
         if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
-        const queue = useQueue(message.guild.id);
+        const timeline = useTimeline(message.guild.id);
 
-        if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
+        if (!timeline?.track) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
-        if (queue.node.volume === 0) return message.channel.send({ embeds: [messageEmbeds.muted_player_error] });
+        if (timeline.paused) return message.channel.send({ embeds: [messageEmbeds.paused_error] });
 
-        queue.node.setPaused(!queue.node.isPaused());
+        if (timeline.volume === 0) return message.channel.send({ embeds: [messageEmbeds.muted_player_error] });
 
-        const mode = queue.node.isPaused() ? '▶️ `Zatrzymano`' : '⏸️ `Wznowiono`';
+        timeline.pause();
 
-        return message.channel.send({ embeds: [createEmbed({ description: `**${mode} odtwarzanie piosenki**` })] });
+        return message.channel.send({ embeds: [messageEmbeds.pause_success] });
     },
 };

@@ -43,6 +43,8 @@ const messages = {
     same_move_error: '❌ **Nie można przenieść piosenki w to samo miejsce**',
     no_found_lyrics_error: '❌ **Nie znaleziono tekstu dla tej piosenki**',
     no_lyrics_args_error: '❌ **Podaj nazwę piosenki lub włącz jej odtwarzanie**',
+    resumed_error: '❌ **Odtwarzacz nie jest zatrzymany**',
+    paused_error: '❌ **Odtwarzacz jest już zatrzymany**',
 
     // Wiadomosci z sukcesem
     send_dm_success: '✅ **Sprawdź wiadomości prywatne**',
@@ -52,7 +54,9 @@ const messages = {
     shuffle_success: '🔀 **Playlista została przetasowana**',
     track_back_success: '◀️ **Odtwarzam poprzednią piosenkę**',
     clear_success: '💨 **Playlista została wyczyszczona**',
-    disabled_filters_success: '🎵 **Wszystkie filtry zostały wyłączone**'
+    disabled_filters_success: '🎵 **Wszystkie filtry zostały wyłączone**',
+    resume_success: '⏸️ **\`Wznowiono\` odtwarzanie piosenki**',
+    pause_success: '▶️ **\`Zatrzymano\` odtwarzanie piosenki**'
 };
 
 // Generowanie gotowych wiadomosci

@@ -11,13 +11,16 @@ function createEmbed({ url, title, image, timestamp, description, fields = {}, t
     if (url) embed.setURL(url);
     if (title) embed.setTitle(title);
     if (image) embed.setImage(image);
-    if (timestamp) embed.setTimestamp(new Date(timestamp) ?? undefined);
+    if (timestamp) embed.setTimestamp(new Date(timestamp));
     if (description) embed.setDescription(description);
-    if (fields.length > 0) embed.addFields(fields);
+    if (fields.length) {
+        const validFields = fields.filter(field => field.name && field.value);
+        embed.addFields(validFields);
+    };
     if (thumbnail) embed.setThumbnail(thumbnail);
-    if (author.name ?? author.icon ?? author.url) embed.setAuthor({ name: author.name ?? undefined, iconURL: author.icon ?? undefined, url: author.url ?? undefined });
-    if (footer.text ?? footer.icon) embed.setFooter({ text: footer.text ?? undefined, iconURL: footer.icon ?? undefined });
-    embed.setColor(color ?? process.env.DEV_MODE === 'true' ? embedOptions.devEmbedColor : embedOptions.embedColor);
+    if (author.name ?? author.icon ?? author.url) embed.setAuthor({ name: author.name, iconURL: author.icon, url: author.url });
+    if (footer.text ?? footer.icon) embed.setFooter({ text: footer.text ?? null, iconURL: footer.icon });
+    embed.setColor(color ?? (process.env.DEV_MODE === 'true' ? embedOptions.devEmbedColor : embedOptions.embedColor));
 
     return embed;
 }
