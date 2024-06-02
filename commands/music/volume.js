@@ -2,7 +2,7 @@
 
 const messageEmbeds = require('../../utils/messageEmbeds');
 const { createEmbed } = require('../../utils/embedCreator');
-const { useTimeline } = require('discord-player');
+const { useQueue } = require('discord-player');
 
 module.exports = {
     name: 'volume',
@@ -12,30 +12,30 @@ module.exports = {
     async run(_client, message, args) {
         if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
-        const timeline = useTimeline(message.guild.id);
+        const queue = useQueue(message.guild.id);
 
-        if (!timeline?.track) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
+        if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
         const vol = parseInt(args[0]);
 
-        const current_volume_emoji = timeline.volume === 0 ? '🔇' : timeline.volume >= 51 ? '🔊' : '🔉';
+        const current_volume_emoji = queue.node.volume === 0 ? '🔇' : queue.node.volume >= 51 ? '🔊' : '🔉';
 
-        if (isNaN(vol)) return message.channel.send({ embeds: [createEmbed({ description: `${current_volume_emoji} **Aktualna głośność: \`${timeline.volume}%\`**` })] });
+        if (isNaN(vol)) return message.channel.send({ embeds: [createEmbed({ description: `${current_volume_emoji} **Aktualna głośność: \`${queue.node.volume}%\`**` })] });
 
         if (vol < 0 || vol > 200) return message.channel.send({ embeds: [messageEmbeds.max_volume_error] });
 
-        if (timeline.volume === vol) return message.channel.send({ embeds: [messageEmbeds.already_volume_error] });
+        if (queue.node.volume === vol) return message.channel.send({ embeds: [messageEmbeds.already_volume_error] });
 
         if (vol === 0) {
-            timeline.pause();
-            timeline.setVolume(vol);
+            queue.node.pause();
+            queue.node.setVolume(vol);
         } else {
-            timeline.resume();
+            queue.node.resume();
         }
 
         const volume_emoji = vol === 0 ? '🔇' : vol >= 51 ? '🔊' : '🔉';
 
-        timeline.setVolume(vol);
+        queue.node.setVolume(vol);
         return message.channel.send({ embeds: [createEmbed({ description: `${volume_emoji} **Ustawiono głośność na \`${vol}%\`**` })] });
     },
 };

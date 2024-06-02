@@ -1,7 +1,7 @@
 'use strict';
 
 const messageEmbeds = require('../../utils/messageEmbeds');
-const { useHistory } = require('discord-player');
+const { useQueue } = require('discord-player');
 
 module.exports = {
     name: 'back',
@@ -11,13 +11,11 @@ module.exports = {
     async run(_client, message) {
         if (message.member?.voice.channelId !== message.guild.members.me?.voice.channelId) return message.channel.send({ embeds: [messageEmbeds.voice_error] });
 
-        const history = useHistory(message.guild.id);
+        const queue = useQueue(message.guild.id);
 
-        if (!history) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
+        if (!queue.history.previousTrack) return message.channel.send({ embeds: [messageEmbeds.track_back_error] });
 
-        if (history.isEmpty()) return message.channel.send({ embeds: [messageEmbeds.track_back_error] });
-
-        await history.previous();
+        await queue.history.previous();
         return message.channel.send({ embeds: [messageEmbeds.track_back_success] });
     },
 };
