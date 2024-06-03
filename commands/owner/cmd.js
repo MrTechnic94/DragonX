@@ -14,9 +14,10 @@ module.exports = {
         const msg = await message.channel.send('🔍 **Wykonuje polecenie...**');
 
         exec(args.join(' '), (error, stdout) => {
+            msg.delete();
+
             if (error) return message.channel.send({ embeds: [createEmbed({ description: `❌ **Wystąpił błąd podczas wykonywania komendy**\n\`\`\`${error}\`\`\`` })] });
 
-            msg.delete();
             return message.channel.send({ embeds: [createEmbed({ description: `✅ **Komenda została pomyślnie wykonana**\n\`\`\`${stdout}\`\`\`` })] });
         });
     },
