@@ -11,10 +11,13 @@ module.exports = {
     async run(_client, message, args) {
         if (!args.length) return message.channel.send({ embeds: [messageEmbeds.args_cmd_error] });
 
-        exec(args.join(' '), (error, stdout) => {
-            if (error) return message.channel.send({ embeds: [createEmbed({ description: `❌ **Wystąpił błąd podczas wykonywania komendy:**\n\`\`\`${error}\`\`\`` })] });
+        const msg = await message.channel.send('🔍 **Wykonuje polecenie...**');
 
-            return message.channel.send({ embeds: [createEmbed({ description: `✅ **Komenda została pomyślnie wykonana:**\n\`\`\`${stdout}\`\`\`` })] });
+        exec(args.join(' '), (error, stdout) => {
+            if (error) return message.channel.send({ embeds: [createEmbed({ description: `❌ **Wystąpił błąd podczas wykonywania komendy**\n\`\`\`${error}\`\`\`` })] });
+
+            msg.delete();
+            return message.channel.send({ embeds: [createEmbed({ description: `✅ **Komenda została pomyślnie wykonana**\n\`\`\`${stdout}\`\`\`` })] });
         });
     },
 };
