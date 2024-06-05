@@ -11,8 +11,8 @@ module.exports = {
 		// Wyswietlenie informacji o zalogowaniu sie bota
 		logger.info(`${client.user.tag} zalogowal sie`);
 
-		// Jesli Dev Mode jest ustawiony na true, generuje raport zaleznosci uzywanych przez modul discord-voip
-		if (process.env.DEV_MODE === 'true') {
+		// Jesli tryb developerski jest wlaczony, generuje raport zaleznosci uzywanych przez modul discord-voip
+		if (global.isDev) {
 			const player = useMainPlayer();
 			logger.info(`Running in Dev Mode\n${player.scanDeps()}`);
 		}

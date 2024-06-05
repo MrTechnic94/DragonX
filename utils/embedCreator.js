@@ -20,7 +20,7 @@ function createEmbed({ url, title, image, timestamp, description, fields = {}, t
     if (thumbnail) embed.setThumbnail(thumbnail);
     if (author.name ?? author.icon ?? author.url) embed.setAuthor({ name: author.name, iconURL: author.icon, url: author.url });
     if (footer.text ?? footer.icon) embed.setFooter({ text: footer.text ?? null, iconURL: footer.icon });
-    embed.setColor(color ?? (process.env.DEV_MODE === 'true' ? embedOptions.devEmbedColor : embedOptions.embedColor));
+    embed.setColor(color ?? (global.isDev ? embedOptions.devEmbedColor : embedOptions.embedColor));
 
     return embed;
 }

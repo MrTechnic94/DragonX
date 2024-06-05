@@ -10,40 +10,32 @@ module.exports = {
     cooldown: 2,
     async run(_client, message, args) {
         const queue = useQueue(message.guild.id);
+        const searchQuery = args.join(' ') || (queue?.isPlaying() && queue.currentTrack.cleanTitle);
+
+        if (!searchQuery) return message.channel.send({ embeds: [messageEmbeds.no_lyrics_args_error] });
+
         const lyricsFinder = lyricsExtractor(process.env.GENIUS_LYRICS_API);
-        const query = args.join(' ');
 
-        if (!query && !queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.no_lyrics_args_error] });
-
-        const lyrics = queue?.isPlaying() && !query ? await lyricsFinder.search(queue.currentTrack.cleanTitle).catch(() => null) : await lyricsFinder.search(query).catch(() => null);
+        const lyrics = await lyricsFinder.search(searchQuery).catch(() => null);
 
         if (!lyrics) return message.channel.send({ embeds: [messageEmbeds.no_found_lyrics_error] });
 
-        const maxChars = 1997;
+        const embeds = [];
         let trimmedLyrics = lyrics.lyrics;
         let isFirstEmbed = true;
-        const embeds = [];
 
-        while (trimmedLyrics.length > maxChars) {
+        while (trimmedLyrics.length > 0) {
             const embed = createEmbed({
                 title: isFirstEmbed ? `🎵 ${lyrics.artist.name} - ${lyrics.title}` : undefined,
-                description: trimmedLyrics.substring(0, maxChars)
+                description: trimmedLyrics.slice(0, 1997)
             });
             embeds.push(embed);
-            trimmedLyrics = trimmedLyrics.substring(maxChars);
+            trimmedLyrics = trimmedLyrics.slice(1997);
             isFirstEmbed = false;
         }
 
-        if (trimmedLyrics.length > 0 || embeds.length === 0) {
-            const embed = createEmbed({
-                title: isFirstEmbed ? `🎵 ${lyrics.artist.name} - ${lyrics.title}` : undefined,
-                description: trimmedLyrics
-            });
-            embeds.push(embed);
-        }
-
         for (const embed of embeds) {
-            message.channel.send({ embeds: [embed] });
+            await message.channel.send({ embeds: [embed] });
         }
     },
 };

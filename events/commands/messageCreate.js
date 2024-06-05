@@ -51,7 +51,8 @@ module.exports = {
 				embeds: [
 					createEmbed({
 						description: `**Witaj** <@${message.author.id}>\n**Mój prefix to: \`${prefix}\`**\n**Jeśli chcesz poznać więcej moich komend wpisz: \`${prefix}help\`**`,
-					})],
+					})
+				],
 			});
 		}
 
