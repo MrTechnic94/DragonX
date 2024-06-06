@@ -15,22 +15,25 @@ module.exports = {
         if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
         let page = 0;
-
         const totalPages = Math.max(Math.ceil(queue.tracks.size / 20), 1);
-
         const tracks = queue.tracks.map((track, i) => `**${i + 1}.** [${track.cleanTitle}](${track.url}) [${track.duration}]`);
+        const getFooterText = () => {
+            let footerText = `Strona ${page + 1}/${totalPages}`;
+            if (queue.tracks.size > 0) {
+                footerText += ` • ${queue.tracks.size} ${queue.tracks.size === 1 ? 'piosenka' : 'piosenki'}`;
+            }
+            return footerText;
+        };
 
-        let footerText = `Strona ${page + 1}/${totalPages}`;
-
-        if (queue.tracks.size > 0) footerText += ` • ${queue.tracks.size.toString()} ${queue.tracks.size < 2 ? 'piosenka' : 'piosenki'}`;
-
-        const embed = createEmbed({
+        const createQueueEmbed = () => createEmbed({
             title: '📰 Piosenki w playliście',
             description: `**Teraz odtwarzam:**\n[${queue.currentTrack.cleanTitle}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${queue.tracks.size === 0 ? 'Brak piosenek' : tracks.slice(page * 20, (page + 1) * 20).join('\n')}`,
             footer: {
-                text: footerText
-            }
+                text: getFooterText()
+            },
         });
+
+        const embed = createQueueEmbed();
 
         if (queue.tracks.size <= 20) return message.channel.send({ embeds: [embed] });
 
@@ -44,17 +47,18 @@ module.exports = {
             .setLabel('▶️')
             .setStyle(ButtonStyle.Primary);
 
-        const row = new ActionRowBuilder();
-
-        if (totalPages > 1) {
+        const createActionRow = () => {
+            const row = new ActionRowBuilder();
             if (page > 0) row.addComponents(backwardButton);
             if (page < totalPages - 1) row.addComponents(forwardButton);
-        }
+            return row;
+        };
+
+        const row = createActionRow();
 
         const msg = await message.channel.send({ embeds: [embed], components: [row] });
 
         const filter = (interaction) => interaction.user.id === message.author.id;
-
         const collector = msg.createMessageComponentCollector({ filter, time: 120000 });
 
         collector.on('collect', async (interaction) => {
@@ -63,24 +67,13 @@ module.exports = {
             } else if (interaction.customId === 'forward' && page < totalPages - 1) {
                 page++;
             }
-            updateEmbed();
-            await interaction.update({ embeds: [embed], components: [row] });
+            const updatedEmbed = createQueueEmbed();
+            const updatedRow = createActionRow();
+            await interaction.update({ embeds: [updatedEmbed], components: [updatedRow] });
         });
 
         collector.on('end', () => {
             msg.edit({ components: [] });
         });
-
-        function updateButtons() {
-            row.components = [];
-            if (page > 0) row.addComponents(backwardButton);
-            if (page < totalPages - 1) row.addComponents(forwardButton);
-        }
-
-        function updateEmbed() {
-            embed.setDescription(`**Teraz odtwarzam:**\n[${queue.currentTrack.cleanTitle}](${queue.currentTrack.url}) [${queue.currentTrack.duration}]\n\n**Następne:**\n${tracks.slice(page * 20, (page + 1) * 20).join('\n')}`);
-            embed.setFooter({ text: `Strona ${page + 1}/${totalPages} • ${queue.tracks.size} piosenki` });
-            updateButtons();
-        }
     },
 };

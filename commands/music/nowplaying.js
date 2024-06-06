@@ -13,7 +13,7 @@ module.exports = {
 
         if (!queue?.isPlaying()) return message.channel.send({ embeds: [messageEmbeds.queue_error] });
 
-        const progresbar = queue.node.createProgressBar({ timecodes: false, length: 13, leftChar: '[▬](https://top.gg/bot/1107363385676410910)' });
+        const progressbar = queue.node.createProgressBar({ timecodes: false, length: 13, leftChar: '[▬](https://top.gg/bot/1107363385676410910)' });
         const emoji = queue.node.isPaused() ? '▶️' : '⏸️';
         const requester = queue.currentTrack.requestedBy ?? '**`brak`**';
         const author = queue.currentTrack.author ?? 'nieznany';
@@ -22,7 +22,7 @@ module.exports = {
             embeds: [
                 createEmbed({
                     title: '⚡ Teraz odtwarzam',
-                    description: `**Tytuł: [\`${queue.currentTrack.cleanTitle}\`](${queue.currentTrack.url})**\n**Autor: \`${author}\`**\n**Poziom głośności: \`${queue.node.volume}%\`**\n**Na prośbę:** ${requester}\n\n${emoji} | ${progresbar} ${queue.node.getTimestamp().current.label} / ${queue.currentTrack.duration}`,
+                    description: `**Tytuł: [\`${queue.currentTrack.cleanTitle}\`](${queue.currentTrack.url})**\n**Autor: \`${author}\`**\n**Poziom głośności: \`${queue.node.volume}%\`**\n**Na prośbę:** ${requester}\n\n${emoji} | ${progressbar} ${queue.node.getTimestamp().current.label} / ${queue.currentTrack.duration}`,
                     thumbnail: queue.currentTrack.thumbnail
                 }),
             ],
