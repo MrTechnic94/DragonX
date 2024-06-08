@@ -10,15 +10,21 @@ module.exports = {
     cooldown: 2,
     async run(_client, message, args) {
         const queue = useQueue(message.guild.id);
+
         const searchQuery = args.join(' ') || (queue?.isPlaying() && queue.currentTrack.cleanTitle);
 
         if (!searchQuery) return message.channel.send({ embeds: [messageEmbeds.no_lyrics_args_error] });
 
         const lyricsFinder = lyricsExtractor(process.env.GENIUS_LYRICS_API);
 
+        const msg = await message.channel.send('🔍 **Wyszukuje tekst piosenki...**');
+
         const lyrics = await lyricsFinder.search(searchQuery).catch(() => null);
 
-        if (!lyrics) return message.channel.send({ embeds: [messageEmbeds.no_found_lyrics_error] });
+        if (!lyrics) {
+            msg.delete();
+            return message.channel.send({ embeds: [messageEmbeds.no_found_lyrics_error] });
+        }
 
         const embeds = [];
         let trimmedLyrics = lyrics.lyrics;
@@ -34,8 +40,7 @@ module.exports = {
             isFirstEmbed = false;
         }
 
-        for (const embed of embeds) {
-            await message.channel.send({ embeds: [embed] });
-        }
+        msg.delete();
+        await message.channel.send({ embeds });
     },
 };

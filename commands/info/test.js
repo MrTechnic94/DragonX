@@ -6,7 +6,8 @@ const { createEmbed } = require('../../utils/embedCreator');
 module.exports = {
     name: 'test',
     cooldown: 2,
-    async run(client, message) {
+    owner: true,
+    async run(_client, message) {
         const embedData = {
             url: 'https://example.com',
             title: 'Przykładowy Tytuł',

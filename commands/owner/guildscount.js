@@ -8,6 +8,6 @@ module.exports = {
     owner: true,
     cooldown: 2,
     async run(client, message) {
-        message.channel.send({ embeds: [createEmbed({ description: `📰 **Liczba serwerów: \`${client.guilds.cache.size}\`**` })] });
+        return message.channel.send({ embeds: [createEmbed({ description: `📰 **Liczba serwerów: \`${client.guilds.cache.size}\`**` })] });
     },
 };
