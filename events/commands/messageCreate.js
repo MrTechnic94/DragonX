@@ -40,10 +40,10 @@ module.exports = {
 		const prefix = guildData?.prefix ?? process.env.PREFIX;
 
 		// Sprawdzenie czy komenda zaczyna sie od prefixu lub oznaczenia bota
-		if (!message.content.startsWith(prefix) && !message.mentions.has(client.user)) return;
+		if (!message.content.startsWith(prefix) && !message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) return;
 
 		// Odpowiedzenie bota na oznaczenie
-		if (message.mentions.has(client.user)) {
+		if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
 			return message.channel.send({
 				embeds: [
 					createEmbed({
