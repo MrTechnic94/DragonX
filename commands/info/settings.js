@@ -12,7 +12,7 @@ module.exports = {
         const queue = useQueue(message.guild.id);
         const guildData = await redis.hgetall(message.guild.id);
         const prefix = guildData?.prefix ?? process.env.PREFIX;
-        const dj = guildData?.djRoleId ? `<@&${guildData.djRoleId}>` : '**`nie ustawiono`**';
+        const dj = guildData?.djRoleId ? `<@&${guildData.djRoleId}>` : '**`brak`**';
 
         if (!queue?.isPlaying()) return message.channel.send({ embeds: [createEmbed({ title: '🔧 Ustawienia serwera', description: `**Prefix: \`${prefix}\`**\n**DJ Rola:** ${dj}\n**Autoplay: \`wyłączony\`**\n**Loop: \`wyłączony\`**\n**Volume: \`100%\`**` })] });
 
