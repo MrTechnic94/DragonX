@@ -38,22 +38,21 @@ const player = new Player(client, {
 });
 
 // Ustawienie flagi oznaczajacej, czy tryb developerski jest wlaczony
-global.isDev = process.env.DEV_MODE === 'true';
+const isDev = process.env.DEV_MODE === 'true';
+global.isDev = isDev;
+
+// Lista dodatkow do zaladowania
+const extractors = global.isDev ? null : ext => ext !== 'YouTubeExtractor';
+
+// Token bota
+const token = global.isDev ? process.env.TOKEN_DEV : process.env.TOKEN;
 
 // Zalodowanie handlerow komend i eventow
 ['commands', 'aliases'].forEach(name => client[name] = new Collection());
-
 ['./structures/commands', './structures/events'].forEach(path => require(path)(client));
 
-// Stworzenie funkcji asynchronicznej
 (async () => {
 	try {
-		// Lista dodatkow do zaladowania
-		const extractors = global.isDev || process.env.TOKEN ? null : ext => ext !== 'YouTubeExtractor';
-
-		// Token bota
-		const token = global.isDev ? process.env.TOKEN_DEV : process.env.TOKEN;
-
 		// Zaladowanie dodatkow dla discord-player
 		await player.extractors.register(DeezerExtractor);
 		await player.extractors.loadDefault(extractors);

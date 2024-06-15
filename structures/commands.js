@@ -33,7 +33,7 @@ module.exports = (client) => {
       logger.info(`Polecenie ${command.name} zostalo zaladowane`);
 
       // Sprawdzenie czy komenda nie ma takich samych aliasow jak pozotale
-      if (command.aliases && Array.isArray(command.aliases)) {
+      if (Array.isArray(command.aliases)) {
         command.aliases.forEach((alias) => {
           if (client.aliases.has(alias)) {
             logger.warn(`Zbyt wiele polecen posiada takie same aliasy: ${alias}`);
