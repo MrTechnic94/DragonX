@@ -41,7 +41,7 @@ module.exports.clientOptions = {
         status: PresenceUpdateStatus.Online,
         activities: [{
             name: '❓d!help 🎵d!play',
-            type: ActivityType.Listening
+            type: ActivityType.Custom
         }]
     },
     allowedMentions: {

@@ -38,15 +38,12 @@ module.exports = {
 
 		const guildData = await redis.hgetall(message.guild.id);
 		const prefix = guildData?.prefix ?? process.env.PREFIX;
-		const args = message.content
-			.slice(prefix.length)
-			.trim()
-			.split(/ +/g);
-		const command = args.shift().toLowerCase();
-		const cmd = client.commands.get(command) ?? client.commands.get(client.aliases.get(command));
+
+		// Sprawdzenie czy komenda zaczyna sie od prefixu lub oznaczenia bota
+		if (!message.content.startsWith(prefix) && !message.mentions.has(client.user)) return;
 
 		// Odpowiedzenie bota na oznaczenie
-		if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
+		if (message.mentions.has(client.user)) {
 			return message.channel.send({
 				embeds: [
 					createEmbed({
@@ -56,8 +53,12 @@ module.exports = {
 			});
 		}
 
-		// Sprawdzenie czy komenda instnieje i czy zaczyna sie od prefixu
-		if (!message.content.startsWith(prefix) || !cmd) return;
+		const args = message.content.slice(prefix.length).trim().split(/ +/g);
+		const command = args.shift().toLowerCase();
+		const cmd = client.commands.get(command) ?? client.commands.get(client.aliases.get(command));
+
+		// Sprawdzenie czy komenda instnieje
+		if (!cmd) return;
 
 		// Sprawdzenie czy komenda ma cooldown
 		if (cmd.cooldown && cooldowns.has(cmd.name)) {
@@ -87,7 +88,7 @@ module.exports = {
 
 		// Przechwytuje i wyswietla bledy komend
 		try {
-			cmd.run(client, message, args);
+			await cmd.run(client, message, args);
 		} catch (err) {
 			return logger.error(`Komenda ${cmd.name} napotkala blad\n${err}`);
 		}
