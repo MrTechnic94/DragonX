@@ -42,10 +42,10 @@ const isDev = process.env.DEV_MODE === 'true';
 global.isDev = isDev;
 
 // Lista dodatkow do zaladowania
-const extractors = global.isDev ? null : ext => ext !== 'YouTubeExtractor';
+const extractors = isDev ? null : ext => ext !== 'YouTubeExtractor';
 
 // Token bota
-const token = global.isDev ? process.env.TOKEN_DEV : process.env.TOKEN;
+const token = isDev ? process.env.TOKEN_DEV : process.env.TOKEN;
 
 // Zalodowanie handlerow komend i eventow
 ['commands', 'aliases'].forEach(name => client[name] = new Collection());
