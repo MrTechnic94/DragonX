@@ -64,7 +64,7 @@ module.exports.clientPlayerOptions = {
 // Pozostale ustawienia odtwarzacza discord-player
 module.exports.playerOptions = {
     useLegacyFFmpeg: false,
-    skipFFmpeg: false,
+    skipFFmpeg: true,
     maxFiltersEnabled: 1,
     audioQuality: 'highestaudio'
 };
