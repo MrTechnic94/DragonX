@@ -5,7 +5,6 @@ const { createEmbed } = require('./embedCreator');
 
 // Zmienna z gotowymi wiadomosciami
 const messages = {
-    // Wiadomosci z errorem
     queue_error: '❌ **Nie ma piosenek w playliście**',
     voice_error: '❌ **Nie jesteś na moim kanale głosowym**',
     member_voice_error: '❌ **Nie jesteś na kanale głosowym**',
@@ -45,8 +44,6 @@ const messages = {
     no_lyrics_args_error: '❌ **Podaj nazwę piosenki lub włącz jej odtwarzanie**',
     resumed_error: '❌ **Odtwarzacz nie jest zatrzymany**',
     paused_error: '❌ **Odtwarzacz jest już zatrzymany**',
-
-    // Wiadomosci z sukcesem
     send_dm_success: '✅ **Sprawdź wiadomości prywatne**',
     remove_dj_success: '✅ **Usunięto DJ rolę**',
     restart_bot_success: '✅ **Restartowanie bota...**',

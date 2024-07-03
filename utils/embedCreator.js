@@ -7,7 +7,6 @@ const { EmbedBuilder } = require('discord.js');
 function createEmbed({ url, title, image, timestamp, description, fields = {}, thumbnail, author = {}, footer = {}, color }) {
     const embed = new EmbedBuilder();
 
-    // Ustawienia podczas tworzenia embedu
     if (url) embed.setURL(url);
     if (title) embed.setTitle(title);
     if (image) embed.setImage(image);

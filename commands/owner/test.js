@@ -25,7 +25,6 @@ module.exports = {
             footer: {
                 icon: 'https://example.com/footer-icon.png'
             },
-            color: 0xfef65b
         };
 
         // Utworzenie embedu

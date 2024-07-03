@@ -1,5 +1,6 @@
 'use strict';
 
+const logger = require('../../utils/consoleLogger');
 const messageEmbeds = require('../../utils/messageEmbeds');
 const { clientPlayerOptions } = require('../../config/default');
 const { createEmbed } = require('../../utils/embedCreator');
@@ -38,7 +39,8 @@ module.exports = {
                     ...clientPlayerOptions
                 }
             });
-        } catch {
+        } catch (err) {
+            logger.error(err);
             return message.channel.send({ embeds: [messageEmbeds.catch_error] });
         }
     },
