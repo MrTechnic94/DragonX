@@ -18,6 +18,7 @@ try {
 } catch {
     // Uzycie zwyklego pino, jesli modul pino-pretty nie jest zainstalowany, lub jesli wystapil blad
     logger = pino();
+    logger.warn('Aby uzyskac lepszy format, zainstaluj modul pino-pretty');
 }
 
 module.exports = logger;
