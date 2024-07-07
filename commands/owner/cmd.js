@@ -11,7 +11,7 @@ module.exports = {
     async run(_client, message, args) {
         if (!args.length) return message.channel.send({ embeds: [messageEmbeds.args_cmd_error] });
 
-        const msg = await message.channel.send('🔍 **Wykonuje polecenie...**');
+        const msg = await message.channel.send('🔎 **Wykonuje polecenie...**');
 
         exec(args.join(' '), (error, stdout) => {
             msg.delete();

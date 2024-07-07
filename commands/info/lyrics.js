@@ -17,7 +17,7 @@ module.exports = {
 
         const lyricsFinder = lyricsExtractor(process.env.GENIUS_LYRICS_API);
 
-        const msg = await message.channel.send('🔍 **Wyszukuje tekst piosenki...**');
+        const msg = await message.channel.send('🔎 **Wyszukuje tekst piosenki...**');
 
         const lyrics = await lyricsFinder.search(searchQuery).catch(() => null);
 
