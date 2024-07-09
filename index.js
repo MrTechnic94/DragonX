@@ -55,7 +55,7 @@ const token = isDev ? process.env.TOKEN_DEV : process.env.TOKEN;
 	try {
 		// Zaladowanie dodatkow dla discord-player
 		await player.extractors.register(DeezerExtractor);
-		await player.extractors.loadDefault(extractors);
+		await player.extractors.loadDefault();
 		logger.info('Zaladowano wszystkie dodatki');
 
 		// Zalogowanie bota do discord
