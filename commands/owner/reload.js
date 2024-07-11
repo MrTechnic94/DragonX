@@ -8,11 +8,11 @@ module.exports = {
     owner: true,
     cooldown: 2,
     async run(client, message, args) {
-        if (!args[0]) return message.channel.send({ embeds: [messageEmbeds.args_category_error] });
-        if (!args[1]) return message.channel.send({ embeds: [messageEmbeds.args_command_error] });
+        const category = args[0];
+        const command = args[1];
 
-        const category = args[0].toLowerCase();
-        const command = args[1].toLowerCase();
+        if (!category) return message.channel.send({ embeds: [messageEmbeds.args_category_error] });
+        if (!command) return message.channel.send({ embeds: [messageEmbeds.args_command_error] });
 
         try {
             delete require.cache[require.resolve(`../../commands/${category}/${command}.js`)];
